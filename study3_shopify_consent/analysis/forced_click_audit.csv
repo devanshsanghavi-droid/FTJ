@@ -1,0 +1,13 @@
+store_id,labeller,overlay_in_pre_shot,banner_visible_post_shot,audit_click_failed,note
+S0127,analysis assistant (AI),email sign-up modal,1,1,OneTrust banner with REJECT ALL still at the bottom after the forced click; modal covered the page
+S0157,analysis assistant (AI),country/region selector modal,1,1,Shopify banner with Decline still shown; geo modal on top
+S0218,analysis assistant (AI),geo-redirect modal,1,1,Cookiebot banner (OK / Deny) still shown; redirect prompt on top
+S0257,analysis assistant (AI),geo (shipping country) modal,1,0,Reject All banner still visible at +2 s but Shopify recorded an explicit 'no'
+S0335,analysis assistant (AI),email sign-up modal,1,0,banner still visible at +2 s while the modal fades; Shopify recorded an explicit 'no'
+S0546,analysis assistant (AI),email sign-up modal,1,1,Shopify banner still shown under the modal
+S0596,analysis assistant (AI),full-page region selector,0,1,region selector covers the page; banner hidden behind it
+S1058,analysis assistant (AI),age gate (21 or older),0,1,age gate covers the page; the Deny control belonged to a banner hidden behind it
+S1118,analysis assistant (AI),email sign-up modal,1,1,Shopify banner with DECLINE still shown under the modal
+S1152,analysis assistant (AI),email sign-up modal,1,1,Pandectes banner still at the bottom
+S1166,analysis assistant (AI),none,1,0,Osano banner still visible at +2 s; Shopify recorded an explicit 'no'
+S1271,analysis assistant (AI),chat widget over the Decline button,1,1,Shopify banner still shown; a 'Text us' chat button sits on top of Decline

@@ -1,0 +1,31 @@
+% Figure 2d -- validation design. Final printed size: 70 mm x 56 mm (Figure 2, row 2, right).
+% Markers follow the arm encoding (FIGURE_PLAN): Default filled circle, GPC filled triangle,
+% Repeat/validation open diamond. Source: FIGURE_PLAN.md (Fig 2d, 6c, S4); ../../notes/prior_work.md (objection 2).
+\documentclass[tikz,border=2pt]{standalone}
+\input{schematic_style.tex}
+\newcommand{\kappaglyph}{κ}
+\begin{document}
+\begin{tikzpicture}
+\def\W{70}\def\H{56}
+\panelsize{\W}{\H}
+\panelletter{d}{\H}
+\node[lbl,font=\fsTitle] at (5,54.3) {{Validation}};
+
+% \check{y-top}{glyph}{title}{detail}{where reported}
+\newcommand{\vcheck}[5]{%
+  \draw[box] (0,#1-13.4) rectangle (54,#1);
+  \node[anchor=center] at (6.2,#1-6.7) {#2};
+  \node[lbl, anchor=west] at (13,#1-6.7) {\textbf{#3}\\[0.3mm] #4};
+  \draw[arr] (54,#1-6.7) -- (57.6,#1-6.7);
+  \node[anchor=west, inner sep=0pt] at (58.4,#1-6.7) {\textbf{#5}};}
+\newcommand{\vs}{\,{\color{greyD}vs}\,}
+
+\vcheck{50.2}{\mkDefault\vs\mkRepeat}{Repeat-load agreement}{Default vs Repeat, per store\\ and vendor: Cohen's \kappaglyph}{Fig S4d}
+\vcheck{33.1}{\mkGPC\vs\mkRepeat}{Native vs emulated GPC}{native (Brave) vs emulated\\ (Chromium) on a subsample}{Fig S4d}
+% screenshot glyph for the screenshot audit. The labels so far were made by the AI assistant (Section 4.9), not by a
+% person: the box says so until an author has re-labelled the screenshots blind (then: "Human screenshot audit").
+\vcheck{16.0}{\tikz[baseline=-0.6ex]{\draw[greyD,line width=0.45pt,rounded corners=0.3mm] (0,0) rectangle (7,5);
+    \fill[greyL] (0.5,0.5) rectangle (6.5,1.9); \draw[greyD,line width=0.35pt] (4.4,0.8) rectangle (6.1,1.6);}}%
+  {Screenshot audit}{labels by the AI assistant;\\ human re-labelling pending}{Fig S4}
+\end{tikzpicture}
+\end{document}

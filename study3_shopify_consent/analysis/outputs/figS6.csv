@@ -1,0 +1,37 @@
+outcome,variant,kind,k,n,p,lo,hi
+prechoice_sbx_banner,main analysis,main,205.0,410,0.5,0.45182728756500073,0.5481727124349993
+prechoice_sbx_banner,data beacons only (no library loads),definition,200.0,410,0.4878048780487805,0.4397595637882868,0.5360765933066738
+prechoice_sbx_banner,beacons carrying our test code only,definition,192.0,410,0.4682926829268293,0.42051034970488343,0.5166636587420139
+prechoice_sbx_banner,any origin (not only sandbox),definition,358.0,410,0.8731707317073171,0.8374582334528915,0.9019553594413172
+prechoice_sbx_banner,crawl run at 6 browsers,robustness,19.0,34,0.5588235294117647,0.3945389913538066,0.7111651785765205
+prechoice_sbx_banner,crawl run at 10 browsers,robustness,184.0,374,0.4919786096256685,0.44165117519009106,0.5424691486680565
+prechoice_sbx_banner,excluding edge-cached pages,robustness,203.0,405,0.5012345679012346,0.4527567286033988,0.5496892072924767
+prechoice_sbx_banner,only pages with a California consent string,robustness,204.0,401,0.5087281795511222,0.4599474795151701,0.5573432397193252
+prechoice_sbx_banner,adding banners missed by the detector (re-check),robustness,208.0,422,0.4928909952606635,0.4454707608922781,0.5404394883921333
+prechoice_sbx_banner,Consentmo + shouldShowBanner() counted as banner,robustness,215.0,464,0.46336206896551724,0.418476343013829,0.5088494650039108
+prechoice_sbx_banner,excluding stores flagged in the ethics review,robustness,201.0,402,0.5,0.45135481117261217,0.5486451888273878
+decline_residual,"main analysis (next page, fresh sandboxes)",main,53.0,233,0.22746781115879827,0.17831822888670182,0.28545808544662654
+decline_residual,data beacons only (no library loads),definition,52.0,233,0.22317596566523606,0.17444829635384101,0.28088355048867364
+decline_residual,any time after the click (same or next page),definition,80.0,233,0.34334763948497854,0.28536315697008063,0.4064137796152184
+decline_residual,"next page, any sandbox",definition,70.0,233,0.30042918454935624,0.2451908186049635,0.3621414430721983
+decline_residual,including the failed forced clicks,robustness,57.0,242,0.23553719008264462,0.18646584590351545,0.29287339743458835
+decline_residual,crawl run at 6 browsers,robustness,7.0,19,0.3684210526315789,0.19149512641954003,0.5896046699645555
+decline_residual,crawl run at 10 browsers,robustness,46.0,214,0.21495327102803738,0.16519838388050406,0.27476129768553326
+decline_residual,excluding all forced clicks,robustness,53.0,230,0.23043478260869565,0.1807078073963272,0.28901838832097876
+decline_residual,excluding stores flagged in the ethics review,robustness,52.0,228,0.22807017543859648,0.17837806850402071,0.2867736752853045
+gpc_residual,main analysis,main,279.0,803,0.34744707347447074,0.3153100100204655,0.3810367786786452
+gpc_residual,data beacons only (no library loads),definition,242.0,769,0.31469440832249673,0.28286170943466593,0.3483692542709518
+gpc_residual,beacons carrying our test code only,definition,229.0,753,0.3041168658698539,0.2723216754068768,0.33790052299641093
+gpc_residual,first 10 s of each load,robustness,279.0,802,0.3478802992518703,0.3157121573881063,0.38149875511727493
+gpc_residual,crawl run at 6 browsers,robustness,20.0,70,0.2857142857142857,0.19322220316997774,0.400501966767854
+gpc_residual,crawl run at 10 browsers,robustness,256.0,730,0.3506849315068493,0.31693274186139087,0.3860003680608397
+gpc_residual,excluding edge-cached pages,robustness,276.0,798,0.3458646616541353,0.3136724688529835,0.3795337163906537
+gpc_residual,excluding stores flagged in the ethics review,robustness,275.0,793,0.3467843631778058,0.3144686431789261,0.38057734458738157
+gpc_residual,pixels declaring sale of data only,definition,0.0,803,0.0,0.0,0.0047611074505545
+gpc_residual,any origin (not only sandbox),definition,1216.0,1258,0.9666136724960255,0.9551799831567779,0.9752063119969944
+prechoice_sbx_banner,weighted to the Tranco top-200k (ratio estimator),robustness,,410,0.4999040818772326,0.4458074827995566,0.5540006809549086
+prechoice_sbx_banner,cluster bootstrap by consent tool (BCa),interval,205.0,410,0.5,0.3266121869805639,0.5876662008913923
+decline_residual,weighted to the Tranco top-200k (ratio estimator),robustness,,233,0.24708926620129318,0.18421530160590027,0.3099632307966861
+decline_residual,cluster bootstrap by consent tool (BCa),interval,53.0,233,0.22746781115879827,0.17786509621424107,0.2966101694915254
+gpc_residual,weighted to the Tranco top-200k (ratio estimator),robustness,,803,0.35760251487514466,0.3201210250919649,0.39508400465832444
+gpc_residual,cluster bootstrap by consent tool (BCa),interval,279.0,803,0.34744707347447074,0.3094983019918677,0.3866482863770785

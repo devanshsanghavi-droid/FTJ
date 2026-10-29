@@ -1,0 +1,11 @@
+panel,crawler,audit,k
+banner,banner detected,banner visible,53
+banner,banner detected,no banner visible,1
+reject,reject found,reject visible,35
+reject,reject found,no reject visible,0
+reject,no reject found,reject visible,1
+reject,no reject found,no reject visible,17
+click,banner dismissed,banner gone,33
+click,banner dismissed,banner still shown,0
+click,banner still shown,banner gone,0
+click,banner still shown,banner still shown,2

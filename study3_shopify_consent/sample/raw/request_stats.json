@@ -1,0 +1,22 @@
+{
+  "verify_results.jsonl": {
+    "sites": 1562,
+    "http_requests": 1734,
+    "first_utc": "2026-09-26T05:25:47Z",
+    "last_utc": "2026-09-26T05:40:01Z",
+    "products_json_requests": 176
+  },
+  "creator_verify.jsonl": {
+    "sites": 44,
+    "http_requests": 45,
+    "first_utc": "2026-09-26T05:17:37Z",
+    "last_utc": "2026-09-26T05:17:47Z",
+    "products_json_requests": 1
+  },
+  "sample_product_url_from_products_json": 136,
+  "sample_wpm_inline": 1384,
+  "sample_cross_domain_redirect": 13,
+  "sample_served_country_US": 578,
+  "sample_with_any_cmp_hint": 831,
+  "sample_weight_sum": 2443.5
+}

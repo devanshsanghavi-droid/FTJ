@@ -1,0 +1,130 @@
+store_id,det_recheck,ssb_recheck,code,consent_banner_visible,note,groups,cmp,banner_A0,banner_A1,A0_sbx,shot,vis
+S0011,False,False,R089,no,perks pop-up (not a consent banner),random_nb,none,False,False,True,True,False
+S0020,False,False,R008,no,,random_nb,onetrust,False,False,True,True,False
+S0059,False,True,R015,no,newsletter pop-up at 10 s (not a consent banner),flagged,consentmo,False,False,False,True,False
+S0062,False,True,R127,no,,flagged,multiple,False,False,False,True,False
+S0068,False,True,R005,yes,Privacy Settings panel: Accept All / Accept Essentials Only / Update Preferences,flagged,none,False,False,False,True,True
+S0097,False,True,R039,no,,flagged,consentmo,False,False,True,True,False
+S0103,True,False,R062,yes,Let's talk cookies bar: Accept All Cookies / Reject All Cookies / Manage,blocklist,onetrust,True,True,False,True,True
+S0113,False,True,R092,no,newsletter pop-up (not a consent banner),flagged,consentmo,False,False,True,True,False
+S0117,False,True,R022,yes,Your Privacy dialog: Accept All / Strictly Necessary / Manage Preferences,flagged,none,False,False,False,True,True
+S0125,True,True,R007,yes,cookie bar: Accept / Decline / Preferences,blocklist,pandectes,True,True,False,True,True
+S0130,False,False,R072,no,country welcome modal (not a consent banner),random_nb,onetrust,False,False,False,True,False
+S0131,False,False,R017,no,,random_nb,shopify_native,False,False,True,True,False
+S0139,False,False,R014,no,,random_nb,consentmo,False,False,True,True,False
+S0141,False,True,R042,no,,flagged,consentmo,False,False,False,True,False
+S0147,False,True,R054,no,sign-up pop-up at 10 s (not a consent banner),flagged,none,False,False,False,True,False
+S0149,False,True,R109,yes,We Value Your Privacy panel: Accept All / Reject All / Customize My Choices,flagged,none,False,False,True,True,True
+S0165,True,False,R107,yes,cookie modal: Accept / Preferences / Decline,blocklist,pandectes,True,True,True,True,True
+S0167,True,True,R028,yes,cookie modal: Preferences / Accept,blocklist,pandectes,True,True,True,True,True
+S0170,False,True,R105,no,order-method menu (not a consent banner),flagged,consentmo,False,False,False,True,False
+S0173,False,True,R114,no,newsletter pop-up (not a consent banner),flagged|blocklist,pandectes,False,False,True,True,False
+S0179,False,True,R115,yes,Your choices regarding cookies panel: Accept All / Accept Essential Only / Update Preferences,flagged,none,False,False,False,True,True
+S0198,False,False,R101,no,,random_nb,none,False,False,True,True,False
+S0200,True,True,R019,yes,cookie bar: Allow all / Customize,blocklist,cookiebot,True,True,False,True,True
+S0209,True,False,R121,yes,cookie modal: Preferences / Accept,blocklist,pandectes,True,True,True,True,True
+S0212,False,True,R060,no,discount pop-up (not a consent banner),flagged,clarip,False,False,True,True,False
+S0213,True,False,R004,yes,cookie dialog with Accept All / Choose Categories,blocklist,pandectes,True,True,True,True,True
+S0214,True,True,R048,yes,cookie box: Preferences / Accept / Decline,blocklist,pandectes,True,True,False,True,True
+S0219,True,True,R058,yes,We respect your privacy bar: Preferences / Use Necessary Cookies Only / Accept All,blocklist,pandectes,True,True,True,True,True
+S0232,False,False,R049,no,spin-to-win pop-up (not a consent banner),random_nb,none,False,False,True,True,False
+S0247,False,True,R094,no,spin-to-win pop-up (not a consent banner),flagged,consentmo,False,False,False,True,False
+S0248,False,True,R099,no,,flagged,consentmo,False,False,False,True,False
+S0252,False,True,R053,no,,flagged,consentmo,False,False,False,True,False
+S0255,False,False,R070,no,,random_nb,shopify_native,False,False,True,True,False
+S0265,False,True,R128,no,newsletter pop-up at 10 s (not a consent banner),flagged|blocklist,pandectes,False,False,True,True,False
+S0268,True,True,R074,yes,cookie bar: Preferences / Accept / Decline (below a newsletter pop-up),blocklist,pandectes,True,True,True,True,True
+S0282,False,True,R122,no,,flagged,none,False,False,False,True,False
+S0283,False,True,R067,no,discount pop-up at 10 s (not a consent banner),flagged,consentmo,False,False,False,True,False
+S0289,False,True,R026,no,,flagged,consentmo,False,False,False,True,False
+S0290,False,True,R003,no,,flagged,consentmo,False,False,False,True,False
+S0295,False,True,R079,no,,flagged,consentmo,False,False,True,True,False
+S0304,False,True,R088,no,,flagged,consentmo,False,False,False,True,False
+S0310,False,True,R123,no,,flagged,consentmo,False,False,False,True,False
+S0317,False,True,R057,no,newsletter pop-up (not a consent banner),flagged,consentmo,False,False,False,True,False
+S0321,False,True,R103,no,,flagged,consentmo,False,False,False,True,False
+S0332,False,False,R077,no,discount pop-up (not a consent banner),blocklist,pandectes,False,False,True,True,False
+S0344,False,False,R084,no,review pop-up (not a consent banner),blocklist,pandectes,False,False,True,True,False
+S0360,False,False,R061,no,coupon pop-up (not a consent banner),random_nb,none,False,False,True,True,False
+S0370,True,False,R046,yes,German cookie modal: Einstellungen / Ok,blocklist,pandectes,True,True,True,True,True
+S0371,False,True,R124,yes,cookie bar: Allow All / Allow Necessary Only / Preferences,flagged,none,False,False,False,True,True
+S0379,False,False,R125,no,,random_nb,none,False,False,False,True,False
+S0382,False,True,R082,no,,flagged,consentmo,False,False,False,True,False
+S0391,False,True,R081,no,,flagged,consentmo,False,False,False,True,False
+S0407,False,True,R059,no,,flagged,none,False,False,False,True,False
+S0420,False,True,R052,no,newsletter pop-up (not a consent banner),flagged,consentmo,False,False,False,True,False
+S0424,False,True,R029,no,,flagged,consentmo,False,False,True,True,False
+S0425,False,True,R011,no,,flagged,consentmo,False,False,True,True,False
+S0426,False,True,R073,no,survey pop-up (not a consent banner),flagged,consentmo,False,False,False,True,False
+S0449,False,False,R093,no,,random_nb,consentmo,False,False,True,True,False
+S0472,False,True,R030,no,,flagged,consentmo,False,False,False,True,False
+S0473,False,False,R040,no,,random_nb,shopify_native,False,False,True,True,False
+S0476,False,True,R116,no,,flagged,consentmo,False,False,False,True,False
+S0519,True,True,R071,yes,cookie bar: Cookie Preferences / Accept / Continue without accepting,blocklist,onetrust,True,True,False,True,True
+S0526,False,True,R075,no,,flagged,consentmo,False,False,False,True,False
+S0530,False,True,R119,no,country welcome panel (not a consent banner),flagged,didomi,False,False,False,True,False
+S0537,False,False,R106,no,,random_nb,none,False,False,True,True,False
+S0562,False,False,R120,no,,random_nb,none,False,False,False,True,False
+S0564,False,False,R086,no,,random_nb,none,False,False,True,True,False
+S0574,False,True,R025,no,,flagged,consentmo,False,False,False,True,False
+S0589,True,False,R068,yes,small cookie box: Preferences / Accept (below a spin-to-win pop-up),blocklist,pandectes,True,True,True,True,True
+S0611,False,False,R009,no,,random_nb,none,False,False,True,True,False
+S0623,False,False,R066,no,,random_nb,none,False,False,False,True,False
+S0628,False,True,R076,no,newsletter pop-up (not a consent banner),flagged,consentmo,False,False,False,True,False
+S0673,False,True,R097,no,discount pop-up (not a consent banner),flagged,consentmo,False,False,False,True,False
+S0681,False,False,R113,no,,random_nb,none,False,False,True,True,False
+S0697,True,False,R031,yes,privacy box: Preferences / Accept,blocklist,pandectes,True,True,True,True,True
+S0698,True,True,R064,yes,cookie dialog with category checkboxes: Save Choices / Only Necessary / Accept All,blocklist,onetrust,True,True,True,True,True
+S0710,False,True,R002,no,shipping-location modal (not a consent banner),flagged,consentmo,False,False,False,True,False
+S0751,False,False,R083,no,,random_nb,none,False,False,False,True,False
+S0773,False,False,R126,no,phone sign-up pop-up at 10 s (not a consent banner),random_nb,shopify_native,False,False,True,True,False
+S0781,False,False,R035,no,,random_nb,none,False,False,True,True,False
+S0796,False,True,R095,no,newsletter pop-up at 10 s (not a consent banner),flagged,shopify_native,False,False,False,True,False
+S0802,False,True,R034,no,,flagged,none,False,False,False,True,False
+S0813,False,True,R069,no,,flagged,osano,False,False,True,True,False
+S0816,False,True,R021,yes,privacy box bottom-left: Manage / Decline / Accept,flagged,onetrust,False,False,False,True,True
+S0822,False,True,R020,no,newsletter pop-up (not a consent banner),flagged,consentmo,False,False,False,True,False
+S0847,False,True,R096,no,,flagged,consentmo,False,False,False,True,False
+S0850,False,True,R111,no,newsletter overlay at 6 and 10 s (not a consent banner),flagged,consentmo,False,False,False,True,False
+S0864,False,False,R023,no,,random_nb,didomi,False,False,False,True,False
+S0865,False,True,R098,no,,flagged,consentmo,False,False,False,True,False
+S0870,False,True,R085,yes,cookie box: Allow All / Use Necessary Only / Preferences,flagged,none,False,False,True,True,True
+S0876,False,True,R065,no,,flagged,consentmo,False,False,False,True,False
+S0879,False,True,R100,no,,flagged,consentmo,False,False,False,True,False
+S0893,False,True,R033,no,,flagged,consentmo,False,False,True,True,False
+S0921,False,True,R056,no,shipping-country pop-up (not a consent banner),flagged,consentmo,False,False,False,True,False
+S0968,False,True,R045,no,,flagged,consentmo,False,False,False,True,False
+S0980,False,True,R006,no,,flagged,consentmo,False,False,False,True,False
+S0982,False,True,R063,no,newsletter pop-up (not a consent banner),flagged,consentmo,False,False,False,True,False
+S1000,False,True,R112,no,,flagged,consentmo,False,False,True,True,False
+S1001,False,False,R055,no,,random_nb,none,False,False,False,True,False
+S1002,False,True,R016,no,,flagged,consentmo,False,False,True,True,False
+S1010,False,True,R087,no,discount pop-up (not a consent banner),flagged,consentmo,False,False,False,True,False
+S1016,False,True,R044,no,,flagged,consentmo,False,False,False,True,False
+S1024,False,False,R090,yes,notice-only cookie bar at the bottom (Learn More / X) under a discount pop-up; checked on a crop of the 10 s shot,random_nb,pandectes,False,False,True,True,True
+S1040,False,False,R043,no,,random_nb,shopify_native,False,False,True,True,False
+S1078,False,False,R117,no,,random_nb,shopify_native,False,False,False,True,False
+S1079,False,True,R027,no,sign-up pop-up (not a consent banner),flagged,pandectes,False,False,True,True,False
+S1080,False,True,R129,no,newsletter pop-up (not a consent banner),flagged,consentmo,False,False,False,True,False
+S1082,True,True,R037,yes,cookie bar: Accept / Decline / Preferences,blocklist,pandectes,True,True,False,True,True
+S1111,False,False,R102,no,discount pop-up (not a consent banner),random_nb,cookieyes,False,False,False,True,False
+S1112,True,True,R036,yes,Cookie consent box: Manage preferences / Accept / Decline,flagged,shopify_native,False,False,False,True,True
+S1140,False,True,R078,no,discount pop-up at 10 s (not a consent banner),flagged,consentmo,False,False,False,True,False
+S1144,False,True,R032,yes,We Value Your Privacy panel: Accept All / Customize (newsletter overlay on top at 6 and 10 s),flagged,none,False,False,False,True,True
+S1193,True,False,R047,yes,cookie bar: Preferences / Decline / Accept,blocklist,onetrust,True,True,True,True,True
+S1221,False,True,R038,no,,flagged,consentmo,False,False,False,True,False
+S1238,False,False,R018,no,newsletter pop-up (not a consent banner),random_nb,none,False,False,True,True,False
+S1239,False,True,R110,no,,flagged,consentmo,False,False,False,True,False
+S1248,False,True,R024,yes,Cookie Notice box: Allow / Reject / Cookie Settings,flagged,didomi,False,False,False,True,True
+S1251,False,True,R108,no,,flagged,consentmo,False,False,False,True,False
+S1259,False,True,R001,no,,flagged,consentmo,False,False,True,True,False
+S1274,False,True,R051,no,,flagged,shopify_native,False,False,False,True,False
+S1275,False,True,R104,no,,flagged,consentmo,False,False,False,True,False
+S1292,True,True,R091,yes,Cookie Notice bar: Accept / Reject,flagged,none,False,True,False,True,True
+S1293,False,False,R080,no,,random_nb,none,False,False,True,True,False
+S1317,False,True,R013,no,newsletter pop-up (not a consent banner),flagged,consentmo,False,False,False,True,False
+S1323,False,False,R012,no_screenshot,,flagged,consentmo,False,False,True,False,False
+S1342,False,True,R050,no,,flagged,none,False,False,False,True,False
+S1354,False,True,R118,no,full-screen newsletter pop-up (not a consent banner),flagged,none,False,False,True,True,False
+S1359,False,False,R041,no,,random_nb,none,False,False,True,True,False
+S1378,False,True,R010,no,,flagged,consentmo,False,False,False,True,False

@@ -1,0 +1,3202 @@
+{
+ "_meta": {
+  "description": "Request-URL -> vendor map for Study 3 (Shopify consent). Built by build_vendor_endpoints.py from the Study 2 vendor table plus observed endpoints.",
+  "built": "2026-09-26",
+  "matching": "lower-case hostname; first entry whose host_regex (Python re.search) matches and whose path_regex (if not null) matches the URL path. beacon_path_regex/library_path_regex refine request kind; anything that is neither is counted as a beacon (Study 2 convention).",
+  "is_advertising": "true for ad platforms, retargeting/ID networks and ad measurement (Study 2 group \"ad\"); false for analytics, tag managers, email/SMS marketing, affiliate, attribution and Shopify first-party.",
+  "figure_color_group": "FIGURE_PLAN.md vendor colour group (Google, TikTok, Meta, Pinterest, Snap, Microsoft, Reddit/other); null = not an ad vendor in figures.",
+  "sources": [
+   "../../study2_creator_links/capture/analyze_capture.py (V table)",
+   "endpoint_evidence/observed_vendor_endpoints.csv",
+   "endpoint_evidence/observed_other_hosts.csv",
+   "static_mechanism/wpm_survey/pixels.csv"
+  ]
+ },
+ "shopify_web_pixels_urls": {
+  "manager_bundle": "^https://[^/]+/cdn/wpm/b[0-9a-z]+[ml]\\.js$",
+  "strict_worker_bootstrap": "^https://[^/]+/(web-pixels|wpm)@[0-9a-z]+/web-pixel-(?P<pixel_id>[^@/]+)@(?P<ver>[^/]+)/sandbox/worker\\.(modern|legacy)\\.js",
+  "strict_worker_pixel_code": "^https://[^/]+/(web-pixels|wpm)/strict/app/web-pixel-(?P<pixel_id>[^@/]+)@(?P<ver>[^/.]+)\\.js",
+  "lax_iframe_sandbox": "^https://[^/]+/(web-pixels|wpm)@[0-9a-z]+/(?P<type>app|custom)/web-pixel-(?P<pixel_id>[^@/]+)@(?P<ver>[^/]+)/sandbox/(modern|legacy)/",
+  "open_main_thread_pixel": "^https://[^/]+/(web-pixels|wpm)@[0-9a-z]+/(?P<type>app|custom)/web-pixel-(?P<pixel_id>[^@/]+)@(?P<ver>[^~/]+)~2/pixel\\.(modern|legacy)\\.js",
+  "storefront_monorail": "^https://[^/]+/\\.well-known/shopify/monorail/",
+  "notes": "Observed on c005.store.example in Study 2 evidence and in the WPM bundle (hash c8540278we853e1abpb62b2c4amde256306, 2026-09-25). Requests made by a STRICT pixel (e.g. analytics.tiktok.com/i18n/pixel/shopify.js and /api/v2/shopify_pixel) are issued from a dedicated web worker; Playwright reports them with resource type \"other\"/\"fetch\" and, in Study 2 capture.js, frame \"main\" (request.frame() did not throw). Attribute origin by (i) page.on(\"worker\") URLs, (ii) CDP Network.requestWillBeSent initiator / Target info, or (iii) the fact that the vendor library was requested with resource type \"other\" right after the matching worker bootstrap."
+ },
+ "vendors": [
+  {
+   "vendor": "tiktok",
+   "display_name": "TikTok",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": true,
+   "figure_color_group": "TikTok",
+   "host_regex": "(^|\\.)(tiktok\\.com|tiktokw\\.us|tiktokv\\.com|tiktokv\\.us|tiktokcdn\\.com|tiktokcdn-us\\.com|ttwstatic\\.com|byteoversea\\.com|ibytedtos\\.com|tiktok\\.us)$",
+   "path_regex": null,
+   "beacon_path_regex": [
+    "^/api/v2/(shopify_pixel|pixel(/act|/batch)?|performance.*|monitor.*)",
+    "^/ipv6/enrich_ipv6"
+   ],
+   "library_path_regex": [
+    "^/i18n/pixel/"
+   ],
+   "shopify_app_pixel": {
+    "apiClientIds": [
+     "4383523"
+    ],
+    "n_stores_in_static_survey": 16,
+    "runtimeContext_observed": [
+     "STRICT"
+    ],
+    "privacyPurposes_observed": [
+     "ANALYTICS|MARKETING|SALE_OF_DATA"
+    ]
+   },
+   "worker_marker": "library analytics.tiktok.com/i18n/pixel/shopify.js requested with Playwright resource type \"other\" = loaded inside the Shopify STRICT web worker (101 Study 2 loads); resource type \"script\" = classic main-thread pixel.",
+   "observed_study2_top_endpoints": [
+    {
+     "host": "analytics.tiktok.com",
+     "path_prefix": "/i18n/pixel",
+     "resource_types": "script",
+     "n_loads": 178
+    },
+    {
+     "host": "analytics.tiktok.com",
+     "path_prefix": "/api/v2",
+     "resource_types": "ping",
+     "n_loads": 170
+    },
+    {
+     "host": "analytics-ipv6.tiktokw.us",
+     "path_prefix": "/ipv6/enrich_ipv6",
+     "resource_types": "ping",
+     "n_loads": 154
+    },
+    {
+     "host": "analytics.tiktok.com",
+     "path_prefix": "/i18n/pixel",
+     "resource_types": "other",
+     "n_loads": 101
+    },
+    {
+     "host": "analytics.tiktok.com",
+     "path_prefix": "/api/v2",
+     "resource_types": "fetch",
+     "n_loads": 92
+    },
+    {
+     "host": "analytics-ipv6.tiktokw.us",
+     "path_prefix": "/ipv6/enrich_ipv6",
+     "resource_types": "fetch",
+     "n_loads": 92
+    }
+   ]
+  },
+  {
+   "vendor": "meta",
+   "display_name": "Meta (Facebook/Instagram)",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": true,
+   "figure_color_group": "Meta",
+   "host_regex": "(^|\\.)(facebook\\.com|facebook\\.net|fbcdn\\.net|fbsbx\\.com|instagram\\.com|meta\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [
+    "^/tr/?$",
+    "^/tr/"
+   ],
+   "library_path_regex": [
+    "^/en_US/fbevents\\.js",
+    "^/signals/(config|plugins)/",
+    "^/[a-z]{2}_[A-Z]{2}/(fbevents|sdk)\\.js"
+   ],
+   "shopify_app_pixel": {
+    "apiClientIds": [
+     "2329312"
+    ],
+    "n_stores_in_static_survey": 11,
+    "runtimeContext_observed": [
+     "OPEN"
+    ],
+    "privacyPurposes_observed": [
+     "ANALYTICS|MARKETING|SALE_OF_DATA"
+    ]
+   },
+   "observed_study2_top_endpoints": [
+    {
+     "host": "connect.facebook.net",
+     "path_prefix": "/en_US/fbevents.js",
+     "resource_types": "script",
+     "n_loads": 496
+    },
+    {
+     "host": "connect.facebook.net",
+     "path_prefix": "/signals/config",
+     "resource_types": "script",
+     "n_loads": 484
+    },
+    {
+     "host": "connect.facebook.net",
+     "path_prefix": "/log/error",
+     "resource_types": "image",
+     "n_loads": 12
+    },
+    {
+     "host": "www.facebook.com",
+     "path_prefix": "/tr",
+     "resource_types": "image",
+     "n_loads": 6
+    },
+    {
+     "host": "www.facebook.com",
+     "path_prefix": "/tr",
+     "resource_types": "fetch",
+     "n_loads": 3
+    },
+    {
+     "host": "static.xx.fbcdn.net",
+     "path_prefix": "/rsrc.php/v5",
+     "resource_types": "stylesheet",
+     "n_loads": 3
+    }
+   ]
+  },
+  {
+   "vendor": "google_analytics",
+   "display_name": "Google Analytics 4 / UA",
+   "vendor_class": "analytics",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": "Google",
+   "host_regex": "(^|\\.)(google-analytics\\.com|analytics\\.google\\.com|stats\\.g\\.doubleclick\\.net)$",
+   "path_regex": null,
+   "beacon_path_regex": [
+    "^/g/(collect|s)",
+    "^/j/collect",
+    "^/collect"
+   ],
+   "library_path_regex": [
+    "^/analytics\\.js",
+    "^/plugins/"
+   ],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "stats.g.doubleclick.net",
+     "path_prefix": "/g/collect",
+     "resource_types": "ping",
+     "n_loads": 437
+    },
+    {
+     "host": "analytics.google.com",
+     "path_prefix": "/g/collect",
+     "resource_types": "fetch",
+     "n_loads": 374
+    },
+    {
+     "host": "www.google-analytics.com",
+     "path_prefix": "/g/collect",
+     "resource_types": "fetch",
+     "n_loads": 140
+    },
+    {
+     "host": "www.google-analytics.com",
+     "path_prefix": "/analytics.js",
+     "resource_types": "script",
+     "n_loads": 63
+    },
+    {
+     "host": "analytics.google.com",
+     "path_prefix": "/g/s",
+     "resource_types": "ping",
+     "n_loads": 53
+    },
+    {
+     "host": "analytics.google.com",
+     "path_prefix": "/g/s",
+     "resource_types": "image",
+     "n_loads": 40
+    }
+   ]
+  },
+  {
+   "vendor": "google_ads",
+   "display_name": "Google Ads / DoubleClick / Floodlight",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": true,
+   "figure_color_group": "Google",
+   "host_regex": "(^|\\.)(googleadservices\\.com|doubleclick\\.net|googlesyndication\\.com|adservice\\.google\\.com|googletagservices\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [
+    "^/ccm/(collect|s)",
+    "^/rmkt/collect",
+    "^/pagead/(viewthroughconversion|1p-user-list|1p-conversion|conversion|landing|form-data)",
+    "^/activity(i)?[;/]",
+    "^/ddm/"
+   ],
+   "library_path_regex": [
+    "^/pagead/(conversion_async|js/)"
+   ],
+   "shopify_app_pixel": {
+    "apiClientIds": [
+     "1780363"
+    ],
+    "n_stores_in_static_survey": 16,
+    "runtimeContext_observed": [
+     "OPEN"
+    ],
+    "privacyPurposes_observed": [
+     "[] (none declared)"
+    ],
+    "note": "Google & YouTube app (one pixel sends Google Ads, GA4 and Merchant Center tags); declares no privacy purposes, so the WPM never withholds it; consent is signalled only through Consent Mode parameters (gcs/gcd/npa)."
+   },
+   "observed_study2_top_endpoints": [
+    {
+     "host": "www.google.com",
+     "path_prefix": "/ccm/collect",
+     "resource_types": "fetch",
+     "n_loads": 557
+    },
+    {
+     "host": "ad.doubleclick.net",
+     "path_prefix": "/ccm/s",
+     "resource_types": "fetch",
+     "n_loads": 554
+    },
+    {
+     "host": "www.google.com",
+     "path_prefix": "/rmkt/collect",
+     "resource_types": "fetch",
+     "n_loads": 417
+    },
+    {
+     "host": "googleads.g.doubleclick.net",
+     "path_prefix": "/pagead/viewthroughconversion",
+     "resource_types": "script",
+     "n_loads": 402
+    },
+    {
+     "host": "www.google.com",
+     "path_prefix": "/pagead/1p-user-list",
+     "resource_types": "image",
+     "n_loads": 400
+    },
+    {
+     "host": "www.googleadservices.com",
+     "path_prefix": "/pagead/conversion",
+     "resource_types": "fetch",
+     "n_loads": 247
+    }
+   ]
+  },
+  {
+   "vendor": "google_ads",
+   "display_name": "Google Ads / DoubleClick / Floodlight",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": true,
+   "figure_color_group": "Google",
+   "host_regex": "^(www\\.)?google\\.com$",
+   "path_regex": "^/(pagead|rmkt|ads|ccm|measurement)/"
+  },
+  {
+   "vendor": "google_tagmanager",
+   "display_name": "Google Tag Manager / gtag loader",
+   "vendor_class": "tag_manager",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": "Google",
+   "host_regex": "(^|\\.)googletagmanager\\.com$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [
+    "^/(gtag/js|gtm\\.js|gtag/destination)"
+   ],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "www.googletagmanager.com",
+     "path_prefix": "/gtag/js",
+     "resource_types": "script",
+     "n_loads": 751
+    },
+    {
+     "host": "www.googletagmanager.com",
+     "path_prefix": "/gtm.js",
+     "resource_types": "script",
+     "n_loads": 627
+    },
+    {
+     "host": "www.googletagmanager.com",
+     "path_prefix": "/gtag/destination",
+     "resource_types": "script",
+     "n_loads": 118
+    },
+    {
+     "host": "www.googletagmanager.com",
+     "path_prefix": "/td",
+     "resource_types": "image",
+     "n_loads": 32
+    },
+    {
+     "host": "www.googletagmanager.com",
+     "path_prefix": "/a",
+     "resource_types": "image",
+     "n_loads": 27
+    },
+    {
+     "host": "www.googletagmanager.com",
+     "path_prefix": "/gtm.js",
+     "resource_types": "fetch",
+     "n_loads": 23
+    }
+   ]
+  },
+  {
+   "vendor": "snap",
+   "display_name": "Snap",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": true,
+   "figure_color_group": "Snap",
+   "host_regex": "(^|\\.)(snapchat\\.com|sc-static\\.net|snap\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [
+    "^/p$",
+    "^/cm/",
+    "^/config/"
+   ],
+   "library_path_regex": [
+    "^/scevent\\.min\\.js",
+    "^/shopify/"
+   ],
+   "shopify_app_pixel": {
+    "apiClientIds": [
+     "2556259"
+    ],
+    "n_stores_in_static_survey": 5,
+    "runtimeContext_observed": [
+     "STRICT"
+    ],
+    "privacyPurposes_observed": [
+     "ANALYTICS|MARKETING|SALE_OF_DATA"
+    ]
+   },
+   "observed_study2_top_endpoints": [
+    {
+     "host": "sc-static.net",
+     "path_prefix": "/scevent.min.js",
+     "resource_types": "script",
+     "n_loads": 140
+    },
+    {
+     "host": "tr.snapchat.com",
+     "path_prefix": "/cm/i",
+     "resource_types": "document",
+     "n_loads": 128
+    },
+    {
+     "host": "tr.snapchat.com",
+     "path_prefix": "/cm/s",
+     "resource_types": "document",
+     "n_loads": 127
+    },
+    {
+     "host": "tr.snapchat.com",
+     "path_prefix": "/cm/p",
+     "resource_types": "document",
+     "n_loads": 126
+    },
+    {
+     "host": "tr.snapchat.com",
+     "path_prefix": "/p",
+     "resource_types": "ping",
+     "n_loads": 122
+    },
+    {
+     "host": "tr.snapchat.com",
+     "path_prefix": "/config/com",
+     "resource_types": "script",
+     "n_loads": 116
+    }
+   ]
+  },
+  {
+   "vendor": "pinterest",
+   "display_name": "Pinterest",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": true,
+   "figure_color_group": "Pinterest",
+   "host_regex": "(^|\\.)(pinterest\\.com|pinimg\\.com|pinterest\\.[a-z.]+)$",
+   "path_regex": null,
+   "beacon_path_regex": [
+    "^/v3/",
+    "^/user/",
+    "^/ct\\.html"
+   ],
+   "library_path_regex": [
+    "^/ct/(core\\.js|lib)",
+    "^/js/pinit"
+   ],
+   "shopify_app_pixel": {
+    "apiClientIds": [
+     "3009811"
+    ],
+    "n_stores_in_static_survey": 12,
+    "runtimeContext_observed": [
+     "STRICT"
+    ],
+    "privacyPurposes_observed": [
+     "ANALYTICS|MARKETING|SALE_OF_DATA"
+    ]
+   },
+   "observed_study2_top_endpoints": [
+    {
+     "host": "ct.pinterest.com",
+     "path_prefix": "/v3",
+     "resource_types": "fetch",
+     "n_loads": 151
+    },
+    {
+     "host": "s.pinimg.com",
+     "path_prefix": "/ct/lib",
+     "resource_types": "script",
+     "n_loads": 140
+    },
+    {
+     "host": "s.pinimg.com",
+     "path_prefix": "/ct/core.js",
+     "resource_types": "script",
+     "n_loads": 140
+    },
+    {
+     "host": "ct.pinterest.com",
+     "path_prefix": "/user",
+     "resource_types": "xhr",
+     "n_loads": 128
+    },
+    {
+     "host": "ct.pinterest.com",
+     "path_prefix": "/ct.html",
+     "resource_types": "document",
+     "n_loads": 128
+    },
+    {
+     "host": "ct.pinterest.com",
+     "path_prefix": "/user",
+     "resource_types": "fetch",
+     "n_loads": 27
+    }
+   ]
+  },
+  {
+   "vendor": "reddit",
+   "display_name": "Reddit",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": true,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(reddit\\.com|redditstatic\\.com|redditmedia\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [
+    "^/rp(\\.gif)?",
+    "^/pixels/"
+   ],
+   "library_path_regex": [
+    "^/ads/pixel\\.js"
+   ],
+   "shopify_app_pixel": {
+    "apiClientIds": [
+     "304258285569"
+    ],
+    "n_stores_in_static_survey": 1,
+    "runtimeContext_observed": [
+     "STRICT"
+    ],
+    "privacyPurposes_observed": [
+     "ANALYTICS|MARKETING"
+    ]
+   },
+   "observed_study2_top_endpoints": [
+    {
+     "host": "www.redditstatic.com",
+     "path_prefix": "/ads/pixel.js",
+     "resource_types": "script",
+     "n_loads": 137
+    },
+    {
+     "host": "alb.reddit.com",
+     "path_prefix": "/rp",
+     "resource_types": "fetch",
+     "n_loads": 137
+    },
+    {
+     "host": "pixel-config.reddit.com",
+     "path_prefix": "/pixels/t2_2rdfd0ht",
+     "resource_types": "xhr",
+     "n_loads": 29
+    },
+    {
+     "host": "pixel-config.reddit.com",
+     "path_prefix": "/pixels/a2_hm<n>ii9feym",
+     "resource_types": "xhr",
+     "n_loads": 23
+    },
+    {
+     "host": "pixel-config.reddit.com",
+     "path_prefix": "/pixels/a2_fj4z5dj<n>ap",
+     "resource_types": "xhr",
+     "n_loads": 11
+    },
+    {
+     "host": "pixel-config.reddit.com",
+     "path_prefix": "/pixels/t2_ag07wsk7",
+     "resource_types": "xhr",
+     "n_loads": 6
+    }
+   ]
+  },
+  {
+   "vendor": "x_twitter",
+   "display_name": "X (Twitter)",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": true,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(twitter\\.com|ads-twitter\\.com|t\\.co|x\\.com|twimg\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [
+    "^/i/adsct",
+    "^/1/i/adsct",
+    "^/1/i"
+   ],
+   "library_path_regex": [
+    "^/(uwt|oct)\\.js"
+   ],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "static.ads-twitter.com",
+     "path_prefix": "/uwt.js",
+     "resource_types": "script",
+     "n_loads": 83
+    },
+    {
+     "host": "t.co",
+     "path_prefix": "/i/adsct",
+     "resource_types": "image",
+     "n_loads": 79
+    },
+    {
+     "host": "analytics.twitter.com",
+     "path_prefix": "/i/adsct",
+     "resource_types": "image",
+     "n_loads": 79
+    },
+    {
+     "host": "t.co",
+     "path_prefix": "/1/i",
+     "resource_types": "image",
+     "n_loads": 77
+    },
+    {
+     "host": "analytics.twitter.com",
+     "path_prefix": "/1/i",
+     "resource_types": "image",
+     "n_loads": 77
+    },
+    {
+     "host": "t.co",
+     "path_prefix": "/i/adsctp",
+     "resource_types": "fetch",
+     "n_loads": 2
+    }
+   ]
+  },
+  {
+   "vendor": "linkedin",
+   "display_name": "LinkedIn",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": true,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(linkedin\\.com|licdn\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [
+    "^/collect",
+    "^/wa",
+    "^/px/",
+    "^/(db_sync|setuid)"
+   ],
+   "library_path_regex": [
+    "^/li\\.lms-analytics/"
+   ],
+   "shopify_app_pixel": {
+    "apiClientIds": [
+     "5829751"
+    ],
+    "n_stores_in_static_survey": 2,
+    "runtimeContext_observed": [
+     "STRICT"
+    ],
+    "privacyPurposes_observed": [
+     "ANALYTICS|MARKETING|SALE_OF_DATA"
+    ]
+   },
+   "observed_study2_top_endpoints": [
+    {
+     "host": "www.linkedin.com",
+     "path_prefix": "/px/li_sync",
+     "resource_types": "image",
+     "n_loads": 48
+    },
+    {
+     "host": "snap.licdn.com",
+     "path_prefix": "/li.lms-analytics/insight.min.js",
+     "resource_types": "script",
+     "n_loads": 48
+    },
+    {
+     "host": "px.ads.linkedin.com",
+     "path_prefix": "/wa",
+     "resource_types": "fetch",
+     "n_loads": 48
+    },
+    {
+     "host": "px.ads.linkedin.com",
+     "path_prefix": "/collect",
+     "resource_types": "image",
+     "n_loads": 48
+    },
+    {
+     "host": "snap.licdn.com",
+     "path_prefix": "/li.lms-analytics/insight.old.min.js",
+     "resource_types": "script",
+     "n_loads": 47
+    },
+    {
+     "host": "px.ads.linkedin.com",
+     "path_prefix": "/db_sync",
+     "resource_types": "image",
+     "n_loads": 4
+    }
+   ]
+  },
+  {
+   "vendor": "microsoft_uet",
+   "display_name": "Microsoft Advertising UET (Bing)",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": true,
+   "figure_color_group": "Microsoft",
+   "host_regex": "(^|\\.)(bat\\.bing\\.com|bat\\.bing\\.net|bat\\.r\\.msn\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [
+    "^/action(p)?/",
+    "^/p/(action|conversions|insights)"
+   ],
+   "library_path_regex": [
+    "^/bat\\.js"
+   ],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "bat.bing.com",
+     "path_prefix": "/action/0",
+     "resource_types": "image",
+     "n_loads": 223
+    },
+    {
+     "host": "bat.bing.com",
+     "path_prefix": "/bat.js",
+     "resource_types": "script",
+     "n_loads": 216
+    },
+    {
+     "host": "bat.bing.com",
+     "path_prefix": "/p/action",
+     "resource_types": "script",
+     "n_loads": 199
+    },
+    {
+     "host": "bat.bing.com",
+     "path_prefix": "/actionp/0",
+     "resource_types": "ping",
+     "n_loads": 57
+    },
+    {
+     "host": "bat.bing.com",
+     "path_prefix": "/p/conversions",
+     "resource_types": "script",
+     "n_loads": 17
+    },
+    {
+     "host": "bat.bing.com",
+     "path_prefix": "/p/insights",
+     "resource_types": "script",
+     "n_loads": 15
+    }
+   ]
+  },
+  {
+   "vendor": "microsoft_clarity",
+   "display_name": "Microsoft Clarity",
+   "vendor_class": "analytics",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": "Microsoft",
+   "host_regex": "(^|\\.)(clarity\\.ms)$|^c\\.bing\\.com$",
+   "path_regex": null,
+   "beacon_path_regex": [
+    "^/c\\.gif",
+    "^/collect",
+    "^/tag/shopify"
+   ],
+   "library_path_regex": [
+    "^/\\d+\\.\\d+\\.\\d+/clarity\\.js",
+    "^/tag/"
+   ],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "c.bing.com",
+     "path_prefix": "/c.gif",
+     "resource_types": "image",
+     "n_loads": 136
+    },
+    {
+     "host": "c.clarity.ms",
+     "path_prefix": "/c.gif",
+     "resource_types": "image",
+     "n_loads": 134
+    },
+    {
+     "host": "scripts.clarity.ms",
+     "path_prefix": "/0.8.70/clarity.js",
+     "resource_types": "script",
+     "n_loads": 127
+    },
+    {
+     "host": "www.clarity.ms",
+     "path_prefix": "/tag/uet",
+     "resource_types": "script",
+     "n_loads": 83
+    },
+    {
+     "host": "www.clarity.ms",
+     "path_prefix": "/tag/shopify",
+     "resource_types": "fetch",
+     "n_loads": 62
+    },
+    {
+     "host": "www.clarity.ms",
+     "path_prefix": "/tag/vwlpu6gmeb",
+     "resource_types": "script",
+     "n_loads": 27
+    }
+   ]
+  },
+  {
+   "vendor": "criteo",
+   "display_name": "Criteo",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": true,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(criteo\\.com|criteo\\.net)$",
+   "path_regex": null,
+   "beacon_path_regex": [
+    "^/event",
+    "^/rm",
+    "^/sync",
+    "^/syncframe",
+    "^/Delivery/"
+   ],
+   "library_path_regex": [
+    "^/js/ld/"
+   ],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "gum.criteo.com",
+     "path_prefix": "/syncframe",
+     "resource_types": "document",
+     "n_loads": 79
+    },
+    {
+     "host": "sslwidget.criteo.com",
+     "path_prefix": "/event",
+     "resource_types": "script",
+     "n_loads": 76
+    },
+    {
+     "host": "dynamic.criteo.com",
+     "path_prefix": "/js/ld",
+     "resource_types": "script",
+     "n_loads": 76
+    },
+    {
+     "host": "d.criteo.com",
+     "path_prefix": "/Delivery/ClientPaths",
+     "resource_types": "script",
+     "n_loads": 32
+    },
+    {
+     "host": "b.us5.us.criteo.com",
+     "path_prefix": "/rm",
+     "resource_types": "fetch",
+     "n_loads": 17
+    },
+    {
+     "host": "gum.criteo.com",
+     "path_prefix": "/sync",
+     "resource_types": "script",
+     "n_loads": 13
+    }
+   ]
+  },
+  {
+   "vendor": "applovin",
+   "display_name": "AppLovin (Axon)",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": true,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(applovin\\.com|axon\\.ai|applvn\\.com|albss\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [
+    "^/v1/(s|pixel|gcm)"
+   ],
+   "library_path_regex": [
+    "^/p/",
+    "^/pixel\\.js"
+   ],
+   "shopify_app_pixel": {
+    "apiClientIds": [
+     "256560922625"
+    ],
+    "n_stores_in_static_survey": 2,
+    "runtimeContext_observed": [
+     "STRICT"
+    ],
+    "privacyPurposes_observed": [
+     "ANALYTICS|MARKETING|SALE_OF_DATA"
+    ]
+   },
+   "observed_study2_top_endpoints": [
+    {
+     "host": "res4.applovin.com",
+     "path_prefix": "/p/<n>",
+     "resource_types": "script",
+     "n_loads": 144
+    },
+    {
+     "host": "re.applovin.com",
+     "path_prefix": "/v1/s",
+     "resource_types": "ping",
+     "n_loads": 143
+    },
+    {
+     "host": "res4.applovin.com",
+     "path_prefix": "/p/l",
+     "resource_types": "script",
+     "n_loads": 80
+    },
+    {
+     "host": "s.axon.ai",
+     "path_prefix": "/pixel.js",
+     "resource_types": "script",
+     "n_loads": 78
+    },
+    {
+     "host": "b.applovin.com",
+     "path_prefix": "/v1/pixel",
+     "resource_types": "fetch",
+     "n_loads": 78
+    },
+    {
+     "host": "b.applovin.com",
+     "path_prefix": "/v1/gcm",
+     "resource_types": "image",
+     "n_loads": 77
+    }
+   ]
+  },
+  {
+   "vendor": "amazon_ads",
+   "display_name": "Amazon Ads",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": true,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(amazon-adsystem\\.com|assoc-amazon\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [
+    "^/(ecm3|iu3|iui3|v3/pr)",
+    "^/aat/allowlist"
+   ],
+   "library_path_regex": [
+    "^/aat/amzn(-consent)?\\.js"
+   ],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "s.amazon-adsystem.com",
+     "path_prefix": "/ecm3",
+     "resource_types": "image",
+     "n_loads": 85
+    },
+    {
+     "host": "s.amazon-adsystem.com",
+     "path_prefix": "/v3/pr",
+     "resource_types": "document",
+     "n_loads": 69
+    },
+    {
+     "host": "s.amazon-adsystem.com",
+     "path_prefix": "/iu3",
+     "resource_types": "document",
+     "n_loads": 69
+    },
+    {
+     "host": "c.amazon-adsystem.com",
+     "path_prefix": "/aat/amzn.js",
+     "resource_types": "script",
+     "n_loads": 36
+    },
+    {
+     "host": "c.amazon-adsystem.com",
+     "path_prefix": "/aat/amzn.js",
+     "resource_types": "fetch",
+     "n_loads": 36
+    },
+    {
+     "host": "c.amazon-adsystem.com",
+     "path_prefix": "/aat/allowlist",
+     "resource_types": "fetch",
+     "n_loads": 36
+    }
+   ]
+  },
+  {
+   "vendor": "tvscientific",
+   "display_name": "tvScientific",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": true,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(tvspix\\.com|tvscientific\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [
+    "^/t\\.png"
+   ],
+   "library_path_regex": [],
+   "shopify_app_pixel": {
+    "apiClientIds": [
+     "92361228289"
+    ],
+    "n_stores_in_static_survey": 2,
+    "runtimeContext_observed": [
+     "STRICT"
+    ],
+    "privacyPurposes_observed": [
+     "ANALYTICS|MARKETING|SALE_OF_DATA"
+    ]
+   },
+   "observed_study2_top_endpoints": [
+    {
+     "host": "tvspix.com",
+     "path_prefix": "/t.png",
+     "resource_types": "image",
+     "n_loads": 97
+    },
+    {
+     "host": "tvspix.com",
+     "path_prefix": "/t.png",
+     "resource_types": "fetch",
+     "n_loads": 3
+    }
+   ]
+  },
+  {
+   "vendor": "taboola",
+   "display_name": "taboola",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(taboola\\.com|taboolasyndication\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "sync.taboola.com",
+     "path_prefix": "/sg/amazon-a9-network",
+     "resource_types": "image",
+     "n_loads": 69
+    },
+    {
+     "host": "trc-events.taboola.com",
+     "path_prefix": "/<n>/log",
+     "resource_types": "xhr",
+     "n_loads": 31
+    },
+    {
+     "host": "cdn.taboola.com",
+     "path_prefix": "/libtrc/unip",
+     "resource_types": "script",
+     "n_loads": 31
+    },
+    {
+     "host": "trc.taboola.com",
+     "path_prefix": "/<n>/trc",
+     "resource_types": "script",
+     "n_loads": 29
+    },
+    {
+     "host": "trc.taboola.com",
+     "path_prefix": "/<n>/log",
+     "resource_types": "xhr",
+     "n_loads": 13
+    },
+    {
+     "host": "sync.taboola.com",
+     "path_prefix": "/sg/molocortbnative-network",
+     "resource_types": "image",
+     "n_loads": 10
+    }
+   ]
+  },
+  {
+   "vendor": "outbrain",
+   "display_name": "outbrain",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(outbrain\\.com|outbrainimg\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "wave.outbrain.com",
+     "path_prefix": "/mtWavesBundler/handler",
+     "resource_types": "script",
+     "n_loads": 10
+    },
+    {
+     "host": "tr.outbrain.com",
+     "path_prefix": "/unifiedPixel",
+     "resource_types": "fetch",
+     "n_loads": 10
+    },
+    {
+     "host": "tr.outbrain.com",
+     "path_prefix": "/cachedClickId",
+     "resource_types": "script",
+     "n_loads": 10
+    },
+    {
+     "host": "amplify.outbrain.com",
+     "path_prefix": "/cp/obtp.js",
+     "resource_types": "script",
+     "n_loads": 10
+    },
+    {
+     "host": "sync.outbrain.com",
+     "path_prefix": "/cookie-sync",
+     "resource_types": "image",
+     "n_loads": 2
+    }
+   ]
+  },
+  {
+   "vendor": "quora",
+   "display_name": "quora",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(quora\\.com|quoracdn\\.net)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "q.quora.com",
+     "path_prefix": "/_/ad",
+     "resource_types": "image",
+     "n_loads": 22
+    },
+    {
+     "host": "a.quora.com",
+     "path_prefix": "/qevents.js",
+     "resource_types": "script",
+     "n_loads": 22
+    }
+   ]
+  },
+  {
+   "vendor": "tradedesk",
+   "display_name": "tradedesk",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(adsrvr\\.org)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "js.adsrvr.org",
+     "path_prefix": "/universal_pixel.js",
+     "resource_types": "script",
+     "n_loads": 77
+    },
+    {
+     "host": "insight.adsrvr.org",
+     "path_prefix": "/track/realtimeconversion",
+     "resource_types": "xhr",
+     "n_loads": 77
+    },
+    {
+     "host": "insight.adsrvr.org",
+     "path_prefix": "/track/cei",
+     "resource_types": "document",
+     "n_loads": 77
+    },
+    {
+     "host": "match.adsrvr.org",
+     "path_prefix": "/track/cei",
+     "resource_types": "document",
+     "n_loads": 76
+    },
+    {
+     "host": "match.adsrvr.org",
+     "path_prefix": "/track/cmf",
+     "resource_types": "document",
+     "n_loads": 75
+    },
+    {
+     "host": "js.adsrvr.org",
+     "path_prefix": "/up_loader.1.1.0.js",
+     "resource_types": "script",
+     "n_loads": 68
+    }
+   ]
+  },
+  {
+   "vendor": "adroll",
+   "display_name": "adroll",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(adroll\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "d.adroll.com",
+     "path_prefix": "/consent/check",
+     "resource_types": "script",
+     "n_loads": 4
+    },
+    {
+     "host": "s.adroll.com",
+     "path_prefix": "/j/UFILLFQX3BCMFM2FHKACJI",
+     "resource_types": "script",
+     "n_loads": 2
+    },
+    {
+     "host": "s.adroll.com",
+     "path_prefix": "/j/TVMCMOKPG5AQHP5R<n>BX",
+     "resource_types": "script",
+     "n_loads": 2
+    },
+    {
+     "host": "d.adroll.com",
+     "path_prefix": "/cm/x",
+     "resource_types": "image",
+     "n_loads": 2
+    },
+    {
+     "host": "d.adroll.com",
+     "path_prefix": "/cm/triplelift",
+     "resource_types": "image",
+     "n_loads": 2
+    },
+    {
+     "host": "d.adroll.com",
+     "path_prefix": "/cm/taboola",
+     "resource_types": "image",
+     "n_loads": 2
+    }
+   ]
+  },
+  {
+   "vendor": "yahoo",
+   "display_name": "yahoo",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(analytics\\.yahoo\\.com|ads\\.yahoo\\.com|yahooinc\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "ups.analytics.yahoo.com",
+     "path_prefix": "/ups/<n>",
+     "resource_types": "image",
+     "n_loads": 33
+    },
+    {
+     "host": "cms.analytics.yahoo.com",
+     "path_prefix": "/cms",
+     "resource_types": "image",
+     "n_loads": 6
+    },
+    {
+     "host": "ups.analytics.yahoo.com",
+     "path_prefix": "/ups/<n>",
+     "resource_types": "xhr",
+     "n_loads": 4
+    },
+    {
+     "host": "connectid.analytics.yahoo.com",
+     "path_prefix": "/connectId-gpt.js",
+     "resource_types": "script",
+     "n_loads": 4
+    },
+    {
+     "host": "sp.analytics.yahoo.com",
+     "path_prefix": "/sp.pl",
+     "resource_types": "image",
+     "n_loads": 2
+    }
+   ]
+  },
+  {
+   "vendor": "mntn",
+   "display_name": "mntn",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(mountain\\.com|mntn\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "px.mountain.com",
+     "path_prefix": "/st",
+     "resource_types": "script",
+     "n_loads": 20
+    },
+    {
+     "host": "gs.mountain.com",
+     "path_prefix": "/gs",
+     "resource_types": "script",
+     "n_loads": 20
+    },
+    {
+     "host": "dx.mountain.com",
+     "path_prefix": "/spx",
+     "resource_types": "script",
+     "n_loads": 20
+    }
+   ]
+  },
+  {
+   "vendor": "spotify_ads",
+   "display_name": "spotify_ads",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(pixels\\.spotify\\.com|pixel\\.byspotify\\.com|byspotify\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "pixels.spotify.com",
+     "path_prefix": "/v1/ingest",
+     "resource_types": "fetch",
+     "n_loads": 37
+    },
+    {
+     "host": "pixels.spotify.com",
+     "path_prefix": "/v1/config",
+     "resource_types": "fetch",
+     "n_loads": 37
+    },
+    {
+     "host": "pixel.byspotify.com",
+     "path_prefix": "/ping.min.js",
+     "resource_types": "script",
+     "n_loads": 36
+    }
+   ]
+  },
+  {
+   "vendor": "podscribe",
+   "display_name": "podscribe",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(podscribe\\.com|podscribe\\.ai)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "verifi.podscribe.com",
+     "path_prefix": "/tag",
+     "resource_types": "image",
+     "n_loads": 24
+    },
+    {
+     "host": "ipv4.podscribe.com",
+     "path_prefix": "/",
+     "resource_types": "fetch",
+     "n_loads": 24
+    }
+   ]
+  },
+  {
+   "vendor": "podsights",
+   "display_name": "podsights",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(pdst\\.fm)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "cdn.pdst.fm",
+     "path_prefix": "/ping.min.js",
+     "resource_types": "script",
+     "n_loads": 1
+    }
+   ]
+  },
+  {
+   "vendor": "claritas",
+   "display_name": "claritas",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(trkn\\.us)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "trkn.us",
+     "path_prefix": "/pixel/conv",
+     "resource_types": "image",
+     "n_loads": 27
+    },
+    {
+     "host": "aa.trkn.us",
+     "path_prefix": "/1/e",
+     "resource_types": "image",
+     "n_loads": 15
+    },
+    {
+     "host": "aa.trkn.us",
+     "path_prefix": "/e/a.gif",
+     "resource_types": "image",
+     "n_loads": 8
+    }
+   ]
+  },
+  {
+   "vendor": "nextdoor",
+   "display_name": "nextdoor",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(nextdoor\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "flask.nextdoor.com",
+     "path_prefix": "/pixel",
+     "resource_types": "image",
+     "n_loads": 16
+    },
+    {
+     "host": "ads.nextdoor.com",
+     "path_prefix": "/v2/public",
+     "resource_types": "script",
+     "n_loads": 16
+    },
+    {
+     "host": "ads.nextdoor.com",
+     "path_prefix": "/v2/api",
+     "resource_types": "fetch",
+     "n_loads": 16
+    },
+    {
+     "host": "ads.nextdoor.com",
+     "path_prefix": "/public/pixel",
+     "resource_types": "script",
+     "n_loads": 16
+    }
+   ]
+  },
+  {
+   "vendor": "quantcast",
+   "display_name": "quantcast",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(quantserve\\.com|quantcount\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "secure.quantserve.com",
+     "path_prefix": "/quant.js",
+     "resource_types": "script",
+     "n_loads": 17
+    },
+    {
+     "host": "pixel.quantserve.com",
+     "path_prefix": "/cs",
+     "resource_types": "fetch",
+     "n_loads": 17
+    },
+    {
+     "host": "rules.quantcount.com",
+     "path_prefix": "/rules-p-65HfuySKPmYbw.js",
+     "resource_types": "script",
+     "n_loads": 14
+    },
+    {
+     "host": "rules.quantcount.com",
+     "path_prefix": "/rules-p-ZB5VK1YF1CPUp.js",
+     "resource_types": "script",
+     "n_loads": 2
+    },
+    {
+     "host": "rules.quantcount.com",
+     "path_prefix": "/rules-p-QEZzGPnZe_xCx.js",
+     "resource_types": "script",
+     "n_loads": 1
+    },
+    {
+     "host": "pixel.quantserve.com",
+     "path_prefix": "/pixel;r=<n>;source=gtm;rf=0;a=p-ZB5VK1YF1CPUp;url=https%3A%2F%2Fc020.store.example%2Fproducts%2F<slug>%3Futm_source%3Dyoutube%26utm_medium%3D[C020-creator]%26variant%3D<n>;ref=https%3A%2F%2Fwww.youtube.com%2F;ns=0;ce=1;qjs=1;qv=b<n>f28e-<n>;dst=1;et=<n>;tzo=<n>;ogl=site_name.[C020]%2Curl.https%3A%2F%2F[C020]%<n>Ecom%2Fproducts%2F<slug>%2Ctitle.Snap%20Grip%20Stand%2Ctype.product%2Cdescription.Everything%20you%20love%20about%20Snap%20Grip%<n>C%20now%20with%20a%<n>%C2%B0%20stand%20for%20focus%20at%20any%20angl%2Cimage.http%3A%2F%2F[C020]%<n>Ecom%2Fcdn%2Fshop%2Ffiles%2F<file>%<n>Epng%3Fv%3D<n>%2Cimage%3Asecure_url.https%3A%2F%2F[C020]%<n>Ecom%2Fcdn%2Fshop%2Ffiles%2F<file>%<n>Epng%3Fv%3D<n>%2Cimage%3Awidth.<n>%2Cimage%3Aheight.<n>%2Cprice%3Aamount.49%<n>E99%2Cprice%3Acurrency.USD;d=c020.store.example;uht=2;fpan=1;fpa=P1-f<n>cc7-5ff8-<n>c-b<n>-4abd<n>e52;pbc=;_ses=1d0ca4a3-6ee4-<n>a-a<n>-c92a97a5df3e;_seg=0;_ss=1;_gacid=<n>.<n>;_gasid=1DZE13PWYT_<n>;_gam=a;gdpr=0;mdl=",
+     "resource_types": "image",
+     "n_loads": 1
+    }
+   ]
+  },
+  {
+   "vendor": "liveramp",
+   "display_name": "liveramp",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(rlcdn\\.com|pippio\\.com|liveramp\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "di.rlcdn.com",
+     "path_prefix": "/<n>.html",
+     "resource_types": "document",
+     "n_loads": 57
+    },
+    {
+     "host": "idsync.rlcdn.com",
+     "path_prefix": "/<n>.gif",
+     "resource_types": "image",
+     "n_loads": 38
+    },
+    {
+     "host": "di.rlcdn.com",
+     "path_prefix": "/api/segment",
+     "resource_types": "document",
+     "n_loads": 29
+    },
+    {
+     "host": "api-ingest-console.liveramp.com",
+     "path_prefix": "/ingest/13c<n>f-<n>-4c90-8c2f-cc<n>c36b<n>",
+     "resource_types": "fetch",
+     "n_loads": 28
+    },
+    {
+     "host": "pippio.com",
+     "path_prefix": "/api/sync",
+     "resource_types": "image",
+     "n_loads": 4
+    },
+    {
+     "host": "t.rlcdn.com",
+     "path_prefix": "/api/segment",
+     "resource_types": "fetch",
+     "n_loads": 3
+    }
+   ]
+  },
+  {
+   "vendor": "rokt",
+   "display_name": "rokt",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(rokt\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "apps.rokt.com",
+     "path_prefix": "/v1/errors",
+     "resource_types": "xhr",
+     "n_loads": 29
+    },
+    {
+     "host": "apps.rokt.com",
+     "path_prefix": "/icons/rokt-icons.woff",
+     "resource_types": "font",
+     "n_loads": 29
+    },
+    {
+     "host": "apps.rokt.com",
+     "path_prefix": "/wsdk/session-transfer",
+     "resource_types": "document",
+     "n_loads": 27
+    },
+    {
+     "host": "apps.rokt.com",
+     "path_prefix": "/wsdk/canary",
+     "resource_types": "document",
+     "n_loads": 2
+    }
+   ]
+  },
+  {
+   "vendor": "stackadapt",
+   "display_name": "stackadapt",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(stackadapt\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "tags.srv.stackadapt.com",
+     "path_prefix": "/saq_pxl",
+     "resource_types": "xhr",
+     "n_loads": 19
+    },
+    {
+     "host": "tags.srv.stackadapt.com",
+     "path_prefix": "/sa.jpeg",
+     "resource_types": "fetch",
+     "n_loads": 19
+    },
+    {
+     "host": "tags.srv.stackadapt.com",
+     "path_prefix": "/sa.css",
+     "resource_types": "stylesheet",
+     "n_loads": 19
+    },
+    {
+     "host": "tags.srv.stackadapt.com",
+     "path_prefix": "/events.js",
+     "resource_types": "script",
+     "n_loads": 19
+    },
+    {
+     "host": "tags.srv.stackadapt.com",
+     "path_prefix": "/js_tracking",
+     "resource_types": "xhr",
+     "n_loads": 18
+    },
+    {
+     "host": "tags.srv.stackadapt.com",
+     "path_prefix": "/conv",
+     "resource_types": "image",
+     "n_loads": 12
+    }
+   ]
+  },
+  {
+   "vendor": "vibe",
+   "display_name": "vibe",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(vibe\\.co)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "t.vibe.co",
+     "path_prefix": "/pixel/s",
+     "resource_types": "image",
+     "n_loads": 17
+    },
+    {
+     "host": "s.vibe.co",
+     "path_prefix": "/vbpx.js",
+     "resource_types": "script",
+     "n_loads": 5
+    },
+    {
+     "host": "t6.vibe.co",
+     "path_prefix": "/pixel/s",
+     "resource_types": "xhr",
+     "n_loads": 2
+    },
+    {
+     "host": "t.vibe.co",
+     "path_prefix": "/pixel/s",
+     "resource_types": "xhr",
+     "n_loads": 2
+    },
+    {
+     "host": "t.vibe.co",
+     "path_prefix": "/shopify/event",
+     "resource_types": "fetch",
+     "n_loads": 1
+    },
+    {
+     "host": "t.vibe.co",
+     "path_prefix": "/pixel/s",
+     "resource_types": "fetch",
+     "n_loads": 1
+    }
+   ]
+  },
+  {
+   "vendor": "simplifi",
+   "display_name": "simplifi",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(simpli\\.fi)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "um.simpli.fi",
+     "path_prefix": "/gp_match",
+     "resource_types": "image",
+     "n_loads": 5
+    }
+   ]
+  },
+  {
+   "vendor": "bluekai",
+   "display_name": "bluekai",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(bluekai\\.com|bkrtx\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": []
+  },
+  {
+   "vendor": "adobe",
+   "display_name": "adobe",
+   "vendor_class": "analytics",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": null,
+   "host_regex": "(^|\\.)(omtrdc\\.net|demdex\\.net|everesttech\\.net|adobedc\\.net)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "dpm.demdex.net",
+     "path_prefix": "/demconf.jpg",
+     "resource_types": "image",
+     "n_loads": 73
+    },
+    {
+     "host": "dpm.demdex.net",
+     "path_prefix": "/id",
+     "resource_types": "xhr",
+     "n_loads": 71
+    },
+    {
+     "host": "cm.everesttech.net",
+     "path_prefix": "/cm/dd",
+     "resource_types": "image",
+     "n_loads": 71
+    },
+    {
+     "host": "dpm.demdex.net",
+     "path_prefix": "/id/rd",
+     "resource_types": "xhr",
+     "n_loads": 59
+    },
+    {
+     "host": "ulta-1.demdex.net",
+     "path_prefix": "/dest5.html",
+     "resource_types": "document",
+     "n_loads": 57
+    },
+    {
+     "host": "adobedc.demdex.net",
+     "path_prefix": "/ee/v1",
+     "resource_types": "fetch",
+     "n_loads": 57
+    }
+   ]
+  },
+  {
+   "vendor": "yandex",
+   "display_name": "yandex",
+   "vendor_class": "analytics",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": null,
+   "host_regex": "(^|\\.)(mc\\.yandex\\.ru|mc\\.yandex\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": []
+  },
+  {
+   "vendor": "klaviyo",
+   "display_name": "Klaviyo",
+   "vendor_class": "marketing_messaging",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": null,
+   "host_regex": "(^|\\.)(klaviyo\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [
+    "^/onsite/track-analytics",
+    "^/client/(events|profiles|subscriptions)",
+    "^/api/(track|identify)",
+    "^/forms/api",
+    "^/atlas/"
+   ],
+   "library_path_regex": [
+    "^/onsite/js/"
+   ],
+   "shopify_app_pixel": {
+    "apiClientIds": [
+     "123074"
+    ],
+    "n_stores_in_static_survey": 17,
+    "runtimeContext_observed": [
+     "STRICT"
+    ],
+    "privacyPurposes_observed": [
+     "ANALYTICS|MARKETING"
+    ]
+   },
+   "observed_study2_top_endpoints": [
+    {
+     "host": "static.klaviyo.com",
+     "path_prefix": "/onsite/js",
+     "resource_types": "script",
+     "n_loads": 324
+    },
+    {
+     "host": "static-tracking.klaviyo.com",
+     "path_prefix": "/onsite/js",
+     "resource_types": "script",
+     "n_loads": 305
+    },
+    {
+     "host": "a.klaviyo.com",
+     "path_prefix": "/forms/api",
+     "resource_types": "xhr",
+     "n_loads": 304
+    },
+    {
+     "host": "static-forms.klaviyo.com",
+     "path_prefix": "/forms/api",
+     "resource_types": "xhr",
+     "n_loads": 269
+    },
+    {
+     "host": "fast.a.klaviyo.com",
+     "path_prefix": "/custom-fonts/api",
+     "resource_types": "xhr",
+     "n_loads": 269
+    },
+    {
+     "host": "static.klaviyo.com",
+     "path_prefix": "/onsite/js",
+     "resource_types": "stylesheet",
+     "n_loads": 140
+    }
+   ]
+  },
+  {
+   "vendor": "attentive",
+   "display_name": "Attentive",
+   "vendor_class": "marketing_messaging",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": null,
+   "host_regex": "(^|\\.)(attn\\.tv|attentivemobile\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [
+    "^/ct-ev",
+    "^/d$",
+    "^/creative-interactions",
+    "^/e/"
+   ],
+   "library_path_regex": [
+    "^/(tag|growth-tag-assets|attentive)/"
+   ],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "cdn.attn.tv",
+     "path_prefix": "/growth-tag-assets/client-configs",
+     "resource_types": "script",
+     "n_loads": 113
+    },
+    {
+     "host": "events.attentivemobile.com",
+     "path_prefix": "/ct-ev",
+     "resource_types": "ping",
+     "n_loads": 81
+    },
+    {
+     "host": "creatives.attn.tv",
+     "path_prefix": "/creatives-dynamic/multiPage",
+     "resource_types": "stylesheet",
+     "n_loads": 69
+    },
+    {
+     "host": "creatives.attn.tv",
+     "path_prefix": "/creatives-dynamic/multiPage",
+     "resource_types": "script",
+     "n_loads": 69
+    },
+    {
+     "host": "creatives.attn.tv",
+     "path_prefix": "/creatives-dynamic/multiPage",
+     "resource_types": "document",
+     "n_loads": 69
+    },
+    {
+     "host": "cdn.attn.tv",
+     "path_prefix": "/tag/4-latest",
+     "resource_types": "script",
+     "n_loads": 64
+    }
+   ]
+  },
+  {
+   "vendor": "hotjar",
+   "display_name": "hotjar",
+   "vendor_class": "analytics",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": null,
+   "host_regex": "(^|\\.)(hotjar\\.com|hotjar\\.io)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "static.hotjar.com",
+     "path_prefix": "/c/hotjar-<n>.js",
+     "resource_types": "script",
+     "n_loads": 101
+    },
+    {
+     "host": "metrics.hotjar.io",
+     "path_prefix": "/",
+     "resource_types": "ping",
+     "n_loads": 18
+    }
+   ]
+  },
+  {
+   "vendor": "segment",
+   "display_name": "segment",
+   "vendor_class": "analytics",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": null,
+   "host_regex": "(^|\\.)(segment\\.com|segment\\.io)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "cdn.segment.com",
+     "path_prefix": "/v1/projects",
+     "resource_types": "fetch",
+     "n_loads": 30
+    },
+    {
+     "host": "cdn.segment.com",
+     "path_prefix": "/analytics.js/v1",
+     "resource_types": "script",
+     "n_loads": 28
+    },
+    {
+     "host": "cdn.segment.com",
+     "path_prefix": "/analytics-next/bundles",
+     "resource_types": "script",
+     "n_loads": 28
+    },
+    {
+     "host": "api.segment.io",
+     "path_prefix": "/v1/p",
+     "resource_types": "fetch",
+     "n_loads": 20
+    },
+    {
+     "host": "api.segment.io",
+     "path_prefix": "/v1/t",
+     "resource_types": "fetch",
+     "n_loads": 12
+    },
+    {
+     "host": "cdn.segment.com",
+     "path_prefix": "/next-integrations/actions",
+     "resource_types": "script",
+     "n_loads": 10
+    }
+   ]
+  },
+  {
+   "vendor": "heap",
+   "display_name": "heap",
+   "vendor_class": "analytics",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": null,
+   "host_regex": "(^|\\.)(heapanalytics\\.com|heap-api\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "heapanalytics.com",
+     "path_prefix": "/h",
+     "resource_types": "image",
+     "n_loads": 8
+    },
+    {
+     "host": "cdn.heapanalytics.com",
+     "path_prefix": "/js/heap-<n>.js",
+     "resource_types": "script",
+     "n_loads": 8
+    },
+    {
+     "host": "heapanalytics.com",
+     "path_prefix": "/api/telemetry",
+     "resource_types": "image",
+     "n_loads": 3
+    },
+    {
+     "host": "heapanalytics.com",
+     "path_prefix": "/api/add_user_properties_v3",
+     "resource_types": "image",
+     "n_loads": 2
+    }
+   ]
+  },
+  {
+   "vendor": "mixpanel",
+   "display_name": "mixpanel",
+   "vendor_class": "analytics",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": null,
+   "host_regex": "(^|\\.)(mixpanel\\.com|mxpnl\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "api-js.mixpanel.com",
+     "path_prefix": "/track",
+     "resource_types": "fetch",
+     "n_loads": 23
+    },
+    {
+     "host": "cdn.mxpnl.com",
+     "path_prefix": "/libs/mixpanel-2-latest.min.js",
+     "resource_types": "script",
+     "n_loads": 10
+    },
+    {
+     "host": "api-js.mixpanel.com",
+     "path_prefix": "/track",
+     "resource_types": "xhr",
+     "n_loads": 10
+    },
+    {
+     "host": "cdn.mxpnl.com",
+     "path_prefix": "/libs/mixpanel-js-wrapper.min.js",
+     "resource_types": "script",
+     "n_loads": 3
+    },
+    {
+     "host": "api-js.mixpanel.com",
+     "path_prefix": "/engage",
+     "resource_types": "xhr",
+     "n_loads": 2
+    },
+    {
+     "host": "cdn.mxpnl.com",
+     "path_prefix": "/libs/mixpanel-recorder-CZqK2y7C.min.js",
+     "resource_types": "script",
+     "n_loads": 1
+    }
+   ]
+  },
+  {
+   "vendor": "amplitude",
+   "display_name": "amplitude",
+   "vendor_class": "analytics",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": null,
+   "host_regex": "(^|\\.)(amplitude\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "api2.amplitude.com",
+     "path_prefix": "/2/httpapi",
+     "resource_types": "ping",
+     "n_loads": 29
+    },
+    {
+     "host": "sr-client-cfg.amplitude.com",
+     "path_prefix": "/config/6d4f<n>e0c6d78e3bd<n>ba<n>",
+     "resource_types": "fetch",
+     "n_loads": 27
+    },
+    {
+     "host": "api.lab.amplitude.com",
+     "path_prefix": "/sdk/v2",
+     "resource_types": "fetch",
+     "n_loads": 27
+    },
+    {
+     "host": "sr-client-cfg.amplitude.com",
+     "path_prefix": "/config",
+     "resource_types": "fetch",
+     "n_loads": 8
+    },
+    {
+     "host": "cdn.amplitude.com",
+     "path_prefix": "/libs/plugin-session-replay-browser-1.32.1-min.js.gz",
+     "resource_types": "script",
+     "n_loads": 4
+    },
+    {
+     "host": "cdn.amplitude.com",
+     "path_prefix": "/libs/analytics-browser-2.42.4-min.js.gz",
+     "resource_types": "script",
+     "n_loads": 4
+    }
+   ]
+  },
+  {
+   "vendor": "fullstory",
+   "display_name": "fullstory",
+   "vendor_class": "analytics",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": null,
+   "host_regex": "(^|\\.)(fullstory\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "rs.fullstory.com",
+     "path_prefix": "/rec/page",
+     "resource_types": "xhr",
+     "n_loads": 41
+    },
+    {
+     "host": "edge.fullstory.com",
+     "path_prefix": "/s/settings",
+     "resource_types": "xhr",
+     "n_loads": 41
+    },
+    {
+     "host": "edge.fullstory.com",
+     "path_prefix": "/s/fs.js",
+     "resource_types": "script",
+     "n_loads": 41
+    },
+    {
+     "host": "edge.fullstory.com",
+     "path_prefix": "/d/snippet",
+     "resource_types": "script",
+     "n_loads": 8
+    },
+    {
+     "host": "rs.fullstory.com",
+     "path_prefix": "/rec/integrations",
+     "resource_types": "script",
+     "n_loads": 3
+    },
+    {
+     "host": "rs.fullstory.com",
+     "path_prefix": "/rec/bundle",
+     "resource_types": "xhr",
+     "n_loads": 3
+    }
+   ]
+  },
+  {
+   "vendor": "northbeam",
+   "display_name": "northbeam",
+   "vendor_class": "analytics",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": null,
+   "host_regex": "(^|\\.)(northbeam\\.io)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "j.northbeam.io",
+     "path_prefix": "/vendor/nb-sp.min.js",
+     "resource_types": "script",
+     "n_loads": 38
+    },
+    {
+     "host": "j.northbeam.io",
+     "path_prefix": "/ota-sp/<n>f3b4d-2a13-4af5-97fe-88e4bdc5db38.js",
+     "resource_types": "script",
+     "n_loads": 23
+    },
+    {
+     "host": "j.northbeam.io",
+     "path_prefix": "/ota-sp/d<n>-1ef4-<n>-acf0-<n>a5a<n>d.js",
+     "resource_types": "script",
+     "n_loads": 5
+    },
+    {
+     "host": "j.northbeam.io",
+     "path_prefix": "/vendor/nb-sp.js",
+     "resource_types": "script",
+     "n_loads": 2
+    },
+    {
+     "host": "j.northbeam.io",
+     "path_prefix": "/ota-sp/f<n>-68ef-<n>a-a<n>-bcec1ad71f8b.js",
+     "resource_types": "script",
+     "n_loads": 2
+    },
+    {
+     "host": "j.northbeam.io",
+     "path_prefix": "/ota-sp/d4ac<n>e-ed71-<n>-98df-<n>d66d67.js",
+     "resource_types": "script",
+     "n_loads": 2
+    }
+   ]
+  },
+  {
+   "vendor": "triplewhale",
+   "display_name": "triplewhale",
+   "vendor_class": "analytics",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": null,
+   "host_regex": "(^|\\.)(triplewhale\\.com|config-security\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "conf.config-security.com",
+     "path_prefix": "/model",
+     "resource_types": "xhr",
+     "n_loads": 121
+    },
+    {
+     "host": "api.config-security.com",
+     "path_prefix": "/event",
+     "resource_types": "xhr",
+     "n_loads": 117
+    },
+    {
+     "host": "api.config-security.com",
+     "path_prefix": "/first",
+     "resource_types": "xhr",
+     "n_loads": 51
+    },
+    {
+     "host": "conf.config-security.com",
+     "path_prefix": "/model",
+     "resource_types": "fetch",
+     "n_loads": 23
+    },
+    {
+     "host": "api.config-security.com",
+     "path_prefix": "/event",
+     "resource_types": "fetch",
+     "n_loads": 23
+    },
+    {
+     "host": "api.config-security.com",
+     "path_prefix": "/",
+     "resource_types": "xhr",
+     "n_loads": 4
+    }
+   ]
+  },
+  {
+   "vendor": "impact",
+   "display_name": "impact",
+   "vendor_class": "affiliate",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": null,
+   "host_regex": "(^|\\.)(impactcdn\\.com|impact\\.com|impactradius-event\\.com|impactradius\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "trkapi.impact.com",
+     "path_prefix": "/PageLoad",
+     "resource_types": "fetch",
+     "n_loads": 100
+    },
+    {
+     "host": "d.impactradius-event.com",
+     "path_prefix": "/A<n>-1eb0-43de-95fe-<n>aaab3d<n>.js",
+     "resource_types": "script",
+     "n_loads": 57
+    },
+    {
+     "host": "utt.impactcdn.com",
+     "path_prefix": "/A<n>-b2f3-4e66-bd44-77c54a<n>.js",
+     "resource_types": "script",
+     "n_loads": 23
+    },
+    {
+     "host": "d.impactradius-event.com",
+     "path_prefix": "/A<n>-6f14-4ed8-<n>-d<n>b7f<n>.js",
+     "resource_types": "script",
+     "n_loads": 6
+    },
+    {
+     "host": "utt.impactcdn.com",
+     "path_prefix": "/A<n>-41ac-48bb-9dfb-b78e8b<n>d<n>.js",
+     "resource_types": "script",
+     "n_loads": 4
+    },
+    {
+     "host": "d.impactradius-event.com",
+     "path_prefix": "/A<n>-f2b3-4d2e-8aee-ad<n>a<n>f1.js",
+     "resource_types": "script",
+     "n_loads": 4
+    }
+   ]
+  },
+  {
+   "vendor": "cj",
+   "display_name": "cj",
+   "vendor_class": "affiliate",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": null,
+   "host_regex": "(^|\\.)(emjcd\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "www.emjcd.com",
+     "path_prefix": "/tn83cy65Q/y49",
+     "resource_types": "document",
+     "n_loads": 1
+    },
+    {
+     "host": "www.emjcd.com",
+     "path_prefix": "/r<n>cy65Q/y49",
+     "resource_types": "document",
+     "n_loads": 1
+    },
+    {
+     "host": "www.emjcd.com",
+     "path_prefix": "/j<n>hz76R/z5A",
+     "resource_types": "document",
+     "n_loads": 1
+    },
+    {
+     "host": "www.emjcd.com",
+     "path_prefix": "/2d<n>mu21M/u05",
+     "resource_types": "document",
+     "n_loads": 1
+    }
+   ]
+  },
+  {
+   "vendor": "awin",
+   "display_name": "awin",
+   "vendor_class": "affiliate",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": null,
+   "host_regex": "(^|\\.)(dwin1\\.com|awin1\\.com|zenaps\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "www.dwin1.com",
+     "path_prefix": "/<n>.js",
+     "resource_types": "script",
+     "n_loads": 44
+    },
+    {
+     "host": "www.awin1.com",
+     "path_prefix": "/cread.php",
+     "resource_types": "document",
+     "n_loads": 34
+    },
+    {
+     "host": "www.awin1.com",
+     "path_prefix": "/m/<n>.gif",
+     "resource_types": "image",
+     "n_loads": 20
+    },
+    {
+     "host": "www.awin1.com",
+     "path_prefix": "/alt.php",
+     "resource_types": "document",
+     "n_loads": 20
+    },
+    {
+     "host": "www.awin1.com",
+     "path_prefix": "/awclick.php",
+     "resource_types": "document",
+     "n_loads": 4
+    }
+   ]
+  },
+  {
+   "vendor": "rakuten",
+   "display_name": "rakuten",
+   "vendor_class": "affiliate",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": null,
+   "host_regex": "(^|\\.)(rmp\\.rakuten\\.com|linksynergy\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "tag.rmp.rakuten.com",
+     "path_prefix": "/<n>.ct.js",
+     "resource_types": "script",
+     "n_loads": 28
+    },
+    {
+     "host": "click.linksynergy.com",
+     "path_prefix": "/deeplink",
+     "resource_types": "document",
+     "n_loads": 18
+    },
+    {
+     "host": "tags.rd.linksynergy.com",
+     "path_prefix": "/<n>.ct.js",
+     "resource_types": "script",
+     "n_loads": 2
+    },
+    {
+     "host": "consent.linksynergy.com",
+     "path_prefix": "/consent/v1",
+     "resource_types": "image",
+     "n_loads": 2
+    },
+    {
+     "host": "tags.rd.linksynergy.com",
+     "path_prefix": "/rcs",
+     "resource_types": "document",
+     "n_loads": 1
+    }
+   ]
+  },
+  {
+   "vendor": "shareasale",
+   "display_name": "shareasale",
+   "vendor_class": "affiliate",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": null,
+   "host_regex": "(^|\\.)(shareasale-analytics\\.com|shareasale\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "static.shareasale.com",
+     "path_prefix": "/json/shopify",
+     "resource_types": "script",
+     "n_loads": 12
+    }
+   ]
+  },
+  {
+   "vendor": "partnerize",
+   "display_name": "partnerize",
+   "vendor_class": "affiliate",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": null,
+   "host_regex": "(^|\\.)(prf\\.hn)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "selfridges.prf.hn",
+     "path_prefix": "/click/camref:<n>loWvx",
+     "resource_types": "document",
+     "n_loads": 2
+    }
+   ]
+  },
+  {
+   "vendor": "appsflyer",
+   "display_name": "appsflyer",
+   "vendor_class": "attribution",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": null,
+   "host_regex": "(^|\\.)(appsflyer\\.com|appsflyersdk\\.com|onelink\\.me)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "impressions.onelink.me",
+     "path_prefix": "/Kwva",
+     "resource_types": "image",
+     "n_loads": 23
+    },
+    {
+     "host": "onelinksmartscript.appsflyer.com",
+     "path_prefix": "/onelink-smart-script-latest.js",
+     "resource_types": "script",
+     "n_loads": 4
+    },
+    {
+     "host": "websdk.appsflyersdk.com",
+     "path_prefix": "/release-0-0-67/websdk.e45da16d<n>ebb3ab<n>f<n>a<n>.js",
+     "resource_types": "script",
+     "n_loads": 3
+    },
+    {
+     "host": "websdk.appsflyersdk.com",
+     "path_prefix": "/manifestLoader.v1.js",
+     "resource_types": "script",
+     "n_loads": 3
+    },
+    {
+     "host": "websdk.appsflyersdk.com",
+     "path_prefix": "/manifest.e45da16d<n>ebb3ab<n>f<n>a<n>.json.sig",
+     "resource_types": "fetch",
+     "n_loads": 3
+    },
+    {
+     "host": "websdk.appsflyersdk.com",
+     "path_prefix": "/manifest.e45da16d<n>ebb3ab<n>f<n>a<n>.json",
+     "resource_types": "fetch",
+     "n_loads": 3
+    }
+   ]
+  },
+  {
+   "vendor": "google_merchant_center",
+   "display_name": "Google Merchant Center analytics",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Google",
+   "host_regex": "(^|\\.)(merchant-center-analytics\\.goog)$",
+   "path_regex": null,
+   "beacon_path_regex": [
+    "^/mc/collect"
+   ],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "www.merchant-center-analytics.goog",
+     "path_prefix": "/mc/collect",
+     "resource_types": "fetch",
+     "n_loads": 250
+    }
+   ]
+  },
+  {
+   "vendor": "liveintent",
+   "display_name": "liveintent",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(liadm\\.com|liveintent\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "rp.liadm.com",
+     "path_prefix": "/j",
+     "resource_types": "xhr",
+     "n_loads": 60
+    },
+    {
+     "host": "b-code.liadm.com",
+     "path_prefix": "/lc2.js",
+     "resource_types": "script",
+     "n_loads": 44
+    },
+    {
+     "host": "idx.liadm.com",
+     "path_prefix": "/idex/unknown",
+     "resource_types": "xhr",
+     "n_loads": 42
+    },
+    {
+     "host": "i.liadm.com",
+     "path_prefix": "/s/<n>",
+     "resource_types": "image",
+     "n_loads": 35
+    },
+    {
+     "host": "i.liadm.com",
+     "path_prefix": "/sync-container",
+     "resource_types": "document",
+     "n_loads": 8
+    },
+    {
+     "host": "idx.liadm.com",
+     "path_prefix": "/idex/did-00ao",
+     "resource_types": "xhr",
+     "n_loads": 5
+    }
+   ]
+  },
+  {
+   "vendor": "epsilon_conversant",
+   "display_name": "epsilon_conversant",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(dotomi\\.com|epsilon\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "login-ds.dotomi.com",
+     "path_prefix": "/ucm/DMCSuccessLogger",
+     "resource_types": "image",
+     "n_loads": 29
+    },
+    {
+     "host": "login-ds.dotomi.com",
+     "path_prefix": "/profile/visit",
+     "resource_types": "script",
+     "n_loads": 29
+    },
+    {
+     "host": "login.dotomi.com",
+     "path_prefix": "/match/bounce",
+     "resource_types": "image",
+     "n_loads": 25
+    },
+    {
+     "host": "dp-sync.dotomi.com",
+     "path_prefix": "/match/pixel",
+     "resource_types": "image",
+     "n_loads": 17
+    },
+    {
+     "host": "dclk-match.dotomi.com",
+     "path_prefix": "/match/pixel",
+     "resource_types": "image",
+     "n_loads": 6
+    },
+    {
+     "host": "yahoo-match.dotomi.com",
+     "path_prefix": "/match/pixel",
+     "resource_types": "image",
+     "n_loads": 4
+    }
+   ]
+  },
+  {
+   "vendor": "zeta",
+   "display_name": "zeta",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(rfihub\\.com|boomtrain\\.com|zetaglobal\\.net)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "people.api.zetaglobal.net",
+     "path_prefix": "/identify/resolve",
+     "resource_types": "xhr",
+     "n_loads": 29
+    },
+    {
+     "host": "events.api.boomtrain.com",
+     "path_prefix": "/event/track",
+     "resource_types": "xhr",
+     "n_loads": 29
+    },
+    {
+     "host": "cdn.boomtrain.com",
+     "path_prefix": "/p13n/ulta-salon",
+     "resource_types": "script",
+     "n_loads": 29
+    },
+    {
+     "host": "cdn.boomtrain.com",
+     "path_prefix": "/p13n/pgmt-ulta-beauty",
+     "resource_types": "script",
+     "n_loads": 29
+    },
+    {
+     "host": "p.rfihub.com",
+     "path_prefix": "/cm",
+     "resource_types": "image",
+     "n_loads": 28
+    },
+    {
+     "host": "a.rfihub.com",
+     "path_prefix": "/cm",
+     "resource_types": "image",
+     "n_loads": 28
+    }
+   ]
+  },
+  {
+   "vendor": "pebblepost",
+   "display_name": "pebblepost",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(pbbl\\.co)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "px0.pbbl.co",
+     "path_prefix": "/ns/__p2.gif",
+     "resource_types": "image",
+     "n_loads": 23
+    },
+    {
+     "host": "cdn.pbbl.co",
+     "path_prefix": "/r/<n>.js",
+     "resource_types": "script",
+     "n_loads": 23
+    },
+    {
+     "host": "cdn.pbbl.co",
+     "path_prefix": "/i/pp.html",
+     "resource_types": "document",
+     "n_loads": 23
+    }
+   ]
+  },
+  {
+   "vendor": "agentio",
+   "display_name": "agentio",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(agentio\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "static.agentio.com",
+     "path_prefix": "/sp.js",
+     "resource_types": "script",
+     "n_loads": 31
+    },
+    {
+     "host": "static.agentio.com",
+     "path_prefix": "/agentio-pixel.js",
+     "resource_types": "script",
+     "n_loads": 31
+    },
+    {
+     "host": "collector.agentio.com",
+     "path_prefix": "/com.snowplowanalytics.snowplow/tp2",
+     "resource_types": "fetch",
+     "n_loads": 31
+    }
+   ]
+  },
+  {
+   "vendor": "retention_com",
+   "display_name": "retention_com",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(usbrowserspeed\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "a.usbrowserspeed.com",
+     "path_prefix": "/cs",
+     "resource_types": "script",
+     "n_loads": 4
+    },
+    {
+     "host": "a.usbrowserspeed.com",
+     "path_prefix": "/cs",
+     "resource_types": "fetch",
+     "n_loads": 4
+    }
+   ]
+  },
+  {
+   "vendor": "tapad",
+   "display_name": "tapad",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(tapad\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "pixel.tapad.com",
+     "path_prefix": "/idsync/ex",
+     "resource_types": "document",
+     "n_loads": 127
+    },
+    {
+     "host": "pixel.tapad.com",
+     "path_prefix": "/idsync/ex",
+     "resource_types": "image",
+     "n_loads": 14
+    }
+   ]
+  },
+  {
+   "vendor": "doubleverify",
+   "display_name": "doubleverify",
+   "vendor_class": "ad_verification",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": null,
+   "host_regex": "(^|\\.)(doubleverify\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "tpsc-uw1.doubleverify.com",
+     "path_prefix": "/event.png",
+     "resource_types": "ping",
+     "n_loads": 31
+    },
+    {
+     "host": "tps.doubleverify.com",
+     "path_prefix": "/visit.js",
+     "resource_types": "script",
+     "n_loads": 31
+    },
+    {
+     "host": "pub.doubleverify.com",
+     "path_prefix": "/dvtag/signals",
+     "resource_types": "fetch",
+     "n_loads": 16
+    },
+    {
+     "host": "pub.doubleverify.com",
+     "path_prefix": "/dvtag/<n>",
+     "resource_types": "script",
+     "n_loads": 16
+    },
+    {
+     "host": "cdn.doubleverify.com",
+     "path_prefix": "/dvtp_src.js",
+     "resource_types": "script",
+     "n_loads": 15
+    },
+    {
+     "host": "cdn.doubleverify.com",
+     "path_prefix": "/dvbm.js",
+     "resource_types": "script",
+     "n_loads": 15
+    }
+   ]
+  },
+  {
+   "vendor": "quantum_metric",
+   "display_name": "quantum_metric",
+   "vendor_class": "analytics",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": null,
+   "host_regex": "(^|\\.)(quantummetric\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "ingest.quantummetric.com",
+     "path_prefix": "/horizon/d",
+     "resource_types": "fetch",
+     "n_loads": 59
+    },
+    {
+     "host": "ingest.quantummetric.com",
+     "path_prefix": "/horizon/ulta",
+     "resource_types": "fetch",
+     "n_loads": 57
+    },
+    {
+     "host": "cdn.quantummetric.com",
+     "path_prefix": "/qscripts/quantum-ulta.js",
+     "resource_types": "script",
+     "n_loads": 57
+    },
+    {
+     "host": "ingest.quantummetric.com",
+     "path_prefix": "/resource-loader/ulta",
+     "resource_types": "fetch",
+     "n_loads": 3
+    },
+    {
+     "host": "ingest.quantummetric.com",
+     "path_prefix": "/lgs/api",
+     "resource_types": "ping",
+     "n_loads": 2
+    },
+    {
+     "host": "ingest.quantummetric.com",
+     "path_prefix": "/horizon/skims",
+     "resource_types": "fetch",
+     "n_loads": 2
+    }
+   ]
+  },
+  {
+   "vendor": "medallia",
+   "display_name": "medallia",
+   "vendor_class": "analytics",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": null,
+   "host_regex": "(^|\\.)(medallia\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "analytics-fe.digital-cloud-us-main.medallia.com",
+     "path_prefix": "/api/web",
+     "resource_types": "xhr",
+     "n_loads": 57
+    },
+    {
+     "host": "resources.digital-cloud.medallia.com",
+     "path_prefix": "/wdcus/<n>",
+     "resource_types": "xhr",
+     "n_loads": 16
+    },
+    {
+     "host": "resources.digital-cloud.medallia.com",
+     "path_prefix": "/wdcus/<n>",
+     "resource_types": "script",
+     "n_loads": 16
+    },
+    {
+     "host": "resources.digital-cloud-west.medallia.com",
+     "path_prefix": "/wdcwest/<n>",
+     "resource_types": "xhr",
+     "n_loads": 2
+    },
+    {
+     "host": "resources.digital-cloud-west.medallia.com",
+     "path_prefix": "/wdcwest/<n>",
+     "resource_types": "script",
+     "n_loads": 2
+    },
+    {
+     "host": "analytics-fe.digital-cloud-west.medallia.com",
+     "path_prefix": "/api/web",
+     "resource_types": "xhr",
+     "n_loads": 2
+    }
+   ]
+  },
+  {
+   "vendor": "mouseflow",
+   "display_name": "mouseflow",
+   "vendor_class": "analytics",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": null,
+   "host_regex": "(^|\\.)(mouseflow\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "cdn.mouseflow.com",
+     "path_prefix": "/projects/60ec5f45-1fb4-<n>-<n>-<n>a.js",
+     "resource_types": "script",
+     "n_loads": 6
+    },
+    {
+     "host": "cdn.mouseflow.com",
+     "path_prefix": "/projects/e6c8f7cc-12f2-<n>-aa22-ca9e2dd2f5ac.js",
+     "resource_types": "script",
+     "n_loads": 4
+    }
+   ]
+  },
+  {
+   "vendor": "optimizely",
+   "display_name": "optimizely",
+   "vendor_class": "analytics",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": null,
+   "host_regex": "(^|\\.)(optimizely\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "logx.optimizely.com",
+     "path_prefix": "/v1/events",
+     "resource_types": "xhr",
+     "n_loads": 44
+    },
+    {
+     "host": "cdn.optimizely.com",
+     "path_prefix": "/js/<n>.js",
+     "resource_types": "script",
+     "n_loads": 24
+    },
+    {
+     "host": "cdn.optimizely.com",
+     "path_prefix": "/public/<n>",
+     "resource_types": "script",
+     "n_loads": 15
+    },
+    {
+     "host": "a7808901045.cdn.optimizely.com",
+     "path_prefix": "/client_storage/a<n>.html",
+     "resource_types": "document",
+     "n_loads": 13
+    },
+    {
+     "host": "tapi.optimizely.com",
+     "path_prefix": "/api/targeting",
+     "resource_types": "xhr",
+     "n_loads": 12
+    },
+    {
+     "host": "tapi.optimizely.com",
+     "path_prefix": "/api/js",
+     "resource_types": "xhr",
+     "n_loads": 12
+    }
+   ]
+  },
+  {
+   "vendor": "plausible",
+   "display_name": "plausible",
+   "vendor_class": "analytics",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": null,
+   "host_regex": "(^|\\.)(plausible\\.io)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "plausible.io",
+     "path_prefix": "/api/event",
+     "resource_types": "fetch",
+     "n_loads": 114
+    },
+    {
+     "host": "plausible.io",
+     "path_prefix": "/js/script.js",
+     "resource_types": "script",
+     "n_loads": 2
+    }
+   ]
+  },
+  {
+   "vendor": "branch",
+   "display_name": "branch",
+   "vendor_class": "attribution",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": null,
+   "host_regex": "(^|\\.)(branch\\.io)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "api2.branch.io",
+     "path_prefix": "/v1/pageview",
+     "resource_types": "xhr",
+     "n_loads": 20
+    },
+    {
+     "host": "api2.branch.io",
+     "path_prefix": "/v1/open",
+     "resource_types": "xhr",
+     "n_loads": 20
+    },
+    {
+     "host": "protected-api.branch.io",
+     "path_prefix": "/v1/pageview",
+     "resource_types": "xhr",
+     "n_loads": 2
+    },
+    {
+     "host": "protected-api.branch.io",
+     "path_prefix": "/v1/open",
+     "resource_types": "xhr",
+     "n_loads": 2
+    },
+    {
+     "host": "cdn.branch.io",
+     "path_prefix": "/branch-v2.86.5.min.js",
+     "resource_types": "script",
+     "n_loads": 2
+    }
+   ]
+  },
+  {
+   "vendor": "postscript",
+   "display_name": "Postscript (SMS marketing)",
+   "vendor_class": "marketing_messaging",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": null,
+   "host_regex": "(^|\\.)(postscript\\.io)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "sdk.postscript.io",
+     "path_prefix": "/sdk.bundle.js",
+     "n_loads": 33
+    },
+    {
+     "host": "sdk.postscript.io",
+     "path_prefix": "/sdk-script-loader.bundle.js",
+     "n_loads": 12
+    }
+   ]
+  },
+  {
+   "vendor": "shopify_platform",
+   "display_name": "Shopify first-party telemetry / Shop Pay (not a third-party ad vendor)",
+   "vendor_class": "shopify_first_party",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": null,
+   "host_regex": "(^|\\.)(shopifysvc\\.com|shop\\.app)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "observed_study2_top_endpoints": [
+    {
+     "host": "otlp-http-production.shopifysvc.com",
+     "path_prefix": "/v1/metrics",
+     "n_loads": 396
+    },
+    {
+     "host": "shop.app",
+     "path_prefix": "/pay/hop",
+     "n_loads": 392
+    },
+    {
+     "host": "monorail-edge.shopifysvc.com",
+     "path_prefix": "/v1/produce",
+     "n_loads": 377
+    },
+    {
+     "host": "shop.app",
+     "path_prefix": "/checkouts/internal",
+     "n_loads": 370
+    },
+    {
+     "host": "shop.app",
+     "path_prefix": "/pay/session",
+     "n_loads": 369
+    },
+    {
+     "host": "otlp-http-production.shopifysvc.com",
+     "path_prefix": "/v1/logs",
+     "n_loads": 306
+    }
+   ]
+  }
+ ]
+}

@@ -1,0 +1,13 @@
+% Figure 1 assembled at final size (190 mm x 130 mm): 1a schematic (TikZ, 120 x 79 mm) | 4 mm | 1b data (66 x 79 mm);
+% 1c timeline (190 x 47 mm) below with a 4 mm gutter. Panels are included as vector PDFs, never rescaled.
+% Build: ../tools/texenv/bin/tectonic fig1_composite.tex   (after scripts/fig1bc.py and schematics/build.sh)
+\documentclass[tikz,border=0pt]{standalone}
+\usepackage{graphicx}
+\begin{document}
+\begin{tikzpicture}[x=1mm,y=1mm]
+\path[use as bounding box] (0,0) rectangle (190,130);
+\node[anchor=south west, inner sep=0pt] at (0,51) {\includegraphics{schematics/fig1a_consent_pipeline.pdf}};
+\node[anchor=south west, inner sep=0pt] at (124,51) {\includegraphics{panels/fig1b_situating_data.pdf}};
+\node[anchor=south west, inner sep=0pt] at (0,0) {\includegraphics{panels/fig1c_page_load_timeline.pdf}};
+\end{tikzpicture}
+\end{document}

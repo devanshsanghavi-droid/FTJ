@@ -1,0 +1,20 @@
+OK fig1b_situating_data.pdf: fonts ['Arial-BoldMT', 'ArialMT']; text below 7 pt: 0
+OK fig1c_page_load_timeline.pdf: fonts ['Arial-BoldMT', 'ArialMT']; text below 7 pt: 0
+OK fig3_prechoice.pdf: fonts ['Arial-BoldMT', 'ArialMT']; text below 7 pt: 0
+OK fig4_blocked_on_paper.pdf: fonts ['Arial-BoldMT', 'Arial-ItalicMT', 'ArialMT']; text below 7 pt: 0
+OK fig5_choices.pdf: fonts ['Arial-BoldMT', 'Arial-ItalicMT', 'ArialMT']; text below 7 pt: 0
+OK fig6_reach.pdf: fonts ['Arial-BoldMT', 'ArialMT']; text below 7 pt: 0
+OK figS2_per_cmp.pdf: fonts ['ArialMT']; text below 7 pt: 0
+OK figS3_by_rank.pdf: fonts ['ArialMT']; text below 7 pt: 0
+OK figS4_audit.pdf: fonts ['Arial-BoldMT', 'ArialMT']; text below 7 pt: 0
+OK figS5_per_vendor.pdf: fonts ['ArialMT']; text below 7 pt: 0
+OK figS6_sensitivity.pdf: fonts ['Arial-BoldMT', 'ArialMT']; text below 7 pt: 0
+OK fig1_composite.pdf: fonts ['Arial-BoldMT', 'Arial-ItalicMT', 'ArialMT']; text below 7 pt: 0
+OK fig1a_consent_pipeline.pdf: fonts ['Arial-BoldMT', 'Arial-ItalicMT', 'ArialMT']; text below 7 pt: 0
+OK fig2_composite.pdf: fonts ['Arial-BoldMT', 'Arial-ItalicMT', 'ArialMT']; text below 7 pt: 0
+OK fig2a_sampling_funnel.pdf: fonts ['Arial-BoldMT', 'ArialMT']; text below 7 pt: 0
+OK fig2b_measurement_arms.pdf: fonts ['Arial-BoldMT', 'ArialMT']; text below 7 pt: 0
+OK fig2c_attribution.pdf: fonts ['Arial-BoldMT', 'Arial-ItalicMT', 'ArialMT']; text below 7 pt: 0
+OK fig2d_validation.pdf: fonts ['Arial-BoldMT', 'ArialMT']; text below 7 pt: 0
+OK figS1_wpm_architecture.pdf: fonts ['Arial-BoldMT', 'ArialMT', 'CourierNewPSMT']; text below 7 pt: 0
+RESULT: PASS

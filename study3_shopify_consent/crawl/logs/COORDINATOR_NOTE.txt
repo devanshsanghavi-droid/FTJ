@@ -1,0 +1,1 @@
+Crawl concurrency raised from 6 to 10 by the coordinating session at 2026-09-26 00:35:57 PDT (user request). New pid 837. Earlier loads ran at conc 6; treat run segment as a covariate for timing measures.

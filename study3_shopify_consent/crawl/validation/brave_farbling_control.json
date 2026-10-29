@@ -1,0 +1,54 @@
+{
+ "run_at": "2026-09-26T06:13:39.796Z",
+ "true_hw_concurrency": 12,
+ "out": {
+  "chromium:default": [
+   {
+    "hc": 12,
+    "canvas": "AAAABklEQVQDAPUsdbcxwJnjAAAAAElFTkSuQmCC"
+   },
+   {
+    "hc": 12,
+    "canvas": "AAAABklEQVQDAPUsdbcxwJnjAAAAAElFTkSuQmCC"
+   },
+   {
+    "hc": 12,
+    "canvas": "AAAABklEQVQDAPUsdbcxwJnjAAAAAElFTkSuQmCC"
+   }
+  ],
+  "brave:default": [
+   {
+    "hc": 12,
+    "canvas": "AAZJREFUAwCxi4y6Qk47JQAAAABJRU5ErkJggg==",
+    "gpc": true
+   },
+   {
+    "hc": 5,
+    "canvas": "AAAGSURBVAMAkJCBvWF5VAEAAAAASUVORK5CYII=",
+    "gpc": true
+   },
+   {
+    "hc": 5,
+    "canvas": "AAAABklEQVQDABjdgrUUIA+3AAAAAElFTkSuQmCC",
+    "gpc": true
+   }
+  ],
+  "brave:default_value_shields_off": [
+   {
+    "hc": 12,
+    "canvas": "AAAABklEQVQDAOWwArf1rmDZAAAAAElFTkSuQmCC",
+    "gpc": true
+   },
+   {
+    "hc": 12,
+    "canvas": "AAAABklEQVQDAOWwArf1rmDZAAAAAElFTkSuQmCC",
+    "gpc": true
+   },
+   {
+    "hc": 12,
+    "canvas": "AAAABklEQVQDAOWwArf1rmDZAAAAAElFTkSuQmCC",
+    "gpc": true
+   }
+  ]
+ }
+}

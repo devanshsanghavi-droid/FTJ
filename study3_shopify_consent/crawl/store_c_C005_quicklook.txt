@@ -1,0 +1,11 @@
+      load_id                          cmp_header_raw cf_cache_status nostra cp_sale_end cp_marketing_end reject_text  t_click
+16   C005__A0  3.AMPS_USAZ_f_f_LLIpv*ueRe6jUT7AS0n*HQ             HIT   True        True             True         NaN      NaN
+17  C005__A0r  3.AMPS_USAZ_f_f_LLIpv*ueRe6jUT7AS0n*HQ             HIT   True        True             True         NaN      NaN
+18   C005__A1  3.AMPS_USAZ_f_f_LLIpv*ueRe6jUT7AS0n*HQ             HIT   True        True            False     DECLINE   3480.0
+19   C005__A2  3.AMPS_USAZ_f_f_LLIpv*ueRe6jUT7AS0n*HQ             HIT   True       False             True         NaN      NaN
+20  C005__A2r  3.AMPS_USAZ_f_f_LLIpv*ueRe6jUT7AS0n*HQ             HIT   True       False             True         NaN      NaN
+                                    n  canary  creator_tok
+arm phase            origin                               
+A0  banner_prechoice strict_worker  6       4            4
+A0r banner_prechoice strict_worker  6       4            4
+A1  banner_prechoice strict_worker  6       4            4

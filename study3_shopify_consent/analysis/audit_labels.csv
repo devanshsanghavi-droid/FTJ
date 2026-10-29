@@ -1,0 +1,55 @@
+store_id,audit_banner_visible,audit_reject_first_layer,audit_banner_gone_after_click,auditor,note
+S0095,1,1,1,analysis assistant (visual),Reject non-essential
+S0122,1,1,1,analysis assistant (visual),Decline All
+S0146,1,1,1,analysis assistant (visual),Reject
+S0157,1,1,0,analysis assistant (visual),banner still shown after click; a country-selector modal overlays the page
+S0211,1,1,1,analysis assistant (visual),Reject
+S0243,1,1,1,analysis assistant (visual),Reject
+S0244,1,1,1,analysis assistant (visual),cookie bar gone; an e-mail pop-up appears after the click
+S0269,1,1,1,analysis assistant (visual),Decline
+S0318,1,1,1,analysis assistant (visual),Decline
+S0351,1,1,1,analysis assistant (visual),Decline All
+S0456,1,1,1,analysis assistant (visual),DECLINE
+S0529,1,1,1,analysis assistant (visual),Deny
+S0552,1,1,1,analysis assistant (visual),Decline (page shows a not-found template)
+S0597,1,1,1,analysis assistant (visual),Reject All
+S0607,1,1,1,analysis assistant (visual),necessary-only button (Czech)
+S0640,1,1,1,analysis assistant (visual),Deny
+S0783,1,1,1,analysis assistant (visual),Deny all
+S0814,1,1,1,analysis assistant (visual),cookie panel gone; an e-mail pop-up appears after the click
+S0996,1,1,1,analysis assistant (visual),Essential Only
+S1025,1,1,1,analysis assistant (visual),reject-all button (German)
+S1049,1,1,1,analysis assistant (visual),Decline
+S1058,0,,,analysis assistant (visual),no cookie banner visible: only an age gate (21+) is shown before and after; detector false positive
+S1087,1,1,1,analysis assistant (visual),Decline
+S1117,1,1,1,analysis assistant (visual),Decline
+S1118,1,1,0,analysis assistant (visual),banner partly hidden behind an e-mail pop-up; still shown after the click
+S1128,1,1,1,analysis assistant (visual),Decline
+S1170,1,1,1,analysis assistant (visual),Decline
+S1190,1,1,1,analysis assistant (visual),small 'Continue without Accepting' link
+S1193,1,1,1,analysis assistant (visual),Decline
+S1217,1,1,1,analysis assistant (visual),reject-all button (Danish)
+S1236,1,1,1,analysis assistant (visual),Decline
+S1256,1,1,1,analysis assistant (visual),Deny; a country-selector modal remains
+S1297,1,1,1,analysis assistant (visual),Decline
+S1320,1,1,1,analysis assistant (visual),necessary-cookies-only button
+S1321,1,1,1,analysis assistant (visual),reject button (Dutch)
+S1387,1,1,1,analysis assistant (visual),reject button (Spanish)
+S0105,1,0,,analysis assistant (visual),Manage Preferences and a close icon only
+S0133,1,0,,analysis assistant (visual),Do Not Sell link and Accept only
+S0193,1,0,,analysis assistant (visual),Manage / Do Not Sell / I Understand
+S0231,1,0,,analysis assistant (visual),Accept and Do Not Sell link only (partly behind an e-mail pop-up)
+S0239,1,0,,analysis assistant (visual),Accept and Manage Settings only
+S0435,1,0,,analysis assistant (visual),Do Not Sell link and a close icon only
+S0459,1,1,,analysis assistant (visual),first layer has a refuse button in Romanian (Refuza) that the reject finder missed
+S0717,1,0,,analysis assistant (visual),Accept and Preferences only
+S0803,1,0,,analysis assistant (visual),Allow all and Customize only
+S0807,1,0,,analysis assistant (visual),Manage preferences / Accept all / close icon
+S0838,1,0,,analysis assistant (visual),OK and Do Not Sell only
+S0937,1,0,,analysis assistant (visual),Accept and a close icon only
+S0957,1,0,,analysis assistant (visual),Cookie Settings and a close icon only
+S1082,1,0,,analysis assistant (visual),Accept and Preferences only
+S1208,1,0,,analysis assistant (visual),Manage My Privacy and Accept All only
+S1242,1,0,,analysis assistant (visual),Preferences and Accept only (Swedish)
+S1298,1,0,,analysis assistant (visual),Preferences and OK only
+S1352,1,0,,analysis assistant (visual),Accept Cookies and Do Not Sell link only

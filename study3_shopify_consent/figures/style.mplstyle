@@ -1,0 +1,76 @@
+# Shared matplotlib style for every Study 3 data panel (binding: ../FIGURE_PLAN.md style guide).
+# Panels are drawn at final printed size (190 mm double column / 90 mm single column); never rescale.
+# Colours live in figures/colors.py only; this file sets typography, chrome and output.
+
+# ---- typography: one sans family; 7 pt ticks, 8 pt axis labels (panel letters 10 pt bold, set in code)
+font.family: sans-serif
+font.sans-serif: Arial, Helvetica, TeX Gyre Heros, DejaVu Sans
+font.size: 7
+axes.labelsize: 8
+axes.titlesize: 8
+axes.titleweight: normal
+axes.titlelocation: left
+axes.titlepad: 4
+xtick.labelsize: 7
+ytick.labelsize: 7
+legend.fontsize: 7
+legend.title_fontsize: 7
+figure.titlesize: 9
+mathtext.default: regular
+
+# ---- ink: text never wears a data colour
+text.color: 0b0b0b
+axes.labelcolor: 0b0b0b
+xtick.color: 52514e
+ytick.color: 52514e
+xtick.labelcolor: 0b0b0b
+ytick.labelcolor: 0b0b0b
+
+# ---- chrome: hairline, recessive, no box, light-grey solid grid (drawn per axis in code)
+axes.facecolor: white
+figure.facecolor: white
+savefig.facecolor: white
+axes.edgecolor: c3c2b7
+axes.linewidth: 0.5
+axes.spines.top: False
+axes.spines.right: False
+axes.grid: False
+grid.color: e1e0d9
+grid.linewidth: 0.4
+grid.linestyle: -
+axes.axisbelow: True
+xtick.major.width: 0.5
+ytick.major.width: 0.5
+xtick.major.size: 2.5
+ytick.major.size: 2.5
+xtick.minor.size: 0
+ytick.minor.size: 0
+xtick.major.pad: 2
+ytick.major.pad: 2
+axes.labelpad: 3
+
+# ---- marks: thin
+lines.linewidth: 1.0
+lines.markersize: 4
+lines.markeredgewidth: 0.8
+errorbar.capsize: 0
+patch.linewidth: 0
+hatch.linewidth: 0.5
+
+# ---- legend: no frame, compact
+legend.frameon: False
+legend.borderpad: 0.2
+legend.borderaxespad: 0.2
+legend.handlelength: 1.2
+legend.handletextpad: 0.4
+legend.columnspacing: 1.0
+legend.labelspacing: 0.3
+
+# ---- output: vector PDF with embedded TrueType (editable in graphic software), 600 dpi PNG previews
+pdf.fonttype: 42
+ps.fonttype: 42
+svg.fonttype: none
+savefig.dpi: 600
+savefig.bbox: standard
+savefig.pad_inches: 0
+figure.dpi: 150

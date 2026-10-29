@@ -1,0 +1,39 @@
+store_id,bucket,reason,cmp
+S0028,10k-50k,no_window_Shopify,osano
+S0053,10k-50k,no_window_Shopify,onetrust
+S0054,10k-50k,redirect_off_site,cookiebot
+S0055,10k-50k,redirect_off_site,consentmo
+S0111,10k-50k,redirect_off_site,none detected
+S0116,10k-50k,redirect_off_site,shopify_native
+S0121,10k-50k,redirect_off_site,onetrust
+S0154,10k-50k,product_page_gone_404,shopify_native
+S0169,10k-50k,redirect_off_site,none detected
+S0225,50k-100k,product_page_gone_404,onetrust
+S0263,50k-100k,redirect_off_site,iubenda
+S0393,50k-100k,redirect_off_site,shopify_native
+S0455,50k-100k,product_page_gone_404,none detected
+S0464,50k-100k,redirect_off_site,none detected
+S0497,50k-100k,redirect_off_site,none detected
+S0608,50k-100k,redirect_off_site,none detected
+S0666,50k-100k,redirect_off_site,none detected
+S0668,50k-100k,dns_not_resolved,none detected
+S0669,50k-100k,product_page_gone_404,none detected
+S0674,50k-100k,redirect_off_site,shopify_native
+S0782,50k-100k,redirect_off_site,none detected
+S0810,50k-100k,product_page_gone_404,multiple
+S0862,100k-200k,product_page_gone_404,none detected
+S0895,100k-200k,redirect_off_site,onetrust
+S0896,100k-200k,redirect_off_site,shopify_native
+S0902,100k-200k,redirect_off_site,shopify_native
+S0938,100k-200k,redirect_off_site,none detected
+S0959,100k-200k,redirect_off_site,none detected
+S0960,100k-200k,product_page_gone_404,none detected
+S0986,100k-200k,redirect_off_site,consentmo
+S1004,100k-200k,http_402,none detected
+S1061,100k-200k,dns_not_resolved,none detected
+S1102,100k-200k,no_window_Shopify,cookiebot
+S1121,100k-200k,redirect_off_site,none detected
+S1165,100k-200k,redirect_off_site,none detected
+S1278,100k-200k,product_page_gone_404,consentmo
+S1390,100k-200k,product_page_gone_404,shopify_native
+S1395,100k-200k,redirect_off_site,none detected

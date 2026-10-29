@@ -1,0 +1,17 @@
+% Figure 2 tiling check: the four schematic panels at final size on a 190 mm x 124 mm page.
+% Row 1 (64 mm tall): 2a (70 mm) | 4 mm gutter | 2b (116 mm).  Row 2: 2c (116 mm) | 4 mm | 2d (70 mm).
+% Build the panels first (./build.sh does this in order).
+\documentclass[tikz,border=2pt]{standalone}
+\input{schematic_style.tex}
+\usepackage{graphicx}
+\begin{document}
+\begin{tikzpicture}
+\panelsize{190}{124}
+% page coordinate (x,y) in mm from the page's lower-left corner = tikz ($(x,y)-(2pt,2pt)$)
+\newcommand{\place}[3]{\node[anchor=south west, inner sep=0pt] at ($(#1,#2)-(2pt,2pt)$) {\includegraphics{#3.pdf}};}
+\place{0}{60}{fig2a_sampling_funnel}
+\place{74}{60}{fig2b_measurement_arms}
+\place{0}{0}{fig2c_attribution}
+\place{120}{0}{fig2d_validation}
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,89 @@
+% Supplementary Figure S1 -- static-code architecture of Shopify's Web Pixels Manager (WPM).
+% Final printed size: 190 mm x 90 mm (revised after review: no title baked into the figure; the caption carries it;
+% code in Courier New at 7 pt; arrows as text glyphs, no math fonts). Every element comes from ../../notes/mechanism.md sections 2.1-2.5
+% (static reading of wpm_manager_modern.js, build hash c8540278..., 2026-09-25) and from
+% ../../crawl/CRAWL_NOTES.md section 5 (navigator overwrite inside STRICT workers).
+% Encoding (FIGURE_PLAN.md): light grey strip = main thread; 45-degree hatch = Shopify sandbox.
+% The accent red is deliberately NOT used: this is an architecture diagram, not a failure.
+\documentclass[tikz,border=2pt]{standalone}
+\input{schematic_style.tex}
+\newcommand{\obox}[5]{%
+  \draw[box] (#1,#2) rectangle (#3,#4);
+  \begin{scope}\clip[rounded corners=0.7mm] (#1,#2) rectangle (#3,#4);
+    \fill[#5] (#1,#2) rectangle (#1+2.2,#4);\end{scope}
+  \draw[greyD, rounded corners=0.7mm] (#1,#2) rectangle (#3,#4);}
+\newcommand{\mono}[1]{{\fontsize{7}{8}\selectfont\ttfamily #1}}
+\begin{document}
+\begin{tikzpicture}
+\def\W{190}\def\H{90}
+\panelsize{\W}{\H}
+
+% ---------------------------------------------------------------- 1. inline configuration
+\obox{0}{40}{42}{88}{mainthread}
+\node[lbl] at (3.8,86.6) {\textbf{1\enspace Inline loader in the HTML}\\[0.6mm]
+  \mono{wpmLoader(\{ shopId,}\\
+  \mono{\ webPixelsConfigList: [\{}\\
+  \mono{\ \ id, type: APP|CUSTOM,}\\
+  \mono{\ \ runtimeContext:}\\
+  \mono{\ \ \ \ STRICT|LAX|OPEN,}\\
+  \mono{\ \ privacyPurposes: [}\\
+  \mono{\ \ \ \ ANALYTICS, MARKETING,}\\
+  \mono{\ \ \ \ PREFERENCES,}\\
+  \mono{\ \ \ \ SALE\_OF\_DATA],}\\
+  \mono{\ \ configuration \}]\})}\\[1mm]
+  Each pixel's container and\\ declared purposes are readable\\ in the HTML before any script\\ runs.};
+\draw[arr] (42,74) -- (46,74);
+
+% ---------------------------------------------------------------- 2. manager bundle (main thread)
+\draw[draw=greyD, fill=greyXL, rounded corners=1.2mm] (46,35) rectangle (138,88);
+\node[lbl] at (48.5,86.6) {\textbf{2\enspace Manager bundle} \mono{/cdn/wpm/b<hash>m.js}\enspace(runs in the main thread)};
+% event bus
+\obox{48.5}{65}{90}{82}{mainthread}
+\node[lbl] at (52.2,80.6) {\textbf{Event bus}\\[0.4mm] replay buffer of 1,000 events;\\ every event carries\\ \mono{document.location.href}\\ (full URL with query string)};
+% consent state sources
+\obox{93.5}{59}{136}{82}{mainthread}
+\node[lbl] at (97.2,80.6) {\textbf{Consent state: first one found}\\[0.4mm]
+  1\ \mono{cachedConsent} (Privacy API)\\
+  2\ \mono{injectedConsent}\\
+  3\ \mono{\_cs} URL parameter\\
+  4\ \mono{\_tracking\_consent} cookie\\
+  5\ \mono{Server-Timing: \_cmp}\\[0.4mm]
+  none readable: allow (fail-open)};
+% gate
+\node[diamond, draw=ink, fill=white, line width=0.6pt, minimum size=11mm, inner sep=0pt, align=center] (gate) at (60,50.5) {\textbf{gate}};
+\draw[arr] (60,65) -- (gate.north);
+\draw[arr] (100,59) |- (gate.east);
+\node[lbl] at (102,57.6) {\textbf{Per pixel:} start it only when\\ the state allows every purpose\\ it declares; otherwise wait for\\ \mono{visitorConsentCollected}.\\ No purpose declared: start now.};
+\node[lbl, text=greyD] at (64.5,42) {No code path terminates a started pixel; Shopify\\ documents that its events stop at an opt-out.};
+
+% ---------------------------------------------------------------- 3. inputs to the consent state
+\obox{141}{35}{188}{88}{mainthread}
+\node[lbl] at (144.8,86.6) {\textbf{3\enspace What sets the state}\\[0.8mm]
+  \textbf{Region setting.} The server writes\\ \mono{3.AMPS\_USCA\ldots} (allowed) or\\ \mono{3.ampS\_USCA\ldots} (denied) into\\ the navigation response.\\[0.8mm]
+  \textbf{Banner (CMP).} It calls\\ \mono{setTrackingConsent(\{\ldots\})},\\ but only if it is wired to Shopify.\\[0.8mm]
+  \textbf{GPC.} \mono{Sec-GPC: 1} makes the\\ server decline S; a main-thread\\ script calls\\ \mono{setCCPAConsent(false)} in\\ sale-of-data regions.};
+\draw[arr] (141,70.5) -- (136,70.5);
+
+% ---------------------------------------------------------------- 4. runtime containers
+\draw[ink, line width=0.45pt] (gate.south) -- (60,33) ;
+\draw[ink, line width=0.45pt] (60,33) -- (165,33);
+\foreach \x in {69,117,165} {\draw[arr] (\x,33) -- (\x,30.5);}
+
+\obox{46}{2}{92}{30.5}{sandbox}
+\node[lbl] at (49.8,29.1) {\textbf{STRICT: web worker}\\[0.4mm]
+  \mono{new Worker(url,}\\ \mono{\ \{credentials:'omit'\})}\\ → \mono{importScripts}\\ (vendor library) → \mono{fetch}\\ (vendor endpoint).\\[0.6mm]
+  Every \mono{navigator} property except\\ \mono{userAgentData} is overwritten, so\\ pixel code reads GPC as undefined.};
+\obox{94}{2}{140}{30.5}{sandbox}
+\node[lbl] at (97.8,29.1) {\textbf{LAX: sandboxed iframe}\\[0.4mm]
+  Hidden \mono{<iframe sandbox=}\\ \mono{"allow-scripts}\\ \mono{\ allow-forms">}\\ with an opaque origin; it cannot\\ reach the top frame. Runs\\ merchants' custom pixels and\\ some app pixels.};
+\obox{142}{2}{188}{30.5}{mainthread}
+\node[lbl] at (145.8,29.1) {\textbf{OPEN: main-thread script}\\[0.4mm]
+  \mono{pixel.modern.js}, served from the\\ store's own origin, injects the\\ vendor's \mono{<script>}, which a CMP\\ blocker can see (the Meta and\\ Google apps).};
+
+% ---------------------------------------------------------------- 4 label and legend (bottom left)
+\node[lbl] at (0,29.1) {\textbf{4\enspace Runtime container}\\[0.4mm] chosen by \mono{runtimeContext}};
+\node[anchor=west, inner sep=0pt] at (0,18) {\swSand\ runs in a Shopify sandbox};
+\node[anchor=west, inner sep=0pt] at (0,13.5) {\swMain\ runs in the main thread};
+\node[lbl, text=greyD] at (0,8.6) {Manager build \mono{c8540278\ldots},\\ fetched 25--26 Sep 2026.};
+\end{tikzpicture}
+\end{document}

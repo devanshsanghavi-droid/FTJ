@@ -1,0 +1,18 @@
+# Python packages, pinned to the versions the analysis and figures were produced with
+# (Python 3.13.9, Anaconda, macOS). Install: python3 -m pip install -r requirements.txt
+#
+# needed by ./reproduce.sh and the full analysis pipeline
+pandas==2.3.3
+numpy==2.3.5
+scipy==1.16.3
+matplotlib==3.10.6
+# figure font check (figures/scripts/check_fonts.py)
+pypdf==6.16.2
+# re-check contact sheets (crawl/recheck/make_sheets.py, strips.py)
+Pillow==12.0.0
+# sampling scripts only (sample/*.py)
+requests==2.32.5
+tldextract==5.1.2
+#
+# Not Python: Node.js 18+ and Playwright 1.61.0 for the crawler (pilot/pixel_payloads/package.json, lock file included);
+# Tectonic 0.17.0 for the TikZ schematics; the Arial font for pixel-identical figure PNGs. See README.md.

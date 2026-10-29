@@ -1,0 +1,219 @@
+{
+ "content_review_flagged": 21,
+ "content_review_decisions": {
+  "exclude_child": 11,
+  "keep": 6,
+  "exclude_adult": 4
+ },
+ "overdraw_stage_counts": 44,
+ "drawn_stage_by_bucket": {
+  "1-10k": {
+   "eligible": 7,
+   "headless_or_assets_only": 1
+  },
+  "100k-200k": {
+   "eligible": 576,
+   "headless_or_assets_only": 19,
+   "no_product_url": 5,
+   "blocked_http_403": 3,
+   "child_directed": 2,
+   "fetch_error:ConnectionError": 2,
+   "fetch_error:SSLError": 2,
+   "http_423": 1,
+   "duplicate_of:s0330.store.example": 1,
+   "http_500": 1,
+   "duplicate_of:s0266.store.example": 1,
+   "duplicate_of:s0079.store.example": 1,
+   "duplicate_of:s0387.store.example": 1,
+   "duplicate_of:s0080.store.example": 1
+  },
+  "10k-50k": {
+   "eligible": 181,
+   "headless_or_assets_only": 11,
+   "blocked_http_403": 5,
+   "no_product_url": 5,
+   "no_shopify_markers": 1,
+   "child_directed": 1,
+   "password_protected": 1,
+   "duplicate_of:s0088.store.example": 1
+  },
+  "50k-100k": {
+   "eligible": 636,
+   "headless_or_assets_only": 16,
+   "blocked_http_403": 8,
+   "no_product_url": 7,
+   "child_directed": 7,
+   "adult_content": 4,
+   "password_protected": 2,
+   "no_shopify_markers": 2,
+   "http_402": 2,
+   "http_404": 2,
+   "duplicate_of:s0129.store.example": 1,
+   "http_409": 1
+  }
+ },
+ "sample_served_country_top": [
+  [
+   "US",
+   578
+  ],
+  [
+   "IN",
+   227
+  ],
+  [
+   "GB",
+   94
+  ],
+  [
+   "PK",
+   62
+  ],
+  [
+   "DE",
+   55
+  ],
+  [
+   "JP",
+   44
+  ],
+  [
+   "FR",
+   38
+  ],
+  [
+   "AU",
+   31
+  ],
+  [
+   "IT",
+   26
+  ],
+  [
+   "CA",
+   25
+  ]
+ ],
+ "sample_cmp_hint_counts": [
+  [
+   "none",
+   569
+  ],
+  [
+   "shopify_privacy_banner",
+   299
+  ],
+  [
+   "consentmo",
+   235
+  ],
+  [
+   "pandectes",
+   137
+  ],
+  [
+   "onetrust",
+   122
+  ],
+  [
+   "cookiebot",
+   82
+  ],
+  [
+   "cookiehub",
+   71
+  ],
+  [
+   "usercentrics",
+   23
+  ],
+  [
+   "osano",
+   22
+  ],
+  [
+   "iubenda",
+   14
+  ],
+  [
+   "didomi",
+   12
+  ],
+  [
+   "cookieyes",
+   11
+  ],
+  [
+   "ketch",
+   10
+  ],
+  [
+   "trustarc",
+   10
+  ],
+  [
+   "cookie-script",
+   6
+  ],
+  [
+   "axeptio",
+   5
+  ],
+  [
+   "clarip",
+   4
+  ],
+  [
+   "cookiefirst",
+   3
+  ],
+  [
+   "termly",
+   1
+  ],
+  [
+   "enzuzo",
+   1
+  ]
+ ],
+ "sample_by_bucket": {
+  "50k-100k": 636,
+  "100k-200k": 576,
+  "10k-50k": 181,
+  "1-10k": 7
+ },
+ "creator_stratum_rows": 34,
+ "creator_token_level": {
+  "creator": 28,
+  "video": 6
+ },
+ "creator_dns_shopify": 32,
+ "creator_in_tranco_1m": 26,
+ "creator_in_tranco_top200k": 8,
+ "creator_also_in_main_sample": 3,
+ "creator_exclusions_by_stage": {
+  "no_eligible_decorated_url": 175,
+  "verify": 10
+ },
+ "creator_no_url_primary_reason": [
+  [
+   "affiliate_network_or_click_id",
+   102
+  ],
+  [
+   "no_token(token_level none/opaque)",
+   39
+  ],
+  [
+   "creator_owned_domain_without_url_token",
+   33
+  ],
+  [
+   "other:platform_site(3)",
+   1
+  ]
+ ],
+ "study2_shopify_hosts": 219,
+ "study2_shopify_hosts_on_shopify_dns": 190,
+ "study2_dns_recall": 0.8676
+}

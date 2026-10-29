@@ -1,0 +1,83 @@
+{
+  "tranco_list_id": "L5PZ4",
+  "top_n": 200000,
+  "domains_with_any_A_record": 181310,
+  "dns_flagged_shopify": 2634,
+  "drawn_for_verification": 1518,
+  "http_200": 1491,
+  "verified_live_online_store": 1438,
+  "after_content_exclusions": 1424,
+  "with_product_url": 1407,
+  "sample_after_dedupe": 1400,
+  "bucket4_overdraw_verified_but_unused": 44,
+  "per_bucket": {
+    "1-10k": {
+      "tranco_domains": 10000,
+      "resolved": 8690,
+      "flagged_N": 8,
+      "drawn_n": 8,
+      "sampling_fraction": 1.0,
+      "http_200": 8,
+      "verified_live_online_store": 7,
+      "sample": 7,
+      "weight": 1.0,
+      "est_eligible_in_frame": 7.0
+    },
+    "10k-50k": {
+      "tranco_domains": 40000,
+      "resolved": 35179,
+      "flagged_N": 206,
+      "drawn_n": 206,
+      "sampling_fraction": 1.0,
+      "http_200": 201,
+      "verified_live_online_store": 188,
+      "sample": 181,
+      "weight": 1.0,
+      "est_eligible_in_frame": 181.0
+    },
+    "50k-100k": {
+      "tranco_domains": 50000,
+      "resolved": 45999,
+      "flagged_N": 688,
+      "drawn_n": 688,
+      "sampling_fraction": 1.0,
+      "http_200": 675,
+      "verified_live_online_store": 655,
+      "sample": 636,
+      "weight": 1.0,
+      "est_eligible_in_frame": 636.0
+    },
+    "100k-200k": {
+      "tranco_domains": 100000,
+      "resolved": 91442,
+      "flagged_N": 1732,
+      "drawn_n": 616,
+      "sampling_fraction": 0.3557,
+      "http_200": 607,
+      "verified_live_online_store": 588,
+      "sample": 576,
+      "weight": 2.811688,
+      "est_eligible_in_frame": 1619.5
+    }
+  },
+  "exclusion_reasons": {
+    "headless_or_assets_only": 47,
+    "no_product_url": 17,
+    "blocked_http_403": 16,
+    "child_directed": 10,
+    "duplicate_of": 7,
+    "adult_content": 4,
+    "fetch_error": 4,
+    "no_shopify_markers": 3,
+    "password_protected": 3,
+    "http_402": 2,
+    "http_404": 2,
+    "http_409": 1,
+    "http_423": 1,
+    "http_500": 1
+  },
+  "fetch_error_detail": {
+    "fetch_error:ConnectionError": 2,
+    "fetch_error:SSLError": 2
+  }
+}

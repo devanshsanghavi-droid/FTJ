@@ -1,0 +1,56 @@
+% Figure 2b -- three base arms plus validation loads. Final printed size: 116 mm x 64 mm (Figure 2, row 1, right).
+% Revised after review: retitled (was 'Four measurement arms'), Brave native-GPC row added, planned -> usable n shown.
+% Updated 2026-09-26 after the crawl to match crawl/CRAWL_NOTES.md (product page; same-URL reload; emulated GPC; repeats of A0 and A2).
+% Arms are encoded by marker SHAPE + neutral grey, never by hue (FIGURE_PLAN style guide):
+% Default = filled circle, Decline = open square, GPC = filled triangle, Repeat = open diamond.
+% Protocol source: FIGURE_PLAN.md (Fig 2b), ../../notes/mechanism.md (P3: Decline -> second-page design),
+% ../../crawl/cmp_signatures.json (_meta.generic_reject: reject-only clicking).
+\documentclass[tikz,border=2pt]{standalone}
+\input{schematic_style.tex}
+\input{numbers.tex}
+\begin{document}
+\begin{tikzpicture}
+\def\W{116}\def\H{64}
+\panelsize{\W}{\H}
+\panelletter{b}{\H}
+\node[lbl,font=\fsTitle] at (5,62.3) {{Three base arms plus validation loads}};
+
+% ---------------------------------------------------------------- shared protocol (every arm)
+\newcommand{\pbox}[4]{% x1, x2, title, detail
+  \draw[box] (#1,46.6) rectangle (#2,58.2);
+  \node[lbl] at (#1+1.6,56.9) {\textbf{#3}\\[0.3mm] #4};}
+\pbox{0}{20}{Fresh profile}{new browser,\\ CA home IP}
+\draw[arr] (20,52.4) -- (23.5,52.4);
+\pbox{23.5}{50.5}{Page 1: product}{page URL carries a\\ canary token}
+\draw[arr] (50.5,52.4) -- (54,52.4);
+\pbox{54}{80.1}{Choice point}{banner visible;\\ arm action (below)}
+\draw[arr] (80.1,52.4) -- (83.6,52.4);
+\pbox{83.6}{114.6}{Page 2: same URL}{Decline arm only: does\\ the choice hold?}
+\draw[greyM, line width=0.35pt, -{Stealth[length=1.3mm,width=1mm]}] (0,44.4) -- node[pos=0.5, fill=white, inner xsep=1mm, text=greyD] {time} (114.6,44.4);
+
+% ---------------------------------------------------------------- the arms
+\def\cA{0}\def\cB{22}\def\cC{51.5}\def\cD{85.5}
+\node[lbl, anchor=base west] at (\cA,40.2) {\textbf{Arm}};
+\node[lbl, anchor=base west] at (\cB,40.2) {\textbf{GPC signal}};
+\node[lbl, anchor=base west] at (\cC,40.2) {\textbf{Action at the choice point}};
+\node[lbl, anchor=base west] at (\cD,40.2) {\textbf{Question it answers}};
+\draw[greyD, line width=0.35pt] (0,39) -- (114.6,39);
+\foreach \y in {31.75,24.5,9.5} \draw[greyL, line width=0.35pt] (0,\y) -- (114.6,\y);
+% dashed rule: the three base arms above, the validation loads (Repeat, Brave) below
+\draw[greyD, line width=0.35pt, dash pattern=on 1pt off 0.8pt] (0,17.25) -- (114.6,17.25);
+
+% \arm{y-centre}{marker style}{name}{gpc}{action}{question}
+\newcommand{\arm}[6]{%
+  \node[#2] at (1.6,#1) {};
+  \node[anchor=west, inner sep=0pt] at (4.2,#1) {\textbf{#3}};
+  \node[lbl, anchor=west] at (\cB,#1) {#4};
+  \node[lbl, anchor=west] at (\cC,#1) {#5};
+  \node[lbl, anchor=west] at (\cD,#1) {#6};}
+\arm{35.4}{mDefault}{Default}{off}{none (banner ignored)}{Do pixels fire before\\ any choice?}
+\arm{28.1}{mDecline}{Decline}{off}{click Decline / Reject\\ (never Accept)}{Does Decline stop them?}
+\arm{20.9}{mGPC}{GPC}{emulated: header + flag\\ in all frames and workers}{none}{Does GPC stop them?}
+\arm{13.6}{mRepeat}{Repeat}{as in the arm\\ it repeats}{none; Default and GPC re-run\\ (\nRepeatPlanned\ planned, \nRepeatOk\ usable)}{How much do single\\ loads vary?}
+\arm{5.2}{mRepeat}{Brave}{native, Brave browser}{none (\nBravePlanned\ planned,\\ \nBraveOk\ usable)}{Does emulated GPC\\ match native GPC?}
+\draw[greyD, line width=0.35pt] (0,1.2) -- (114.6,1.2);
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,4 @@
+RESULTS.md: 2075 numeric tokens, 2075 traced to stats.json via 2061 registry entries
+takeaways.md: 54 numeric tokens, 54 traced to stats.json via 55 registry entries
+write_results.py: 0 hard-coded numbers in text templates
+RESULT: PASS

@@ -1,0 +1,25 @@
+cmp,url,file,bytes,sha1,error,setTrackingConsent,customerPrivacy,loadFeatures_consent_api,visitorConsentCollected,sale_of_data_key,globalPrivacyControl,MutationObserver,type_text_plain,createElement_override,blocklist_keys,web_pixel_mention
+pandectes,https://cdn.shopify.com/extensions/01a0d309-5aa0-76cf-9f48-2a42b2760403/gdpr-cookie-consent-411/assets/pandectes-core-latest.js,cmp_code/pandectes__pandectes-core-latest.js,151654,cad5ee3a14d5,,5,14,3,0,1,1,1,0,0,0,0
+pandectes,https://cdn.shopify.com/extensions/01a0d309-5aa0-76cf-9f48-2a42b2760403/gdpr-cookie-consent-411/assets/pandectes-rules-latest.js,cmp_code/pandectes__pandectes-rules-latest.js,24913,43492f9122d8,,0,0,0,0,0,2,6,0,0,0,0
+consentmo,https://cdn.shopify.com/extensions/01a0d7a2-a36b-73ee-b8cb-ead3ca4862c3/gdpr-backpack-896/assets/consentmo_cookie_consent.js,cmp_code/consentmo__consentmo_cookie_consent.js,133443,96165e6eb38d,,4,3,3,0,2,1,4,0,0,0,0
+consentmo,https://cdn.shopify.com/extensions/01a0d7a2-a36b-73ee-b8cb-ead3ca4862c3/gdpr-backpack-896/assets/63.consentmo.js,cmp_code/consentmo__63.consentmo.js,3727,45c6792766d2,,0,0,0,0,3,0,0,0,0,0,0
+consentmo,https://gdprcdn.b-cdn.net/js/gdpr_cookie_consent.min.js,cmp_code/consentmo__gdpr_cookie_consent.min.js,133443,96165e6eb38d,,4,3,3,0,2,1,4,0,0,0,0
+cookiebot,https://consent.cookiebot.com/uc.js,cmp_code/cookiebot__uc.js,121004,f352ae061c44,,0,0,0,0,0,2,11,10,1,5,0
+onetrust,https://cdn.shopify.com/extensions/01a061ba-09b8-7f28-a51f-be55b3ced758/onetrust-consent-management-67/assets/storefront-consent.js,cmp_code/onetrust__storefront-consent.js,6344,0931193d3f91,,1,8,2,0,1,0,0,0,0,0,0
+onetrust,https://cdn.cookielaw.org/scripttemplates/otSDKStub.js,cmp_code/onetrust__otSDKStub.js,26961,7c378dcebe0d,,0,0,0,0,0,0,0,0,0,0,0
+onetrust,https://cdn.cookielaw.org/consent/019074af-b6fa-794f-b5d2-dc43921ade93/OtAutoBlock.js,cmp_code/onetrust__OtAutoBlock.js,8302,206fa135edc7,,0,0,0,0,0,0,1,4,1,0,2
+osano,https://cmp.osano.com/16A4AHTHturum1urg/1a7c3e51-0f22-486d-bcda-6820a1c1d35e/osano.js,cmp_code/osano__osano.js,184712,517cf307168c,,1,4,0,0,1,2,1,0,0,0,0
+usercentrics,https://web.cmp.usercentrics.eu/ui/loader.js,cmp_code/usercentrics__loader.js,70614,ad04cf5a57b3,,0,0,0,0,0,1,0,0,0,0,0
+usercentrics,https://privacy-proxy.usercentrics.eu/latest/uc-block.bundle.js,cmp_code/usercentrics__uc-block.bundle.js,107801,79427470512e,,0,0,0,0,0,0,1,0,1,0,0
+trustarc,https://consent.trustarc.com/autoblockasset/core.min.js,cmp_code/trustarc__core.min.js,0,da39a3ee5e6b,,0,0,0,0,0,0,0,0,0,0,0
+transcend,https://transcend-cdn.com/cm/1c1f8e90-47d0-4bba-a1a2-472d59b002a2/airgap.js,cmp_code/transcend__airgap.js,139365,064faffaf8de,,0,0,0,0,0,1,1,1,0,0,0
+ketch,https://cdn.ketchjs.com/ketchtag/stable/v2.12/ketch-sdk.js,cmp_code/ketch__ketch-sdk.js,1939513,d0728b9971a3,,1,5,9,0,1,3,3,3,0,0,0
+clarip,https://cdn.clarip.com/kendo/cookieconsent/assets/js/clarip-cookie-manager.min.js,cmp_code/clarip__clarip-cookie-manager.min.js,56613,8fe7a6fbd93b,,1,2,0,0,0,2,5,0,2,19,0
+consentmanager,https://cdn.consentmanager.net/delivery/js/semiautomatic.min.js,cmp_code/consentmanager__semiautomatic.min.js,17932,6872fd1d2f22,,0,0,0,0,0,2,0,0,0,0,0
+cookiefirst,https://consent.cookiefirst.com/sh-customer-privacy.js,cmp_code/cookiefirst__sh-customer-privacy.js,485,9b55bf62de65,,1,1,2,0,1,0,0,0,0,0,0
+cookiefirst,https://consent.cookiefirst.com/consentBanner.no-autoblock.js,cmp_code/cookiefirst__consentBanner.no-autoblock.js,50236,5e3635b9f853,,0,0,0,0,0,0,0,1,0,6,0
+cookiehub,https://cdn.cookiehub.eu/c2/22f94c69.js,cmp_code/cookiehub__22f94c69.js,178713,9ee522c2b71e,,2,4,2,0,2,8,2,3,0,0,0
+cookiescript,https://geo.cookie-script.com/s/bd8c35f83798de652c5ca16479412bf1.js,cmp_code/cookiescript__bd8c35f83798de652c5ca16479412bf1.js,,,<urlopen error [SSL: CERTIFICATE_VERIFY_FAILED] certificate verify failed: unable to get local issuer certificate (_ssl.,,,,,,,,,,,
+fides_ethyca,https://bitly.fides-cdn.ethyca.com/fides.js,cmp_code/fides_ethyca__fides.js,187223,1039bbdd2f35,,1,4,3,0,4,14,0,0,0,0,0
+didomi,https://sdk.privacy-center.org/6548bad1-0168-47ce-ac9b-870e1cd36b26/loader.js,cmp_code/didomi__loader.js,109361,54cbe16dc05d,,0,0,0,0,0,0,0,0,0,0,0
+shopify_native,https://www.dominique.com/cdn/shopifycloud/privacy-banner/storefront-banner.js,cmp_code/shopify_native__storefront-banner.js,100269,79028e15bb6f,,10,16,4,1,9,4,0,0,0,0,0

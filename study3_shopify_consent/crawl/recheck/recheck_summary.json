@@ -1,0 +1,168 @@
+{
+ "date": "2026-09-26",
+ "loads": 129,
+ "stores": 129,
+ "loads_ok": 128,
+ "first_load": "2026-09-26T15:33:00.788Z",
+ "last_load": "2026-09-26T15:40:43.994Z",
+ "recall": {
+  "flagged": {
+   "n_stores": 80,
+   "with_screenshots": 79,
+   "banner_visible": 11,
+   "banner_visible_detected_recheck": 2,
+   "detector_false_positive": 0,
+   "main_crawl_banner_A0": 0,
+   "consentmo": {
+    "n": 53,
+    "banner_visible": 0
+   },
+   "by_cmp_visible": {
+    "none": 8,
+    "onetrust": 1,
+    "shopify_native": 1,
+    "didomi": 1
+   },
+   "no_screenshot": [
+    "S1323"
+   ]
+  },
+  "random_nb": {
+   "n_stores": 30,
+   "with_screenshots": 30,
+   "banner_visible": 1,
+   "banner_visible_detected_recheck": 0,
+   "detector_false_positive": 0,
+   "main_crawl_banner_A0": 0
+  },
+  "blocklist": {
+   "n_stores": 21,
+   "with_screenshots": 21,
+   "banner_visible": 17,
+   "banner_visible_detected_recheck": 17,
+   "detector_false_positive": 0,
+   "main_crawl_banner_A0": 17
+  },
+  "missed_banner_container_classes": [
+   "dg-consent-banner visible dg-left",
+   "cookie-banner cookie-banner--visible",
+   "dg-consent-banner dg-neutral dg-left visible",
+   "dg-consent-banner visible dg-right",
+   "dg-consent-banner visible dg-left"
+  ],
+  "missed_on_recheck": 10,
+  "missed_on_recheck_dg_consent_banner": 4,
+  "detector_on_recheck": {
+   "precision": {
+    "k": 19,
+    "n": 19,
+    "p": 1.0,
+    "lo": 0.8318207737404363,
+    "hi": 0.9999999999999999
+   },
+   "recall_on_this_set": {
+    "k": 19,
+    "n": 29,
+    "p": 0.6551724137931034,
+    "lo": 0.47345103949857975,
+    "hi": 0.8005928156337425
+   }
+  },
+  "main_crawl": {
+   "banner_A0": 410,
+   "no_banner_A0": 952,
+   "pool_outside_flagged": 872,
+   "random_rate": {
+    "k": 1,
+    "n": 30,
+    "p": 0.03333333333333333,
+    "lo": 0.005908590316197976,
+    "hi": 0.16670391146115726
+   },
+   "missed_observed": 12,
+   "est_missed": 40.06666666666666,
+   "est_missed_lo": 16.152290755724636,
+   "est_missed_hi": 156.36581079412912,
+   "est_recall": 0.9109761516812325,
+   "est_recall_lo": 0.7239137535952584,
+   "est_recall_hi": 0.9620973743281289,
+   "note": "assumes a banner seen on the re-check load was also shown in the A0 load; the random rate is applied to all no-banner stores outside the flagged group"
+  },
+  "missed_banner_stores": [
+   "S0068",
+   "S0117",
+   "S0149",
+   "S0179",
+   "S0371",
+   "S0816",
+   "S0870",
+   "S1024",
+   "S1112",
+   "S1144",
+   "S1248",
+   "S1292"
+  ],
+  "missed_banner_stores_A0_sbx": {
+   "k": 3,
+   "n": 12,
+   "p": 0.25,
+   "lo": 0.08894166769488562,
+   "hi": 0.5323053370816633
+  },
+  "missed_banner_stores_region_optout": 2,
+  "sens_banner_rate_with_missed": {
+   "banner": {
+    "k": 208,
+    "n": 422,
+    "p": 0.4928909952606635,
+    "lo": 0.4454707608922781,
+    "hi": 0.5404394883921333
+   },
+   "no_banner": {
+    "k": 595,
+    "n": 940,
+    "p": 0.6329787234042553,
+    "lo": 0.6016831851642621,
+    "hi": 0.6631918080324943
+   }
+  }
+ },
+ "blocker": {
+  "stores": 21,
+  "loads_ok": 21,
+  "blocker_active": 18,
+  "blocker_active_by_cmp": {
+   "cookiebot": "1/1",
+   "onetrust": "2/5",
+   "pandectes": "15/15"
+  },
+  "stores_fired_main_crawl": 12,
+  "fired_main_crawl_blocker_active": 10,
+  "fired_main_crawl_fired_again_sbx": 11,
+  "stores_declared_tag_neutralized": 8,
+  "stores_neutralized_and_sbx": 5,
+  "stores_neutralized_and_sbx_ids": [
+   "S0165",
+   "S0213",
+   "S0219",
+   "S0370",
+   "S0697"
+  ],
+  "entries": 104,
+  "entries_tag_seen": 22,
+  "entries_neutralized": 14,
+  "entries_neutralized_fired_main": 8,
+  "entries_neutralized_fired_sbx": 6,
+  "entries_cfg_sandboxed": 29,
+  "entries_cfg_sandboxed_fired_sbx": 19,
+  "entries_cfg_sandboxed_neutralized": 5,
+  "entries_not_cfg_fired_any": 15,
+  "entries_not_cfg": 75,
+  "entries_not_cfg_tag_seen": 15,
+  "blocker_active_excl_auto_grant": 14,
+  "n_excl_auto_grant": 17,
+  "stores_neutralized_and_sbx_excl_auto_grant": 4,
+  "fired_main_crawl_excl_auto_grant_blocker_active": 7,
+  "fired_main_crawl_excl_auto_grant": 9
+ }
+}

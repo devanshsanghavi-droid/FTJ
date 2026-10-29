@@ -1,0 +1,20 @@
+Data licence notice
+
+The data files in this repository -- every .csv, .csv.gz, .json, .jsonl and .txt file under
+study3_shopify_consent/sample/, study3_shopify_consent/crawl/, study3_shopify_consent/analysis/ and
+study3_shopify_consent/review/human_relabel_kit/, and the figure files under study3_shopify_consent/figures/ --
+are (c) 2026 Devansh Sanghavi and are licensed under the Creative Commons Attribution 4.0
+International licence (CC BY 4.0): https://creativecommons.org/licenses/by/4.0/
+
+You may share and adapt the data for any purpose, provided you give appropriate credit (cite the paper and the
+dataset as shown in README.md, "Citation"), provide a link to the licence, and indicate if changes were made.
+
+Scope and exclusions
+- The code (.py, .js, .sh, .swift, .tex sources) is covered by LICENSE-CODE, not by this notice.
+- Host names, URL patterns and consent-tool configuration values recorded in the data are observations of
+  third-party websites and services; the licence covers the authors' compilation and annotation of them and
+  grants no rights in third-party trademarks or content.
+- Not included and not covered: the Tranco list (cite Le Pochat et al., NDSS 2019, list ID L5PZ4), Shopify's and
+  the consent tools' code, store pages and screenshots. See README.md, "What is not in this repository".
+- Using the data to re-identify stores behind their pseudonymous identifiers is not consistent with the purpose of
+  the release; see README.md, "Pseudonymization".

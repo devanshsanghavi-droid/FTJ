@@ -1,0 +1,142 @@
+{
+ "A0": {
+  "ad_requests_crawl": 40375,
+  "preflights": 318,
+  "preflights_by_origin": {
+   "main_thread": 318
+  },
+  "preflights_by_group": {
+   "Snap": 165,
+   "Reddit/other": 137,
+   "TikTok": 10,
+   "Meta": 6
+  },
+  "nested": 245,
+  "nested_stores": 54,
+  "nested_by_group": {
+   "Reddit/other": 161,
+   "Snap": 36,
+   "Google": 30,
+   "Pinterest": 16,
+   "Microsoft": 2
+  },
+  "ambiguous_kept_subframe": 52,
+  "sandboxed_crawl_labels": 12359,
+  "sandboxed_now": 12604,
+  "ad_requests_now": 40057
+ },
+ "A0r": {
+  "ad_requests_crawl": 7530,
+  "preflights": 66,
+  "preflights_by_origin": {
+   "main_thread": 66
+  },
+  "preflights_by_group": {
+   "Reddit/other": 34,
+   "Snap": 31,
+   "TikTok": 1
+  },
+  "nested": 48,
+  "nested_stores": 9,
+  "nested_by_group": {
+   "Reddit/other": 34,
+   "Google": 11,
+   "Pinterest": 3
+  },
+  "ambiguous_kept_subframe": 8,
+  "sandboxed_crawl_labels": 2150,
+  "sandboxed_now": 2198,
+  "ad_requests_now": 7464
+ },
+ "A1": {
+  "ad_requests_crawl": 43105,
+  "preflights": 338,
+  "preflights_by_origin": {
+   "main_thread": 338
+  },
+  "preflights_by_group": {
+   "Snap": 166,
+   "Reddit/other": 156,
+   "TikTok": 10,
+   "Meta": 6
+  },
+  "nested": 243,
+  "nested_stores": 53,
+  "nested_by_group": {
+   "Reddit/other": 155,
+   "Google": 35,
+   "Snap": 34,
+   "Pinterest": 17,
+   "Microsoft": 2
+  },
+  "ambiguous_kept_subframe": 47,
+  "sandboxed_crawl_labels": 12868,
+  "sandboxed_now": 13111,
+  "ad_requests_now": 42767
+ },
+ "A2": {
+  "ad_requests_crawl": 25817,
+  "preflights": 81,
+  "preflights_by_origin": {
+   "main_thread": 81
+  },
+  "preflights_by_group": {
+   "Reddit/other": 76,
+   "Snap": 3,
+   "Meta": 2
+  },
+  "nested": 72,
+  "nested_stores": 20,
+  "nested_by_group": {
+   "Reddit/other": 36,
+   "Snap": 22,
+   "Pinterest": 11,
+   "Google": 3
+  },
+  "ambiguous_kept_subframe": 12,
+  "sandboxed_crawl_labels": 2688,
+  "sandboxed_now": 2760,
+  "ad_requests_now": 25736
+ },
+ "A2r": {
+  "ad_requests_crawl": 4910,
+  "preflights": 24,
+  "preflights_by_origin": {
+   "main_thread": 24
+  },
+  "preflights_by_group": {
+   "Reddit/other": 23,
+   "Snap": 1
+  },
+  "nested": 7,
+  "nested_stores": 3,
+  "nested_by_group": {
+   "Reddit/other": 5,
+   "Pinterest": 2
+  },
+  "ambiguous_kept_subframe": 2,
+  "sandboxed_crawl_labels": 406,
+  "sandboxed_now": 413,
+  "ad_requests_now": 4886
+ },
+ "V1": {
+  "ad_requests_crawl": 1923,
+  "preflights": 2,
+  "preflights_by_origin": {
+   "main_thread": 2
+  },
+  "preflights_by_group": {
+   "Reddit/other": 1,
+   "Meta": 1
+  },
+  "nested": 1,
+  "nested_stores": 1,
+  "nested_by_group": {
+   "Pinterest": 1
+  },
+  "ambiguous_kept_subframe": 2,
+  "sandboxed_crawl_labels": 142,
+  "sandboxed_now": 143,
+  "ad_requests_now": 1921
+ }
+}

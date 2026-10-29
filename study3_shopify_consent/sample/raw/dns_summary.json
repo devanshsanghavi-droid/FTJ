@@ -1,0 +1,48 @@
+{
+  "tranco_list_id": "L5PZ4",
+  "top_n": 200000,
+  "dns_hosts_queried": 400000,
+  "domains_in_top_n": 200000,
+  "domains_with_any_A": 181310,
+  "dns_errors": {
+    "gaierror:8": 56441
+  },
+  "platform_domains_dropped": [
+    "shopify.com",
+    "myshopify.com",
+    "shop.app",
+    "shopifypreview.com",
+    "shopify.dev",
+    "shopify.io",
+    "shopify.engineering"
+  ],
+  "flagged_total": 2634,
+  "flagged_apex_only": 75,
+  "flagged_www_only": 74,
+  "flagged_both": 2485,
+  "flagged_in_storefront_24": 2632,
+  "flagged_cname_myshopify": 2410,
+  "per_bucket": {
+    "1-10k": {
+      "domains": 10000,
+      "resolved": 8690,
+      "flagged": 8
+    },
+    "10k-50k": {
+      "domains": 40000,
+      "resolved": 35179,
+      "flagged": 206
+    },
+    "50k-100k": {
+      "domains": 50000,
+      "resolved": 45999,
+      "flagged": 688
+    },
+    "100k-200k": {
+      "domains": 100000,
+      "resolved": 91442,
+      "flagged": 1732
+    }
+  },
+  "seed": 20260925
+}

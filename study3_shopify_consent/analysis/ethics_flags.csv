@@ -1,0 +1,3 @@
+store_id,flag,source,status
+S1292,child_directed_candidate,"toy and play-equipment retailer; caught by neither title screen, noticed on its re-check screenshot (review/human_relabel_kit/README.txt, crawl/CRAWL_NOTES.md)",excluded in the ethics sensitivity analysis
+S0145,child_directed_candidate,"looks child-directed; noticed after the crawl (review/human_relabel_kit/README.txt); ledger AUD-06",human decision pending: reported as a separate variant

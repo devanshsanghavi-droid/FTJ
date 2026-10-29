@@ -1,0 +1,172 @@
+{
+ "run_at": "2026-09-26T06:09:16.697Z",
+ "url": "https://s0347.store.example/products/<slug>?utm_source=privacy-research&utm_medium=measurement&utm_campaign=cmpstudy-shieldtest",
+ "results": {
+  "default": {
+   "goto_err": null,
+   "n_requests": 324,
+   "n_vendor": 37,
+   "n_blocked_by_client": 1,
+   "blocked_hosts": [
+    "shop.app"
+   ],
+   "vendor_hosts": {
+    "www.googletagmanager.com": {
+     "n": 6,
+     "ok": 6,
+     "blocked": 0
+    },
+    "cdn.attn.tv": {
+     "n": 4,
+     "ok": 4,
+     "blocked": 0
+    },
+    "[S0347]-us.attn.tv": {
+     "n": 5,
+     "ok": 5,
+     "blocked": 0
+    },
+    "alb.reddit.com": {
+     "n": 2,
+     "ok": 2,
+     "blocked": 0
+    },
+    "creatives.attn.tv": {
+     "n": 6,
+     "ok": 6,
+     "blocked": 0
+    },
+    "connect.facebook.net": {
+     "n": 3,
+     "ok": 3,
+     "blocked": 0
+    },
+    "stats.g.doubleclick.net": {
+     "n": 1,
+     "ok": 1,
+     "blocked": 0
+    },
+    "googleads.g.doubleclick.net": {
+     "n": 7,
+     "ok": 7,
+     "blocked": 0
+    },
+    "www.googleadservices.com": {
+     "n": 2,
+     "ok": 2,
+     "blocked": 0
+    },
+    "ad.doubleclick.net": {
+     "n": 1,
+     "ok": 1,
+     "blocked": 0
+    }
+   },
+   "gpc_main": true,
+   "workers": [
+    {
+     "url": "https://s0347.store.example/web-pixels@c8540278we853e1abpb62b2c4amde256306/web-pixel-10068296"
+    },
+    {
+     "url": "https://s0347.store.example/web-pixels@c8540278we853e1abpb62b2c4amde256306/web-pixel-shopify-"
+    },
+    {
+     "url": "https://s0347.store.example/web-pixels@c8540278we853e1abpb62b2c4amde256306/web-pixel-85504827"
+    },
+    {
+     "url": "https://s0347.store.example/web-pixels@c8540278we853e1abpb62b2c4amde256306/web-pixel-98277793"
+    }
+   ],
+   "requests_with_sec_gpc": 297,
+   "persisted": {
+    "exc_braveShields": {},
+    "default_braveShields": null,
+    "trackers": {}
+   },
+   "ms": 14964
+  },
+  "exc_shields_off": {
+   "goto_err": null,
+   "n_requests": 321,
+   "n_vendor": 36,
+   "n_blocked_by_client": 1,
+   "blocked_hosts": [
+    "shop.app"
+   ],
+   "vendor_hosts": {
+    "www.googletagmanager.com": {
+     "n": 6,
+     "ok": 6,
+     "blocked": 0
+    },
+    "cdn.attn.tv": {
+     "n": 4,
+     "ok": 4,
+     "blocked": 0
+    },
+    "[S0347]-us.attn.tv": {
+     "n": 5,
+     "ok": 5,
+     "blocked": 0
+    },
+    "alb.reddit.com": {
+     "n": 2,
+     "ok": 2,
+     "blocked": 0
+    },
+    "connect.facebook.net": {
+     "n": 2,
+     "ok": 2,
+     "blocked": 0
+    },
+    "creatives.attn.tv": {
+     "n": 6,
+     "ok": 6,
+     "blocked": 0
+    },
+    "stats.g.doubleclick.net": {
+     "n": 1,
+     "ok": 1,
+     "blocked": 0
+    },
+    "googleads.g.doubleclick.net": {
+     "n": 7,
+     "ok": 7,
+     "blocked": 0
+    },
+    "www.googleadservices.com": {
+     "n": 2,
+     "ok": 2,
+     "blocked": 0
+    },
+    "ad.doubleclick.net": {
+     "n": 1,
+     "ok": 1,
+     "blocked": 0
+    }
+   },
+   "gpc_main": true,
+   "workers": [
+    {
+     "url": "https://s0347.store.example/web-pixels@c8540278we853e1abpb62b2c4amde256306/web-pixel-10068296"
+    },
+    {
+     "url": "https://s0347.store.example/web-pixels@c8540278we853e1abpb62b2c4amde256306/web-pixel-98277793"
+    },
+    {
+     "url": "https://s0347.store.example/web-pixels@c8540278we853e1abpb62b2c4amde256306/web-pixel-85504827"
+    },
+    {
+     "url": "https://s0347.store.example/web-pixels@c8540278we853e1abpb62b2c4amde256306/web-pixel-shopify-"
+    }
+   ],
+   "requests_with_sec_gpc": 296,
+   "persisted": {
+    "exc_braveShields": {},
+    "default_braveShields": null,
+    "trackers": {}
+   },
+   "ms": 14892
+  }
+ }
+}

@@ -1,0 +1,55 @@
+store_id,stratum,cmp,crawler_banner,crawler_reject_found,crawler_reject_text,crawler_click_method,crawler_banner_still_after_click,pre,post
+S0095,clicked,usercentrics,True,True,Reject non-essential,playwright_click,False,S0095__A1__pre.jpg,S0095__A1__post.jpg
+S0122,clicked,trustarc,True,True,Decline All,playwright_click,False,S0122__A1__pre.jpg,S0122__A1__post.jpg
+S0146,clicked,clarip,True,True,Reject,playwright_click,False,S0146__A1__pre.jpg,S0146__A1__post.jpg
+S0157,clicked,shopify_native,True,True,Decline,playwright_force,True,S0157__A1__pre.jpg,S0157__A1__post.jpg
+S0211,clicked,osano,True,True,Reject,playwright_click,False,S0211__A1__pre.jpg,S0211__A1__post.jpg
+S0243,clicked,iubenda,True,True,Reject,playwright_click,False,S0243__A1__pre.jpg,S0243__A1__post.jpg
+S0244,clicked,onetrust,True,True,Reject All,playwright_click,False,S0244__A1__pre.jpg,S0244__A1__post.jpg
+S0269,clicked,pandectes,True,True,Decline,playwright_click,False,S0269__A1__pre.jpg,S0269__A1__post.jpg
+S0318,clicked,enzuzo,True,True,Decline,playwright_click,False,S0318__A1__pre.jpg,S0318__A1__post.jpg
+S0351,clicked,trustarc,True,True,Decline All,playwright_click,False,S0351__A1__pre.jpg,S0351__A1__post.jpg
+S0456,clicked,shopify_native,True,True,DECLINE,playwright_click,False,S0456__A1__pre.jpg,S0456__A1__post.jpg
+S0529,clicked,cookiebot,True,True,Deny,playwright_click,False,S0529__A1__pre.jpg,S0529__A1__post.jpg
+S0552,clicked,shopify_native,True,True,Decline,playwright_click,False,S0552__A1__pre.jpg,S0552__A1__post.jpg
+S0597,clicked,onetrust,True,True,Reject All,playwright_click,False,S0597__A1__pre.jpg,S0597__A1__post.jpg
+S0607,clicked,pandectes,True,True,Pouze nutné cookie,playwright_click,False,S0607__A1__pre.jpg,S0607__A1__post.jpg
+S0640,clicked,cookiebot,True,True,Deny,playwright_click,False,S0640__A1__pre.jpg,S0640__A1__post.jpg
+S0783,clicked,usercentrics,True,True,Deny all,playwright_click,False,S0783__A1__pre.jpg,S0783__A1__post.jpg
+S0814,clicked,pandectes,True,True,Decline,playwright_click,False,S0814__A1__pre.jpg,S0814__A1__post.jpg
+S0996,clicked,usercentrics,True,True,Essential Only,playwright_click,False,S0996__A1__pre.jpg,S0996__A1__post.jpg
+S1025,clicked,cookieyes,True,True,Alles ablehnen,playwright_click,False,S1025__A1__pre.jpg,S1025__A1__post.jpg
+S1049,clicked,pandectes,True,True,Decline,playwright_click,False,S1049__A1__pre.jpg,S1049__A1__post.jpg
+S1058,clicked,none,True,True,Deny,playwright_force,True,S1058__A1__pre.jpg,S1058__A1__post.jpg
+S1087,clicked,pandectes,True,True,Decline,playwright_click,False,S1087__A1__pre.jpg,S1087__A1__post.jpg
+S1117,clicked,shopify_native,True,True,Decline,playwright_click,False,S1117__A1__pre.jpg,S1117__A1__post.jpg
+S1118,clicked,shopify_native,True,True,DECLINE,playwright_force,True,S1118__A1__pre.jpg,S1118__A1__post.jpg
+S1128,clicked,shopify_native,True,True,Decline,playwright_click,False,S1128__A1__pre.jpg,S1128__A1__post.jpg
+S1170,clicked,shopify_native,True,True,Decline,playwright_click,False,S1170__A1__pre.jpg,S1170__A1__post.jpg
+S1190,clicked,onetrust,True,True,Continue without Accepting,playwright_click,False,S1190__A1__pre.jpg,S1190__A1__post.jpg
+S1193,clicked,onetrust,True,True,Decline,playwright_click,False,S1193__A1__pre.jpg,S1193__A1__post.jpg
+S1217,clicked,cookiescript,True,True,AFVIS ALLE,playwright_click,False,S1217__A1__pre.jpg,S1217__A1__post.jpg
+S1236,clicked,shopify_native,True,True,Decline,playwright_click,False,S1236__A1__pre.jpg,S1236__A1__post.jpg
+S1256,clicked,cookiebot,True,True,Deny,playwright_click,False,S1256__A1__pre.jpg,S1256__A1__post.jpg
+S1297,clicked,pandectes,True,True,Decline,playwright_click,False,S1297__A1__pre.jpg,S1297__A1__post.jpg
+S1320,clicked,cookiebot,True,True,Use necessary cookies only,playwright_click,False,S1320__A1__pre.jpg,S1320__A1__post.jpg
+S1321,clicked,cookiebot,True,True,Weigeren,playwright_click,False,S1321__A1__pre.jpg,S1321__A1__post.jpg
+S1387,clicked,shopify_native,True,True,Rechazar,playwright_click,False,S1387__A1__pre.jpg,S1387__A1__post.jpg
+S0105,no_reject_option,osano,True,False,,,,S0105__A1__pre.jpg,
+S0133,no_reject_option,onetrust,True,False,,,,S0133__A1__pre.jpg,
+S0193,no_reject_option,ketch,True,False,,,,S0193__A1__pre.jpg,
+S0231,no_reject_option,onetrust,True,False,,,,S0231__A1__pre.jpg,
+S0239,no_reject_option,none,True,False,,,,S0239__A1__pre.jpg,
+S0435,no_reject_option,cookieyes,True,False,,,,S0435__A1__pre.jpg,
+S0459,no_reject_option,pandectes,True,False,,,,S0459__A1__pre.jpg,
+S0717,no_reject_option,pandectes,True,False,,,,S0717__A1__pre.jpg,
+S0803,no_reject_option,cookiebot,True,False,,,,S0803__A1__pre.jpg,
+S0807,no_reject_option,pandectes,True,False,,,,S0807__A1__pre.jpg,
+S0838,no_reject_option,cookiebot,True,False,,,,S0838__A1__pre.jpg,
+S0937,no_reject_option,pandectes,True,False,,,,S0937__A1__pre.jpg,
+S0957,no_reject_option,onetrust,True,False,,,,S0957__A1__pre.jpg,
+S1082,no_reject_option,pandectes,True,False,,,,S1082__A1__pre.jpg,
+S1208,no_reject_option,onetrust,True,False,,,,S1208__A1__pre.jpg,
+S1242,no_reject_option,pandectes,True,False,,,,S1242__A1__pre.jpg,
+S1298,no_reject_option,pandectes,True,False,,,,S1298__A1__pre.jpg,
+S1352,no_reject_option,onetrust,True,False,,,,S1352__A1__pre.jpg,

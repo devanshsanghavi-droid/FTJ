@@ -1,0 +1,174 @@
+## chromium, CDP+Playwright injection, 20 runs, 2026-09-26T06:27:58Z
+{
+ "browser": "chromium",
+ "inject": true,
+ "runs": 20,
+ "first_statement_gpc": {
+  "main": {
+   "n": 20,
+   "gpc_true": 20
+  },
+  "sandbox_iframe": {
+   "n": 20,
+   "gpc_true": 20
+  },
+  "oopif": {
+   "n": 20,
+   "gpc_true": 20
+  },
+  "worker": {
+   "n": 20,
+   "gpc_true": 20
+  },
+  "blob_worker_in_sandbox": {
+   "n": 20,
+   "gpc_true": 20
+  },
+  "nested_worker": {
+   "n": 20,
+   "gpc_true": 20
+  }
+ },
+ "sec_gpc_header": {
+  "/w.js": {
+   "n": 20,
+   "gpc1": 20
+  },
+  "/lib.js": {
+   "n": 20,
+   "gpc1": 20
+  },
+  "/beacon?from=worker": {
+   "n": 20,
+   "gpc1": 20
+  },
+  "/w2.js": {
+   "n": 20,
+   "gpc1": 20
+  },
+  "/beacon?from=nested": {
+   "n": 20,
+   "gpc1": 20
+  }
+ },
+ "worker_checks": 60,
+ "worker_gpc_true": 60,
+ "worker_marker_present": 60,
+ "worker_globals_added_after_injection": 20
+}
+## chromium, no injection (control), 3 runs
+{
+ "browser": "chromium",
+ "inject": false,
+ "runs": 3,
+ "first_statement_gpc": {
+  "main": {
+   "n": 3,
+   "gpc_true": 0
+  },
+  "sandbox_iframe": {
+   "n": 3,
+   "gpc_true": 0
+  },
+  "oopif": {
+   "n": 3,
+   "gpc_true": 0
+  },
+  "worker": {
+   "n": 3,
+   "gpc_true": 0
+  },
+  "blob_worker_in_sandbox": {
+   "n": 3,
+   "gpc_true": 0
+  },
+  "nested_worker": {
+   "n": 3,
+   "gpc_true": 0
+  }
+ },
+ "sec_gpc_header": {
+  "/w.js": {
+   "n": 3,
+   "gpc1": 3
+  },
+  "/lib.js": {
+   "n": 3,
+   "gpc1": 3
+  },
+  "/beacon?from=worker": {
+   "n": 3,
+   "gpc1": 3
+  },
+  "/w2.js": {
+   "n": 3,
+   "gpc1": 3
+  },
+  "/beacon?from=nested": {
+   "n": 3,
+   "gpc1": 3
+  }
+ },
+ "worker_checks": 9,
+ "worker_gpc_true": 0,
+ "worker_marker_present": 0,
+ "worker_globals_added_after_injection": 0
+}
+## brave (native GPC, default fresh profile), 5 runs
+{
+ "browser": "brave",
+ "inject": false,
+ "runs": 5,
+ "first_statement_gpc": {
+  "main": {
+   "n": 5,
+   "gpc_true": 5
+  },
+  "worker": {
+   "n": 5,
+   "gpc_true": 5
+  },
+  "oopif": {
+   "n": 5,
+   "gpc_true": 5
+  },
+  "sandbox_iframe": {
+   "n": 5,
+   "gpc_true": 5
+  },
+  "blob_worker_in_sandbox": {
+   "n": 5,
+   "gpc_true": 5
+  },
+  "nested_worker": {
+   "n": 5,
+   "gpc_true": 5
+  }
+ },
+ "sec_gpc_header": {
+  "/w.js": {
+   "n": 5,
+   "gpc1": 5
+  },
+  "/lib.js": {
+   "n": 5,
+   "gpc1": 5
+  },
+  "/beacon?from=worker": {
+   "n": 5,
+   "gpc1": 5
+  },
+  "/w2.js": {
+   "n": 5,
+   "gpc1": 5
+  },
+  "/beacon?from=nested": {
+   "n": 5,
+   "gpc1": 5
+  }
+ },
+ "worker_checks": 15,
+ "worker_gpc_true": 15,
+ "worker_marker_present": 0,
+ "worker_globals_added_after_injection": 0
+}

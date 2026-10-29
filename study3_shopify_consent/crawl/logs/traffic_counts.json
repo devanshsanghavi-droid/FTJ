@@ -1,0 +1,11 @@
+{
+ "loads_in_raw": 4976,
+ "a1_next_page_navigations": 257,
+ "superseded_v1_loads": 510,
+ "pilot_v1_detector_loads": 24,
+ "check_v3_detector_loads": 12,
+ "retry_originals": 19,
+ "screenshots": 682,
+ "stores": 1434,
+ "loads_per_store_max": 6
+}

@@ -1,0 +1,217 @@
+{
+ "products_per_group": {
+  "Blocker only / unknown / none": 7,
+  "CMP writes to Shopify API": 13,
+  "Shopify native banner": 1
+ },
+ "native_banner_default_denied": {
+  "k": 65,
+  "n": 66
+ },
+ "gpc_fired_without_default_nosale_ad": {
+  "k": 0,
+  "n": 515
+ },
+ "gpc_fired_with_default_nosale_ad": {
+  "k": 279,
+  "n": 288
+ },
+ "decline_fired_without_default_nomkt_ad_refused": {
+  "k": 0,
+  "n": 152
+ },
+ "decline_fired_with_default_nomkt_ad_refused": {
+  "k": 37,
+  "n": 46
+ },
+ "n_decline": 233,
+ "n_gpc": 803,
+ "terms_list": [
+  {
+   "model": "Decline, unadjusted",
+   "term": "mgroup=Blocker only / unknown / none",
+   "OR": 3.112965340179205,
+   "lo": 1.1676344627871111,
+   "hi": 8.58330306580434,
+   "n_term": 32,
+   "events_term": 12,
+   "n": 233,
+   "events": 53,
+   "method": "Firth, profile-penalised-likelihood CI"
+  },
+  {
+   "model": "Decline, unadjusted",
+   "term": "mgroup=CMP writes to Shopify API",
+   "OR": 1.4748538011691161,
+   "lo": 0.6852599836259171,
+   "hi": 3.4291091194274204,
+   "n_term": 144,
+   "events_term": 32,
+   "n": 233,
+   "events": 53,
+   "method": "Firth, profile-penalised-likelihood CI"
+  },
+  {
+   "model": "Decline, adjusted",
+   "term": "mgroup=Blocker only / unknown / none",
+   "OR": 2.880066223993336,
+   "lo": 0.863736517497752,
+   "hi": 9.67443247947149,
+   "n_term": 32,
+   "events_term": 12,
+   "n": 233,
+   "events": 53,
+   "method": "Firth, profile-penalised-likelihood CI"
+  },
+  {
+   "model": "Decline, adjusted",
+   "term": "mgroup=CMP writes to Shopify API",
+   "OR": 1.5786143884360029,
+   "lo": 0.6025681499846942,
+   "hi": 4.276530722997354,
+   "n_term": 144,
+   "events_term": 32,
+   "n": 233,
+   "events": 53,
+   "method": "Firth, profile-penalised-likelihood CI"
+  },
+  {
+   "model": "Decline, adjusted",
+   "term": "refused",
+   "OR": 0.2903437800139567,
+   "lo": 0.13360193953962088,
+   "hi": 0.6326228239142049,
+   "n_term": 198,
+   "events_term": 37,
+   "n": 233,
+   "events": 53,
+   "method": "Firth, profile-penalised-likelihood CI"
+  },
+  {
+   "model": "Decline, adjusted",
+   "term": "region_optout",
+   "OR": 1.0141352528527066,
+   "lo": 0.4694759696800423,
+   "hi": 2.2627981419569885,
+   "n_term": 118,
+   "events_term": 32,
+   "n": 233,
+   "events": 53,
+   "method": "Firth, profile-penalised-likelihood CI"
+  },
+  {
+   "model": "GPC, unadjusted",
+   "term": "mgroup=Blocker only / unknown / none",
+   "OR": 0.7611067987763698,
+   "lo": 0.5199311133111514,
+   "hi": 1.1189017436070101,
+   "n_term": 389,
+   "events_term": 118,
+   "n": 803,
+   "events": 279,
+   "method": "Firth, profile-penalised-likelihood CI"
+  },
+  {
+   "model": "GPC, unadjusted",
+   "term": "mgroup=CMP writes to Shopify API",
+   "OR": 1.1918913654451606,
+   "lo": 0.7965810569118512,
+   "hi": 1.7904874824171382,
+   "n_term": 249,
+   "events_term": 101,
+   "n": 803,
+   "events": 279,
+   "method": "Firth, profile-penalised-likelihood CI"
+  },
+  {
+   "model": "GPC, adjusted",
+   "term": "mgroup=Blocker only / unknown / none",
+   "OR": 0.7838620788005817,
+   "lo": 0.5345746943836277,
+   "hi": 1.1545187302681428,
+   "n_term": 389,
+   "events_term": 118,
+   "n": 803,
+   "events": 279,
+   "method": "Firth, profile-penalised-likelihood CI"
+  },
+  {
+   "model": "GPC, adjusted",
+   "term": "mgroup=CMP writes to Shopify API",
+   "OR": 1.1286420768419518,
+   "lo": 0.7501598646219091,
+   "hi": 1.70333469393272,
+   "n_term": 249,
+   "events_term": 101,
+   "n": 803,
+   "events": 279,
+   "method": "Firth, profile-penalised-likelihood CI"
+  },
+  {
+   "model": "GPC, adjusted",
+   "term": "region_optout",
+   "OR": 0.5908905134748549,
+   "lo": 0.33951823787419444,
+   "hi": 1.0286650810068059,
+   "n_term": 745,
+   "events_term": 250,
+   "n": 803,
+   "events": 279,
+   "method": "Firth, profile-penalised-likelihood CI"
+  }
+ ],
+ "mixed_list": [
+  {
+   "model": "Decline, CMP random intercept",
+   "term": "mgroup=Blocker only / unknown / none",
+   "OR": 3.199999088848917,
+   "lo": 1.1660829455285817,
+   "hi": 8.781531543617714,
+   "n": 233,
+   "events": 53,
+   "n_groups": 19,
+   "re_sd": 5.588733226087208e-08,
+   "converged": true,
+   "method": "mixed logistic, random intercept per CMP product (Gauss-Hermite ML, Wald CI)"
+  },
+  {
+   "model": "Decline, CMP random intercept",
+   "term": "mgroup=CMP writes to Shopify API",
+   "OR": 1.523809239688955,
+   "lo": 0.675740736403591,
+   "hi": 3.436221133151581,
+   "n": 233,
+   "events": 53,
+   "n_groups": 19,
+   "re_sd": 5.588733226087208e-08,
+   "converged": true,
+   "method": "mixed logistic, random intercept per CMP product (Gauss-Hermite ML, Wald CI)"
+  },
+  {
+   "model": "GPC, CMP random intercept",
+   "term": "mgroup=Blocker only / unknown / none",
+   "OR": 0.7619929045140461,
+   "lo": 0.5190915107080267,
+   "hi": 1.1185565060345222,
+   "n": 803,
+   "events": 279,
+   "n_groups": 21,
+   "re_sd": 0.0003399493078419302,
+   "converged": false,
+   "method": "mixed logistic, random intercept per CMP product (Gauss-Hermite ML, Wald CI)"
+  },
+  {
+   "model": "GPC, CMP random intercept",
+   "term": "mgroup=CMP writes to Shopify API",
+   "OR": 1.1942567321312003,
+   "lo": 0.7959706425801447,
+   "hi": 1.7918363642376263,
+   "n": 803,
+   "events": 279,
+   "n_groups": 21,
+   "re_sd": 0.0003399493078419302,
+   "converged": false,
+   "method": "mixed logistic, random intercept per CMP product (Gauss-Hermite ML, Wald CI)"
+  }
+ ]
+}

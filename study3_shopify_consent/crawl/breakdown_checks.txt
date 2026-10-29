@@ -1,0 +1,41 @@
+(1) A0 banner stores in opt-in mode (M denied): 167 stores; with sandboxed ad request: 40
+vendor        origin         pp                                     
+google_ads    lax_iframe     CUSTOM:NONE                                12
+                             CUSTOM:SALE_OF_DATA                         6
+stackadapt    strict_worker  APP:SALE_OF_DATA                            5
+meta          lax_iframe     CUSTOM:SALE_OF_DATA                         5
+criteo        strict_worker  APP:ANALYTICS|MARKETING|SALE_OF_DATA        5
+meta          lax_iframe     CUSTOM:NONE                                 5
+google_ads    lax_iframe     CUSTOM:ANALYTICS|MARKETING|SALE_OF_DATA     5
+tiktok        strict_worker  APP:ANALYTICS|MARKETING|SALE_OF_DATA        4
+pinterest     strict_worker  APP:ANALYTICS|MARKETING|SALE_OF_DATA        4
+snap          strict_worker  APP:ANALYTICS|MARKETING|SALE_OF_DATA        4
+google_ads    lax_iframe     APP:NONE                                    4
+amazon_ads    lax_iframe     CUSTOM:ANALYTICS|MARKETING|SALE_OF_DATA     3
+google_ads    strict_worker  APP:ANALYTICS|MARKETING|SALE_OF_DATA        3
+tvscientific  strict_worker  APP:ANALYTICS|MARKETING|SALE_OF_DATA        3
+tradedesk     lax_iframe     CUSTOM:SALE_OF_DATA                         3
+
+(2) A1 clicked loads: 242; with sandboxed ad request on next page: 74
+vendor         origin         pp                                     
+google_ads     lax_iframe     CUSTOM:NONE                                21
+microsoft_uet  lax_iframe     CUSTOM:ANALYTICS|MARKETING|SALE_OF_DATA    13
+tiktok         strict_worker  APP:ANALYTICS|MARKETING|SALE_OF_DATA       12
+pinterest      strict_worker  APP:ANALYTICS|MARKETING|SALE_OF_DATA        9
+google_ads     lax_iframe     CUSTOM:SALE_OF_DATA                         9
+microsoft_uet  lax_iframe     CUSTOM:NONE                                 6
+meta           lax_iframe     CUSTOM:SALE_OF_DATA                         6
+                              CUSTOM:NONE                                 5
+google_ads     lax_iframe     APP:NONE                                    4
+microsoft_uet  lax_iframe     CUSTOM:MARKETING                            4
+google_ads     lax_iframe     CUSTOM:ANALYTICS|MARKETING|SALE_OF_DATA     3
+tradedesk      lax_iframe     CUSTOM:NONE                                 3
+snap           strict_worker  APP:ANALYTICS|MARKETING|SALE_OF_DATA        3
+tiktok         lax_iframe     CUSTOM:NONE                                 3
+reddit         lax_iframe     CUSTOM:NONE                                 3
+
+next-page sandboxed-ad stores by Shopify marketingAllowed() at end of load:
+cp_marketing_end
+False    54
+True     17
+NaN       3

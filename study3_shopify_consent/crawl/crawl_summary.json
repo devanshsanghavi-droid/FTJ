@@ -1,0 +1,442 @@
+{
+ "loads": {
+  "A0": {
+   "n": 1434,
+   "ok": 1397
+  },
+  "A0r": {
+   "n": 287,
+   "ok": 284
+  },
+  "A1": {
+   "n": 1434,
+   "ok": 1396
+  },
+  "A2": {
+   "n": 1434,
+   "ok": 1397
+  },
+  "A2r": {
+   "n": 287,
+   "ok": 284
+  },
+  "V1": {
+   "n": 100,
+   "ok": 99
+  }
+ },
+ "stores_planned": 1434,
+ "stores_captured_all_base_arms": {
+  "main": 1362,
+  "creator": 34
+ },
+ "blocked_or_failed_loads": 119,
+ "blocked_hint_loads": 75,
+ "main": {
+  "A0_n_stores": 1362,
+  "A0_banner_visible": {
+   "k": 410,
+   "n": 1362,
+   "p": 0.301,
+   "lo": 0.2773,
+   "hi": 0.3259
+  },
+  "A0_any_ad_request": {
+   "k": 1258,
+   "n": 1362,
+   "p": 0.9236,
+   "lo": 0.9083,
+   "hi": 0.9366
+  },
+  "A0_banner_stores_any_ad_request_prechoice": {
+   "k": 358,
+   "n": 410,
+   "p": 0.8732,
+   "lo": 0.8375,
+   "hi": 0.902
+  },
+  "A0_banner_stores_sandboxed_ad_request_prechoice": {
+   "k": 205,
+   "n": 410,
+   "p": 0.5,
+   "lo": 0.4518,
+   "hi": 0.5482
+  },
+  "A0_nobanner_stores_sandboxed_ad_request": {
+   "k": 598,
+   "n": 952,
+   "p": 0.6282,
+   "lo": 0.597,
+   "hi": 0.6583
+  },
+  "A0_banner_stores_optout_M_allowed_sandboxed_ad": {
+   "k": 165,
+   "n": 236,
+   "p": 0.6992,
+   "lo": 0.6378,
+   "hi": 0.7541
+  },
+  "A0_banner_stores_optin_M_denied_sandboxed_ad": {
+   "k": 40,
+   "n": 167,
+   "p": 0.2395,
+   "lo": 0.1811,
+   "hi": 0.3096
+  },
+  "A0_banner_stores_first_sandboxed_ad_before_banner": {
+   "k": 151,
+   "n": 205,
+   "p": 0.7366,
+   "lo": 0.6723,
+   "hi": 0.7921
+  },
+  "A0_median_ms_first_sandboxed_ad": 1336.0,
+  "A0_median_ms_banner_visible": 1715.0,
+  "A1_banner_found": {
+   "k": 407,
+   "n": 1362,
+   "p": 0.2988,
+   "lo": 0.2751,
+   "hi": 0.3237
+  },
+  "A1_no_decline_option_among_banner": {
+   "k": 165,
+   "n": 407,
+   "p": 0.4054,
+   "lo": 0.3588,
+   "hi": 0.4538
+  },
+  "A1_clicked": 242,
+  "A1_cpapi_marketing_denied_after_click": {
+   "k": 202,
+   "n": 242,
+   "p": 0.8347,
+   "lo": 0.7828,
+   "hi": 0.8762
+  },
+  "A1_clicked_sandboxed_ad_before_click": {
+   "k": 105,
+   "n": 242,
+   "p": 0.4339,
+   "lo": 0.373,
+   "hi": 0.4969
+  },
+  "A1_clicked_sandboxed_ad_after_click_same_page": {
+   "k": 32,
+   "n": 242,
+   "p": 0.1322,
+   "lo": 0.0952,
+   "hi": 0.1807
+  },
+  "A1_clicked_sandboxed_ad_next_page": {
+   "k": 74,
+   "n": 242,
+   "p": 0.3058,
+   "lo": 0.2511,
+   "hi": 0.3665
+  },
+  "A1_clicked_any_ad_next_page": {
+   "k": 200,
+   "n": 242,
+   "p": 0.8264,
+   "lo": 0.7737,
+   "hi": 0.869
+  },
+  "A1_next_page_sandboxed_ad_given_prechoice_sandboxed": {
+   "k": 71,
+   "n": 105,
+   "p": 0.6762,
+   "lo": 0.5818,
+   "hi": 0.7581
+  },
+  "A2_shopify_saleOfData_denied": {
+   "k": 1169,
+   "n": 1172,
+   "p": 0.9974,
+   "lo": 0.9925,
+   "hi": 0.9991
+  },
+  "A2_given_A0_sandboxed_ad_still_sandboxed_ad": {
+   "k": 279,
+   "n": 803,
+   "p": 0.3474,
+   "lo": 0.3153,
+   "hi": 0.381
+  },
+  "A2_given_A0_any_ad_still_any_ad": {
+   "k": 1216,
+   "n": 1258,
+   "p": 0.9666,
+   "lo": 0.9552,
+   "hi": 0.9752
+  },
+  "A2_median_ratio_ad_requests_gpc_over_default": 0.6276595744680851
+ },
+ "creator": {
+  "A0_n_stores": 34,
+  "A0_banner_visible": {
+   "k": 13,
+   "n": 34,
+   "p": 0.3824,
+   "lo": 0.239,
+   "hi": 0.5496
+  },
+  "A0_any_ad_request": {
+   "k": 29,
+   "n": 34,
+   "p": 0.8529,
+   "lo": 0.6987,
+   "hi": 0.9355
+  },
+  "A0_banner_stores_any_ad_request_prechoice": {
+   "k": 10,
+   "n": 13,
+   "p": 0.7692,
+   "lo": 0.4974,
+   "hi": 0.9182
+  },
+  "A0_banner_stores_sandboxed_ad_request_prechoice": {
+   "k": 5,
+   "n": 13,
+   "p": 0.3846,
+   "lo": 0.1771,
+   "hi": 0.6448
+  },
+  "A0_nobanner_stores_sandboxed_ad_request": {
+   "k": 14,
+   "n": 21,
+   "p": 0.6667,
+   "lo": 0.4537,
+   "hi": 0.8281
+  },
+  "A0_banner_stores_optout_M_allowed_sandboxed_ad": {
+   "k": 5,
+   "n": 6,
+   "p": 0.8333,
+   "lo": 0.4365,
+   "hi": 0.9699
+  },
+  "A0_banner_stores_optin_M_denied_sandboxed_ad": {
+   "k": 0,
+   "n": 7,
+   "p": 0.0,
+   "lo": 0.0,
+   "hi": 0.3543
+  },
+  "A0_banner_stores_first_sandboxed_ad_before_banner": {
+   "k": 1,
+   "n": 5,
+   "p": 0.2,
+   "lo": 0.0362,
+   "hi": 0.6245
+  },
+  "A0_median_ms_first_sandboxed_ad": 2272.0,
+  "A0_median_ms_banner_visible": 2140.0,
+  "A1_banner_found": {
+   "k": 13,
+   "n": 34,
+   "p": 0.3824,
+   "lo": 0.239,
+   "hi": 0.5496
+  },
+  "A1_no_decline_option_among_banner": {
+   "k": 2,
+   "n": 13,
+   "p": 0.1538,
+   "lo": 0.0433,
+   "hi": 0.4224
+  },
+  "A1_clicked": 11,
+  "A1_cpapi_marketing_denied_after_click": {
+   "k": 10,
+   "n": 11,
+   "p": 0.9091,
+   "lo": 0.6226,
+   "hi": 0.9838
+  },
+  "A1_clicked_sandboxed_ad_before_click": {
+   "k": 5,
+   "n": 11,
+   "p": 0.4545,
+   "lo": 0.2127,
+   "hi": 0.7199
+  },
+  "A1_clicked_sandboxed_ad_after_click_same_page": {
+   "k": 1,
+   "n": 11,
+   "p": 0.0909,
+   "lo": 0.0162,
+   "hi": 0.3774
+  },
+  "A1_clicked_sandboxed_ad_next_page": {
+   "k": 1,
+   "n": 11,
+   "p": 0.0909,
+   "lo": 0.0162,
+   "hi": 0.3774
+  },
+  "A1_clicked_any_ad_next_page": {
+   "k": 9,
+   "n": 11,
+   "p": 0.8182,
+   "lo": 0.523,
+   "hi": 0.9486
+  },
+  "A1_next_page_sandboxed_ad_given_prechoice_sandboxed": {
+   "k": 1,
+   "n": 5,
+   "p": 0.2,
+   "lo": 0.0362,
+   "hi": 0.6245
+  },
+  "A2_shopify_saleOfData_denied": {
+   "k": 32,
+   "n": 32,
+   "p": 1.0,
+   "lo": 0.8928,
+   "hi": 1.0
+  },
+  "A2_given_A0_sandboxed_ad_still_sandboxed_ad": {
+   "k": 6,
+   "n": 19,
+   "p": 0.3158,
+   "lo": 0.1536,
+   "hi": 0.5399
+  },
+  "A2_given_A0_any_ad_still_any_ad": {
+   "k": 29,
+   "n": 29,
+   "p": 1.0,
+   "lo": 0.883,
+   "hi": 1.0
+  },
+  "A2_median_ratio_ad_requests_gpc_over_default": 0.5737704918032787
+ },
+ "vendor_gpc_main": {
+  "tiktok": {
+   "stores_fired_A0": 468,
+   "of_which_fired_A2": {
+    "k": 139,
+    "n": 468,
+    "p": 0.297,
+    "lo": 0.2574,
+    "hi": 0.3399
+   }
+  },
+  "pinterest": {
+   "stores_fired_A0": 342,
+   "of_which_fired_A2": {
+    "k": 103,
+    "n": 342,
+    "p": 0.3012,
+    "lo": 0.255,
+    "hi": 0.3518
+   }
+  },
+  "snap": {
+   "stores_fired_A0": 241,
+   "of_which_fired_A2": {
+    "k": 132,
+    "n": 241,
+    "p": 0.5477,
+    "lo": 0.4846,
+    "hi": 0.6093
+   }
+  },
+  "meta": {
+   "stores_fired_A0": 982,
+   "of_which_fired_A2": {
+    "k": 390,
+    "n": 982,
+    "p": 0.3971,
+    "lo": 0.367,
+    "hi": 0.4281
+   }
+  },
+  "google_ads": {
+   "stores_fired_A0": 1125,
+   "of_which_fired_A2": {
+    "k": 1088,
+    "n": 1125,
+    "p": 0.9671,
+    "lo": 0.955,
+    "hi": 0.976
+   }
+  },
+  "klaviyo": {
+   "stores_fired_A0": 0,
+   "of_which_fired_A2": {
+    "k": 0,
+    "n": 0,
+    "p": null,
+    "lo": null,
+    "hi": null
+   }
+  }
+ },
+ "repeat_agreement_sandboxed_ad": {
+  "A0_vs_A0r": {
+   "pairs": 284,
+   "agree": {
+    "k": 282,
+    "n": 284,
+    "p": 0.993,
+    "lo": 0.9747,
+    "hi": 0.9981
+   }
+  },
+  "A2_vs_A2r": {
+   "pairs": 284,
+   "agree": {
+    "k": 284,
+    "n": 284,
+    "p": 1.0,
+    "lo": 0.9867,
+    "hi": 1.0
+   }
+  }
+ },
+ "v1_brave_vs_a2_sandboxed_ad": {
+  "pairs": 99,
+  "agree": {
+   "k": 99,
+   "n": 99,
+   "p": 1.0,
+   "lo": 0.9626,
+   "hi": 1.0
+  },
+  "fired_a2": 21,
+  "fired_v1": 21
+ },
+ "v1_shopify_saleOfData_denied": {
+  "k": 88,
+  "n": 88,
+  "p": 1.0,
+  "lo": 0.9582,
+  "hi": 1.0
+ },
+ "ad_requests_main": 123743,
+ "ad_beacons_with_canary_main": {
+  "k": 78734,
+  "n": 107295,
+  "p": 0.7338,
+  "lo": 0.7312,
+  "hi": 0.7364
+ },
+ "ad_beacons_with_full_url_main": {
+  "k": 76401,
+  "n": 107295,
+  "p": 0.7121,
+  "lo": 0.7093,
+  "hi": 0.7148
+ },
+ "origin_share_of_ad_requests_main": {
+  "main_thread": 42280,
+  "wpm_main_proxy": 20933,
+  "open_pixel_chain": 19150,
+  "lax_iframe": 17877,
+  "strict_worker": 12807,
+  "subframe": 8939,
+  "open_pixel": 1757
+ }
+}
