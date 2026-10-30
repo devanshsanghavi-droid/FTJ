@@ -1,0 +1,149 @@
+text,shown,source,key,fmt,value
+0.2597402597402597,,stats,fig5/a/Google/Default/p,raw,0.2597402597402597
+0.2074509517057802,,stats,fig5/a/Google/Default/lo,raw,0.2074509517057802
+0.3198897464453646,,stats,fig5/a/Google/Default/hi,raw,0.3198897464453646
+0.14285714285714285,,stats,fig5/a/Google/Decline/p,raw,0.14285714285714285
+0.10356482202662246,,stats,fig5/a/Google/Decline/lo,raw,0.10356482202662246
+0.1938335130629171,,stats,fig5/a/Google/Decline/hi,raw,0.1938335130629171
+0.12121212121212122,,stats,fig5/a/Google/GPC/p,raw,0.12121212121212122
+0.08520860846705294,,stats,fig5/a/Google/GPC/lo,raw,0.08520860846705294
+0.1696078075370042,,stats,fig5/a/Google/GPC/hi,raw,0.1696078075370042
+0.19913419913419914,,stats,fig5/a/TikTok/Default/p,raw,0.19913419913419914
+0.15274349900300693,,stats,fig5/a/TikTok/Default/lo,raw,0.15274349900300693
+0.255367825708787,,stats,fig5/a/TikTok/Default/hi,raw,0.255367825708787
+0.06493506493506493,,stats,fig5/a/TikTok/Decline/p,raw,0.06493506493506493
+0.039742893150072185,,stats,fig5/a/TikTok/Decline/lo,raw,0.039742893150072185
+0.10436053323173058,,stats,fig5/a/TikTok/Decline/hi,raw,0.10436053323173058
+0.012987012987012988,,stats,fig5/a/TikTok/GPC/p,raw,0.012987012987012988
+0.0044264074790334035,,stats,fig5/a/TikTok/GPC/lo,raw,0.0044264074790334035
+0.037480413097611485,,stats,fig5/a/TikTok/GPC/hi,raw,0.037480413097611485
+0.1038961038961039,,stats,fig5/a/Meta/Default/p,raw,0.1038961038961039
+0.07081651391840105,,stats,fig5/a/Meta/Default/lo,raw,0.07081651391840105
+0.14993436681727015,,stats,fig5/a/Meta/Default/hi,raw,0.14993436681727015
+0.04329004329004329,,stats,fig5/a/Meta/Decline/p,raw,0.04329004329004329
+0.023681592096414336,,stats,fig5/a/Meta/Decline/lo,raw,0.023681592096414336
+0.07783991519990598,,stats,fig5/a/Meta/Decline/hi,raw,0.07783991519990598
+0.04329004329004329,,stats,fig5/a/Meta/GPC/p,raw,0.04329004329004329
+0.023681592096414336,,stats,fig5/a/Meta/GPC/lo,raw,0.023681592096414336
+0.07783991519990598,,stats,fig5/a/Meta/GPC/hi,raw,0.07783991519990598
+0.16017316017316016,,stats,fig5/a/Pinterest/Default/p,raw,0.16017316017316016
+0.11849533583720584,,stats,fig5/a/Pinterest/Default/lo,raw,0.11849533583720584
+0.21296853452071968,,stats,fig5/a/Pinterest/Default/hi,raw,0.21296853452071968
+0.047619047619047616,,stats,fig5/a/Pinterest/Decline/p,raw,0.047619047619047616
+0.026794791109394665,,stats,fig5/a/Pinterest/Decline/lo,raw,0.026794791109394665
+0.08324310000402213,,stats,fig5/a/Pinterest/Decline/hi,raw,0.08324310000402213
+0.004329004329004329,,stats,fig5/a/Pinterest/GPC/p,raw,0.004329004329004329
+0.0007645847283797493,,stats,fig5/a/Pinterest/GPC/lo,raw,0.0007645847283797493
+0.024109468214072158,,stats,fig5/a/Pinterest/GPC/hi,raw,0.024109468214072158
+0.06060606060606061,,stats,fig5/a/Snap/Default/p,raw,0.06060606060606061
+0.03644148448222001,,stats,fig5/a/Snap/Default/lo,raw,0.03644148448222001
+0.09914555808248629,,stats,fig5/a/Snap/Default/hi,raw,0.09914555808248629
+0.008658008658008658,,stats,fig5/a/Snap/Decline/p,raw,0.008658008658008658
+0.0023775582383612874,,stats,fig5/a/Snap/Decline/lo,raw,0.0023775582383612874
+0.03101287852118711,,stats,fig5/a/Snap/Decline/hi,raw,0.03101287852118711
+0.0,,stats,fig5/a/Snap/GPC/p,raw,0.0
+0.0,,stats,fig5/a/Snap/GPC/lo,raw,0.0
+0.016357669125355422,,stats,fig5/a/Snap/GPC/hi,raw,0.016357669125355422
+0.17316017316017315,,stats,fig5/a/Microsoft/Default/p,raw,0.17316017316017315
+0.129817656882375,,stats,fig5/a/Microsoft/Default/lo,raw,0.129817656882375
+0.22719536492684,,stats,fig5/a/Microsoft/Default/hi,raw,0.22719536492684
+0.05627705627705628,,stats,fig5/a/Microsoft/Decline/p,raw,0.05627705627705628
+0.033180140281139095,,stats,fig5/a/Microsoft/Decline/lo,raw,0.033180140281139095
+0.09389051846647069,,stats,fig5/a/Microsoft/Decline/hi,raw,0.09389051846647069
+0.05194805194805195,,stats,fig5/a/Microsoft/GPC/p,raw,0.05194805194805195
+0.0299629475150897,,stats,fig5/a/Microsoft/GPC/lo,raw,0.0299629475150897
+0.08859132741542361,,stats,fig5/a/Microsoft/GPC/hi,raw,0.08859132741542361
+0.21212121212121213,,stats,fig5/a/Reddit~1other/Default/p,raw,0.21212121212121213
+0.1643329665211598,,stats,fig5/a/Reddit~1other/Default/lo,raw,0.1643329665211598
+0.26932750964192365,,stats,fig5/a/Reddit~1other/Default/hi,raw,0.26932750964192365
+0.07792207792207792,,stats,fig5/a/Reddit~1other/Decline/p,raw,0.07792207792207792
+0.04985529549825286,,stats,fig5/a/Reddit~1other/Decline/lo,raw,0.04985529549825286
+0.11979728233483937,,stats,fig5/a/Reddit~1other/Decline/hi,raw,0.11979728233483937
+0.05627705627705628,,stats,fig5/a/Reddit~1other/GPC/p,raw,0.05627705627705628
+0.033180140281139095,,stats,fig5/a/Reddit~1other/GPC/lo,raw,0.033180140281139095
+0.09389051846647069,,stats,fig5/a/Reddit~1other/GPC/hi,raw,0.09389051846647069
+0.4588744588744589,,stats,fig5/a/Any vendor/Default/p,raw,0.4588744588744589
+0.39581175548243125,,stats,fig5/a/Any vendor/Default/lo,raw,0.39581175548243125
+0.5232825982551521,,stats,fig5/a/Any vendor/Default/hi,raw,0.5232825982551521
+0.22943722943722944,,stats,fig5/a/Any vendor/Decline/p,raw,0.22943722943722944
+0.17990418358994265,,stats,fig5/a/Any vendor/Decline/lo,raw,0.17990418358994265
+0.28782182784152677,,stats,fig5/a/Any vendor/Decline/hi,raw,0.28782182784152677
+0.1774891774891775,,stats,fig5/a/Any vendor/GPC/p,raw,0.1774891774891775
+0.13361356409420147,,stats,fig5/a/Any vendor/GPC/lo,raw,0.13361356409420147
+0.23191584153211006,,stats,fig5/a/Any vendor/GPC/hi,raw,0.23191584153211006
+0.15789473684210525,,stats,fig5/b/Shopify native banner/decline_residual/p,raw,0.15789473684210525
+0.0853579592905131,,stats,fig5/b/Shopify native banner/decline_residual/lo,raw,0.0853579592905131
+0.27363177045790593,,stats,fig5/b/Shopify native banner/decline_residual/hi,raw,0.27363177045790593
+0.22377622377622378,,stats,fig5/b/CMP writes to Shopify API/decline_residual/p,raw,0.22377622377622378
+0.16320621395887014,,stats,fig5/b/CMP writes to Shopify API/decline_residual/lo,raw,0.16320621395887014
+0.2987985863076392,,stats,fig5/b/CMP writes to Shopify API/decline_residual/hi,raw,0.2987985863076392
+0.3870967741935484,,stats,fig5/b/Blocker only ~1 unknown ~1 none/decline_residual/p,raw,0.3870967741935484
+0.2373310132333772,,stats,fig5/b/Blocker only ~1 unknown ~1 none/decline_residual/lo,raw,0.2373310132333772
+0.5617589151232731,,stats,fig5/b/Blocker only ~1 unknown ~1 none/decline_residual/hi,raw,0.5617589151232731
+0.18877551020408162,,stats,fig5/b/Shopify recorded a refusal/decline_residual/p,raw,0.18877551020408162
+0.14017308971021686,,stats,fig5/b/Shopify recorded a refusal/decline_residual/lo,raw,0.14017308971021686
+0.24934297626052404,,stats,fig5/b/Shopify recorded a refusal/decline_residual/hi,raw,0.24934297626052404
+0.65,,stats,fig5/b/marketing still allowed/decline_residual/p,raw,0.65
+0.4328542750684442,,stats,fig5/b/marketing still allowed/decline_residual/lo,raw,0.4328542750684442
+0.818808176876017,,stats,fig5/b/marketing still allowed/decline_residual/hi,raw,0.818808176876017
+0.2,,stats,fig5/b/unknown ~1 no record/decline_residual/p,raw,0.2
+0.0704754929173392,,stats,fig5/b/unknown ~1 no record/decline_residual/lo,raw,0.0704754929173392
+0.45185448924055305,,stats,fig5/b/unknown ~1 no record/decline_residual/hi,raw,0.45185448924055305
+0.09693877551020408,,stats,fig5/c/composition/decline/same_page/refused/p,raw,0.09693877551020408
+0.06293975913196792,,stats,fig5/c/composition/decline/same_page/refused/lo,raw,0.06293975913196792
+0.14643350663341784,,stats,fig5/c/composition/decline/same_page/refused/hi,raw,0.14643350663341784
+0.015306122448979591,,stats,fig5/c/composition/decline/same_page/left_allowed/p,raw,0.015306122448979591
+0.005218879738661423,,stats,fig5/c/composition/decline/same_page/left_allowed/lo,raw,0.005218879738661423
+0.044027452510853105,,stats,fig5/c/composition/decline/same_page/left_allowed/hi,raw,0.044027452510853105
+0.04081632653061224,,stats,fig5/c/composition/decline/same_page/none/p,raw,0.04081632653061224
+0.0208249652572374,,stats,fig5/c/composition/decline/same_page/none/lo,raw,0.0208249652572374
+0.0784610337159869,,stats,fig5/c/composition/decline/same_page/none/hi,raw,0.0784610337159869
+196,,stats,fig5/c/composition/decline/same_page/any/n,raw,196
+0.10204081632653061,,stats,fig5/c/composition/decline/unload/refused/p,raw,0.10204081632653061
+0.06703089083173068,,stats,fig5/c/composition/decline/unload/refused/lo,raw,0.06703089083173068
+0.15235030827839702,,stats,fig5/c/composition/decline/unload/refused/hi,raw,0.15235030827839702
+0.015306122448979591,,stats,fig5/c/composition/decline/unload/left_allowed/p,raw,0.015306122448979591
+0.005218879738661423,,stats,fig5/c/composition/decline/unload/left_allowed/lo,raw,0.005218879738661423
+0.044027452510853105,,stats,fig5/c/composition/decline/unload/left_allowed/hi,raw,0.044027452510853105
+0.030612244897959183,,stats,fig5/c/composition/decline/unload/none/p,raw,0.030612244897959183
+0.014103858793698281,,stats,fig5/c/composition/decline/unload/none/lo,raw,0.014103858793698281
+0.06516627349004211,,stats,fig5/c/composition/decline/unload/none/hi,raw,0.06516627349004211
+196,,stats,fig5/c/composition/decline/unload/any/n,raw,196
+0.0,,stats,fig5/c/composition/decline/fresh_page/refused/p,raw,0.0
+0.0,,stats,fig5/c/composition/decline/fresh_page/refused/lo,raw,0.0
+0.01922253221528868,,stats,fig5/c/composition/decline/fresh_page/refused/hi,raw,0.01922253221528868
+0.0663265306122449,,stats,fig5/c/composition/decline/fresh_page/left_allowed/p,raw,0.0663265306122449
+0.039167849031757684,,stats,fig5/c/composition/decline/fresh_page/left_allowed/lo,raw,0.039167849031757684
+0.11015781666517638,,stats,fig5/c/composition/decline/fresh_page/left_allowed/hi,raw,0.11015781666517638
+0.1377551020408163,,stats,fig5/c/composition/decline/fresh_page/none/p,raw,0.1377551020408163
+0.09643055035237713,,stats,fig5/c/composition/decline/fresh_page/none/lo,raw,0.09643055035237713
+0.19300618217094423,,stats,fig5/c/composition/decline/fresh_page/none/hi,raw,0.19300618217094423
+196,,stats,fig5/c/composition/decline/fresh_page/any/n,raw,196
+0.0,,stats,fig5/c/composition/gpc/refused/p,raw,0.0
+0.0,,stats,fig5/c/composition/gpc/refused/lo,raw,0.0
+0.00282909234813092,,stats,fig5/c/composition/gpc/refused/hi,raw,0.00282909234813092
+0.08197932053175776,,stats,fig5/c/composition/gpc/left_allowed/p,raw,0.08197932053175776
+0.0685225259576025,,stats,fig5/c/composition/gpc/left_allowed/lo,raw,0.0685225259576025
+0.09780135331720119,,stats,fig5/c/composition/gpc/left_allowed/hi,raw,0.09780135331720119
+0.1410635155096012,,stats,fig5/c/composition/gpc/none/p,raw,0.1410635155096012
+0.1235366766870899,,stats,fig5/c/composition/gpc/none/lo,raw,0.1235366766870899
+0.1606212832555861,,stats,fig5/c/composition/gpc/none/hi,raw,0.1606212832555861
+1354,,stats,fig5/c/composition/gpc/any/n,raw,1354
+59,,supp_derived,s8d_race_loads/deny_A0/loads,raw,59
+-4352.0,,supp_derived,s8d_race_loads/deny_A0/min_ms,raw,-4352.0
+-121.0,,supp_derived,s8d_race_loads/deny_A0/max_ms,raw,-121.0
+59,,supp_derived,s8d_race_loads/deny_A0/first_before,raw,59
+0,,supp_derived,s8d_race_loads/deny_A0/first_after,raw,0
+87,,supp_derived,s8d_race_loads/deny_A2/loads,raw,87
+-3772.0,,supp_derived,s8d_race_loads/deny_A2/min_ms,raw,-3772.0
+836.0,,supp_derived,s8d_race_loads/deny_A2/max_ms,raw,836.0
+85,,supp_derived,s8d_race_loads/deny_A2/first_before,raw,85
+2,,supp_derived,s8d_race_loads/deny_A2/first_after,raw,2
+22,,supp_derived,s8d_race_loads/grant_A0/loads,raw,22
+5.0,,supp_derived,s8d_race_loads/grant_A0/min_ms,raw,5.0
+1241.0,,supp_derived,s8d_race_loads/grant_A0/max_ms,raw,1241.0
+22,,supp_derived,s8d_race_loads/grant_A0/first_after,raw,22
+13,,supp_derived,s8d_race_loads/grant_A2/loads,raw,13
+6.0,,supp_derived,s8d_race_loads/grant_A2/min_ms,raw,6.0
+17.0,,supp_derived,s8d_race_loads/grant_A2/max_ms,raw,17.0
+13,,supp_derived,s8d_race_loads/grant_A2/first_after,raw,13

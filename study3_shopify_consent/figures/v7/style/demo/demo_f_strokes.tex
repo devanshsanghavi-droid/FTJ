@@ -1,0 +1,23 @@
+% Style sheet panel F: strokes, arrow head and hatch (56 x 46 mm); widths printed from palette_v2.tex.
+\documentclass[tikz,border=0pt]{standalone}
+\input{demo_common.tex}
+\begin{document}
+\begin{tikzpicture}
+\PanelCanvas{56}{46}
+\def\lx{20}
+\draw[axisline] (1,-9) -- (16,-9); \draw[axisline] (4,-9) -- ++(0,-\figTickLen) (12,-9) -- ++(0,-\figTickLen);
+\node[lbl, anchor=base west] at (\lx,-10) {Axis \ptnum{\figLwAxis} pt, ticks out};
+\draw[dataline] (1,-14.5) -- (16,-14.5);
+\node[lbl, anchor=base west] at (\lx,-15.5) {Data line \ptnum{\figLwData} pt};
+\draw[draw=ink, line width=\figLwError] (3,-20) -- (14,-20); \pic at (8.5,-20) {mkDefault};
+\node[lbl, anchor=base west] at (\lx,-21) {CI \ptnum{\figLwError} pt, no caps};
+\draw[box] (1,-24.3) rectangle (16,-27.7);
+\node[lbl, anchor=base west] at (\lx,-27) {Box \ptnum{\figLwBox} pt};
+\draw[arr] (1,-31.5) -- (16,-31.5);
+\node[lbl, anchor=base west] at (\lx,-32.5) {Arrow \ptnum{\figLwArrow} pt};
+\draw[event] (1,-37) -- (16,-37); \draw[gridline] (1,-38.4) -- (16,-38.4);
+\node[lbl, anchor=base west] at (\lx,-38) {Rule, grid \ptnum{\figLwHairline} pt};
+\draw[sandbox box, rounded corners=0pt] (1,-41.3) rectangle (16,-44.3);
+\node[lbl, anchor=base west] at (\lx,-43.5) {Hatch \ptnum{\figLwHatch} pt, 45\textdegree};
+\end{tikzpicture}
+\end{document}

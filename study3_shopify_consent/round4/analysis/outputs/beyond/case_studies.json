@@ -1,0 +1,718 @@
+{
+ "b2-PT001": {
+  "architecture": "partytown",
+  "tier": "A",
+  "static_cmps": "transcend",
+  "cmps_detected": "transcend",
+  "banner_A0": false,
+  "banner_A1": false,
+  "click_ok": false,
+  "reject_text": null,
+  "b2_pt": "{\"cfg\": true, \"fwd\": [\"dataLayer.push\", \"gtag\", \"gtm.push\"], \"lib\": null, \"n\": 4, \"nx\": 0, \"resolveUrl\": false}",
+  "b2_zz": null,
+  "arms": {
+   "A0": {
+    "ok": true,
+    "ad_vendors": [],
+    "ad_by_origin": {},
+    "ad_by_phase": {},
+    "pt_worker_requests": 0,
+    "zaraz_track_calls": {},
+    "fp_collect": 0
+   },
+   "A1": {
+    "ok": true,
+    "ad_vendors": [],
+    "ad_by_origin": {},
+    "ad_by_phase": {},
+    "pt_worker_requests": 0,
+    "zaraz_track_calls": {},
+    "fp_collect": 0
+   },
+   "A2": {
+    "ok": true,
+    "ad_vendors": [],
+    "ad_by_origin": {},
+    "ad_by_phase": {},
+    "pt_worker_requests": 0,
+    "zaraz_track_calls": {},
+    "fp_collect": 0
+   }
+  },
+  "loads": [
+   {
+    "arm": "A0",
+    "ok": "True",
+    "goto_status": "200",
+    "goto_error": "None",
+    "n_requests": "167",
+    "final_host": "b2-pt001.store.example",
+    "workers": "2",
+    "workers_gpc_true": "0",
+    "b2_pt_last": "{\"cfg\": true, \"fwd\": [\"dataLayer.push\", \"gtag\", \"gtm.push\"], \"lib\": null, \"n\": 4, \"nx\": 0, \"resolveUrl\": false}",
+    "b2_zz_last": "None",
+    "consent_cookies_last": ""
+   },
+   {
+    "arm": "A1",
+    "ok": "True",
+    "goto_status": "200",
+    "goto_error": "None",
+    "n_requests": "157",
+    "final_host": "b2-pt001.store.example",
+    "workers": "2",
+    "workers_gpc_true": "0",
+    "b2_pt_last": "{\"cfg\": true, \"fwd\": [\"dataLayer.push\", \"gtag\", \"gtm.push\"], \"lib\": null, \"n\": 4, \"nx\": 0, \"resolveUrl\": false}",
+    "b2_zz_last": "None",
+    "consent_cookies_last": ""
+   },
+   {
+    "arm": "A2",
+    "ok": "True",
+    "goto_status": "200",
+    "goto_error": "None",
+    "n_requests": "166",
+    "final_host": "b2-pt001.store.example",
+    "workers": "2",
+    "workers_gpc_true": "0",
+    "b2_pt_last": "{\"cfg\": true, \"fwd\": [\"dataLayer.push\", \"gtag\", \"gtm.push\"], \"lib\": null, \"n\": 4, \"nx\": 0, \"resolveUrl\": false}",
+    "b2_zz_last": "None",
+    "consent_cookies_last": ""
+   }
+  ]
+ },
+ "b2-PT002": {
+  "architecture": "partytown",
+  "tier": "A",
+  "static_cmps": "cookieyes|hubspot_banner",
+  "cmps_detected": "cookieyes",
+  "banner_A0": true,
+  "banner_A1": true,
+  "click_ok": true,
+  "reject_text": "Reject All",
+  "b2_pt": "{\"cfg\": true, \"fwd\": [\"_hsq.push\"], \"lib\": \"/~partytown/\", \"n\": 0, \"nx\": 0, \"resolveUrl\": false}",
+  "b2_zz": null,
+  "arms": {
+   "A0": {
+    "ok": true,
+    "ad_vendors": [
+     "google_ads",
+     "microsoft_uet"
+    ],
+    "ad_by_origin": {
+     "main_thread": 6
+    },
+    "ad_by_phase": {
+     "banner_prechoice": 6
+    },
+    "pt_worker_requests": 0,
+    "zaraz_track_calls": {},
+    "fp_collect": 0
+   },
+   "A1": {
+    "ok": true,
+    "ad_vendors": [
+     "google_ads",
+     "microsoft_uet"
+    ],
+    "ad_by_origin": {
+     "main_thread": 14
+    },
+    "ad_by_phase": {
+     "next_page": 7,
+     "pre_banner": 3,
+     "banner_prechoice": 3,
+     "post_click": 1
+    },
+    "pt_worker_requests": 0,
+    "zaraz_track_calls": {},
+    "fp_collect": 0
+   },
+   "A2": {
+    "ok": true,
+    "ad_vendors": [
+     "google_ads",
+     "microsoft_uet"
+    ],
+    "ad_by_origin": {
+     "main_thread": 6
+    },
+    "ad_by_phase": {
+     "banner_prechoice": 4,
+     "pre_banner": 2
+    },
+    "pt_worker_requests": 0,
+    "zaraz_track_calls": {},
+    "fp_collect": 0
+   }
+  },
+  "loads": [
+   {
+    "arm": "A0",
+    "ok": "True",
+    "goto_status": "200",
+    "goto_error": "None",
+    "n_requests": "57",
+    "final_host": "b2-pt002.store.example",
+    "workers": "2",
+    "workers_gpc_true": "0",
+    "b2_pt_last": "{\"cfg\": true, \"fwd\": [\"_hsq.push\"], \"lib\": \"/~partytown/\", \"n\": 0, \"nx\": 0, \"resolveUrl\": false}",
+    "b2_zz_last": "None",
+    "consent_cookies_last": "cookieyes-consent"
+   },
+   {
+    "arm": "A1",
+    "ok": "True",
+    "goto_status": "200",
+    "goto_error": "None",
+    "n_requests": "125",
+    "final_host": "b2-pt002.store.example",
+    "workers": "2",
+    "workers_gpc_true": "0",
+    "b2_pt_last": "{\"cfg\": true, \"fwd\": [\"_hsq.push\"], \"lib\": \"/~partytown/\", \"n\": 0, \"nx\": 0, \"resolveUrl\": false}",
+    "b2_zz_last": "None",
+    "consent_cookies_last": "cookieyes-consent"
+   },
+   {
+    "arm": "A2",
+    "ok": "True",
+    "goto_status": "200",
+    "goto_error": "None",
+    "n_requests": "57",
+    "final_host": "b2-pt002.store.example",
+    "workers": "2",
+    "workers_gpc_true": "0",
+    "b2_pt_last": "{\"cfg\": true, \"fwd\": [\"_hsq.push\"], \"lib\": \"/~partytown/\", \"n\": 0, \"nx\": 0, \"resolveUrl\": false}",
+    "b2_zz_last": "None",
+    "consent_cookies_last": "cookieyes-consent"
+   }
+  ]
+ },
+ "b2-PT003": {
+  "architecture": "partytown",
+  "tier": "A",
+  "static_cmps": "bigcommerce_consent",
+  "cmps_detected": "",
+  "banner_A0": true,
+  "banner_A1": true,
+  "click_ok": true,
+  "reject_text": "Reject all",
+  "b2_pt": "{\"cfg\": false, \"fwd\": null, \"lib\": null, \"n\": 1, \"nx\": 0, \"resolveUrl\": false}",
+  "b2_zz": null,
+  "arms": {
+   "A0": {
+    "ok": true,
+    "ad_vendors": [
+     "bidswitch",
+     "google_ads",
+     "index_exchange",
+     "magnite",
+     "meta",
+     "pubmatic",
+     "tiktok",
+     "tradedesk",
+     "xandr"
+    ],
+    "ad_by_origin": {
+     "main_thread": 32,
+     "subframe": 27
+    },
+    "ad_by_phase": {
+     "banner_prechoice": 44,
+     "pre_banner": 15
+    },
+    "pt_worker_requests": 0,
+    "zaraz_track_calls": {},
+    "fp_collect": 0
+   },
+   "A1": {
+    "ok": true,
+    "ad_vendors": [
+     "bidswitch",
+     "google_ads",
+     "index_exchange",
+     "magnite",
+     "meta",
+     "pubmatic",
+     "tiktok",
+     "tradedesk",
+     "xandr"
+    ],
+    "ad_by_origin": {
+     "main_thread": 65,
+     "subframe": 46
+    },
+    "ad_by_phase": {
+     "next_page": 50,
+     "banner_prechoice": 39,
+     "pre_banner": 17,
+     "post_click": 5
+    },
+    "pt_worker_requests": 0,
+    "zaraz_track_calls": {},
+    "fp_collect": 1
+   },
+   "A2": {
+    "ok": true,
+    "ad_vendors": [
+     "bidswitch",
+     "google_ads",
+     "index_exchange",
+     "magnite",
+     "meta",
+     "pubmatic",
+     "tiktok",
+     "tradedesk",
+     "xandr"
+    ],
+    "ad_by_origin": {
+     "main_thread": 32,
+     "subframe": 24
+    },
+    "ad_by_phase": {
+     "banner_prechoice": 41,
+     "pre_banner": 15
+    },
+    "pt_worker_requests": 0,
+    "zaraz_track_calls": {},
+    "fp_collect": 0
+   }
+  },
+  "loads": [
+   {
+    "arm": "A0",
+    "ok": "True",
+    "goto_status": "200",
+    "goto_error": "None",
+    "n_requests": "207",
+    "final_host": "b2-pt003.store.example",
+    "workers": "0",
+    "workers_gpc_true": "0",
+    "b2_pt_last": "{\"cfg\": false, \"fwd\": null, \"lib\": null, \"n\": 1, \"nx\": 0, \"resolveUrl\": false}",
+    "b2_zz_last": "None",
+    "consent_cookies_last": "_tt_enable_cookie"
+   },
+   {
+    "arm": "A1",
+    "ok": "True",
+    "goto_status": "200",
+    "goto_error": "None",
+    "n_requests": "375",
+    "final_host": "b2-pt003.store.example",
+    "workers": "0",
+    "workers_gpc_true": "0",
+    "b2_pt_last": "{\"cfg\": false, \"fwd\": null, \"lib\": null, \"n\": 1, \"nx\": 0, \"resolveUrl\": false}",
+    "b2_zz_last": "None",
+    "consent_cookies_last": "_tt_enable_cookie|bc_consent"
+   },
+   {
+    "arm": "A2",
+    "ok": "True",
+    "goto_status": "200",
+    "goto_error": "None",
+    "n_requests": "179",
+    "final_host": "b2-pt003.store.example",
+    "workers": "0",
+    "workers_gpc_true": "0",
+    "b2_pt_last": "{\"cfg\": false, \"fwd\": null, \"lib\": null, \"n\": 1, \"nx\": 0, \"resolveUrl\": false}",
+    "b2_zz_last": "None",
+    "consent_cookies_last": "_tt_enable_cookie"
+   }
+  ]
+ },
+ "b2-PT004": {
+  "architecture": "partytown",
+  "tier": "L",
+  "static_cmps": "cookiebot",
+  "cmps_detected": null,
+  "banner_A0": null,
+  "banner_A1": null,
+  "click_ok": NaN,
+  "reject_text": NaN,
+  "b2_pt": null,
+  "b2_zz": null,
+  "arms": {
+   "A0": {
+    "ok": false,
+    "ad_vendors": [],
+    "ad_by_origin": {},
+    "ad_by_phase": {},
+    "pt_worker_requests": 0,
+    "zaraz_track_calls": {},
+    "fp_collect": 0
+   },
+   "A1": {
+    "ok": false,
+    "ad_vendors": [],
+    "ad_by_origin": {},
+    "ad_by_phase": {},
+    "pt_worker_requests": 0,
+    "zaraz_track_calls": {},
+    "fp_collect": 0
+   },
+   "A2": {
+    "ok": false,
+    "ad_vendors": [],
+    "ad_by_origin": {},
+    "ad_by_phase": {},
+    "pt_worker_requests": 0,
+    "zaraz_track_calls": {},
+    "fp_collect": 0
+   }
+  },
+  "loads": []
+ },
+ "b2-PT005": {
+  "architecture": "partytown",
+  "tier": "L",
+  "static_cmps": "onetrust",
+  "cmps_detected": "onetrust",
+  "banner_A0": true,
+  "banner_A1": true,
+  "click_ok": true,
+  "reject_text": "Reject All",
+  "b2_pt": "{\"cfg\": true, \"fwd\": [], \"lib\": \"/~partytown/\", \"n\": 0, \"nx\": 0, \"resolveUrl\": false}",
+  "b2_zz": null,
+  "arms": {
+   "A0": {
+    "ok": true,
+    "ad_vendors": [
+     "google_ads",
+     "microsoft_uet"
+    ],
+    "ad_by_origin": {
+     "main_thread": 11
+    },
+    "ad_by_phase": {
+     "banner_prechoice": 11
+    },
+    "pt_worker_requests": 0,
+    "zaraz_track_calls": {},
+    "fp_collect": 3
+   },
+   "A1": {
+    "ok": true,
+    "ad_vendors": [
+     "google_ads",
+     "microsoft_uet"
+    ],
+    "ad_by_origin": {
+     "main_thread": 24
+    },
+    "ad_by_phase": {
+     "next_page": 12,
+     "banner_prechoice": 11,
+     "post_click": 1
+    },
+    "pt_worker_requests": 0,
+    "zaraz_track_calls": {},
+    "fp_collect": 5
+   },
+   "A2": {
+    "ok": true,
+    "ad_vendors": [
+     "google_ads"
+    ],
+    "ad_by_origin": {
+     "main_thread": 2
+    },
+    "ad_by_phase": {
+     "pre_banner": 1,
+     "banner_prechoice": 1
+    },
+    "pt_worker_requests": 0,
+    "zaraz_track_calls": {},
+    "fp_collect": 2
+   }
+  },
+  "loads": [
+   {
+    "arm": "A0",
+    "ok": "True",
+    "goto_status": "200",
+    "goto_error": "None",
+    "n_requests": "165",
+    "final_host": "b2-pt005.store.example",
+    "workers": "3",
+    "workers_gpc_true": "0",
+    "b2_pt_last": "{\"cfg\": true, \"fwd\": [], \"lib\": \"/~partytown/\", \"n\": 0, \"nx\": 0, \"resolveUrl\": false}",
+    "b2_zz_last": "None",
+    "consent_cookies_last": "_vis_opt_test_cookie|_vwo_consent|OptanonConsent"
+   },
+   {
+    "arm": "A1",
+    "ok": "True",
+    "goto_status": "200",
+    "goto_error": "None",
+    "n_requests": "333",
+    "final_host": "b2-pt005.store.example",
+    "workers": "4",
+    "workers_gpc_true": "0",
+    "b2_pt_last": "{\"cfg\": true, \"fwd\": [], \"lib\": \"/~partytown/\", \"n\": 0, \"nx\": 0, \"resolveUrl\": false}",
+    "b2_zz_last": "None",
+    "consent_cookies_last": "_vis_opt_test_cookie|_vwo_consent|OptanonConsent"
+   },
+   {
+    "arm": "A2",
+    "ok": "True",
+    "goto_status": "200",
+    "goto_error": "None",
+    "n_requests": "143",
+    "final_host": "b2-pt005.store.example",
+    "workers": "3",
+    "workers_gpc_true": "1",
+    "b2_pt_last": "{\"cfg\": true, \"fwd\": [], \"lib\": \"/~partytown/\", \"n\": 0, \"nx\": 0, \"resolveUrl\": false}",
+    "b2_zz_last": "None",
+    "consent_cookies_last": "_vis_opt_test_cookie|_vwo_consent|OptanonConsent"
+   }
+  ]
+ },
+ "b2-PT006": {
+  "architecture": "partytown",
+  "tier": "L",
+  "static_cmps": "cookiebot",
+  "cmps_detected": null,
+  "banner_A0": null,
+  "banner_A1": null,
+  "click_ok": NaN,
+  "reject_text": NaN,
+  "b2_pt": null,
+  "b2_zz": null,
+  "arms": {
+   "A0": {
+    "ok": false,
+    "ad_vendors": [],
+    "ad_by_origin": {},
+    "ad_by_phase": {},
+    "pt_worker_requests": 0,
+    "zaraz_track_calls": {},
+    "fp_collect": 0
+   },
+   "A1": {
+    "ok": false,
+    "ad_vendors": [],
+    "ad_by_origin": {},
+    "ad_by_phase": {},
+    "pt_worker_requests": 0,
+    "zaraz_track_calls": {},
+    "fp_collect": 0
+   },
+   "A2": {
+    "ok": false,
+    "ad_vendors": [],
+    "ad_by_origin": {},
+    "ad_by_phase": {},
+    "pt_worker_requests": 0,
+    "zaraz_track_calls": {},
+    "fp_collect": 0
+   }
+  },
+  "loads": []
+ },
+ "b2-PT007": {
+  "architecture": "partytown",
+  "tier": "L",
+  "static_cmps": "cookie_notice_wp|cookiebot",
+  "cmps_detected": null,
+  "banner_A0": null,
+  "banner_A1": null,
+  "click_ok": NaN,
+  "reject_text": NaN,
+  "b2_pt": null,
+  "b2_zz": null,
+  "arms": {
+   "A0": {
+    "ok": false,
+    "ad_vendors": [],
+    "ad_by_origin": {},
+    "ad_by_phase": {},
+    "pt_worker_requests": 0,
+    "zaraz_track_calls": {},
+    "fp_collect": 0
+   },
+   "A1": {
+    "ok": false,
+    "ad_vendors": [],
+    "ad_by_origin": {},
+    "ad_by_phase": {},
+    "pt_worker_requests": 0,
+    "zaraz_track_calls": {},
+    "fp_collect": 0
+   },
+   "A2": {
+    "ok": false,
+    "ad_vendors": [],
+    "ad_by_origin": {},
+    "ad_by_phase": {},
+    "pt_worker_requests": 0,
+    "zaraz_track_calls": {},
+    "fp_collect": 0
+   }
+  },
+  "loads": []
+ },
+ "b2-PT008": {
+  "architecture": "partytown",
+  "tier": "L",
+  "static_cmps": "hubspot_banner",
+  "cmps_detected": "",
+  "banner_A0": true,
+  "banner_A1": true,
+  "click_ok": true,
+  "reject_text": "Reject all",
+  "b2_pt": "{\"cfg\": true, \"fwd\": [], \"lib\": \"/~partytown/\", \"n\": 0, \"nx\": 0, \"resolveUrl\": false}",
+  "b2_zz": null,
+  "arms": {
+   "A0": {
+    "ok": true,
+    "ad_vendors": [],
+    "ad_by_origin": {},
+    "ad_by_phase": {},
+    "pt_worker_requests": 0,
+    "zaraz_track_calls": {},
+    "fp_collect": 0
+   },
+   "A1": {
+    "ok": true,
+    "ad_vendors": [],
+    "ad_by_origin": {},
+    "ad_by_phase": {},
+    "pt_worker_requests": 0,
+    "zaraz_track_calls": {},
+    "fp_collect": 0
+   },
+   "A2": {
+    "ok": true,
+    "ad_vendors": [],
+    "ad_by_origin": {},
+    "ad_by_phase": {},
+    "pt_worker_requests": 0,
+    "zaraz_track_calls": {},
+    "fp_collect": 0
+   }
+  },
+  "loads": [
+   {
+    "arm": "A0",
+    "ok": "True",
+    "goto_status": "200",
+    "goto_error": "None",
+    "n_requests": "53",
+    "final_host": "b2-pt008.store.example",
+    "workers": "2",
+    "workers_gpc_true": "0",
+    "b2_pt_last": "{\"cfg\": true, \"fwd\": [], \"lib\": \"/~partytown/\", \"n\": 0, \"nx\": 0, \"resolveUrl\": false}",
+    "b2_zz_last": "None",
+    "consent_cookies_last": ""
+   },
+   {
+    "arm": "A1",
+    "ok": "True",
+    "goto_status": "200",
+    "goto_error": "None",
+    "n_requests": "106",
+    "final_host": "b2-pt008.store.example",
+    "workers": "2",
+    "workers_gpc_true": "0",
+    "b2_pt_last": "{\"cfg\": true, \"fwd\": [], \"lib\": \"/~partytown/\", \"n\": 0, \"nx\": 0, \"resolveUrl\": false}",
+    "b2_zz_last": "None",
+    "consent_cookies_last": "mx_consent"
+   },
+   {
+    "arm": "A2",
+    "ok": "True",
+    "goto_status": "200",
+    "goto_error": "None",
+    "n_requests": "53",
+    "final_host": "b2-pt008.store.example",
+    "workers": "2",
+    "workers_gpc_true": "0",
+    "b2_pt_last": "{\"cfg\": true, \"fwd\": [], \"lib\": \"/~partytown/\", \"n\": 0, \"nx\": 0, \"resolveUrl\": false}",
+    "b2_zz_last": "None",
+    "consent_cookies_last": ""
+   }
+  ]
+ },
+ "b2-ZZ001": {
+  "architecture": "zaraz",
+  "tier": "Z",
+  "static_cmps": "",
+  "cmps_detected": "",
+  "banner_A0": false,
+  "banner_A1": false,
+  "click_ok": false,
+  "reject_text": null,
+  "b2_pt": null,
+  "b2_zz": "{\"all\": {\"MIIZ\": false, \"NaBD\": false}, \"loaded\": true, \"purposes\": [[\"MIIZ\", \"[object Object]\"], [\"NaBD\", \"[object Object]\"]], \"ready\": true}",
+  "arms": {
+   "A0": {
+    "ok": true,
+    "ad_vendors": [],
+    "ad_by_origin": {},
+    "ad_by_phase": {},
+    "pt_worker_requests": 0,
+    "zaraz_track_calls": {},
+    "fp_collect": 0
+   },
+   "A1": {
+    "ok": true,
+    "ad_vendors": [],
+    "ad_by_origin": {},
+    "ad_by_phase": {},
+    "pt_worker_requests": 0,
+    "zaraz_track_calls": {},
+    "fp_collect": 0
+   },
+   "A2": {
+    "ok": true,
+    "ad_vendors": [],
+    "ad_by_origin": {},
+    "ad_by_phase": {},
+    "pt_worker_requests": 0,
+    "zaraz_track_calls": {},
+    "fp_collect": 0
+   }
+  },
+  "loads": [
+   {
+    "arm": "A0",
+    "ok": "True",
+    "goto_status": "200",
+    "goto_error": "None",
+    "n_requests": "105",
+    "final_host": "b2-zz001.store.example",
+    "workers": "0",
+    "workers_gpc_true": "0",
+    "b2_pt_last": "None",
+    "b2_zz_last": "{\"all\": {\"MIIZ\": false, \"NaBD\": false}, \"loaded\": true, \"purposes\": [[\"MIIZ\", \"[object Object]\"], [\"NaBD\", \"[object Object]\"]], \"ready\": true}",
+    "consent_cookies_last": "cf_zaraz_client"
+   },
+   {
+    "arm": "A1",
+    "ok": "True",
+    "goto_status": "200",
+    "goto_error": "None",
+    "n_requests": "103",
+    "final_host": "b2-zz001.store.example",
+    "workers": "0",
+    "workers_gpc_true": "0",
+    "b2_pt_last": "None",
+    "b2_zz_last": "{\"all\": {\"MIIZ\": false, \"NaBD\": false}, \"loaded\": true, \"purposes\": [[\"MIIZ\", \"[object Object]\"], [\"NaBD\", \"[object Object]\"]], \"ready\": true}",
+    "consent_cookies_last": "cf_zaraz_client"
+   },
+   {
+    "arm": "A2",
+    "ok": "True",
+    "goto_status": "200",
+    "goto_error": "None",
+    "n_requests": "105",
+    "final_host": "b2-zz001.store.example",
+    "workers": "0",
+    "workers_gpc_true": "0",
+    "b2_pt_last": "None",
+    "b2_zz_last": "{\"all\": {\"MIIZ\": false, \"NaBD\": false}, \"loaded\": true, \"purposes\": [[\"MIIZ\", \"[object Object]\"], [\"NaBD\", \"[object Object]\"]], \"ready\": true}",
+    "consent_cookies_last": "cf_zaraz_client"
+   }
+  ]
+ }
+}

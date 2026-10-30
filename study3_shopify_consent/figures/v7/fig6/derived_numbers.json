@@ -1,0 +1,169 @@
+{
+ "fig6d_agreement": {
+  "value": {
+   "A0_vs_A0r": {
+    "k": 271,
+    "n": 273,
+    "p": 0.9926739926739927,
+    "lo": 0.973686632382303,
+    "hi": 0.997988640125713,
+    "store_table_check": {
+     "n": 273,
+     "agree": 271,
+     "matches_stats": true
+    }
+   },
+   "A2_vs_A2r": {
+    "k": 273,
+    "n": 273,
+    "p": 1.0,
+    "lo": 0.986123975444938,
+    "hi": 0.9999999999999998,
+    "store_table_check": {
+     "n": 273,
+     "agree": 273,
+     "matches_stats": true
+    }
+   },
+   "A2_vs_V1": {
+    "k": 98,
+    "n": 98,
+    "p": 1.0,
+    "lo": 0.9622800093057041,
+    "hi": 0.9999999999999999,
+    "store_table_check": {
+     "n": 98,
+     "agree": 98,
+     "matches_stats": true
+    }
+   }
+  },
+  "definition": "Share of stores on which two loads agree on \"a sandboxed ad pixel sent a request\" (Default vs its repeat; GPC vs its repeat; emulated GPC vs Brave native GPC), with the Wilson 95% interval from analysis/common.py. Ported unchanged from figures/v4/fig2/derived_numbers.json fig2d_agreement (v4 Fig 2d), which v5 shows as Fig 6d.",
+  "script": "figures/v7/fig6/scripts/derive_fig6.py",
+  "inputs": [
+   "analysis/outputs/stats.json:validation.{A0_vs_A0r,A2_vs_A2r,A2_vs_V1}.{agree,n}",
+   "analysis/outputs/store_table.csv (cross-check of the counts)"
+  ],
+  "check": "k, n equal stats.json validation.*.agree / n; store_table.csv flags reproduce them where present; value equals v4 fig2d_agreement",
+  "not_in_stats": [
+   "p, lo, hi (the Wilson interval of the agreement share)"
+  ]
+ },
+ "fig6a_store_c_vendors": {
+  "value": {
+   "vendors": [
+    "google_ads",
+    "google_merchant_center",
+    "tiktok",
+    "liveintent",
+    "tvscientific"
+   ],
+   "groups": [
+    "Google",
+    "Google",
+    "TikTok",
+    "Reddit/other",
+    "Reddit/other"
+   ],
+   "routes": {
+    "A0": [
+     2,
+     1,
+     2,
+     1,
+     1
+    ],
+    "A0r": [
+     2,
+     1,
+     2,
+     1,
+     1
+    ],
+    "A1pre": [
+     2,
+     1,
+     2,
+     1,
+     1
+    ],
+    "A1after": [
+     1,
+     1,
+     0,
+     1,
+     1
+    ],
+    "A2": [
+     1,
+     1,
+     0,
+     0,
+     1
+    ],
+    "A2r": [
+     1,
+     1,
+     0,
+     0,
+     1
+    ]
+   }
+  },
+  "definition": "Store C, the same six grid columns as fig6a_store_c_grid. vendors: every ad vendor (analysis vendor id) that received the creator's per-video code in any column, ordered by vendor group (figures/colors.py VENDOR_ORDER), then id; groups: its vendor group. routes[column][i]: 2 = vendor i received the code from a Shopify sandbox (worker or iframe) in that column, 1 = only by another route, 0 = not at all.",
+  "script": "figures/v7/fig6/scripts/derive_fig6.py",
+  "inputs": [
+   "analysis/outputs/fig6b_store_c.csv"
+  ],
+  "check": "per column: count(routes > 0) == fig6a_store_c_grid vendors_code; count(routes == 2) == vendors_code_sbx",
+  "not_in_stats": [
+   "the whole matrix (vendor identity per load; no number is printed from it)"
+  ]
+ },
+ "fig6a_store_c_grid": {
+  "value": {
+   "A0": {
+    "tiktok_sbx_code": 4,
+    "vendors_code": 5,
+    "vendors_code_sbx": 2
+   },
+   "A0r": {
+    "tiktok_sbx_code": 4,
+    "vendors_code": 5,
+    "vendors_code_sbx": 2
+   },
+   "A1pre": {
+    "tiktok_sbx_code": 4,
+    "vendors_code": 5,
+    "vendors_code_sbx": 2
+   },
+   "A1after": {
+    "tiktok_sbx_code": 0,
+    "vendors_code": 4,
+    "vendors_code_sbx": 0
+   },
+   "A2": {
+    "tiktok_sbx_code": 0,
+    "vendors_code": 3,
+    "vendors_code_sbx": 0
+   },
+   "A2r": {
+    "tiktok_sbx_code": 0,
+    "vendors_code": 3,
+    "vendors_code_sbx": 0
+   }
+  },
+  "definition": "Store C (creator stratum, C005) landing page reached from the creator video link. Per grid column: tiktok_sbx_code = ad requests to TikTok sent from TikTok's Shopify sandbox that carried the creator's per-video code; vendors_code = distinct ad vendors (analysis vendor ids; Google Ads and Google Merchant Center are separate) that received the code by any route; vendors_code_sbx = of those, vendors that received it from a Shopify sandbox (worker or iframe). Columns: A0 Default, A0r Default repeat, A1pre Decline load before the click, A1after Decline load after the click (the rest of that page and the fresh page after the reload), A2 GPC, A2r GPC repeat.",
+  "script": "figures/v7/fig6/scripts/derive_fig6.py",
+  "inputs": [
+   "analysis/outputs/fig6b_store_c.csv",
+   "analysis/outputs/stats.json:fig6.b.store_c, store_c_pre_click, store_c_after_decline"
+  ],
+  "check": "A0/A0r/A2/A2r tiktok_sbx_code == n_creator_token_tiktok_sbx and vendors_code == n_vendors_with_token; A1pre tiktok_sbx_code == A1 n_creator_token_tiktok_sbx (all before t_click); A1pre vendors == store_c_pre_click; A1after == store_c_after_decline; A2/A2r n_sandboxed == 0",
+  "not_in_stats": [
+   "A0.vendors_code_sbx",
+   "A0r.vendors_code_sbx",
+   "A1pre.tiktok_sbx_code (refines the whole-load A1 value)"
+  ]
+ }
+}

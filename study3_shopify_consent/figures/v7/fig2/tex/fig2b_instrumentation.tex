@@ -1,0 +1,104 @@
+% Fig 2b (v7.1 hero; binding spec ../../DESIGN_V7.md sections 3.3 and 7, worked example ../../fig1/fig1a_pipeline.tex):
+% where the crawler attaches. Message: the crawler taps every target before it runs -- the page and both of Shopify's
+% pixel sandboxes, which a CMP's script blocker cannot reach -- so it captures, and labels, the requests sent from
+% inside the sandboxes.
+%
+% The store is Fig 1a's, in Fig 1a's arrangement and order, so the eye reads only what is new (the instrumentation):
+%   level 1  'Shopify store in the browser': outline-only frame (0.6 pt NEUTRAL), 2.2 mm in from the trim as in Fig 1a.
+%            The crawler stands outside it.
+%   level 2  'Page (main thread)' (TINT PAGE ground, NEUTRAL outline) across the top, holding the cookie banner (the one
+%            tinted box, TINT EVENT with an EVENT outline) and the vendor tags; 'Pixel sandboxes' (TINT SAND ground, SAND
+%            outline) below it at the right, under the vendor tags.
+%   level 3  boxes sized to text (sciplot S.box: 2.4 x 1.6 mm padding, 0.6 pt SPAXIS, 0.5 mm corners), one width for
+%            all four; the web worker above the sandboxed iframe, 3 mm apart (Fig 1a's order and pitch), each with its
+%            Shopify runtime ('strict', 'lax') in 6 pt muted grey.
+% The instrumentation (new here): the crawler (7 pt 'Crawler', 6 pt muted 'DevTools Protocol' on one line, as Fig 1a's
+% gate) drives one bus into the frame, between the two sandboxes, to a fork (Fig 1a's fork idiom: one spine, 0.6 pt
+% connectors that stop 0.6 mm short, a 0.8 mm rounded bend): up into the page (its region, midway between its two
+% boxes) and right into the web worker and the sandboxed iframe. The bus carries the guarantee that makes the sandboxed
+% requests visible, in 6 pt muted grey above it: attached before any script runs.
+% The one accent (LEAK, 1.0 pt, the larger Stealth head of Fig 1a's leak arrows): one captured request, a request that
+% lost consent (one of Fig 1c's first requests). It drops straight out of the sandboxed iframe and the browser and lands
+% on its test code in the request's URL below, shortened to one line (host; '/…&' for the dropped path and parameters;
+% the carrier parameter; our test code), named 'Example request' (7 pt muted, left of it on its baseline) and
+% right-aligned with the browser frame. Two square brackets (0.6 pt NEUTRAL) key two of the crawler's labels on it in
+% 6 pt muted grey: 'vendor' (the host) and 'test code' (where the brick path lands).
+% Strings: ../build/fig2_numbers.tex; geometry (checked against measured Arial widths): ../build/fig2_layout.tex.
+% Cell: \PanelRW x \PanelBH mm; the top-left 4.5 x 4.5 mm stays empty (panel letter).
+\documentclass[tikz,border=0pt]{standalone}
+\def\StyleDir{../../style/}
+\input{\StyleDir tikzstyle_v2.tex}
+\input{../build/fig2_numbers.tex}
+\input{../build/fig2_layout.tex}
+\tikzset{
+  every node/.append style={text=SPFG},
+  el/.style={draw=SPAXIS, fill=surface, line width=0.6bp, rounded corners=0.5mm, inner xsep=2.4mm, inner ysep=1.6mm,
+             minimum height=6mm, font=\fsLabel, align=center, anchor=center},
+  el banner/.style={el, draw=EVENT, fill=TINTEVENT},
+  region browser/.style={draw=NEUTRAL, fill=none, line width=0.6bp, rounded corners=0.5mm},
+  region page/.style={draw=NEUTRAL, fill=TINTPAGE, line width=0.6bp, rounded corners=0.5mm},
+  region sbx/.style={draw=SAND, fill=TINTSAND, line width=0.6bp, rounded corners=0.5mm},
+  regionlbl/.style={font=\fsLabel, text=SPMUTED, inner sep=0pt, anchor=base west},
+  t/.style={font=\fsLabel, inner sep=0pt},
+  sub/.style={font=\fsNote, text=SPMUTED, inner sep=0pt},
+  con/.style={-{Stealth[length=3.4bp, width=2.8bp, inset=0.9bp]}, draw=SPAXIS, line width=0.6bp, rounded corners=0.8mm},
+  conplain/.style={draw=SPAXIS, line width=0.6bp, line cap=butt},
+  leakarr/.style={-{Stealth[length=4.25bp, width=3.4bp, inset=1.2bp]}, draw=LEAK, line width=1bp},
+  rq/.style={font=\fsLabel, inner sep=0pt, outer sep=0pt, anchor=base west},
+  brk/.style={draw=NEUTRAL, line width=0.6bp, line join=miter, line cap=butt},
+}
+\def\capSeven{1.77}   % cap height of 7 pt Arial (mm)
+% \Brk{node}{key}: a square bracket under a part of the request, keyed below in 6 pt muted grey
+\newcommand{\Brk}[2]{%
+  \draw[brk] ($(#1.west |- 0,-\BBrkTop)+(0.15,0)$) -- ($(#1.west |- 0,-\BBrkBot)+(0.15,0)$)
+          -- ($(#1.east |- 0,-\BBrkBot)+(-0.15,0)$) -- ($(#1.east |- 0,-\BBrkTop)+(-0.15,0)$);
+  \node[sub, anchor=base] at ($(#1.west |- 0,-\BKeyBase)!0.5!(#1.east |- 0,-\BKeyBase)$) {#2};}
+
+\begin{document}
+\begin{tikzpicture}
+\PanelCanvas{\PanelRW}{\PanelBH}
+
+% ---------------------------------------------------------------- level 1: the Shopify store in the browser
+\draw[region browser] (\BFxZero,-\BFrameTop) rectangle (\BFxOne,-\BFrameBot);
+\node[regionlbl] at (\BFxZero+2.4,-\BFrameNameBase) {Shopify store in the browser};
+
+% ---------------------------------------------------------------- level 2: the page (main thread), across the top
+\draw[region page] (\BRxZero,-\BPageTop) rectangle (\BRxOne,-\BPageBot);
+\node[regionlbl] at (\BRxZero+2.4,-\BPageNameBase) {Page (main thread)};
+\pgfmathsetmacro\yP{(\BRowpTop+\BRowpBot)/2}
+\node[el banner, minimum width=\BBw mm] (cmp) at (\BXL,-\yP) {Cookie banner (CMP)};
+\node[el, minimum width=\BBw mm] (tags) at (\BXR,-\yP) {Vendor tags};
+
+% ---------------------------------------------------------------- level 2: the pixel sandboxes, under the vendor tags
+% (Fig 1a's order: the web worker above the sandboxed iframe)
+\draw[region sbx] (\BSxZero,-\BSbxTop) rectangle (\BSxOne,-\BSbxBot);
+\node[regionlbl] at (\BSxZero+2.4,-\BSbxNameBase) {Pixel sandboxes};
+\node[el, minimum width=\BBw mm] (worker) at (\BXR,-\BYw) {};
+\node[t, anchor=mid west] at ($(worker.west)+(2.4,0)$) {Web worker};
+\node[sub, anchor=mid east] at ($(worker.east)+(-2.4,0)$) {strict};
+\node[el, minimum width=\BBw mm] (iframe) at (\BXR,-\BYi) {};
+\node[t, anchor=mid west] at ($(iframe.west)+(2.4,0)$) {Sandboxed iframe};
+\node[sub, anchor=mid east] at ($(iframe.east)+(-2.4,0)$) {lax};
+
+% ---------------------------------------------------------------- the crawler, outside the browser, and its fork
+\node[el, minimum width=\BCrXOne mm, inner ysep=1.2mm] (crawler) at ({\BCrXOne/2},-\BBus)
+  {Crawler\\[-0.4mm]{\fsNote\color{SPMUTED}DevTools Protocol}};
+% one bus into the browser, to one spine; the spine taps the page (up), the web worker (right) and, with a rounded
+% bend, the sandboxed iframe (right)
+\draw[conplain] (crawler.east) -- (\BXs,-\BBus);
+\draw[con] (\BXs,-\BBus) -- (\BXs,-\BPageBot-0.6);
+\draw[con] (\BXs,-\BYw) -- ($(worker.west)+(-0.6,0)$);
+\draw[con] (\BXs,-\BBus) |- ($(iframe.west)+(-0.6,0)$);
+\node[sub, anchor=base] at (\BXn,-\BNoteBase) {attached before any script runs};
+
+% ---------------------------------------------------------------- one captured request: it drops out of the sandboxed
+% iframe (its origin) and the browser onto its test code; the URL, shortened, with two of the crawler's labels
+\node[regionlbl, anchor=base east] (rqname) at (\BReqX-2.0,-\BReqBase) {Example request};
+\node[rq] (u0) at (\BReqX,-\BReqBase) {\wrHead};
+\node[rq] (u1) at (u0.base east) {\wrMid};
+\node[rq] (u2) at (u1.base east) {\wrCode};
+\draw[leakarr] (\BXD,-\BRowiBot) -- (\BXD,-\BReqBase+\capSeven+0.6);
+\Brk{u0}{vendor}
+\Brk{u2}{test code}
+\end{tikzpicture}
+\end{document}

@@ -10,7 +10,7 @@ One sentence per figure. "Planned" is the sentence in FIGURE_PLAN.md; "Now" is w
 ## Figure 2: Measurement pipeline (methodology)
 - Planned: We sample popular Shopify stores from a public ranking, load each under four controlled conditions, and attribute every ad request to its origin and payload.
 - Status: supported with corrections: three base arms plus validation loads (repeats, and Brave's native GPC on 100 stores), with GPC emulated in Chromium.
-- Now: We sampled 1,362 popular Shopify stores from the Tranco top-200k, loaded each under Default, Decline and GPC (plus repeats and a native-GPC check), and attributed every ad request to its origin, vendor, timing and payload.
+- Now: We sampled 1,358 popular Shopify stores from the Tranco top-200k, loaded each under Default, Decline and GPC (plus repeats and a native-GPC check), and attributed every ad request to its origin, vendor, timing and payload.
 
 ## Figure 3: Pixels fire before any choice
 - Planned: On stores that show a consent banner, sandboxed ad pixels usually fire before the visitor has made any choice.
@@ -24,8 +24,8 @@ One sentence per figure. "Planned" is the sentence in FIGURE_PLAN.md; "Now" is w
 
 ## Figure 5: Do visitor choices work?
 - Planned: Clicking Decline mostly stops sandboxed pixels only when the banner is wired to Shopify's consent API, and GPC is honoured unevenly.
-- Status: revised. Shopify's gate held for pixels that declare the refused purpose (0 of 7,478 sale-declaring pixels started under GPC); after a working Decline and under GPC the fresh-page residuals were 23% vs 18%, against 45% under Default in the same window (paired difference Decline minus GPC 5.2 pp, 95% CI 0.2 to 10.2; exact McNemar p = 0.058): for post-choice persistence GPC's advantage was at most about 10 points, while over the whole visit a Decline user is exposed before the click, which GPC avoids.
-- Now: Shopify honours a recorded refusal for pixels that declare the refused purpose, so what keeps firing after a working Decline (23% of stores on a fresh page) and under GPC (35% of stores that fired under Default) is pixels that declare no purpose (F4), pixels whose declared purpose the choice left allowed (after Decline, typically sale of data; under GPC, marketing), pixels started before the choice that kept sending, including unload beacons (F3), and CMP writes that lose the race (535 of 545 third-party 'marketing' sandboxes started before a CMP's automatic 'no').
+- Status: revised. Shopify's gate held for pixels that declare the refused purpose (0 of 7,458 sale-declaring pixels started under GPC); after a working Decline and under GPC the fresh-page residuals were 23% vs 18%, against 46% under Default in the same window (paired difference Decline minus GPC 5.2 pp, 95% CI 0.2 to 10.3; exact McNemar p = 0.058): for post-choice persistence GPC's advantage was at most about 10 points, while over the whole visit a Decline user is exposed before the click, which GPC avoids.
+- Now: Shopify honours a recorded refusal for pixels that declare the refused purpose, so what keeps firing after a working Decline (23% of stores on a fresh page) and under GPC (35% of stores that fired under Default) is pixels that declare no purpose (F4), pixels whose declared purpose the choice left allowed (after Decline, typically sale of data; under GPC, marketing), pixels started before the choice that kept sending, including unload beacons (F3), and CMP writes that lose the race (525 of 535 third-party 'marketing' sandboxes started before a CMP's automatic 'no').
 
 ## Figure 6: What reaches the vendors
 - Planned: Whatever sits in the URL (including a creator's per-video campaign code) reaches ad vendors through the sandbox, and the findings are stable across repeat loads and native vs emulated GPC.
@@ -34,7 +34,7 @@ One sentence per figure. "Planned" is the sentence in FIGURE_PLAN.md; "Now" is w
 
 ## Supplementary
 - S2: Shopify's own banner has the lowest pre-choice rate of any consent tool (18%) and also the most denying region defaults (98%), so tools cannot be ranked on these data.
-- S3: Pre-choice firing on banner stores is about the same in each of the three larger Tranco rank buckets (47–51%); banner prevalence and the small-sample Decline residual vary more.
+- S3: Pre-choice firing on banner stores is about the same in each of the three larger Tranco rank buckets (48–51%); banner prevalence and the small-sample Decline residual vary more.
 - S4: The crawler's banner, reject and click labels agree with the screenshots in 53/54, 52/53 and 35/35 audited loads (assistant labels, human re-labelling pending), and repeat loads agree with kappa 0.985.
 - S5: How much of a vendor's tracking runs in the sandbox varies from 1% to 87% of its requests; TikTok (55%) and Pinterest (62%) send most requests from it, Google Ads (22%) and Meta (16%) mostly do not.
 - S6: All 20 robustness variants give intervals that overlap the main estimates; beacon-only definitions lower the rates slightly.

@@ -1,0 +1,95 @@
+% Fig 2c (v7.1; binding spec ../../DESIGN_V7.md section 8.5 'Timelines'): the three base arms under ONE time axis, the
+% time from each page's load event (s). Parallel 0.75 pt SPAXIS lines, one per page load: Default, Decline's first page,
+% Decline's next page (the same URL reloaded; its own row, named 'next page' in 6 pt muted grey in the arm-name column
+% and set close under Decline's first page: one arm, two loads) and GPC; the arm glyph (colors.ARM shapes, v6 sizes x
+% 3.5/4.5: the Default circle is the 3.5 pt marker) and its 7 pt name at the left.
+% One EVENT tick (1.0 pt) per arm, its consent moment, named above it in 7 pt: 'banner visible' (Default) and 'Decline
+% click' centred over their ticks, 'GPC signal' (at navigation) set flag-style from its tick (the signal runs from there
+% on). Decline's first page ends at the reload with a short 1.0 pt NEUTRAL end tick named 'reload' (6 pt muted grey)
+% after it; there is no return path: the next page is the row below. The axis runs to +20 s, so the reload (+16 s, a
+% median) sits inside it.
+% Phases are square brackets below the lines (0.6 pt NEUTRAL): the compared window, [0, +10] s, under Default, Decline's
+% next page and GPC -- one zero, so they stack exactly. The next page's bracket is keyed 'compared window' (6 pt muted
+% grey) beside its end, where no line runs above it.
+% Honest scale: 0, the window and the 15 s observation are protocol times, exact on the axis; navigation start, the
+% banner, the click, the reload and the next page's navigation vary by store and are drawn at their medians over the
+% analysed stores (fig2/derived_numbers.json fig2c_timeline; the caption says so). Open axis (sciplot clean): a bottom
+% spine only (no value axis), 0.6 pt, 2.5 pt outward ticks, 6 pt SPAXIS tick labels with signs, 7 pt title.
+% Coordinates, ticks and every time: ../build/fig2_layout.tex (../scripts/make_fig2_panels.py; no number typed here).
+% Cell: \PanelRW x \PanelCH mm; the axis spans b's outer frame exactly (shared left and right edges); the top-left
+% 4.5 x 4.5 mm stays empty (panel letter).
+\documentclass[tikz,border=0pt]{standalone}
+\def\StyleDir{../../style/}
+\input{\StyleDir tikzstyle_v2.tex}
+\input{../build/fig2_layout.tex}
+\tikzset{
+  every node/.append style={text=SPFG},
+  lane/.style={draw=SPAXIS, line width=0.75bp, line cap=butt},
+  evtick/.style={draw=EVENT, line width=1bp, line cap=butt},
+  win/.style={draw=NEUTRAL, line width=0.6bp, line join=miter, line cap=butt},
+  evlbl/.style={font=\fsLabel, text=SPFG, inner sep=0pt, anchor=base},
+  armname/.style={font=\fsLabel, text=SPFG, inner sep=0pt, anchor=base west},
+  sub/.style={font=\fsNote, text=SPMUTED, inner sep=0pt},
+  endtick/.style={draw=NEUTRAL, line width=1bp, line cap=butt},
+  axisline/.style={draw=SPAXIS, line width=0.6bp, line cap=butt},
+  ticklbl/.style={font=\fsTick, text=SPAXIS, inner sep=0pt, anchor=base},
+  axtitle/.style={font=\fsAxis, text=SPFG, inner sep=0pt, anchor=base},
+}
+% v7 arm glyphs (DESIGN_V7 section 5): the colors.ARM shapes and colours, v6 sizes scaled by 3.5 / 4.5
+\pgfmathsetmacro\vSc{3.5/4.5}
+\pgfmathsetmacro\msDef{\figMsDefault*\vSc}\pgfmathsetmacro\msDec{\figMsDecline*\vSc}\pgfmathsetmacro\msGpc{\figMsGPC*\vSc}
+\tikzset{
+  pics/vDefault/.style={code={\filldraw[fill=ink, draw=ink, line width=0.6bp] (0,0) circle[radius=\msDef pt/2];}},
+  pics/vDecline/.style={code={\filldraw[fill=surface, draw=greyD, line width=0.66bp]
+      (-\msDec pt/2,-\msDec pt/2) rectangle (\msDec pt/2,\msDec pt/2);}},
+  pics/vGPC/.style={code={\filldraw[fill=greyM, draw=greyM, line width=0.6bp, line join=miter]
+      (0,\msGpc pt/2) -- (-\msGpc pt/2,-\msGpc pt/2) -- (\msGpc pt/2,-\msGpc pt/2) -- cycle;}},
+}
+\def\midSeven{0.885}   % half the cap height of 7 pt Arial (mm)
+\def\midSix{0.76}      % ... of 6 pt
+% \Arm{y}{glyph}{name}
+\newcommand{\Arm}[3]{\pic at (\CMk,-#1) {#2};\node[armname] at (\CName,-#1-\midSeven) {#3};}
+% \Load{y}{x start}{x end}: one page load
+\newcommand{\Load}[3]{\draw[lane] (#2,-#1) -- (#3,-#1);}
+% \Event{y}{x}{name}: an amber tick across the line, named above (empty: unnamed)
+\newcommand{\Event}[3]{\draw[evtick] (#2,-#1+\CTick) -- (#2,-#1-\CTick);\node[evlbl] at (#2,-#1+\CEvLab) {#3};}
+% \Window{y}: the compared window [0, +10] s, a square bracket under the line
+\newcommand{\Window}[1]{\draw[win] (\CXTickZero+0.15,-#1-\CBrkZero) -- (\CXTickZero+0.15,-#1-\CBrkOne)
+  -- (\CXWin-0.15,-#1-\CBrkOne) -- (\CXWin-0.15,-#1-\CBrkZero);}
+% \Tick{x}{label}: an axis tick (2.5 pt, outward) and its 6 pt label
+\newcommand{\Tick}[2]{\draw[axisline] (#1,-\CYax) -- (#1,-\CYax-0.882);\node[ticklbl] at (#1,-\CTickBase) {#2};}
+
+\begin{document}
+\begin{tikzpicture}
+\PanelCanvas{\PanelRW}{\PanelCH}
+% ------------------------------------------------------------------ Default: no interaction, observed to +15 s
+\Arm{\CYdef}{vDefault}{Default}
+\Load{\CYdef}{\CXDefNav}{\CXObserve}
+\Window{\CYdef}
+\Event{\CYdef}{\CXDefBanner}{banner visible}
+
+% ------------------------------------------------------------------ Decline: the click, then the reload
+\Arm{\CYdec}{vDecline}{Decline}
+\Load{\CYdec}{\CXDecNav}{\CXDecReload}
+\Event{\CYdec}{\CXDecClick}{Decline click}
+\draw[endtick] (\CXDecReload,-\CYdec+\CEndTick) -- (\CXDecReload,-\CYdec-\CEndTick);
+\node[sub, anchor=base west] at (\CReloadLabX,-\CYdec-\midSix) {reload};
+% the next page: the same URL in the same browser, new sandboxes; compared from its own load event
+\node[sub, anchor=base west] at (\CName,-\CYnext-\midSix) {next page};
+\Load{\CYnext}{\CXNextNav}{\CXNextObserve}
+\Window{\CYnext}
+\node[sub, anchor=base west] at (\CKeyX,-\CKeyBase) {compared window};   % keys the three brackets
+
+% ------------------------------------------------------------------ GPC: the signal from navigation on
+\Arm{\CYgpc}{vGPC}{GPC}
+\Load{\CYgpc}{\CXGpcNav}{\CXObserve}
+\Window{\CYgpc}
+\Event{\CYgpc}{\CXGpcNav}{}
+\node[evlbl, anchor=base west] at (\CXGpcNav-0.4,-\CYgpc+\CEvLab) {GPC signal};   % flag-style: from the line's start
+
+% ------------------------------------------------------------------ one time axis: bottom spine only
+\draw[axisline] (\CLeft,-\CYax) -- (\CRight,-\CYax);
+\CTicks
+\node[axtitle] at ({(\CLeft+\CRight)/2},-\CTitleBase) {Time from the page’s load event (s)};
+\end{tikzpicture}
+\end{document}

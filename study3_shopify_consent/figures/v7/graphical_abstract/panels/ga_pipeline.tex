@@ -1,0 +1,53 @@
+% ga_pipeline.tex -- graphical abstract, left half (62 x 50 mm): the Fig 1A pipeline reduced to four shapes.
+% Spec: FIGURE_PLAN_v2.md section 5. Banner + blocker (main thread) whose reach ends in the one red mark (the blind
+% spot) before the sandbox; the only path to the sandbox runs through Shopify's gate (diamond); the hatched sandbox
+% sends to the ad vendor's server (grey: no vendor colours next to red). Hand-built TikZ shapes only (no generative AI).
+% No numbers on this half.
+\documentclass[tikz,border=0pt]{standalone}
+\def\StyleDir{../../style/}
+\input{\StyleDir tikzstyle_v2.tex}
+\input{../ga_style.tex}
+\begin{document}
+\begin{tikzpicture}
+  \PanelCanvas{62}{50}
+  % ------------------------------------------------ geometry (mm; y runs down, so negative)
+  \def\gaTop{7.75}          % top of the banner box (= cap top of tile A's hero on the right)
+  \pgfmathsetmacro\rowA{-(\gaTop+5.5)}      % centre of the main-thread row (box 11 mm high)
+  \pgfmathsetmacro\boxB{-(\gaTop+11)}       % bottom of the box
+  \pgfmathsetmacro\rowB{-(\gaTop+25)}       % centre of the Shopify row
+  \pgfmathsetmacro\lblY{-(\gaTop+33.8)}     % row-B labels: cap top 2 mm under the gate (= tile C's 2nd line)
+  \pgfmathsetmacro\barY{\boxB-4.9}        % the red stop bar
+  \def\gx{12.4}           % gate centre x (its label starts at the 2.5 mm side margin)
+  \def\gw{6}              % gate half-width (diamond 12 x 8.5 mm)
+  \def\gh{4.25}           % gate half-height
+  \def\sx{32.4}           % sandbox centre x (sandbox 19 x 12 mm)
+  \def\vx{50.6}           % vendor server centre x
+  \def\rx{30.2}           % the blocker's reach (x): inside the box, above the sandbox
+
+  % ------------------------------------------------ row A: cookie banner + script blocker, in the page (main thread)
+  \draw[box] (2.5,-\gaTop) rectangle (34.6,\boxB);
+  \pic at (10.5,\rowA) {ic banner};
+  \node[galbl, anchor=base west] at (18.6,\rowA+0.86) {Banner};
+  \node[galbl, anchor=base west] at (18.6,\rowA+0.86-4.25) {+ blocker};
+
+  % ------------------------------------------------ row B: Shopify gate -> sandbox -> ad vendor
+  \draw[draw=ink, fill=surface, line width=\figLwBox, line join=miter]
+    (\gx-\gw,\rowB) -- (\gx,\rowB+\gh) -- (\gx+\gw,\rowB) -- (\gx,\rowB-\gh) -- cycle;
+  \pic (S) at (\sx,\rowB) {sandbox={19}{12}};
+  \pic at (\vx,\rowB) {ic server};
+  \draw[arr] (\gx+\gw,\rowB) -- (\sx-9.5-0.4,\rowB);
+  \draw[arr] (\sx+9.5,\rowB) -- (\vx-4-0.4,\rowB);
+  \node[galbl, anchor=base] at (\sx,\rowB-\gaCapMM/2) {Sandbox};
+
+  % the banner reaches Shopify's sandbox only through the gate (consent state written by the CMP)
+  \draw[arr] (\gx,\boxB) -- (\gx,\rowB+\gh+0.4);
+
+  % ------------------------------------------------ the blind spot: the blocker's reach stops short of the sandbox
+  \draw[reach] (\rx,\boxB) -- (\rx,\barY);
+  \node[galbl, anchor=base west] at (\rx+3.6,\barY-\gaCapMM/2) {Blind spot};
+
+  % ------------------------------------------------ labels under row B, one baseline
+  \node[galbl, anchor=base] at (\gx,\lblY) {Shopify gate};
+  \node[galbl, anchor=base] at (\vx,\lblY) {Ad vendor};
+\end{tikzpicture}
+\end{document}

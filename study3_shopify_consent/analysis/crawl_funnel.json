@@ -1,10 +1,10 @@
 {
- "captured_all_arms": 1362,
+ "captured_all_arms": 1358,
  "captured_creator": 34,
  "repeat_planned": 287,
- "repeat_main_ok": 274,
+ "repeat_main_ok": 273,
  "brave_planned": 100,
- "brave_ok": 99,
+ "brave_ok": 98,
  "funnel_excl": {
   "drawn_to_live": 80,
   "headless": 47,
@@ -15,6 +15,7 @@
   "child": 10,
   "duplicate": 7,
   "adult": 4,
+  "content_excluded": 4,
   "sample_to_captured": 38
  },
  "source": "analysis/analyze.py (stores with an ok load in A0, A1 and A2)"

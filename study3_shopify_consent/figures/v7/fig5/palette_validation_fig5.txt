@@ -1,0 +1,8 @@
+# palette gate (v6) for fig5.pdf
+colours [/Fm0]: #000000 neutral, #1f2328 skin SP_FG, #3d434b skin SP_AXIS, #555555 neutral, #6b7280 skin SP_MUTED, #a0a0a0 neutral, #d9d9d9 neutral, #ffffff neutral
+colours [/Fm1]: #000000 neutral, #1f2328 skin SP_FG, #3d434b skin SP_AXIS, #555555 neutral, #a0a0a0 neutral, #c65358 accent LEAK brick (consent lost), #ffffff neutral
+colours [/Fm2]: #000000 neutral, #1f2328 skin SP_FG, #3d434b skin SP_AXIS, #5d769d semantic HONOUR, #6b7280 skin SP_MUTED, #a0a0a0 neutral, #c65358 accent LEAK brick (consent lost), #e8a33a semantic EVENT, #fbeeed skin TINT_LEAK, #ffffff neutral
+colours [page]: #000000 neutral, #ffffff neutral
+validator: not needed (fewer than two registry hues of one role; neutrals carry the encoding)
+
+RESULT: PASS

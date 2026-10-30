@@ -1,0 +1,131 @@
+{
+ "n_main_stores": 1358,
+ "n_stores_with_config": 1349,
+ "n_pixels": 17166,
+ "by_type_runtime": {
+  "APP|LAX": 390,
+  "APP|OPEN": 1891,
+  "APP|STRICT": 9568,
+  "CUSTOM|LAX": 5317
+ },
+ "n_shopify_own_entries": 2698,
+ "shopify_own_runtime": {
+  "APP|STRICT|ANALYTICS|MARKETING": 1349,
+  "CUSTOM|LAX|ANALYTICS|MARKETING": 1349
+ },
+ "app_n": 10500,
+ "app_nopurpose": 2321,
+ "app_sale": 4917,
+ "app_marketing": 6343,
+ "app_sandboxed": 8609,
+ "custom_n": 3968,
+ "custom_nopurpose": 843,
+ "custom_sale": 2630,
+ "custom_marketing": 2602,
+ "custom_sandboxed": 3968,
+ "stores_with_thirdparty_app": 1329,
+ "stores_with_merchant_custom": 1069,
+ "stores_with_sandboxed_thirdparty": 1303,
+ "stores_with_nopurpose_thirdparty": 1281,
+ "vendors": [
+  {
+   "vendor": "tiktok",
+   "label": "TikTok",
+   "stores": 438,
+   "pixels": 438,
+   "runtime": "STRICT",
+   "runtime_share": 1.0,
+   "share_sale": 1.0,
+   "share_marketing": 1.0,
+   "share_none": 0.0
+  },
+  {
+   "vendor": "pinterest",
+   "label": "Pinterest",
+   "stores": 340,
+   "pixels": 340,
+   "runtime": "STRICT",
+   "runtime_share": 1.0,
+   "share_sale": 1.0,
+   "share_marketing": 1.0,
+   "share_none": 0.0
+  },
+  {
+   "vendor": "snap",
+   "label": "Snap",
+   "stores": 196,
+   "pixels": 196,
+   "runtime": "STRICT",
+   "runtime_share": 1.0,
+   "share_sale": 1.0,
+   "share_marketing": 1.0,
+   "share_none": 0.0
+  },
+  {
+   "vendor": "meta",
+   "label": "Meta (Facebook \\& Instagram)",
+   "stores": 879,
+   "pixels": 879,
+   "runtime": "OPEN",
+   "runtime_share": 1.0,
+   "share_sale": 1.0,
+   "share_marketing": 1.0,
+   "share_none": 0.0
+  },
+  {
+   "vendor": "google_ads",
+   "label": "Google \\& YouTube",
+   "stores": 1012,
+   "pixels": 1012,
+   "runtime": "OPEN",
+   "runtime_share": 1.0,
+   "share_sale": 0.0,
+   "share_marketing": 0.0,
+   "share_none": 1.0
+  },
+  {
+   "vendor": "klaviyo",
+   "label": "Klaviyo",
+   "stores": 573,
+   "pixels": 573,
+   "runtime": "STRICT",
+   "runtime_share": 1.0,
+   "share_sale": 0.0,
+   "share_marketing": 1.0,
+   "share_none": 0.0
+  },
+  {
+   "vendor": "reddit",
+   "label": "Reddit",
+   "stores": 24,
+   "pixels": 24,
+   "runtime": "STRICT",
+   "runtime_share": 1.0,
+   "share_sale": 0.0,
+   "share_marketing": 1.0,
+   "share_none": 0.0
+  },
+  {
+   "vendor": "linkedin",
+   "label": "LinkedIn",
+   "stores": 100,
+   "pixels": 100,
+   "runtime": "STRICT",
+   "runtime_share": 1.0,
+   "share_sale": 1.0,
+   "share_marketing": 1.0,
+   "share_none": 0.0
+  },
+  {
+   "vendor": "applovin",
+   "label": "AppLovin",
+   "stores": 84,
+   "pixels": 84,
+   "runtime": "STRICT",
+   "runtime_share": 1.0,
+   "share_sale": 1.0,
+   "share_marketing": 1.0,
+   "share_none": 0.0
+  }
+ ]
+}

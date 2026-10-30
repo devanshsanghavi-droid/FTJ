@@ -1,0 +1,1190 @@
+% refs_prior.bib -- Study 3 (Shopify sandboxed web pixels vs. CMP blocking)
+% Compiled 2026-09-26. DOIs and metadata checked against Crossref (api.crossref.org),
+% arXiv API, PoPETs/USENIX pages, or the primary web page named in `url`.
+% All former "verify" fields were resolved on 2026-09-26 (review/text_fix_checks/web_verification.txt).
+% Use with elsarticle + natbib (authoryear) and \bibliographystyle{elsarticle-harv}.
+
+% ---------------------------------------------------------------------------
+% Consent banners, CMPs and consent violations
+% ---------------------------------------------------------------------------
+
+@inproceedings{matte2020banners,
+  author    = {Matte, C{\'e}lestin and Bielova, Nataliia and Santos, Cristiana},
+  title     = {Do Cookie Banners Respect my Choice? {M}easuring Legal Compliance of Banners from {IAB} {E}urope's {T}ransparency and {C}onsent {F}ramework},
+  booktitle = {2020 IEEE Symposium on Security and Privacy (SP)},
+  year      = {2020},
+  pages     = {791--809},
+  publisher = {IEEE},
+  doi       = {10.1109/SP40000.2020.00076}
+}
+
+@inproceedings{nouwens2020dark,
+  author    = {Nouwens, Midas and Liccardi, Ilaria and Veale, Michael and Karger, David and Kagal, Lalana},
+  title     = {Dark Patterns after the {GDPR}: Scraping Consent Pop-ups and Demonstrating their Influence},
+  booktitle = {Proceedings of the 2020 CHI Conference on Human Factors in Computing Systems},
+  year      = {2020},
+  pages     = {1--13},
+  publisher = {ACM},
+  doi       = {10.1145/3313831.3376321}
+}
+
+@inproceedings{nouwens2025crosscountry,
+  author    = {Nouwens, Midas and Kristensen, Janus Bager and Maalt, Kristjan and Bagge, Rolf},
+  title     = {A Cross-Country Analysis of {GDPR} Cookie Banners and Flexible Methods for Scraping Them},
+  booktitle = {Proceedings of the 2025 CHI Conference on Human Factors in Computing Systems},
+  year      = {2025},
+  pages     = {1--28},
+  publisher = {ACM},
+  doi       = {10.1145/3706598.3713648}
+}
+
+@inproceedings{bollinger2022automating,
+  author    = {Bollinger, Dino and Kubicek, Karel and Cotrini, Carlos and Basin, David},
+  title     = {Automating Cookie Consent and {GDPR} Violation Detection},
+  booktitle = {31st USENIX Security Symposium (USENIX Security 22)},
+  year      = {2022},
+  pages     = {2893--2910},
+  publisher = {USENIX Association},
+  url       = {https://www.usenix.org/conference/usenixsecurity22/presentation/bollinger},
+  note      = {{Accessed} 26 September 2026}
+}
+
+@inproceedings{bouhoula2024automated,
+  author    = {Bouhoula, Ahmed and Kubicek, Karel and Zac, Amit and Cotrini, Carlos and Basin, David},
+  title     = {Automated Large-Scale Analysis of Cookie Notice Compliance},
+  booktitle = {33rd USENIX Security Symposium (USENIX Security 24)},
+  year      = {2024},
+  pages     = {1723--1739},
+  publisher = {USENIX Association},
+  url       = {https://www.usenix.org/conference/usenixsecurity24/presentation/bouhoula},
+  note      = {{Accessed} 26 September 2026}
+}
+
+@inproceedings{tang2025navigating,
+  author    = {Tang, Brian and Bui, Duc and Shin, Kang G.},
+  title     = {Navigating Cookie Consent Violations Across the Globe},
+  booktitle = {34th USENIX Security Symposium (USENIX Security 25)},
+  year      = {2025},
+  pages     = {5817--5836},
+  publisher = {USENIX Association},
+  url       = {https://www.usenix.org/conference/usenixsecurity25/presentation/tang},
+  note      = {{Accessed} 26 September 2026}
+}
+
+@inproceedings{papadogiannakis2021post,
+  author    = {Papadogiannakis, Emmanouil and Papadopoulos, Panagiotis and Kourtellis, Nicolas and Markatos, Evangelos P.},
+  title     = {User Tracking in the Post-cookie Era: How Websites Bypass {GDPR} Consent to Track Users},
+  booktitle = {Proceedings of the Web Conference 2021 (WWW '21)},
+  year      = {2021},
+  pages     = {2130--2141},
+  publisher = {ACM},
+  doi       = {10.1145/3442381.3450056}
+}
+
+@article{rasaii2025intractable,
+  author    = {Rasaii, Ali and Dao, Ha and Feldmann, Anja and Javid, Mohammadmahdi and Gasser, Oliver and Gosain, Devashish},
+  title     = {Intractable Cookie Crumbs: Unveiling the Nexus of Stateful Banner Interaction and Tracking Cookies},
+  journal   = {Proceedings on Privacy Enhancing Technologies},
+  volume    = {2025},
+  number    = {4},
+  pages     = {429--445},
+  year      = {2025},
+  doi       = {10.56553/popets-2025-0138}
+}
+
+@article{toth2022dark,
+  author    = {Toth, Michael and Bielova, Nataliia and Roca, Vincent},
+  title     = {On dark patterns and manipulation of website publishers by {CMPs}},
+  journal   = {Proceedings on Privacy Enhancing Technologies},
+  volume    = {2022},
+  number    = {3},
+  pages     = {478--497},
+  year      = {2022},
+  doi       = {10.56553/popets-2022-0082}
+}
+
+@incollection{santos2021cmp,
+  author    = {Santos, Cristiana and Nouwens, Midas and Toth, Michael and Bielova, Nataliia and Roca, Vincent},
+  title     = {Consent Management Platforms Under the {GDPR}: Processors and/or Controllers?},
+  booktitle = {Privacy Technologies and Policy (APF 2021)},
+  series    = {Lecture Notes in Computer Science},
+  volume    = {12703},
+  pages     = {47--69},
+  year      = {2021},
+  publisher = {Springer},
+  doi       = {10.1007/978-3-030-76663-4_3}
+}
+
+@article{kretschmer2021cookie,
+  author    = {Kretschmer, Michael and Pennekamp, Jan and Wehrle, Klaus},
+  title     = {Cookie Banners and Privacy Policies: Measuring the Impact of the {GDPR} on the Web},
+  journal   = {ACM Transactions on the Web},
+  volume    = {15},
+  number    = {4},
+  pages     = {20:1--20:42},
+  year      = {2021},
+  doi       = {10.1145/3466722}
+}
+
+@inproceedings{hils2020emergence,
+  author    = {Hils, Maximilian and Woods, Daniel W. and B{\"o}hme, Rainer},
+  title     = {Measuring the Emergence of Consent Management on the Web},
+  booktitle = {Proceedings of the ACM Internet Measurement Conference (IMC '20)},
+  year      = {2020},
+  pages     = {317--332},
+  publisher = {ACM},
+  doi       = {10.1145/3419394.3423647}
+}
+
+@inproceedings{degeling2019value,
+  author    = {Degeling, Martin and Utz, Christine and Lentzsch, Christopher and Hosseini, Henry and Schaub, Florian and Holz, Thorsten},
+  title     = {We Value Your Privacy ... Now Take Some Cookies: Measuring the {GDPR}'s Impact on Web Privacy},
+  booktitle = {Network and Distributed System Security Symposium (NDSS 2019)},
+  year      = {2019},
+  publisher = {Internet Society},
+  doi       = {10.14722/ndss.2019.23378}
+}
+
+@inproceedings{sanchezrola2019optout,
+  author    = {Sanchez-Rola, Iskander and Dell'Amico, Matteo and Kotzias, Platon and Balzarotti, Davide and Bilge, Leyla and Vervier, Pierre-Antoine and Santos, Igor},
+  title     = {Can {I} Opt Out Yet? {GDPR} and the Global Illusion of Cookie Control},
+  booktitle = {Proceedings of the 2019 ACM Asia Conference on Computer and Communications Security (AsiaCCS '19)},
+  year      = {2019},
+  pages     = {340--351},
+  publisher = {ACM},
+  doi       = {10.1145/3321705.3329806}
+}
+
+@article{trevisan2019cookie,
+  author    = {Trevisan, Martino and Traverso, Stefano and Bassi, Eleonora and Mellia, Marco},
+  title     = {4 Years of {EU} Cookie Law: Results and Lessons Learned},
+  journal   = {Proceedings on Privacy Enhancing Technologies},
+  volume    = {2019},
+  number    = {2},
+  pages     = {126--145},
+  year      = {2019},
+  doi       = {10.2478/popets-2019-0023}
+}
+
+@incollection{dimova2026history,
+  author    = {Dimova, Yana and Toubiana, Vincent and Van Goethem, Tom and Desmet, Lieven and Joosen, Wouter},
+  title     = {A History of {GDPR} Cookie Banner Compliance: The Roles of Publishers, Regulators and {CMPs}},
+  booktitle = {Privacy Technologies and Policy (APF 2026)},
+  series    = {Lecture Notes in Computer Science},
+  pages     = {173--198},
+  year      = {2026},
+  publisher = {Springer},
+  doi       = {10.1007/978-3-032-35899-8_9}
+}
+
+@article{kancherla2025revoke,
+  author    = {Kancherla, Gayatri Priyadarsini and Bielova, Nataliia and Santos, Cristiana and Bichhawat, Abhishek},
+  title     = {Johnny Can't Revoke Consent Either: Measuring Compliance of Consent Revocation on the Web},
+  journal   = {Proceedings on Privacy Enhancing Technologies},
+  volume    = {2025},
+  number    = {4},
+  pages     = {329--347},
+  year      = {2025},
+  doi       = {10.56553/popets-2025-0133}
+}
+
+@article{liu2024opted,
+  author    = {Liu, Zengrui and Iqbal, Umar and Saxena, Nitesh},
+  title     = {Opted Out, Yet Tracked: Are Regulations Enough to Protect Your Privacy?},
+  journal   = {Proceedings on Privacy Enhancing Technologies},
+  volume    = {2024},
+  number    = {1},
+  pages     = {280--299},
+  year      = {2024},
+  doi       = {10.56553/popets-2024-0016}
+}
+
+@article{aziz2024johnny,
+  author    = {Aziz, Muhammad Abu Bakar and Wilson, Christo},
+  title     = {Johnny Still Can't Opt-out: Assessing the {IAB} {CCPA} Compliance Framework},
+  journal   = {Proceedings on Privacy Enhancing Technologies},
+  volume    = {2024},
+  number    = {4},
+  pages     = {349--363},
+  year      = {2024},
+  doi       = {10.56553/popets-2024-0120}
+}
+
+@inproceedings{zhang2024cschecker,
+  author    = {Zhang, Mingxue and Meng, Wei and Zhou, You and Ren, Kui},
+  title     = {{CSChecker}: Revisiting {GDPR} and {CCPA} Compliance of Cookie Banners on the Web},
+  booktitle = {Proceedings of the IEEE/ACM 46th International Conference on Software Engineering (ICSE '24)},
+  year      = {2024},
+  pages     = {1--12},
+  publisher = {ACM},
+  doi       = {10.1145/3597503.3639159}
+}
+
+@article{ormeno2024cookie,
+  author    = {Ormeno, Mateo and Dao, Ha and Herskovic, Valeria and Fukuda, Kensuke},
+  title     = {Do Cookie Banners Respect My Browsing Privacy? {M}easuring the Effectiveness of Cookie Rejection for Limiting Behavioral Advertising},
+  journal   = {IEEE Access},
+  volume    = {12},
+  pages     = {174539--174550},
+  year      = {2024},
+  doi       = {10.1109/ACCESS.2024.3494539}
+}
+
+@misc{singh2026umbra,
+  author    = {Singh, Nivedita and Jin, Seyoung and Kim, Hyoungshick},
+  title     = {When the Abyss Looks Back: Unveiling Evolving Dark Patterns in Cookie Consent Banners},
+  year      = {2026},
+  eprint    = {2603.21515},
+  doi       = {10.48550/arXiv.2603.21515},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CR},
+  note      = {{Preprint}}
+}
+
+@article{jha2022internet,
+  author    = {Jha, Nikhil and Trevisan, Martino and Vassio, Luca and Mellia, Marco},
+  title     = {The Internet with Privacy Policies: Measuring The Web Upon Consent},
+  journal   = {ACM Transactions on the Web},
+  volume    = {16},
+  number    = {3},
+  pages     = {1--24},
+  year      = {2022},
+  doi       = {10.1145/3555352}
+}
+
+@article{jha2025cmp,
+  author    = {Jha, Nikhil and Trevisan, Martino and Mellia, Marco and Fernandez, Daniel and Irarrazaval, Rodrigo},
+  title     = {Privacy Policies and Consent Management Platforms: Growth and Users' Interactions over Time},
+  journal   = {ACM Transactions on the Web},
+  volume    = {19},
+  number    = {3},
+  pages     = {1--25},
+  year      = {2025},
+  doi       = {10.1145/3725737}
+}
+
+@inproceedings{prasad2026regtrack,
+  author    = {Prasad, Tanya and Vora, Rut and Lim, Soo Yee and Hoang, Nguyen Phong and Pasquier, Thomas},
+  title     = {Work-in-Progress: {RegTrack}: Uncovering Global Disparities in Third-party Advertising and Tracking},
+  booktitle = {NDSS Workshop on Measurements, Attacks, and Defenses for the Web (MADWeb 2026)},
+  year      = {2026},
+  publisher = {Internet Society},
+  doi       = {10.14722/madweb.2026.23010}
+}
+
+@article{yu2026global,
+  author    = {Yu, Harry and Yin, Patton and Zimmeck, Sebastian},
+  title     = {Global Web, Local Privacy? {A}n International Review of Web Tracking},
+  journal   = {Pragmatic Cybersecurity},
+  volume    = {1},
+  number    = {1},
+  pages     = {5},
+  year      = {2026},
+  eprint    = {2604.18633},
+  doi       = {10.48550/arXiv.2604.18633},
+  archivePrefix = {arXiv}
+}
+
+@misc{dawoud2026privaudit,
+  author    = {Dawoud, Mohamed Moustafa and Aggarwal, Riya and Krishnamurthy, Likith Rahul and Sundara Raman, Ram},
+  title     = {{PrivAudit}: A Dual-Lens Auditing Framework for Website Privacy Practices under the {CCPA}},
+  year      = {2026},
+  eprint    = {2609.09697},
+  archivePrefix = {arXiv},
+  doi       = {10.48550/arXiv.2609.09697},
+  note      = {{Preprint}; extended version of a paper to appear at ACM CCS 2026}
+}
+
+@article{martinez2025million,
+  author    = {Mart{\'i}nez, David and Molero, Aniol and Calle, Eusebi and Canals Ametller, Dolors and Jov{\'e}, Albert},
+  title     = {Large-scale web tracking and cookie compliance: Evaluating one million websites under {GDPR} with {AI} categorization},
+  journal   = {Journal of Network and Computer Applications},
+  volume    = {242},
+  pages     = {104222},
+  year      = {2025},
+  doi       = {10.1016/j.jnca.2025.104222}
+}
+
+@article{martinez2022compliance,
+  author    = {Mart{\'i}nez, David and Calle, Eusebi and Jov{\'e}, Albert and P{\'e}rez-Sol{\`a}, Cristina},
+  title     = {Web-tracking compliance: websites' level of confidence in the use of information-gathering technologies},
+  journal   = {Computers \& Security},
+  volume    = {122},
+  pages     = {102873},
+  year      = {2022},
+  doi       = {10.1016/j.cose.2022.102873}
+}
+
+@article{berens2024cookie,
+  author    = {Berens, Benjamin Maximilian and Bohlender, Mark and Dietmann, Heike and Krisam, Chiara and Kulyk, Oksana and Volkamer, Melanie},
+  title     = {Cookie disclaimers: Dark patterns and lack of transparency},
+  journal   = {Computers \& Security},
+  volume    = {136},
+  pages     = {103507},
+  year      = {2024},
+  doi       = {10.1016/j.cose.2023.103507}
+}
+
+@article{woods2022commodification,
+  author    = {Woods, Daniel W. and B{\"o}hme, Rainer},
+  title     = {The commodification of consent},
+  journal   = {Computers \& Security},
+  volume    = {115},
+  pages     = {102605},
+  year      = {2022},
+  doi       = {10.1016/j.cose.2022.102605}
+}
+
+% ---------------------------------------------------------------------------
+% GPC, CCPA opt-out, privacy preference signals
+% ---------------------------------------------------------------------------
+
+@article{zimmeck2023gpc,
+  author    = {Zimmeck, Sebastian and Wang, Oliver and Alicki, Kuba and Wang, Jocelyn and Eng, Sophie},
+  title     = {Usability and Enforceability of {G}lobal {P}rivacy {C}ontrol},
+  journal   = {Proceedings on Privacy Enhancing Technologies},
+  volume    = {2023},
+  number    = {2},
+  pages     = {265--281},
+  year      = {2023},
+  doi       = {10.56553/popets-2023-0052}
+}
+
+@article{zimmeck2024gapc,
+  author    = {Zimmeck, Sebastian and Kuller, Eliza and Ma, Chunyue and Tassone, Bella and Champeau, Joe},
+  title     = {Generalizable Active Privacy Choice: Designing a Graphical User Interface for {G}lobal {P}rivacy {C}ontrol},
+  journal   = {Proceedings on Privacy Enhancing Technologies},
+  volume    = {2024},
+  number    = {1},
+  pages     = {258--279},
+  year      = {2024},
+  doi       = {10.56553/popets-2024-0015}
+}
+
+@inproceedings{hausladen2025gpc,
+  author    = {Hausladen, Katherine and Wang, Oliver and Eng, Sophie and Wang, Jocelyn and Wijaya, Francisca and May, Matthew and Zimmeck, Sebastian},
+  title     = {Websites' {G}lobal {P}rivacy {C}ontrol Compliance at Scale and over Time},
+  booktitle = {34th USENIX Security Symposium (USENIX Security 25)},
+  year      = {2025},
+  pages     = {5837--5856},
+  publisher = {USENIX Association},
+  url       = {https://www.usenix.org/conference/usenixsecurity25/presentation/hausladen},
+  note      = {{Accessed} 26 September 2026}
+}
+
+@article{zimmeck2026android,
+  author    = {Zimmeck, Sebastian and Aggarwal, Nishant and Liu, Zachary and Altman, Sage and Kollnig, Konrad},
+  title     = {Exercising the {CCPA} Opt-out Right on {A}ndroid: Legally Mandated but Practically Challenging},
+  journal   = {Proceedings on Privacy Enhancing Technologies},
+  volume    = {2026},
+  number    = {2},
+  pages     = {662--679},
+  year      = {2026},
+  doi       = {10.56553/popets-2026-0065}
+}
+
+@article{zimmeck2026gpceu,
+  author    = {Zimmeck, Sebastian and Pandit, Harshvardhan J. and Zuiderveen Borgesius, Frederik and Santos, Cristiana Teixeira and Kollnig, Konrad and Berjon, Robin},
+  title     = {Can the {GPC} standard eliminate consent banners in the {EU}?},
+  journal   = {Computer Law \& Security Review},
+  volume    = {61},
+  pages     = {106332},
+  year      = {2026},
+  doi       = {10.1016/j.clsr.2026.106332}
+}
+
+@misc{hils2021conflicting,
+  author    = {Hils, Maximilian and Woods, Daniel W. and B{\"o}hme, Rainer},
+  title     = {Conflicting Privacy Preference Signals in the Wild},
+  year      = {2021},
+  eprint    = {2109.14286},
+  doi       = {10.48550/arXiv.2109.14286},
+  archivePrefix = {arXiv},
+  note      = {{Preprint}}
+}
+
+@inproceedings{tran2024ccpa,
+  author    = {Tran, Van Hong and Mehrotra, Aarushi and Chetty, Marshini and Feamster, Nick and Frankenreiter, Jens and Strahilevitz, Lior},
+  title     = {Measuring Compliance with the {C}alifornia {C}onsumer {P}rivacy {A}ct Over Space and Time},
+  booktitle = {Proceedings of the 2024 CHI Conference on Human Factors in Computing Systems},
+  year      = {2024},
+  pages     = {1--19},
+  publisher = {ACM},
+  doi       = {10.1145/3613904.3642597}
+}
+
+@inproceedings{tran2025darkoptout,
+  author    = {Tran, Van Hong and Mehrotra, Aarushi and Sharma, Ranya and Chetty, Marshini and Feamster, Nick and Frankenreiter, Jens and Strahilevitz, Lior},
+  title     = {Dark Patterns in the Opt-Out Process and Compliance with the {C}alifornia {C}onsumer {P}rivacy {A}ct ({CCPA})},
+  booktitle = {Proceedings of the 2025 CHI Conference on Human Factors in Computing Systems},
+  year      = {2025},
+  pages     = {1--25},
+  publisher = {ACM},
+  doi       = {10.1145/3706598.3714138}
+}
+
+@misc{libert2026webxray,
+  author       = {{webXray}},
+  title        = {California Privacy Audit: A Legal Minefield that Puts Users at Risk},
+  year         = {2026},
+  month        = {March},
+  url          = {https://globalprivacyaudit.org/2026/california},
+  note         = {{Grey} literature, not peer-reviewed. Accessed 26 September 2026}
+}
+
+@techreport{w3c_gpc,
+  author      = {Zimmeck, Sebastian and Snyder, Peter and Brookman, Justin and Zucker-Scharff, Aram},
+  title       = {Global Privacy Control ({GPC})},
+  institution = {World Wide Web Consortium},
+  type        = {W3C Working Draft, 24 September 2026},
+  year        = {2026},
+  url         = {https://www.w3.org/TR/gpc/},
+  note        = {{Accessed} 26 September 2026}
+}
+
+% ---------------------------------------------------------------------------
+% Tag managers, server-side / first-party tracking
+% ---------------------------------------------------------------------------
+
+@inproceedings{mertens2025gtm,
+  author    = {Mertens, Gilles and Bielova, Nataliia and Roca, Vincent and Santos, Cristiana},
+  title     = {You Can't Trust Your Tag Neither: Privacy Leaks and Potential Legal Violations within the {G}oogle {T}ag {M}anager},
+  booktitle = {2025 IEEE 10th European Symposium on Security and Privacy (EuroS\&P)},
+  year      = {2025},
+  pages     = {93--112},
+  publisher = {IEEE},
+  doi       = {10.1109/EuroSP63326.2025.00015}
+}
+
+@misc{mertens2026gtm80k,
+  author       = {Mertens, Gilles and Bielova, Nataliia and Roca, Vincent and Bouhoula, Ahmed and Akassab, Marouanne},
+  title        = {An Analysis of Client- and Server-Side {G}oogle {T}ag {M}anager and its Tags on the Web},
+  year         = {2026},
+  howpublished = {HAL preprint hal-05466083},
+  url          = {https://hal.science/hal-05466083},
+  note         = {{The} associated artifact record names ACM CCS 2026. Accessed 26 September 2026}
+}
+
+@misc{bottger2026fpt,
+  author    = {B{\"o}ttger, Christian and Khouja, Tareq and Pohlmann, Norbert and Demir, Nurullah and Urban, Tobias},
+  title     = {From Third-Party to First-Party: Measuring and Protecting Against Modern Web Tracking Mechanisms},
+  year      = {2026},
+  eprint    = {2606.16720},
+  doi       = {10.48550/arXiv.2606.16720},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CR},
+  note      = {{Preprint}}
+}
+
+@misc{jazlan2026sstguard,
+  author    = {Jazlan, Muhammad and Gamero-Garrido, Alexander and Shafiq, Zubair and Vekaria, Yash},
+  title     = {{SST-Guard}: Detecting and Characterizing Server-Side {G}oogle {A}nalytics in the Wild},
+  year      = {2026},
+  eprint    = {2604.27497},
+  doi       = {10.48550/arXiv.2604.27497},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CR},
+  note      = {{Preprint}}
+}
+
+@article{elfraihi2024meta,
+  author    = {El fraihi, Asmaa and Amieur, Nardjes and Rudametkin, Walter and Goga, Oana},
+  title     = {Client-side and Server-side Tracking on {M}eta: Effectiveness and Accuracy},
+  journal   = {Proceedings on Privacy Enhancing Technologies},
+  volume    = {2024},
+  number    = {3},
+  pages     = {431--445},
+  year      = {2024},
+  doi       = {10.56553/popets-2024-0086}
+}
+
+% ---------------------------------------------------------------------------
+% Pixels, e-commerce, third-party services
+% ---------------------------------------------------------------------------
+
+@article{mathur2019dark,
+  author    = {Mathur, Arunesh and Acar, Gunes and Friedman, Michael J. and Lucherini, Eli and Mayer, Jonathan and Chetty, Marshini and Narayanan, Arvind},
+  title     = {Dark Patterns at Scale: Findings from a Crawl of 11{K} Shopping Websites},
+  journal   = {Proceedings of the ACM on Human-Computer Interaction},
+  volume    = {3},
+  number    = {CSCW},
+  pages     = {1--32},
+  year      = {2019},
+  doi       = {10.1145/3359183}
+}
+
+@article{singh2025crumbled,
+  author    = {Singh, Nivedita and Do, Yejin and Yu, Yongsang and Fouad, Imane and Kim, Jungrae and Kim, Hyoungshick},
+  title     = {Crumbled Cookies: Exploring E-commerce Websites' Cookie Policies with Data Protection Regulations},
+  journal   = {ACM Transactions on the Web},
+  volume    = {19},
+  number    = {1},
+  pages     = {1--24},
+  year      = {2025},
+  doi       = {10.1145/3708515}
+}
+
+@inproceedings{vlachogiannakis2025bought,
+  author    = {Vlachogiannakis, Ioannis and Papadogiannakis, Emmanouil and Papadopoulos, Panagiotis and Kourtellis, Nicolas and Markatos, Evangelos},
+  title     = {I Know What You Bought Last Summer: Investigating User Data Leakage in E-Commerce Platforms},
+  booktitle = {Proceedings of the 22nd International Conference on Security and Cryptography (SECRYPT 2025)},
+  year      = {2025},
+  pages     = {392--399},
+  publisher = {SciTePress},
+  doi       = {10.5220/0013519000003979}
+}
+
+@article{kieserman2025tracker,
+  author    = {Kieserman, Julia B. and Andreou, Athanasios and Geeng, Chris and Lauinger, Tobias and McCoy, Damon},
+  title     = {Tracker Installations Are Not Created Equal: Understanding Tracker Configuration of Form Data Collection},
+  journal   = {Proceedings on Privacy Enhancing Technologies},
+  volume    = {2025},
+  number    = {4},
+  pages     = {679--695},
+  year      = {2025},
+  doi       = {10.56553/popets-2025-0151}
+}
+
+@misc{ghani2026pixelconfig,
+  author    = {Ghani, Abdullah and Vekaria, Yash and Shafiq, Zubair},
+  title     = {{PixelConfig}: Longitudinal Measurement and Reverse-Engineering of {M}eta {P}ixel Configurations},
+  year      = {2026},
+  eprint    = {2603.09380},
+  doi       = {10.48550/arXiv.2603.09380},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CR},
+  note      = {{Preprint}}
+}
+
+@inproceedings{bekos2023hitchhiker,
+  author    = {Bekos, Paschalis and Papadopoulos, Panagiotis and Markatos, Evangelos P. and Kourtellis, Nicolas},
+  title     = {The Hitchhiker's Guide to {F}acebook Web Tracking with Invisible Pixels and Click {IDs}},
+  booktitle = {Proceedings of the ACM Web Conference 2023 (WWW '23)},
+  year      = {2023},
+  pages     = {2132--2143},
+  publisher = {ACM},
+  doi       = {10.1145/3543507.3583311}
+}
+
+@article{zagi2025referrer,
+  author    = {Zagi, Luqman and Moti, Zahra and Acar, Gunes},
+  title     = {Referrer Policy: Implementation and Circumvention},
+  journal   = {Proceedings on Privacy Enhancing Technologies},
+  volume    = {2025},
+  number    = {3},
+  pages     = {135--155},
+  year      = {2025},
+  doi       = {10.56553/popets-2025-0092}
+}
+
+@article{utz2023privacy,
+  author    = {Utz, Christine and Amft, Sabrina and Degeling, Martin and Holz, Thorsten and Fahl, Sascha and Schaub, Florian},
+  title     = {Privacy Rarely Considered: Exploring Considerations in the Adoption of Third-Party Services by Websites},
+  journal   = {Proceedings on Privacy Enhancing Technologies},
+  volume    = {2023},
+  number    = {1},
+  pages     = {5--28},
+  year      = {2023},
+  doi       = {10.56553/popets-2023-0002}
+}
+
+@misc{vekaria2025sok,
+  author    = {Vekaria, Yash and Beugin, Yohan and Munir, Shaoor and Acar, Gunes and Bielova, Nataliia and Englehardt, Steven and Iqbal, Umar and Kapravelos, Alexandros and Laperdrix, Pierre and Nikiforakis, Nick and Polakis, Jason and Roesner, Franziska and Shafiq, Zubair and Zimmeck, Sebastian},
+  title     = {{SoK}: Advances and Open Problems in Web Tracking},
+  year      = {2025},
+  eprint    = {2506.14057},
+  doi       = {10.48550/arXiv.2506.14057},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CR},
+  note      = {{Preprint}}
+}
+
+@misc{munir2025keystroke,
+  author    = {Munir, Shaoor and Demir, Nurullah and Li, Qian and Kollnig, Konrad and Shafiq, Zubair},
+  title     = {Every Keystroke You Make: A Tech-Law Measurement and Analysis of Event Listeners for Wiretapping},
+  year      = {2025},
+  eprint    = {2508.19825},
+  doi       = {10.48550/arXiv.2508.19825},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.CR},
+  note      = {{Preprint}}
+}
+
+@misc{assabese2026shopifyapps,
+  author    = {Assabese, Fabrizio and Celis, Peter-Jan and Destefanis, Giuseppe},
+  title     = {Scale, Concentration, and Entry Timing in the {S}hopify App Ecosystem: A Longitudinal Study of Platform Governance and Application Survival},
+  year      = {2026},
+  eprint    = {2608.23771},
+  doi       = {10.48550/arXiv.2608.23771},
+  archivePrefix = {arXiv},
+  note      = {{Preprint}}
+}
+
+% ---------------------------------------------------------------------------
+% Measurement method precedents
+% ---------------------------------------------------------------------------
+
+@inproceedings{englehardt2016online,
+  author    = {Englehardt, Steven and Narayanan, Arvind},
+  title     = {Online Tracking: A 1-million-site Measurement and Analysis},
+  booktitle = {Proceedings of the 2016 ACM SIGSAC Conference on Computer and Communications Security (CCS '16)},
+  year      = {2016},
+  pages     = {1388--1401},
+  publisher = {ACM},
+  doi       = {10.1145/2976749.2978313}
+}
+
+@inproceedings{lepochat2019tranco,
+  author    = {Le Pochat, Victor and Van Goethem, Tom and Tajalizadehkhoob, Samaneh and Korczy{\'n}ski, Maciej and Joosen, Wouter},
+  title     = {Tranco: A Research-Oriented Top Sites Ranking Hardened Against Manipulation},
+  booktitle = {Network and Distributed System Security Symposium (NDSS 2019)},
+  year      = {2019},
+  publisher = {Internet Society},
+  doi       = {10.14722/ndss.2019.23386}
+}
+
+% ---------------------------------------------------------------------------
+% Sandboxing third-party code
+% ---------------------------------------------------------------------------
+
+@inproceedings{ingram2012treehouse,
+  author    = {Ingram, Lon and Walfish, Michael},
+  title     = {{TreeHouse}: {J}avaScript Sandboxes to Help Web Developers Help Themselves},
+  booktitle = {2012 USENIX Annual Technical Conference (USENIX ATC 12)},
+  year      = {2012},
+  pages     = {153--164},
+  publisher = {USENIX Association},
+  note      = {{Accessed} 26 September 2026},
+  url       = {https://www.usenix.org/conference/atc12/technical-sessions/presentation/ingram}
+}
+
+@inproceedings{terlouw2010adjail,
+  author    = {Ter Louw, Mike and Ganesh, Karthik Thotta and Venkatakrishnan, V. N.},
+  title     = {{AdJail}: Practical Enforcement of Confidentiality and Integrity Policies on Web Advertisements},
+  booktitle = {19th USENIX Security Symposium (USENIX Security 10)},
+  year      = {2010},
+  pages     = {371--388},
+  publisher = {USENIX Association},
+  note      = {{Accessed} 26 September 2026},
+  url       = {https://www.usenix.org/conference/usenixsecurity10/adjail-practical-enforcement-confidentiality-and-integrity-policies-web}
+}
+
+@inproceedings{karami2021sleeper,
+  author    = {Karami, Soroush and Ilia, Panagiotis and Polakis, Jason},
+  title     = {Awakening the Web's Sleeper Agents: Misusing Service Workers for Privacy Leakage},
+  booktitle = {Network and Distributed System Security Symposium (NDSS 2021)},
+  year      = {2021},
+  publisher = {Internet Society},
+  doi       = {10.14722/ndss.2021.23104}
+}
+
+% ---------------------------------------------------------------------------
+% Primary documentation (platform and CMP vendors) -- accessed 2026-09-25/26
+% ---------------------------------------------------------------------------
+
+@misc{shopify_aboutpixels,
+  author       = {{Shopify}},
+  title        = {About web pixels (strict sandbox with web workers; lax sandbox iframe)},
+  url          = {https://shopify.dev/docs/apps/build/marketing-analytics/pixels},
+  year         = {2026},
+  note         = {{Shopify} developer documentation. Accessed 26 September 2026}
+}
+
+@misc{shopify_pixelprivacy,
+  author       = {{Shopify}},
+  title        = {Pixel privacy ({W}eb {P}ixels {API})},
+  url          = {https://shopify.dev/docs/api/web-pixels-api/pixel-privacy},
+  year         = {2026},
+  note         = {{Shopify} developer documentation. Accessed 26 September 2026}
+}
+
+@misc{shopify_customerprivacy,
+  author       = {{Shopify}},
+  title        = {{Customer Privacy API}},
+  url          = {https://shopify.dev/docs/api/customer-privacy},
+  year         = {2026},
+  note         = {{Shopify} developer documentation. Accessed 26 September 2026}
+}
+
+@misc{shopify_privacysettings,
+  author       = {{Shopify}},
+  title        = {Configuring customer privacy settings},
+  url          = {https://help.shopify.com/en/manual/privacy-and-security/privacy/customer-privacy-settings/privacy-settings},
+  year         = {2026},
+  note         = {{Shopify} Help Center. Accessed 26 September 2026}
+}
+
+@misc{shopify_buildwebpixels,
+  author       = {{Shopify}},
+  title        = {Build web pixels},
+  url          = {https://shopify.dev/docs/apps/build/marketing-analytics/build-web-pixels},
+  year         = {2026},
+  note         = {{Shopify} developer documentation. Accessed 26 September 2026}
+}
+
+@misc{shopify_custompixels,
+  author       = {{Shopify}},
+  title        = {Manage your custom pixels},
+  url          = {https://help.shopify.com/en/manual/promoting-marketing/pixels/custom-pixels/manage},
+  year         = {2026},
+  note         = {{Shopify} Help Center. Accessed 26 September 2026}
+}
+
+@misc{shopify_apppixels_help,
+  author       = {{Shopify}},
+  title        = {App pixels},
+  url          = {https://help.shopify.com/en/manual/promoting-marketing/pixels/app-pixels},
+  year         = {2026},
+  note         = {{Shopify} Help Center. Accessed 26 September 2026}
+}
+
+@misc{shopify_checkout_upgrade,
+  author       = {{Shopify}},
+  title        = {Upgrading the {T}hank you and {O}rder status pages (checkout extensibility upgrade)},
+  url          = {https://help.shopify.com/en/manual/checkout-settings/checkout-extensibility/checkout-upgrade},
+  year         = {2026},
+  note         = {{Shopify} Help Center. Accessed 26 September 2026},
+  comment      = {States the 26 Aug 2026 deadline for non-Plus plans and web/app pixels as replacement}
+}
+
+@misc{shopify_cookies,
+  author       = {{Shopify}},
+  title        = {{Shopify Cookie Policy}},
+  url          = {https://www.shopify.com/legal/cookies},
+  year         = {2026},
+  note         = {{Accessed} 26 September 2026},
+  comment      = {Describes the _tracking_consent cookie}
+}
+
+@misc{truevault_apppixel,
+  author       = {{TrueVault}},
+  title        = {Shopify App Pixel Consent},
+  url          = {https://developers.truevault.com/docs/shopify/shopify-app-pixel-consent},
+  year         = {2026},
+  note         = {{CMP} vendor documentation. Accessed 25 September 2026}
+}
+
+@misc{onetrust_ecommerce,
+  author       = {{OneTrust}},
+  title        = {{OneTrust} {CMP} with {S}hopify -- Developer Documentation},
+  url          = {https://developer.onetrust.com/onetrust/docs/ecommerce},
+  year         = {2026},
+  note         = {{CMP} vendor documentation. Accessed 25 September 2026}
+}
+
+@misc{pandectes_blocking,
+  author       = {{Pandectes}},
+  title        = {How {P}andectes can block third-party services and apps based on consent status},
+  url          = {https://help.pandectes.io/en/article/how-pandectes-can-block-third-party-services-and-apps-based-on-consent-status-v19irs/},
+  year         = {2026},
+  note         = {{CMP} vendor documentation. Accessed 25 September 2026}
+}
+
+@misc{pandectes_gpc,
+  author       = {{Pandectes}},
+  title        = {How {G}lobal {P}rivacy {C}ontrol ({GPC}) works},
+  url          = {https://help.pandectes.io/en/article/how-global-privacy-control-gpc-works-nhzivw/},
+  year         = {2026},
+  note         = {{CMP} vendor documentation. Accessed 26 September 2026}
+}
+
+@misc{consentmo_cpapi,
+  author       = {{Consentmo}},
+  title        = {Shopify Customer Privacy {API} integration},
+  url          = {https://support.consentmo.com/en/article/shopify-customer-privacy-api-integration-1284c47/},
+  year         = {2026},
+  note         = {{CMP} vendor documentation. Accessed 25 September 2026}
+}
+
+% ===========================================================================
+% Additions for the manuscript (2026-09-26). DOIs checked against api.crossref.org;
+% legal and web sources checked by web search on 2026-09-26 (URLs as given).
+% ===========================================================================
+
+% ---- statistics ----
+@article{wilson1927probable,
+  author  = {Wilson, Edwin B.},
+  title   = {Probable Inference, the Law of Succession, and Statistical Inference},
+  journal = {Journal of the American Statistical Association},
+  volume  = {22},
+  number  = {158},
+  pages   = {209--212},
+  year    = {1927},
+  doi     = {10.1080/01621459.1927.10502953}
+}
+
+@article{newcombe1998paired,
+  author  = {Newcombe, Robert G.},
+  title   = {Improved confidence intervals for the difference between binomial proportions based on paired data},
+  journal = {Statistics in Medicine},
+  volume  = {17},
+  number  = {22},
+  pages   = {2635--2650},
+  year    = {1998},
+  doi     = {10.1002/(SICI)1097-0258(19981130)17:22<2635::AID-SIM954>3.0.CO;2-C}
+}
+
+@article{newcombe1998independent,
+  author  = {Newcombe, Robert G.},
+  title   = {Interval estimation for the difference between independent proportions: comparison of eleven methods},
+  journal = {Statistics in Medicine},
+  volume  = {17},
+  number  = {8},
+  pages   = {873--890},
+  year    = {1998},
+  doi     = {10.1002/(SICI)1097-0258(19980430)17:8<873::AID-SIM779>3.0.CO;2-I}
+}
+
+@article{korn1998survey,
+  author  = {Korn, Edward L. and Graubard, Barry I.},
+  title   = {Confidence intervals for proportions with small expected number of positive counts estimated from survey data},
+  journal = {Survey Methodology},
+  volume  = {24},
+  number  = {2},
+  pages   = {193--201},
+  year    = {1998}
+}
+
+@article{mantel1959statistical,
+  author  = {Mantel, Nathan and Haenszel, William},
+  title   = {Statistical aspects of the analysis of data from retrospective studies of disease},
+  journal = {Journal of the National Cancer Institute},
+  volume  = {22},
+  number  = {4},
+  pages   = {719--748},
+  year    = {1959},
+  doi     = {10.1093/jnci/22.4.719}
+}
+
+@article{firth1993bias,
+  author  = {Firth, David},
+  title   = {Bias reduction of maximum likelihood estimates},
+  journal = {Biometrika},
+  volume  = {80},
+  number  = {1},
+  pages   = {27--38},
+  year    = {1993},
+  doi     = {10.1093/biomet/80.1.27}
+}
+
+@article{heinze2002separation,
+  author  = {Heinze, Georg and Schemper, Michael},
+  title   = {A solution to the problem of separation in logistic regression},
+  journal = {Statistics in Medicine},
+  volume  = {21},
+  number  = {16},
+  pages   = {2409--2419},
+  year    = {2002},
+  doi     = {10.1002/sim.1047}
+}
+
+@article{cohen1960kappa,
+  author  = {Cohen, Jacob},
+  title   = {A Coefficient of Agreement for Nominal Scales},
+  journal = {Educational and Psychological Measurement},
+  volume  = {20},
+  number  = {1},
+  pages   = {37--46},
+  year    = {1960},
+  doi     = {10.1177/001316446002000104}
+}
+
+@article{landis1977agreement,
+  author  = {Landis, J. Richard and Koch, Gary G.},
+  title   = {The Measurement of Observer Agreement for Categorical Data},
+  journal = {Biometrics},
+  volume  = {33},
+  number  = {1},
+  pages   = {159--174},
+  year    = {1977},
+  doi     = {10.2307/2529310}
+}
+
+@article{field2007bootstrapping,
+  author  = {Field, Christopher A. and Welsh, Alan H.},
+  title   = {Bootstrapping Clustered Data},
+  journal = {Journal of the Royal Statistical Society: Series B (Statistical Methodology)},
+  volume  = {69},
+  number  = {3},
+  pages   = {369--390},
+  year    = {2007},
+  doi     = {10.1111/j.1467-9868.2007.00593.x}
+}
+
+% ---- law and enforcement (primary sources) ----
+@misc{eprivacy2002,
+  author       = {{European Parliament and Council of the European Union}},
+  title        = {Directive 2002/58/{EC} concerning the processing of personal data and the protection of privacy in the electronic communications sector ({D}irective on privacy and electronic communications), as amended by {D}irective 2009/136/{EC}},
+  howpublished = {Official Journal of the European Communities, L 201, 31 July 2002, pp. 37--47},
+  year         = {2002},
+  url          = {https://eur-lex.europa.eu/eli/dir/2002/58/oj},
+  note         = {{Accessed} 26 September 2026}
+}
+
+@misc{gdpr2016,
+  author       = {{European Parliament and Council of the European Union}},
+  title        = {Regulation ({EU}) 2016/679 on the protection of natural persons with regard to the processing of personal data and on the free movement of such data ({G}eneral {D}ata {P}rotection {R}egulation)},
+  howpublished = {Official Journal of the European Union, L 119, 4 May 2016, pp. 1--88},
+  year         = {2016},
+  url          = {https://eur-lex.europa.eu/eli/reg/2016/679/oj},
+  note         = {{Accessed} 26 September 2026}
+}
+
+@misc{edpb2023guidelines,
+  author       = {{European Data Protection Board}},
+  title        = {Guidelines 2/2023 on Technical Scope of Art. 5(3) of {ePrivacy Directive}, Version 2.0},
+  howpublished = {Adopted 7 October 2024},
+  year         = {2024},
+  url          = {https://www.edpb.europa.eu/our-work-tools/our-documents/guidelines/guidelines-22023-technical-scope-art-53-eprivacy-directive_en},
+  note         = {{Accessed} 26 September 2026}
+}
+
+@misc{ccpa2018,
+  author       = {{State of California}},
+  title        = {{California Consumer Privacy Act of 2018}, as amended by the {California Privacy Rights Act of 2020} ({Cal. Civ. Code} {\S\S}~1798.100--1798.199.100)},
+  year         = {2018},
+  url          = {https://leginfo.legislature.ca.gov/faces/codes_displayText.xhtml?division=3.&part=4.&lawCode=CIV&title=1.81.5},
+  note         = {{Accessed} 26 September 2026}
+}
+
+@misc{ccparegs7025,
+  author       = {{California Privacy Protection Agency}},
+  title        = {Opt-Out Preference Signals, {Cal. Code Regs.} tit. 11, {\S}~7025},
+  year         = {2026},
+  url          = {https://www.law.cornell.edu/regulations/california/11-CCR-7025},
+  note         = {{Accessed} 26 September 2026}
+}
+
+@misc{ab566,
+  author       = {{California State Legislature}},
+  title        = {{AB-566 California Consumer Privacy Act of 2018}: opt-out preference signal (the ``{California Opt Me Out Act}''), 2025--2026 Regular Session},
+  howpublished = {Approved by the Governor on 8 October 2025; browser requirement operative 1 January 2027},
+  year         = {2025},
+  url          = {https://leginfo.legislature.ca.gov/faces/billTextClient.xhtml?bill_id=202520260AB566},
+  note         = {{Accessed} 26 September 2026}
+}
+
+@misc{caag2022sephora,
+  author       = {{Office of the Attorney General, State of California}},
+  title        = {{Attorney General Bonta} Announces Settlement with {S}ephora as Part of Ongoing Enforcement of {C}alifornia {C}onsumer {P}rivacy {A}ct},
+  howpublished = {Press release, 24 August 2022},
+  year         = {2022},
+  url          = {https://oag.ca.gov/news/press-releases/attorney-general-bonta-announces-settlement-sephora-part-ongoing-enforcement},
+  note         = {{Accessed} 26 September 2026}
+}
+
+@misc{cppa2025toddsnyder,
+  author       = {{California Privacy Protection Agency}},
+  title        = {{CPPA} Orders Clothing Retailer {T}odd {S}nyder to Pay Six-Figure Fine, Overhaul Privacy Practices},
+  howpublished = {Announcement, 6 May 2025},
+  year         = {2025},
+  url          = {https://cppa.ca.gov/announcements/2025/20250506.html},
+  note         = {{Accessed} 26 September 2026}
+}
+
+% ---- web platform and tools ----
+@misc{whatwg_html,
+  author       = {{WHATWG}},
+  title        = {{HTML Living Standard}: Web workers ({\S}~10) and the iframe {\texttt{sandbox}} attribute ({\S}~4.8.5)},
+  year         = {2026},
+  url          = {https://html.spec.whatwg.org/multipage/},
+  note         = {{Accessed} 26 September 2026}
+}
+
+@misc{cdp,
+  author       = {{Chrome DevTools team}},
+  title        = {{Chrome DevTools Protocol}},
+  year         = {2026},
+  url          = {https://chromedevtools.github.io/devtools-protocol/},
+  note         = {{Accessed} 26 September 2026}
+}
+
+@misc{playwright,
+  author       = {{Microsoft}},
+  title        = {Playwright: Fast and reliable end-to-end testing for modern web apps},
+  year         = {2026},
+  url          = {https://playwright.dev/},
+  note         = {{Accessed} 26 September 2026}
+}
+
+@misc{partytown,
+  author       = {{QwikDev}},
+  title        = {Partytown: relocate resource intensive third-party scripts off of the main thread and into a web worker},
+  year         = {2026},
+  url          = {https://partytown.qwik.dev/},
+  note         = {{Accessed} 26 September 2026}
+}
+
+@misc{tranco_L5PZ4,
+  author       = {{Tranco}},
+  title        = {Tranco list {L5PZ4} (created {25 September 2026}; {CrUX}, {F}arsight, {M}ajestic, {R}adar and {U}mbrella; {D}owdall combination; 30-day window)},
+  year         = {2026},
+  url          = {https://tranco-list.eu/list/L5PZ4},
+  note         = {{Accessed} 26 September 2026}
+}
+
+@article{saltzer1975protection,
+  author  = {Saltzer, Jerome H. and Schroeder, Michael D.},
+  title   = {The protection of information in computer systems},
+  journal = {Proceedings of the IEEE},
+  volume  = {63},
+  number  = {9},
+  pages   = {1278--1308},
+  year    = {1975},
+  doi     = {10.1109/PROC.1975.9939}
+}
+
+@misc{gpc_site,
+  author       = {{Global Privacy Control}},
+  title        = {{Global Privacy Control}: Take control of your privacy (implementations and browser support)},
+  year         = {2026},
+  url          = {https://globalprivacycontrol.org/},
+  note         = {{Accessed} 26 September 2026}
+}
+
+% ===========================================================================
+% Added in the text revision of 2026-09-26 (see review/text_fix_checks/web_verification.txt)
+% ===========================================================================
+
+@inproceedings{bashir2018websockets,
+  author    = {Bashir, Muhammad Ahmad and Arshad, Sajjad and Kirda, Engin and Robertson, William and Wilson, Christo},
+  title     = {How Tracking Companies Circumvented Ad Blockers Using {WebSockets}},
+  booktitle = {Proceedings of the Internet Measurement Conference 2018 (IMC '18)},
+  year      = {2018},
+  pages     = {471--477},
+  publisher = {ACM},
+  doi       = {10.1145/3278532.3278573}
+}
+
+@article{dimova2021cname,
+  author    = {Dimova, Yana and Acar, Gunes and Olejnik, Lukasz and Joosen, Wouter and Van Goethem, Tom},
+  title     = {The {CNAME} of the Game: Large-scale Analysis of {DNS}-based Tracking Evasion},
+  journal   = {Proceedings on Privacy Enhancing Technologies},
+  volume    = {2021},
+  number    = {3},
+  pages     = {394--412},
+  year      = {2021},
+  doi       = {10.2478/popets-2021-0053}
+}
+
+@inproceedings{chen2021filterlist,
+  author    = {Chen, Quan and Snyder, Peter and Livshits, Ben and Kapravelos, Alexandros},
+  title     = {Detecting Filter List Evasion with Event-Loop-Turn Granularity {JavaScript} Signatures},
+  booktitle = {2021 IEEE Symposium on Security and Privacy (SP)},
+  year      = {2021},
+  pages     = {1715--1729},
+  publisher = {IEEE},
+  doi       = {10.1109/SP40001.2021.00007}
+}
+
+@misc{rieder2026sok,
+  author    = {Rieder, Wolf and Raschke, Philip and Cory, Thomas and Sechting, Christian Ren{\'e} and Kumar, Aditya and K{\"u}pper, Axel},
+  title     = {{SoK}: After Decades of Web Tracker Detection, What's Next?},
+  year      = {2026},
+  eprint    = {2605.02982},
+  archivePrefix = {arXiv},
+  doi       = {10.48550/arXiv.2605.02982},
+  note      = {{Preprint}; accepted at the 47th IEEE Symposium on Security and Privacy (SP '26)}
+}
+
+@misc{krumnow2022openwpm,
+  author    = {Krumnow, Benjamin and Jonker, Hugo and Karsch, Stefan},
+  title     = {Analysing and strengthening {OpenWPM}'s reliability},
+  year      = {2022},
+  eprint    = {2205.08890},
+  archivePrefix = {arXiv},
+  doi       = {10.48550/arXiv.2205.08890},
+  note      = {{Preprint}}
+}
+
+@article{latta2026policy,
+  author    = {Latta, Isaac and Keshvadi, Sina},
+  title     = {Policy without enforcement? {W}eb security posture of {C}anadian public-sector websites},
+  journal   = {Computers \& Security},
+  volume    = {171},
+  pages     = {105095},
+  year      = {2026},
+  doi       = {10.1016/j.cose.2026.105095}
+}
+
+@misc{google_consentmode,
+  author       = {{Google}},
+  title        = {Set up consent mode on websites (including the {\texttt{wait\_for\_update}} setting)},
+  year         = {2026},
+  url          = {https://developers.google.com/tag-platform/security/guides/consent},
+  note         = {{Google} Tag Platform documentation. Accessed 26 September 2026}
+}
+
+@misc{analyticsninja2025pixels,
+  author       = {{Analytics Ninja}},
+  title        = {Prevent {S}hopify App and Custom Pixels from firing without consent},
+  year         = {2025},
+  month        = {January},
+  url          = {https://www.analytics-ninja.com/blog/2025/01/shopify-app-custom-pixels-customer-privacy.html},
+  note         = {{Practitioner} blog post. Accessed 26 September 2026}
+}
+
+@misc{weltpixel2026race,
+  author       = {Giura, Dan},
+  title        = {Why Your Tags Fire Before {S}hopify Answers the Consent Question (and What It Does to Your Numbers)},
+  year         = {2026},
+  month        = {16 September},
+  howpublished = {WeltPixel blog},
+  url          = {https://weltpixel.com/blogs/<slug>/why-your-tags-fire-before-shopify-answers-the-consent-question-and-what-it-does-to-your-numbers},
+  note         = {{Practitioner} blog post. Accessed 26 September 2026}
+}
+
+@misc{caag2025healthline,
+  author       = {{Office of the Attorney General, State of California}},
+  title        = {{Attorney General Bonta} Announces Largest {CCPA} Settlement to Date, Secures \$1.55 Million from {Healthline.com}},
+  howpublished = {Press release, 1 July 2025},
+  year         = {2025},
+  url          = {https://oag.ca.gov/news/press-releases/attorney-general-bonta-announces-largest-ccpa-settlement-date-secures-155},
+  note         = {{Accessed} 26 September 2026}
+}
+
+@misc{cppa2025tractorsupply,
+  author       = {{California Privacy Protection Agency}},
+  title        = {Nation's Largest Rural Lifestyle Retailer to Pay \$1.35{M} Over {CCPA} Violations},
+  howpublished = {Announcement, 30 September 2025},
+  year         = {2025},
+  url          = {https://cppa.ca.gov/announcements/2025/20250930.html},
+  note         = {{Accessed} 26 September 2026}
+}
+
+@misc{briskin2025shopify,
+  author       = {{United States Court of Appeals for the Ninth Circuit}},
+  title        = {{Briskin v. Shopify, Inc., No. 22-15815} (en banc)},
+  howpublished = {Opinion, 21 April 2025},
+  year         = {2025},
+  url          = {https://law.justia.com/cases/federal/appellate-courts/ca9/22-15815/22-15815-2025-04-21.html},
+  note         = {{Accessed} 26 September 2026}
+}
+
+@misc{briskin2026remand,
+  author       = {{United States District Court for the Northern District of California}},
+  title        = {{Briskin v. Shopify, Inc., No. 21-cv-06269-PJH}, 2026 {WL} 161441},
+  howpublished = {Order granting in part and denying in part the motion to dismiss the second amended complaint, 21 January 2026; reported by CIPAWorld, 23 January 2026},
+  year         = {2026},
+  url          = {https://cipaworld.com/2026/01/23/click-buy-sue-shopify-pushes-back-on-cipa-at-checkout/},
+  note         = {{Accessed} 26 September 2026}
+}
+
+@misc{duanemorris2026sb690,
+  author       = {{Duane Morris LLP}},
+  title        = {{California} Legislature Passes {SB} 690, Creating a Major Curb on Pixel Tracking Lawsuits Under {CIPA}},
+  howpublished = {Client alert},
+  year         = {2026},
+  month        = {September},
+  url          = {https://www.duanemorris.com/alerts/california_legislature_passes_sb690_creating_major_curb_pixel_tracking_lawsuits_under_cipa_0926.html},
+  note         = {{Accessed} 26 September 2026}
+}
+
+@misc{leginfo2026sb690,
+  author       = {{California State Legislature}},
+  title        = {{SB-690} Crimes: invasion of privacy, 2025--2026 Regular Session: bill history and enrolled text},
+  howpublished = {Passed the Legislature on 28 August 2026; enrolled and presented to the Governor on 4 September 2026; no action recorded as of 29 September 2026},
+  year         = {2026},
+  url          = {https://leginfo.legislature.ca.gov/faces/billHistoryClient.xhtml?bill_id=202520260SB690},
+  note         = {{Accessed} 29 September 2026}
+}

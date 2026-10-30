@@ -1,0 +1,121 @@
+% ============================================================================
+\section{Results}\label{sec:results}
+% ============================================================================
+
+Of 4,976 planned loads, 119 (on 38 stores) were unusable (Supplementary Table~\ref*{S:tab:s-failures}); 23 stores looked like bot blocking, which we did not try to get around. After the 4 stores excluded for content sensitivity (Section~\ref{sec:method-sample}), 1,358 of the remaining 1,396 main-sample stores and all 34 creator stores were captured in all three base arms. Table~\ref{tab:headline} collects the headline estimates.
+
+\begin{table}[!tbp]
+\centering
+\caption{Headline estimates (main sample unless marked; unweighted). CI: Wilson 95\% interval; for rows marked $^\dagger$ the cluster bootstrap by consent tool is given in brackets. ``Sandboxed'': sent from a Shopify STRICT worker, a LAX iframe or a frame nested in one; a request is a data beacon or a library load. Last row: paired difference in percentage points (pp) with Newcombe's interval.}
+\label{tab:headline}
+\footnotesize\setlength{\tabcolsep}{4pt}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}Xrrl@{}}
+\toprule
+Statistic & $k$/$n$ & \% & 95\% CI \\
+\midrule
+\multicolumn{4}{@{}l}{\emph{Before any choice (Default)}}\\
+Consent banner shown & 409/1,358 & 30.1 & 27.7--32.6 \\
+Sandboxed ad request, all stores$^\dagger$ & 803/1,358 & 59.1 & 56.5--61.7 [55.7--62.3] \\
+Sandboxed ad request, banner stores$^\dagger$ & 205/409 & 50.1 & 45.3--54.9 [32.6--58.9] \\
+\quad default ``allowed until choice''$^\dagger$ & 165/235 & 70.2 & 64.1--75.7 [63.0--79.1] \\
+\quad default ``denied until consent''$^\dagger$ & 40/167 & 24.0 & 18.1--31.0 [16.5--36.3] \\
+\quad \quad pixel not declaring marketing & 32/167 & 19.2 & 13.9--25.8 \\
+First sandboxed request $>$1 poll before banner & 108/205 & 52.7 & 45.9--59.4 \\
+\midrule
+\multicolumn{4}{@{}l}{\emph{Blocked on paper: declared vendor fired from the sandbox}}\\
+CMP wrote no ``yes'' (primary), both samples & 46/89 & 51.7 & 41.5--61.8 \\
+\quad main sample & 7/14 & 50.0 & 26.8--73.2 \\
+\quad expansion, ranks 200k--1M & 39/75 & 52.0 & 40.9--62.9 \\
+All blocklist stores, both samples & 67/117 & 57.3 & 48.2--65.9 \\
+Configured sandboxed pixel of that vendor & 10/15 & 66.7 & 41.7--84.8 \\
+CMP told Shopify ``marketing: no'': sandboxed request & 39/65 & 60.0 & 47.9--71.0 \\
+\midrule
+\multicolumn{4}{@{}l}{\emph{Decline}}\\
+No first-layer reject option (banners found) & 165/405 & 40.7 & 36.1--45.6 \\
+Refusal recorded (working clicks) & 196/231 & 84.8 & 79.7--88.9 \\
+New sandbox fired on the fresh page (working clicks)$^\dagger$ & 53/231 & 22.9 & 18.0--28.8 [17.4--29.5] \\
+Any sandboxed request after the click (working clicks) & 80/231 & 34.6 & 28.8--41.0 \\
+\midrule
+\multicolumn{4}{@{}l}{\emph{GPC}}\\
+``Sale of data: no'' (loads with a readable state) & 1,166/1,169 & 99.7 & 99.2--99.9 \\
+At-risk loads in which a sale-of-data pixel started & 0/1,264 & 0.0 & 0.0--0.3 \\
+Still sending, of stores sandboxed under Default$^\dagger$ & 279/803 & 34.7 & 31.5--38.1 [30.9--38.7] \\
+\midrule
+Blocklist minus no declaration, both samples (Mantel--Haenszel), pp & & 13.4 & 4.0 to 22.8 \\
+Decline minus GPC (53 vs 41 of 231 stores), pp & & 5.2 & 0.2 to 10.3 \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+% ----------------------------------------------------------------------------
+\subsection{RQ1: Sandboxed pixels fire before any choice}\label{sec:res-prechoice}
+% ----------------------------------------------------------------------------
+
+Before any click, an ad request left the page on 1,254 of 1,358 stores (92.3\%, 95\% CI 90.8--93.6\%), and a \emph{sandboxed} one on 803 (59.1\%, 56.5--61.7\%). A consent banner appeared on 409 stores (30.1\%), and on half of these a sandboxed ad pixel fired before any choice: 205 of 409 (50.1\%, 45.3--54.9\%; Fig.~\ref{fig:situating}c; per vendor group: Supplementary Fig.~\ref*{S:fig:s6}a), against 598 of 949 stores without a banner (63.0\%, 59.9--66.0\%; Supplementary Fig.~\ref*{S:fig:s6}e). Neither library loads nor missed banners explain this (Supplementary \ref*{S:sec:s-extended}).
+
+\begin{widefig}
+\includegraphics{fig3.pdf}
+\input{captions/fig3}
+\end{widefig}
+
+Pre-choice firing on banner stores was most strongly associated with Shopify's region default (Fig.~\ref{fig:region-default}a): it occurred on 165 of 235 banner stores (70.2\%, 64.1--75.7\%) where the consent string allowed marketing until the visitor chose, and on 40 of 167 (24.0\%, 18.1--31.0\%) where it denied marketing until consent. This contrast, specified before the crawl (prediction P1), is partly confounded with the consent product but persists within products (Mantel--Haenszel difference over 12 products 45.6 percentage points, 95\% CI 34.6 to 56.6). For pixels that declare marketing, which the gate is meant to hold back, the contrast is sharper, 146 of 235 (62.1\%) against 12 of 167 (7.2\%), and on 11 of those 12 stores the CMP had told Shopify ``yes'' without any click. This is F1: the sandbox follows Shopify's state, and the banner matters only insofar as the CMP changes that state.
+
+The ``denied until consent'' stores are the closest this vantage point comes to an opt-in regime such as the EU's. On 32 of these 167 banner stores (19.2\%, 13.9--25.8\%), a sandboxed ad request before any choice came from a pixel that does not declare marketing, and on 19 (11.4\%, 7.4--17.1\%) from one that declares no purpose at all: an opt-in default does not hold back pixels that do not declare the purpose it withholds (F4).
+
+Because the banner detector polled every 250~ms, a request counts as preceding the banner only if it came more than one polling interval earlier. On 108 of the 205 banner stores with a pre-choice sandboxed request (52.7\%, 45.9--59.4\%), the first request came that early (Supplementary Fig.~\ref*{S:fig:s6}b), and on 151 (73.7\%) before the banner at all; the per-store flag repeated only moderately (Cohen's $\kappa=0.54$ on 46 repeat stores). Where the first request clearly preceded the banner, no choice could have prevented it (Fig.~\ref{fig:situating}c).
+
+The sandbox carried 31.5\% (29.8--33.2\%) of the 40,016 ad requests in Default loads, most for vendors whose app pixels run in STRICT workers (Supplementary Fig.~\ref*{S:fig:s6}c and Table~\ref*{S:tab:s-vendor}).
+
+% ----------------------------------------------------------------------------
+\subsection{RQ2: Blocked on paper}\label{sec:res-paper}
+% ----------------------------------------------------------------------------
+
+We next asked what happens when a store's consent setup says ``no'' before any choice (Fig.~\ref{fig:blocked-on-paper}; Supplementary Fig.~\ref*{S:fig:s7}). In the main sample, on 21 stores (15 Pandectes, 5 OneTrust and 1 Cookiebot store), a readable blocklist declared at least one ad vendor blocked before any choice. A blocklist is in force only while the CMP has not consented, and on 7 of the 21 the CMP itself wrote ``marketing: yes'' to Shopify without any click, on 2 of them through an optional Pandectes merchant setting that grants consent to automated browsers (Section~\ref{sec:app-validation}). On the other 14 stores the declared-blocked vendor's own pixel sent requests from Shopify's sandbox before any choice on 7 (50.0\%, 26.8--73.2\%).
+
+Fourteen stores give a wide interval, so the expansion crawl (Section~\ref{sec:method-r4}) added 116 stores from ranks 200k--1M, on 96 of which (93 Pandectes, 3 OneTrust) the blocklist was in force at run time. On 21 of the 96 the CMP wrote ``yes'' without a click; on 39 of the other 75 the declared vendor fired from the sandbox (52.0\%, 40.9--62.9\%), a rate no different from the main sample's (difference $-2.0$ percentage points, 95\% CI $-27.6$ to 23.7). Our primary estimate therefore pools the two samples: on 46 of 89 stores (51.7\%, 41.5--61.8\%) a vendor that the blocklist declared blocked sent requests from Shopify's sandbox before any choice, and on 37 (41.6\%, 31.9--52.0\%) it did so from a pixel that declares marketing. Over all 117 blocklist stores the rate was 67 (57.3\%, 48.2--65.9\%); design-weighted and alternative estimates are in Supplementary \ref*{S:sec:s-r4} and~\ref*{S:sec:s-extended}.
+
+\begin{widefig}
+\includegraphics{fig4.pdf}
+\input{captions/fig4}
+\end{widefig}
+
+A blocklist did not reduce sandboxed firing; blocklist stores fired more often. Comparing any sandboxed ad pixel like for like within Shopify's region default, among stores whose CMP wrote no ``yes'', blocklist stores of both samples fired on 53 of 59 against 98 of 139 main-sample banner stores without a readable declaration where the default allowed marketing, and on 6 of 30 against 24 of 145 where it denied it (Mantel--Haenszel difference 13.4 percentage points, 95\% CI 4.0 to 22.8; Fig.~\ref{fig:blocked-on-paper}b). This falsification test of prediction P1 rules out any reduction; in the main sample alone the difference was 13.6 percentage points (95\% CI $-8.4$ to 35.6), which could not. The reference stores are all from the top 200,000, and the expansion stores are lower-ranked and almost all use Pandectes, so the excess need not be caused by the blocklist; what the comparison excludes is that the blocklist held sandboxed pixels back. Shopify's state decided instead: over all 117 blocklist stores, the declared vendor fired on 51 of the 72 whose default allowed marketing (70.8\%), close to the 70.7\% of undeclared banner stores with that default, and on 16 of the 45 whose default denied it. Two policies governed the same code, and only Shopify's was enforced (F2).
+
+Two observations in the main sample show the mechanism directly. In a later re-check load, the blocker neutralized a declared vendor's main-document tag while that vendor's pixel sent requests from Shopify's sandbox on 5 stores (one of them: Fig.~\ref{fig:situating}b); and on 8 stores (an exploratory analysis) the CMP's own blocklist pattern, such as the URL of TikTok's pixel library, matched a URL that the sandbox fetched, so the blocker would have neutralized the identical request in the main document. Although Pandectes documents that for Shopify-managed apps it signals consent rather than blocks \citep{pandectes_blocking}, a blocklist entry is still a declaration: it is in the merchant's configuration, is enforced for main-thread tags, and is what the merchant sees. The blocker and the write to Shopify are two parts of one design, and the limit lies in Shopify's architecture rather than in any one product: no consent tool on Shopify can block a sandboxed pixel (Table~\ref{tab:cmp-modes}). A message to Shopify helped only if it came first: where the CMP told Shopify ``marketing: no'' before any click (65 stores), a sandboxed ad pixel had already fired on 39 (60.0\%, 47.9--71.0\%; Section~\ref{sec:res-race}).
+
+At the level of entries (primary set: Supplementary Fig.~\ref*{S:fig:s7}d; all stores: \ref*{S:fig:s7}b), 29 of the 104 declared-blocked ad-vendor entries had a configured sandboxed pixel of the same vendor on the store, and 21 of these (72.4\%, 42.5--92.3\%, clustered by store) fired from the sandbox; store--vendor pairs and entries without a configured pixel are reported in Supplementary \ref*{S:sec:s-extended}.
+
+% ----------------------------------------------------------------------------
+\subsection{RQ3: Do Decline and GPC stop sandboxed pixels?}\label{sec:res-choices}
+% ----------------------------------------------------------------------------
+
+\subsubsection{Decline}\label{sec:res-decline}
+
+Of the 405 banners found in the Decline arm, 165 (40.7\%, 36.1--45.6\%) offered no first-layer reject control, typically US ``notice-only'' banners; on the other 240 stores we clicked it, and 231 clicks worked. Shopify recorded an explicit refusal after 196 of them (84.8\%, 79.7--88.9\%); marketing was still allowed after 20 clicks, and the state was unreadable after 15.
+
+On a fresh page, the reload after the click, a newly created sandbox still sent an ad request on 53 of the 231 stores (22.9\%, 18.0--28.8\%; Fig.~\ref{fig:choices}a), against 45.9\% under Default in the same 10~s window, a paired reduction of 22.9 percentage points (95\% CI 17.4 to 28.3): about half of the Default-positive stores kept firing. Any sandboxed request after the click occurred on 80 stores (34.6\%). By integration group, exploratory models found no clear difference after adjustment (Supplementary Fig.~\ref*{S:fig:s8}b and \ref*{S:sec:s-models}).
+
+\begin{widefig}
+\includegraphics{fig5.pdf}
+\input{captions/fig5}
+\end{widefig}
+
+Why does firing continue after a refusal that Shopify recorded? Figure~\ref{fig:choices}b classes each store once, and Supplementary Fig.~\ref*{S:fig:s8}c classes each residual sandboxed request by what its pixel declares and by Shopify's state at the time. New sandboxes of pixels declaring a refused purpose fired on none of the 196 stores: the gate held. Pixels started before the click that declare a refused purpose kept sending on 32 stores (16.3\%, 11.8--22.1\%), on the same page (19) or as unload beacons when the page reloaded (20), which any navigation away triggers (F3); their initiator stacks cannot separate events that Shopify delivered after the opt-out from the vendor's own timers. On 13 stores (6.6\%, 3.9--11.0\%) the pixel declared only purposes that the Decline had left allowed: CMPs recorded the Decline as a refusal of marketing, and sale of data stayed allowed on 112 of the 196 stores (F3, an incomplete refusal). On 28 stores (14.3\%, 10.1--19.9\%) the pixel declared no purpose (F4). Merchants' custom pixels were involved on 34 of the 37 stores with a fresh-page residual (Supplementary \ref*{S:sec:s-decline}).
+
+\subsubsection{GPC}\label{sec:res-gpc}
+
+Shopify honoured GPC: \code{saleOfDataAllowed()} was false in 1,166 of the 1,169 GPC loads with a readable state, and no configured pixel entry declaring sale of data started (0 of 7,458 entries in 1,264 loads at risk; upper 95\% bound 0.3\% of loads) or sent a request on any of the 1,354 stores where Shopify showed ``sale of data: no'' (Fig.~\ref{fig:choices}b). Yet of the 803 stores with a sandboxed ad request under Default, 279 (34.7\%, 31.5--38.1\%) still sent one under GPC: on 111 of the 1,354 stores from pixels declaring only purposes that GPC leaves allowed, mostly marketing (100), which Shopify's mapping of GPC to sale of data does not cover, and on 191 from pixels declaring no purpose (F4). Custom pixels alone accounted for the residual on 182 of the 279 stores.
+
+Compared for persistence after the choice (the same 231 stores, new sandboxes on a later page, 10~s windows), a sandboxed ad request occurred on 53 stores after Decline and 41 under GPC (22.9\% and 17.7\%), a paired difference of 5.2 percentage points (95\% CI 0.2 to 10.3; exact McNemar $p=0.058$): GPC's advantage was between about 0 and 10 points. Over the whole visit the controls differ much more, because a Decline user is exposed before the click: a sandboxed ad request came before the click on 101 of these stores, against 41 over the whole GPC load (difference 26.0 percentage points, 95\% CI 20.0 to 31.7), although the pre-click window is the shorter. Counting attempted rather than working Declines changes little (Supplementary \ref*{S:sec:s-extended}).
+
+\subsubsection{The gate held; the race was often lost}\label{sec:res-race}
+
+To separate the gate from its inputs, we compared configured pixels at risk with the pixels that started. Beyond GPC (above), under a denying region default 2,206 of 2,234 marketing-declaring entries (98.7\%, 94.4--99.9\%, clustered by store) were held back in loads without a CMP ``yes''. Of 6,983 starts under a partly denied state by pixels that declare a purpose, 97 had a declared purpose denied at that moment; they came from 10 loads on 7 stores, so the rate to quote is per store, 7 of 1,179 (0.6\%, 0.3--1.2\%). Three of these loads were edge-cached pages carrying another region's consent string; the other seven we cannot explain (Supplementary \ref*{S:sec:s-gate}). Excluding the first pages of Decline loads, whose consent events were not recorded (Supplementary \ref*{S:sec:s-gate}), the gate held in almost all observed cases.
+
+The state often arrived too late (Fig.~\ref{fig:choices}c; per load: Supplementary Fig.~\ref*{S:fig:s8}d). In 146 loads on 99 stores, a CMP wrote ``marketing: no'' to Shopify without any click; 525 of the 535 third-party sandboxes declaring marketing had already started when the write was dispatched, a median 653~ms earlier, and 291 of them before Shopify's consent script (\code{consent-tracking-api.js}) was even requested, a lower bound for any write through it. The first sandbox came first in 144 of the 146 loads. We found no code path by which the WPM terminates a started pixel; whether Shopify stopped delivering events to these pixels after the late ``no'' was not measured. Conversely, in 35 loads on 23 stores, mostly Pandectes stores, a CMP wrote ``marketing: yes'' without any click, in some cases (Pandectes' optional bot setting) because it detected an automated browser, and all 342 gated third-party sandboxes started after it. Practitioners have described this race \citep{analyticsninja2025pixels,weltpixel2026race}; to our knowledge these are the first measurements of how often it happens.
+
+% ----------------------------------------------------------------------------
+\subsection{Beyond Shopify: a pilot}\label{sec:res-beyond}
+% ----------------------------------------------------------------------------
+
+The Round 4 crawl also loaded, with the same three arms, sites on two other hosted commerce platforms and sites that send tags through a first-party gateway (Section~\ref{sec:method-r4}; Supplementary Fig.~\ref*{S:fig:s10}). These are selected sites, not samples of a population, and an ad request here also counts a first-party request whose wire format names Google Ads, Meta or TikTok. Before any choice, an ad request left the page on 28 of 57 Wix, 48 of 72 BigCommerce and 17 of 19 gateway sites that showed a banner. After a working Decline, ad requests continued on 14 of 33 Wix sites (42.4\%, 27.2--59.2\%), 32 of 53 BigCommerce sites (60.4\%, 46.9--72.4\%) and 7 of 8 gateway sites. GPC made little difference, and Partytown and Cloudflare Zaraz were too rare for rates (details: Supplementary \ref*{S:sec:s-r4} and~\ref*{S:sec:s-extended}). A browser cannot see what a gateway forwards on the server side, so the gateway results are lower bounds on what vendors receive.

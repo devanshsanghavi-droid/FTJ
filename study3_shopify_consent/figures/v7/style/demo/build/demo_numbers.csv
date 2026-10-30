@@ -1,0 +1,39 @@
+text,shown,source,key,fmt,value
+106,106,stats,fig5/a/Any vendor/Default/k,int,106
+233,233,stats,fig5/a/Any vendor/Default/n,int,233
+53,53,stats,fig5/a/Any vendor/Decline/k,int,53
+233,233,stats,fig5/a/Any vendor/Decline/n,int,233
+41,41,stats,fig5/a/Any vendor/GPC/k,int,41
+233,233,stats,fig5/a/Any vendor/GPC/n,int,233
+60,60,stats,fig5/a/Google/Default/k,int,60
+233,233,stats,fig5/a/Google/Default/n,int,233
+33,33,stats,fig5/a/Google/Decline/k,int,33
+233,233,stats,fig5/a/Google/Decline/n,int,233
+28,28,stats,fig5/a/Google/GPC/k,int,28
+233,233,stats,fig5/a/Google/GPC/n,int,233
+46,46,stats,fig5/a/TikTok/Default/k,int,46
+233,233,stats,fig5/a/TikTok/Default/n,int,233
+15,15,stats,fig5/a/TikTok/Decline/k,int,15
+233,233,stats,fig5/a/TikTok/Decline/n,int,233
+3,3,stats,fig5/a/TikTok/GPC/k,int,3
+233,233,stats,fig5/a/TikTok/GPC/n,int,233
+24,24,stats,fig5/a/Meta/Default/k,int,24
+233,233,stats,fig5/a/Meta/Default/n,int,233
+10,10,stats,fig5/a/Meta/Decline/k,int,10
+233,233,stats,fig5/a/Meta/Decline/n,int,233
+10,10,stats,fig5/a/Meta/GPC/k,int,10
+233,233,stats,fig5/a/Meta/GPC/n,int,233
+233,233,stats,fig5/a/n_clicked,int,233
+50,50,stats,fig1b/banner_fires/p,pct0,0.5
+205,205,stats,fig1b/banner_fires/k,int,205
+410,410,stats,fig1b/banner_fires/n,int,410
+63,63,stats,fig1b/nobanner_fires/p,pct0,0.6281512605042017
+598,598,stats,fig1b/nobanner_fires/k,int,598
+952,952,stats,fig1b/nobanner_fires/n,int,952
+31.5,31.5,stats,fig3/c/share_sandbox_boot/p,pct1,0.3146516214394488
+"40,057","40,057",stats,fig3/c/share_sandbox_boot/n,int,40057
+50,50,stats,fig1b/banner_fires/p,pct0,0.5
+205,205,stats,fig1b/banner_fires/k,int,205
+410,410,stats,fig1b/banner_fires/n,int,410
+205,205,stats,fig1b/banner_fires/k,int,205
+410,410,stats,fig1b/banner_fires/n,int,410

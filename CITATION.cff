@@ -1,21 +1,45 @@
 cff-version: 1.2.0
-message: "If you use this code or data, please cite the article and this repository."
-title: "Consent Enforcement Gaps in Sandboxed Web Pixels: A Large-Scale Measurement of Shopify Storefronts: data and code"
-type: software
-date-released: "2026-10-29"
+message: "If you use this code or data, please cite the article and this repository as below."
+type: dataset
+title: "Data and code for: Consent Enforcement Gaps in Sandboxed Web Pixels: A Large-Scale Measurement of Shopify Storefronts"
+version: "1.0.0"
+license: CC-BY-4.0
+license-url: "https://creativecommons.org/licenses/by/4.0/"
 repository-code: "https://github.com/devanshsanghavi-droid/FTJ"
-license: MIT
+url: "https://github.com/devanshsanghavi-droid/FTJ"
+contact:
+  - family-names: "Sanghavi"
+    given-names: "Devansh"
+    email: "devansh.sanghavi@gmail.com"
+    orcid: "https://orcid.org/0009-0002-7511-542X"
 authors:
   - family-names: "Sanghavi"
     given-names: "Devansh"
-    affiliation: "Los Altos High School"
-    orcid: "https://orcid.org/0009-0002-7511-542X"
     email: "devansh.sanghavi@gmail.com"
+    orcid: "https://orcid.org/0009-0002-7511-542X"
+    affiliation: "Los Altos High School, Los Altos, CA, USA"
+abstract: >-
+  Crawler, analysis, figure and paper sources, ConsentCheck (a merchant self-test) and the pseudonymized data of a
+  measurement of whether consent choices (no click, Decline, Global Privacy Control) govern the advertising pixels that
+  Shopify runs in sandboxed web workers and iframes, on Shopify storefronts from the Tranco top 1M crawled from
+  California in September 2026, with a pilot on Wix, BigCommerce and first-party tag gateways. The code is MIT
+  licensed (LICENSE); data, figures and documents are CC BY 4.0 (LICENSE-DATA).
+keywords:
+  - web tracking
+  - consent management platform
+  - cookie banner
+  - Global Privacy Control
+  - Shopify
+  - web pixel
+  - sandboxing
+  - web measurement
 preferred-citation:
   type: article
   title: "Consent Enforcement Gaps in Sandboxed Web Pixels: A Large-Scale Measurement of Shopify Storefronts"
   authors:
     - family-names: "Sanghavi"
       given-names: "Devansh"
-  journal: "Computers & Security (submitted)"
+      orcid: "https://orcid.org/0009-0002-7511-542X"
+  journal: "Computers & Security"
   year: 2026
+  status: submitted

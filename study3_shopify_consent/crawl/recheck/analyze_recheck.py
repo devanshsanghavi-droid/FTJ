@@ -28,6 +28,10 @@ def wilson(k, n, z=1.959964):
 
 
 lst = pd.read_csv(os.path.join(H, 'recheck_list.csv'))
+# stores excluded from every analysis for content sensitivity (analysis/ethics_flags.csv; author decision 2026-09-29)
+_fl = pd.read_csv(os.path.join(ST, 'analysis', 'ethics_flags.csv'))
+EXCLUDED = set(_fl[_fl.status.str.startswith('excluded from all analyses')].store_id)
+lst = lst[~lst.store_id.isin(EXCLUDED)]
 key = {r['code']: r['store_id'] for r in csv.DictReader(open(os.path.join(H, 'sheets', 'blind_key.csv')))}
 lab = pd.read_csv(os.path.join(H, 'sheets', 'labels_assistant.csv'))
 lab['store_id'] = lab.code.map(key)

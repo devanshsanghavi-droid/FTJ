@@ -1,0 +1,26 @@
+% fig2.tex -- Figure 2 (methodology), v7.1 (binding spec ../DESIGN_V7.md; worked example ../fig1): we load each store
+% three ways and label every ad request, including those sent from inside Shopify's sandboxes.
+% Layout: 190 x \FigH mm (about 105), 6 mm gutters, no outer margin. Left column (66 mm): a, the sampling flow (the
+% population; quiet line art in three outlined phases, Frame / Draw / Crawl), the full height. Right column (118 mm): b,
+% the hero (where the crawler attaches: Fig 1a's store in Fig 1a's arrangement -- the page on top, the web worker above
+% the sandboxed iframe -- with the new instrumentation: the crawler outside the browser, one bus and its fork into every
+% target, one brick captured request landing on its test code), over c (the three base arms under one time axis, the
+% time from each page's load event, 0 to +20 s; c's axis spans b's outer frame exactly). b is the largest cell
+% (asserted in scripts/make_fig2_panels.py, check_hero).
+% Cell sizes and every coordinate come from build/fig2_layout.tex, which scripts/make_fig2_panels.py writes after
+% checking every label against measured Arial widths. Panels are vector PDFs drawn at final size (TikZ \PanelCanvas);
+% \Panel checks each size and draws the 8 pt bold lowercase letters (no panel titles).
+% Build: PATH=/opt/anaconda3/bin:$PATH zsh build_fig2.sh
+\documentclass[tikz,border=0pt]{standalone}
+\def\StyleDir{../style/}
+\input{\StyleDir tikzstyle_v2.tex}
+\input{build/fig2_layout.tex}
+\begin{document}
+\begin{tikzpicture}
+  \FigureCanvas{\FigH}
+  %      letter  x           y           w           h            file
+  \Panel {a}     {0}         {0}         {\PanelAW}  {\FigH}      {panels/fig2a_funnel.pdf}
+  \Panel {b}     {\PanelRX}  {0}         {\PanelRW}  {\PanelBH}   {panels/fig2b_instrumentation.pdf}
+  \Panel {c}     {\PanelRX}  {\PanelCY}  {\PanelRW}  {\PanelCH}   {panels/fig2c_arms.pdf}
+\end{tikzpicture}
+\end{document}

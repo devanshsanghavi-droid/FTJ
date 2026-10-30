@@ -1,3 +1,5 @@
 store_id,flag,source,status
-S1292,child_directed_candidate,"toy and play-equipment retailer; caught by neither title screen, noticed on its re-check screenshot (review/human_relabel_kit/README.txt, crawl/CRAWL_NOTES.md)",excluded in the ethics sensitivity analysis
-S0145,child_directed_candidate,"looks child-directed; noticed after the crawl (review/human_relabel_kit/README.txt); ledger AUD-06",human decision pending: reported as a separate variant
+S0356,adult_product,"sells adult products; missed by the sampling screen, found by the broader title screen (review/human_relabel_kit/E_broader_child_screen_BLANK.csv)",excluded from all analyses: content sensitivity (author decision 2026-09-29)
+S0614,adult_product,"sells adult products; missed by the sampling screen, found by the broader title screen (review/human_relabel_kit/E_broader_child_screen_BLANK.csv)",excluded from all analyses: content sensitivity (author decision 2026-09-29)
+S1292,child_directed_candidate,"toy and play-equipment retailer; caught by neither title screen, noticed on its re-check screenshot (review/human_relabel_kit/README.txt, crawl/CRAWL_NOTES.md)",excluded from all analyses: content sensitivity (author decision 2026-09-29)
+S0145,child_directed_candidate,"looks child-directed; noticed after the crawl (review/human_relabel_kit/README.txt); ledger AUD-06",excluded from all analyses: content sensitivity (author decision 2026-09-29)

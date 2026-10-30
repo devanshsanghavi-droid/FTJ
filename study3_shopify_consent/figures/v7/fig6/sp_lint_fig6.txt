@@ -1,0 +1,2 @@
+sciplot palette check [fig6.pdf]: categorical hues drawn ['#c65358'] (of 13 colours; OKLCH chroma > 0.04)
+RESULT: PASS

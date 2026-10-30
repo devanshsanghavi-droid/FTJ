@@ -1,0 +1,38 @@
+% Style sheet panel B: colour and glyph dictionary (92 x 62 mm). Hexes come from palette_v2.tex (colors.py).
+\documentclass[tikz,border=0pt]{standalone}
+\input{demo_common.tex}
+\newcommand{\swatch}[5]{% x, y(baseline of name), colour, name, hex
+  \fill[#3] (#1,#2-0.9) rectangle ++(3.2,3.2);
+  \node[lbl, anchor=base west] at (#1+4.4,#2) {#4};
+  \node[note, anchor=base west] at (#1+4.4,#2-3.4) {#5};}
+\begin{document}
+\begin{tikzpicture}
+\PanelCanvas{92}{62}
+\node[lbl, anchor=base west, font=\fsLabel\bfseries] at (1,-10) {Vendors: identity only, fixed order};
+\swatch{1}{-15}{vGoogle}{Google}{\hexGoogle}
+\swatch{24}{-15}{vTikTok}{TikTok}{\hexTikTok}
+\swatch{47}{-15}{vMeta}{Meta}{\hexMeta}
+\swatch{70}{-15}{vPinterest}{Pinterest}{\hexPinterest}
+\swatch{1}{-23}{vSnap}{Snap}{\hexSnap}
+\swatch{24}{-23}{vMicrosoft}{Microsoft}{\hexMicrosoft}
+\swatch{47}{-23}{vOther}{Reddit/other}{\hexOther}
+\node[lbl, anchor=base west, font=\fsLabel\bfseries] at (1,-32) {Neutrals, and red for consent failed only};
+\swatch{1}{-37}{ink}{Ink}{\hexInk}
+\swatch{19.5}{-37}{greyD}{Dark}{\hexGreyD}
+\swatch{38}{-37}{greyM}{Mid}{\hexGreyM}
+\draw[lightbox] (56.5,-37.9) rectangle ++(3.2,3.2);
+\node[lbl, anchor=base west] at (60.9,-37) {Light};
+\node[note, anchor=base west] at (60.9,-40.4) {\hexGreyL};
+\swatch{75}{-37}{accent}{Red}{\hexAccent}
+\node[lbl, anchor=base west, font=\fsLabel\bfseries] at (1,-47) {Arms: shape and grey, never hue};
+\foreach \x/\m/\t in {2.4/mkDefault/Default, 21/mkDecline/Decline, 39/mkGPC/GPC, 54/mkRepeat/Repeat,
+                      71/mkComparison/Comparison}
+  {\pic at (\x,-51.2) {\m}; \node[lbl, anchor=base west] at (\x+2.9,-52.3) {\t};}
+\draw[sandbox box] (1,-58.9) rectangle ++(5,3.2);
+\node[lbl, anchor=base west] at (7.4,-58.2) {Sandbox};
+\node[leak] at (26.2,-57.3) {1};
+\node[lbl, anchor=base west] at (29,-58.2) {Leak point};
+\fill[accent] (48,-58.9) rectangle ++(5,3.2);
+\node[lbl, anchor=base west] at (54.4,-58.2) {Consent failed};
+\end{tikzpicture}
+\end{document}

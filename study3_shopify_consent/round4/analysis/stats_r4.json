@@ -1,0 +1,2241 @@
+{
+ "generated_utc": "2026-09-29T19:43Z",
+ "crawl": {
+  "expansion": {
+   "raw_files": 360,
+   "loads_logged": 360,
+   "first_load_utc": "2026-09-27T19:56:52.623Z",
+   "last_load_utc": "2026-09-27T20:16:51.531Z",
+   "sites_planned": 120,
+   "decisions": {
+    "load_tagged": 120
+   },
+   "sites_loaded": 120,
+   "untagged_urls": 0,
+   "page_source": {
+    "homepage_link": 112,
+    "products_json_r4": 5,
+    "homepage_escaped": 3
+   },
+   "free_gb_at_write": 7.66,
+   "disk_mb": 31.2
+  },
+  "beyond": {
+   "raw_files": 570,
+   "loads_logged": 570,
+   "first_load_utc": "2026-09-27T20:23:48.097Z",
+   "last_load_utc": "2026-09-27T20:56:46.594Z",
+   "sites_planned": 195,
+   "decisions": {
+    "load_tagged": 186,
+    "skip_robots_unreachable": 5,
+    "load_plain": 4
+   },
+   "sites_loaded": 190,
+   "untagged_urls": 4,
+   "page_source": {
+    "homepage": 163,
+    "product_page": 32
+   },
+   "free_gb_at_write": 7.66,
+   "disk_mb": 28.9
+  }
+ },
+ "blocklist": {
+  "main": {
+   "n_blocklist": 21,
+   "by_ds": {
+    "main": 21
+   },
+   "by_cmp": {
+    "pandectes": 15,
+    "onetrust": 5,
+    "cookiebot": 1
+   },
+   "unconditioned": {
+    "fired": {
+     "k": 12,
+     "n": 21,
+     "p": 0.5714285714285714,
+     "lo": 0.36546554224185784,
+     "hi": 0.7553003119028359,
+     "boot_lo": 0.38095238095238093,
+     "boot_hi": 0.7619047619047619
+    },
+    "fired_mkt": {
+     "k": 10,
+     "n": 21,
+     "p": 0.47619047619047616,
+     "lo": 0.28344005975415376,
+     "hi": 0.6763046555309483,
+     "boot_lo": 0.2857142857142857,
+     "boot_hi": 0.6666666666666666
+    },
+    "any_sbx": {
+     "k": 15,
+     "n": 21,
+     "p": 0.7142857142857143,
+     "lo": 0.5004361911516968,
+     "hi": 0.8618613712823846,
+     "boot_lo": 0.5238095238095238,
+     "boot_hi": 0.9047619047619048
+    },
+    "fired_any_origin": {
+     "k": 16,
+     "n": 21,
+     "p": 0.7619047619047619,
+     "lo": 0.5490882614178733,
+     "hi": 0.8937198704460038,
+     "boot_lo": 0.5714285714285714,
+     "boot_hi": 0.9047619047619048
+    }
+   },
+   "yes_writers": {
+    "n": 7,
+    "auto_grant": 4,
+    "yes_before_pixel": 5
+   },
+   "primary": {
+    "rule": "blocklist stores whose CMP wrote no 'marketing: yes' in the Default load",
+    "n": 14,
+    "fired": {
+     "k": 7,
+     "n": 14,
+     "p": 0.5,
+     "lo": 0.2679920230881164,
+     "hi": 0.7320079769118836,
+     "boot_lo": 0.21428571428571427,
+     "boot_hi": 0.7857142857142857
+    },
+    "fired_mkt": {
+     "k": 6,
+     "n": 14,
+     "p": 0.42857142857142855,
+     "lo": 0.21380798780428648,
+     "hi": 0.6740935558247106,
+     "boot_lo": 0.21428571428571427,
+     "boot_hi": 0.7142857142857143
+    },
+    "any_sbx": {
+     "k": 8,
+     "n": 14,
+     "p": 0.5714285714285714,
+     "lo": 0.3259064441752893,
+     "hi": 0.7861920121957136,
+     "boot_lo": 0.2857142857142857,
+     "boot_hi": 0.8571428571428571
+    },
+    "by_cmp": {
+     "cookiebot": {
+      "k": 0,
+      "n": 1,
+      "p": 0.0,
+      "lo": 0.0,
+      "hi": 0.7934506882081973
+     },
+     "onetrust": {
+      "k": 3,
+      "n": 5,
+      "p": 0.6,
+      "lo": 0.23072427940911855,
+      "hi": 0.8823792268590028
+     },
+     "pandectes": {
+      "k": 4,
+      "n": 8,
+      "p": 0.5,
+      "lo": 0.21521606069626764,
+      "hi": 0.7847839393037324
+     }
+    },
+    "by_default": {
+     "allowed": {
+      "k": 6,
+      "n": 7,
+      "p": 0.8571428571428571,
+      "lo": 0.486872167860775,
+      "hi": 0.9743203759421759
+     },
+     "denied": {
+      "k": 1,
+      "n": 7,
+      "p": 0.14285714285714285,
+      "lo": 0.025679624057823897,
+      "hi": 0.5131278321392249
+     }
+    },
+    "n_unknown_default": 0,
+    "fired_design_weighted": {
+     "p": 0.5,
+     "lo": 0.21428571428571427,
+     "hi": 0.773028731838894,
+     "sum_w": 17.623376,
+     "n": 14
+    }
+   },
+   "by_default": {
+    "allowed": {
+     "fired": {
+      "k": 8,
+      "n": 10,
+      "p": 0.8,
+      "lo": 0.4901624691221323,
+      "hi": 0.9433178490622331
+     },
+     "any_sbx": {
+      "k": 9,
+      "n": 10,
+      "p": 0.9,
+      "lo": 0.5958499704752279,
+      "hi": 0.982123787103926
+     }
+    },
+    "denied": {
+     "fired": {
+      "k": 4,
+      "n": 11,
+      "p": 0.36363636363636365,
+      "lo": 0.15166470989133157,
+      "hi": 0.6461988273798758
+     },
+     "any_sbx": {
+      "k": 6,
+      "n": 11,
+      "p": 0.5454545454545454,
+      "lo": 0.2800915357859759,
+      "hi": 0.7872872851236217
+     }
+    }
+   },
+   "pairs": {
+    "all": {
+     "k": 25,
+     "n": 104,
+     "p": 0.2403846153846154,
+     "lo": 0.16845379444915176,
+     "hi": 0.3308111398333188,
+     "n_clusters": 21,
+     "cboot_lo": 0.13262620837808808,
+     "cboot_hi": 0.36843671679197987
+    },
+    "primary": {
+     "k": 15,
+     "n": 74,
+     "p": 0.20270270270270271,
+     "lo": 0.12687074756447328,
+     "hi": 0.307877770354524,
+     "n_clusters": 14,
+     "cboot_lo": 0.08107018308631213,
+     "cboot_hi": 0.3750405844155842
+    }
+   },
+   "like_for_like": {
+    "allowed": {
+     "blocklist": {
+      "k": 9,
+      "n": 10,
+      "p": 0.9,
+      "lo": 0.5958499704752279,
+      "hi": 0.982123787103926
+     },
+     "reference": {
+      "k": 123,
+      "n": 174,
+      "p": 0.7068965517241379,
+      "lo": 0.6353793267228759,
+      "hi": 0.7694756517107969
+     },
+     "diff": {
+      "k1": 9,
+      "n1": 10,
+      "k2": 123,
+      "n2": 174,
+      "p1": 0.9,
+      "p2": 0.7068965517241379,
+      "diff": 0.19310344827586212,
+      "diff_lo": -0.11741770110862026,
+      "diff_hi": 0.3020026212762669,
+      "method": "Newcombe hybrid score (method 10)"
+     },
+     "blocklist_declared_vendor": {
+      "k": 8,
+      "n": 10,
+      "p": 0.8,
+      "lo": 0.4901624691221323,
+      "hi": 0.9433178490622331
+     }
+    },
+    "allowed_no_yes": {
+     "blocklist": {
+      "k": 6,
+      "n": 7,
+      "p": 0.8571428571428571,
+      "lo": 0.486872167860775,
+      "hi": 0.9743203759421759
+     },
+     "reference": {
+      "k": 98,
+      "n": 139,
+      "p": 0.7050359712230215,
+      "lo": 0.624534478159841,
+      "hi": 0.7745093319945211
+     },
+     "diff": {
+      "k1": 6,
+      "n1": 7,
+      "k2": 98,
+      "n2": 139,
+      "p1": 0.8571428571428571,
+      "p2": 0.7050359712230215,
+      "diff": 0.15210688591983557,
+      "diff_lo": -0.22462502299990955,
+      "diff_hi": 0.2942724981380018,
+      "method": "Newcombe hybrid score (method 10)"
+     },
+     "blocklist_declared_vendor": {
+      "k": 6,
+      "n": 7,
+      "p": 0.8571428571428571,
+      "lo": 0.486872167860775,
+      "hi": 0.9743203759421759
+     },
+     "reference_excluded": 35
+    },
+    "denied": {
+     "blocklist": {
+      "k": 6,
+      "n": 11,
+      "p": 0.5454545454545454,
+      "lo": 0.2800915357859759,
+      "hi": 0.7872872851236217
+     },
+     "reference": {
+      "k": 36,
+      "n": 158,
+      "p": 0.22784810126582278,
+      "lo": 0.16936427745452148,
+      "hi": 0.2992514864266146
+     },
+     "diff": {
+      "k1": 6,
+      "n1": 11,
+      "k2": 36,
+      "n2": 158,
+      "p1": 0.5454545454545454,
+      "p2": 0.22784810126582278,
+      "diff": 0.31760644418872264,
+      "diff_lo": 0.04280475148509005,
+      "diff_hi": 0.566410446615216,
+      "method": "Newcombe hybrid score (method 10)"
+     },
+     "blocklist_declared_vendor": {
+      "k": 4,
+      "n": 11,
+      "p": 0.36363636363636365,
+      "lo": 0.15166470989133157,
+      "hi": 0.6461988273798758
+     }
+    },
+    "denied_no_yes": {
+     "blocklist": {
+      "k": 2,
+      "n": 7,
+      "p": 0.2857142857142857,
+      "lo": 0.08221892324928332,
+      "hi": 0.6410655504689458
+     },
+     "reference": {
+      "k": 24,
+      "n": 145,
+      "p": 0.16551724137931034,
+      "lo": 0.11382328040690132,
+      "hi": 0.23447657684349416
+     },
+     "diff": {
+      "k1": 2,
+      "n1": 7,
+      "k2": 24,
+      "n2": 145,
+      "p1": 0.2857142857142857,
+      "p2": 0.16551724137931034,
+      "diff": 0.12019704433497536,
+      "diff_lo": -0.09466512658495307,
+      "diff_hi": 0.479288657943193,
+      "method": "Newcombe hybrid score (method 10)"
+     },
+     "blocklist_declared_vendor": {
+      "k": 1,
+      "n": 7,
+      "p": 0.14285714285714285,
+      "lo": 0.025679624057823897,
+      "hi": 0.5131278321392249
+     },
+     "reference_excluded": 13
+    },
+    "mh": {
+     "n_strata": 2,
+     "rd": 0.25796446048884747,
+     "rd_lo": 0.07967180938615193,
+     "rd_hi": 0.436257111591543,
+     "rd_method": "Mantel-Haenszel, Sato variance",
+     "k1": 15,
+     "n1": 21,
+     "k0": 159,
+     "n0": 332,
+     "odds_ratio": 3.937503478212477,
+     "or_lo": 1.297933561876312,
+     "or_hi": 11.945090331528712,
+     "or_method": "Mantel-Haenszel, Robins-Breslow-Greenland variance"
+    },
+    "mh_no_yes": {
+     "n_strata": 2,
+     "rd": 0.1361361226130246,
+     "rd_lo": -0.08378153481357994,
+     "rd_hi": 0.3560537800396292,
+     "rd_method": "Mantel-Haenszel, Sato variance",
+     "k1": 8,
+     "n1": 14,
+     "k0": 122,
+     "n0": 284,
+     "odds_ratio": 2.2434600197433365,
+     "or_lo": 0.5873225620996774,
+     "or_hi": 8.569588817077621,
+     "or_method": "Mantel-Haenszel, Robins-Breslow-Greenland variance",
+     "reduction_ruled_out_beyond": 0.08378153481357994
+    }
+   }
+  },
+  "expansion": {
+   "n_blocklist": 96,
+   "by_ds": {
+    "expansion": 96
+   },
+   "by_cmp": {
+    "pandectes": 93,
+    "onetrust": 3
+   },
+   "unconditioned": {
+    "fired": {
+     "k": 55,
+     "n": 96,
+     "p": 0.5729166666666666,
+     "lo": 0.4730431404647973,
+     "hi": 0.6671791695541792,
+     "boot_lo": 0.4791666666666667,
+     "boot_hi": 0.6669270833333318
+    },
+    "fired_mkt": {
+     "k": 47,
+     "n": 96,
+     "p": 0.4895833333333333,
+     "lo": 0.39192861157493286,
+     "hi": 0.5880396298509275,
+     "boot_lo": 0.3958333333333333,
+     "boot_hi": 0.59375
+    },
+    "any_sbx": {
+     "k": 71,
+     "n": 96,
+     "p": 0.7395833333333334,
+     "lo": 0.6437894463839564,
+     "hi": 0.8169410008212528,
+     "boot_lo": 0.65625,
+     "boot_hi": 0.8229166666666666
+    },
+    "fired_any_origin": {
+     "k": 71,
+     "n": 96,
+     "p": 0.7395833333333334,
+     "lo": 0.6437894463839564,
+     "hi": 0.8169410008212528,
+     "boot_lo": 0.6458333333333334,
+     "boot_hi": 0.8229166666666666
+    }
+   },
+   "yes_writers": {
+    "n": 21,
+    "auto_grant": 11,
+    "yes_before_pixel": 15
+   },
+   "primary": {
+    "rule": "blocklist stores whose CMP wrote no 'marketing: yes' in the Default load",
+    "n": 75,
+    "fired": {
+     "k": 39,
+     "n": 75,
+     "p": 0.52,
+     "lo": 0.40874215688597365,
+     "hi": 0.629308889385466,
+     "boot_lo": 0.41333333333333333,
+     "boot_hi": 0.6266666666666667
+    },
+    "fired_mkt": {
+     "k": 31,
+     "n": 75,
+     "p": 0.41333333333333333,
+     "lo": 0.3087772905499778,
+     "hi": 0.5263348422737838,
+     "boot_lo": 0.30666666666666664,
+     "boot_hi": 0.5333333333333333
+    },
+    "any_sbx": {
+     "k": 51,
+     "n": 75,
+     "p": 0.68,
+     "lo": 0.5678893661412978,
+     "hi": 0.774570050301659,
+     "boot_lo": 0.5733333333333334,
+     "boot_hi": 0.7866666666666666
+    },
+    "by_cmp": {
+     "onetrust": {
+      "k": 1,
+      "n": 3,
+      "p": 0.3333333333333333,
+      "lo": 0.06149194402093078,
+      "hi": 0.7923404011921757
+     },
+     "pandectes": {
+      "k": 38,
+      "n": 72,
+      "p": 0.5277777777777778,
+      "lo": 0.41400670403814144,
+      "hi": 0.6387348974421339
+     }
+    },
+    "by_default": {
+     "allowed": {
+      "k": 36,
+      "n": 52,
+      "p": 0.6923076923076923,
+      "lo": 0.5573041106535797,
+      "hi": 0.8008527212177841
+     },
+     "denied": {
+      "k": 3,
+      "n": 23,
+      "p": 0.13043478260869565,
+      "lo": 0.04537659058182972,
+      "hi": 0.32127482448539857
+     }
+    },
+    "n_unknown_default": 0,
+    "fired_design_weighted": {
+     "p": 0.52,
+     "lo": 0.4133333333333334,
+     "hi": 0.6266666666666667,
+     "sum_w": 176.34,
+     "n": 75
+    }
+   },
+   "by_default": {
+    "allowed": {
+     "fired": {
+      "k": 43,
+      "n": 62,
+      "p": 0.6935483870967742,
+      "lo": 0.5703278369385539,
+      "hi": 0.7941841348157329
+     },
+     "any_sbx": {
+      "k": 57,
+      "n": 62,
+      "p": 0.9193548387096774,
+      "lo": 0.8247142855658213,
+      "hi": 0.9650616532351332
+     }
+    },
+    "denied": {
+     "fired": {
+      "k": 12,
+      "n": 34,
+      "p": 0.35294117647058826,
+      "lo": 0.2148792050658079,
+      "hi": 0.5208603701083743
+     },
+     "any_sbx": {
+      "k": 14,
+      "n": 34,
+      "p": 0.4117647058823529,
+      "lo": 0.26365968264893114,
+      "hi": 0.5777840624555781
+     }
+    }
+   },
+   "pairs": {
+    "all": {
+     "k": 96,
+     "n": 350,
+     "p": 0.2742857142857143,
+     "lo": 0.23018498640194113,
+     "hi": 0.3232873497693705,
+     "n_clusters": 96,
+     "cboot_lo": 0.21281031893276792,
+     "cboot_hi": 0.33766953268338307
+    },
+    "primary": {
+     "k": 70,
+     "n": 292,
+     "p": 0.23972602739726026,
+     "lo": 0.19434081618360247,
+     "hi": 0.2918704789648953,
+     "n_clusters": 75,
+     "cboot_lo": 0.1757177704861411,
+     "cboot_hi": 0.31373633524206135
+    }
+   },
+   "like_for_like": {
+    "allowed": {
+     "blocklist": {
+      "k": 57,
+      "n": 62,
+      "p": 0.9193548387096774,
+      "lo": 0.8247142855658213,
+      "hi": 0.9650616532351332
+     },
+     "reference": {
+      "k": 123,
+      "n": 174,
+      "p": 0.7068965517241379,
+      "lo": 0.6353793267228759,
+      "hi": 0.7694756517107969
+     },
+     "diff": {
+      "k1": 57,
+      "n1": 62,
+      "k2": 123,
+      "n2": 174,
+      "p1": 0.9193548387096774,
+      "p2": 0.7068965517241379,
+      "diff": 0.21245828698553948,
+      "diff_lo": 0.09899913991261583,
+      "diff_hi": 0.2973336448106795,
+      "method": "Newcombe hybrid score (method 10)"
+     },
+     "blocklist_declared_vendor": {
+      "k": 43,
+      "n": 62,
+      "p": 0.6935483870967742,
+      "lo": 0.5703278369385539,
+      "hi": 0.7941841348157329
+     }
+    },
+    "allowed_no_yes": {
+     "blocklist": {
+      "k": 47,
+      "n": 52,
+      "p": 0.9038461538461539,
+      "lo": 0.7939036977180668,
+      "hi": 0.958225649211797
+     },
+     "reference": {
+      "k": 98,
+      "n": 139,
+      "p": 0.7050359712230215,
+      "lo": 0.624534478159841,
+      "hi": 0.7745093319945211
+     },
+     "diff": {
+      "k1": 47,
+      "n1": 52,
+      "k2": 98,
+      "n2": 139,
+      "p1": 0.9038461538461539,
+      "p2": 0.7050359712230215,
+      "diff": 0.19881018262313233,
+      "diff_lo": 0.06875676468894928,
+      "diff_hi": 0.2959575958754846,
+      "method": "Newcombe hybrid score (method 10)"
+     },
+     "blocklist_declared_vendor": {
+      "k": 36,
+      "n": 52,
+      "p": 0.6923076923076923,
+      "lo": 0.5573041106535797,
+      "hi": 0.8008527212177841
+     },
+     "reference_excluded": 35
+    },
+    "denied": {
+     "blocklist": {
+      "k": 14,
+      "n": 34,
+      "p": 0.4117647058823529,
+      "lo": 0.26365968264893114,
+      "hi": 0.5777840624555781
+     },
+     "reference": {
+      "k": 36,
+      "n": 158,
+      "p": 0.22784810126582278,
+      "lo": 0.16936427745452148,
+      "hi": 0.2992514864266146
+     },
+     "diff": {
+      "k1": 14,
+      "n1": 34,
+      "k2": 36,
+      "n2": 158,
+      "p1": 0.4117647058823529,
+      "p2": 0.22784810126582278,
+      "diff": 0.18391660461653014,
+      "diff_lo": 0.019497806058114714,
+      "diff_hi": 0.3599358774379432,
+      "method": "Newcombe hybrid score (method 10)"
+     },
+     "blocklist_declared_vendor": {
+      "k": 12,
+      "n": 34,
+      "p": 0.35294117647058826,
+      "lo": 0.2148792050658079,
+      "hi": 0.5208603701083743
+     }
+    },
+    "denied_no_yes": {
+     "blocklist": {
+      "k": 4,
+      "n": 23,
+      "p": 0.17391304347826086,
+      "lo": 0.0697865351446468,
+      "hi": 0.3713764781499663
+     },
+     "reference": {
+      "k": 24,
+      "n": 145,
+      "p": 0.16551724137931034,
+      "lo": 0.11382328040690132,
+      "hi": 0.23447657684349416
+     },
+     "diff": {
+      "k1": 4,
+      "n1": 23,
+      "k2": 24,
+      "n2": 145,
+      "p1": 0.17391304347826086,
+      "p2": 0.16551724137931034,
+      "diff": 0.008395802098950522,
+      "diff_lo": -0.11649502897127673,
+      "diff_hi": 0.21251359562358138,
+      "method": "Newcombe hybrid score (method 10)"
+     },
+     "blocklist_declared_vendor": {
+      "k": 3,
+      "n": 23,
+      "p": 0.13043478260869565,
+      "lo": 0.04537659058182972,
+      "hi": 0.32127482448539857
+     },
+     "reference_excluded": 13
+    },
+    "mh": {
+     "n_strata": 2,
+     "rd": 0.20162152060682437,
+     "rd_lo": 0.1111373174951439,
+     "rd_hi": 0.29210572371850485,
+     "rd_method": "Mantel-Haenszel, Sato variance",
+     "k1": 71,
+     "n1": 96,
+     "k0": 159,
+     "n0": 332,
+     "odds_ratio": 3.337611111111111,
+     "or_lo": 1.836137499367318,
+     "or_hi": 6.066892012635631,
+     "or_method": "Mantel-Haenszel, Robins-Breslow-Greenland variance"
+    },
+    "mh_no_yes": {
+     "n_strata": 2,
+     "rd": 0.13329307309663702,
+     "rd_lo": 0.03397335881947604,
+     "rd_hi": 0.23261278737379798,
+     "rd_method": "Mantel-Haenszel, Sato variance",
+     "k1": 51,
+     "n1": 75,
+     "k0": 122,
+     "n0": 284,
+     "odds_ratio": 2.456556641639515,
+     "or_lo": 1.2252933325612452,
+     "or_hi": 4.925082323731305,
+     "or_method": "Mantel-Haenszel, Robins-Breslow-Greenland variance",
+     "reduction_ruled_out_beyond": 0.0
+    }
+   }
+  },
+  "combined": {
+   "n_blocklist": 117,
+   "by_ds": {
+    "expansion": 96,
+    "main": 21
+   },
+   "by_cmp": {
+    "pandectes": 108,
+    "onetrust": 8,
+    "cookiebot": 1
+   },
+   "unconditioned": {
+    "fired": {
+     "k": 67,
+     "n": 117,
+     "p": 0.5726495726495726,
+     "lo": 0.48210822780624496,
+     "hi": 0.6585719671978496,
+     "boot_lo": 0.48696581196581196,
+     "boot_hi": 0.6666666666666666
+    },
+    "fired_mkt": {
+     "k": 57,
+     "n": 117,
+     "p": 0.48717948717948717,
+     "lo": 0.3984677250759351,
+     "hi": 0.5767063581586364,
+     "boot_lo": 0.4017094017094017,
+     "boot_hi": 0.5811965811965812
+    },
+    "any_sbx": {
+     "k": 86,
+     "n": 117,
+     "p": 0.7350427350427351,
+     "lo": 0.6485333169133087,
+     "hi": 0.8066084904528799,
+     "boot_lo": 0.6581196581196581,
+     "boot_hi": 0.811965811965812
+    },
+    "fired_any_origin": {
+     "k": 87,
+     "n": 117,
+     "p": 0.7435897435897436,
+     "lo": 0.6576092082952608,
+     "hi": 0.81408321024788,
+     "boot_lo": 0.6666666666666666,
+     "boot_hi": 0.8205128205128205
+    }
+   },
+   "yes_writers": {
+    "n": 28,
+    "auto_grant": 15,
+    "yes_before_pixel": 20
+   },
+   "primary": {
+    "rule": "blocklist stores whose CMP wrote no 'marketing: yes' in the Default load",
+    "n": 89,
+    "fired": {
+     "k": 46,
+     "n": 89,
+     "p": 0.5168539325842697,
+     "lo": 0.4145058517252246,
+     "hi": 0.617807298414259,
+     "boot_lo": 0.4044943820224719,
+     "boot_hi": 0.6179775280898876
+    },
+    "fired_mkt": {
+     "k": 37,
+     "n": 89,
+     "p": 0.4157303370786517,
+     "lo": 0.31890529215058616,
+     "hi": 0.5195289571519964,
+     "boot_lo": 0.3146067415730337,
+     "boot_hi": 0.5168539325842697
+    },
+    "any_sbx": {
+     "k": 59,
+     "n": 89,
+     "p": 0.6629213483146067,
+     "lo": 0.5597888027662327,
+     "hi": 0.7525716485821076,
+     "boot_lo": 0.5617977528089888,
+     "boot_hi": 0.7528089887640449
+    },
+    "by_cmp": {
+     "cookiebot": {
+      "k": 0,
+      "n": 1,
+      "p": 0.0,
+      "lo": 0.0,
+      "hi": 0.7934506882081973
+     },
+     "onetrust": {
+      "k": 4,
+      "n": 8,
+      "p": 0.5,
+      "lo": 0.21521606069626764,
+      "hi": 0.7847839393037324
+     },
+     "pandectes": {
+      "k": 42,
+      "n": 80,
+      "p": 0.525,
+      "lo": 0.4169564256753996,
+      "hi": 0.6307526678133392
+     }
+    },
+    "by_default": {
+     "allowed": {
+      "k": 42,
+      "n": 59,
+      "p": 0.711864406779661,
+      "lo": 0.5861915332329743,
+      "hi": 0.811635004295755
+     },
+     "denied": {
+      "k": 4,
+      "n": 30,
+      "p": 0.13333333333333333,
+      "lo": 0.05309655447112463,
+      "hi": 0.2968132683539402
+     }
+    },
+    "n_unknown_default": 0,
+    "fired_design_weighted": {
+     "p": 0.5181828140586706,
+     "lo": 0.4057310006958825,
+     "hi": 0.6221240859408429,
+     "sum_w": 193.96337599999998,
+     "n": 89
+    }
+   },
+   "by_default": {
+    "allowed": {
+     "fired": {
+      "k": 51,
+      "n": 72,
+      "p": 0.7083333333333334,
+      "lo": 0.5949425723702729,
+      "hi": 0.8006194387317919
+     },
+     "any_sbx": {
+      "k": 66,
+      "n": 72,
+      "p": 0.9166666666666666,
+      "lo": 0.8298764469345035,
+      "hi": 0.9612475752696261
+     }
+    },
+    "denied": {
+     "fired": {
+      "k": 16,
+      "n": 45,
+      "p": 0.35555555555555557,
+      "lo": 0.23219082522121015,
+      "hi": 0.5016418591874369
+     },
+     "any_sbx": {
+      "k": 20,
+      "n": 45,
+      "p": 0.4444444444444444,
+      "lo": 0.30938929939922566,
+      "hi": 0.5882386561425615
+     }
+    }
+   },
+   "pairs": {
+    "all": {
+     "k": 121,
+     "n": 454,
+     "p": 0.2665198237885463,
+     "lo": 0.227931974150791,
+     "hi": 0.30902564319123094,
+     "n_clusters": 117,
+     "cboot_lo": 0.21412519347541376,
+     "cboot_hi": 0.3237437621019158
+    },
+    "primary": {
+     "k": 85,
+     "n": 366,
+     "p": 0.23224043715846995,
+     "lo": 0.19189681873784703,
+     "hi": 0.278146370598295,
+     "n_clusters": 89,
+     "cboot_lo": 0.17150207312476443,
+     "cboot_hi": 0.30111046064907976
+    }
+   },
+   "like_for_like": {
+    "allowed": {
+     "blocklist": {
+      "k": 66,
+      "n": 72,
+      "p": 0.9166666666666666,
+      "lo": 0.8298764469345035,
+      "hi": 0.9612475752696261
+     },
+     "reference": {
+      "k": 123,
+      "n": 174,
+      "p": 0.7068965517241379,
+      "lo": 0.6353793267228759,
+      "hi": 0.7694756517107969
+     },
+     "diff": {
+      "k1": 66,
+      "n1": 72,
+      "k2": 123,
+      "n2": 174,
+      "p1": 0.9166666666666666,
+      "p2": 0.7068965517241379,
+      "diff": 0.20977011494252873,
+      "diff_lo": 0.10277158225961092,
+      "diff_hi": 0.29404449351482415,
+      "method": "Newcombe hybrid score (method 10)"
+     },
+     "blocklist_declared_vendor": {
+      "k": 51,
+      "n": 72,
+      "p": 0.7083333333333334,
+      "lo": 0.5949425723702729,
+      "hi": 0.8006194387317919
+     }
+    },
+    "allowed_no_yes": {
+     "blocklist": {
+      "k": 53,
+      "n": 59,
+      "p": 0.8983050847457628,
+      "lo": 0.7953618627391342,
+      "hi": 0.9525520278148768
+     },
+     "reference": {
+      "k": 98,
+      "n": 139,
+      "p": 0.7050359712230215,
+      "lo": 0.624534478159841,
+      "hi": 0.7745093319945211
+     },
+     "diff": {
+      "k1": 53,
+      "n1": 59,
+      "k2": 98,
+      "n2": 139,
+      "p1": 0.8983050847457628,
+      "p2": 0.7050359712230215,
+      "diff": 0.19326911352274123,
+      "diff_lo": 0.06907630046983973,
+      "diff_hi": 0.29034239109048904,
+      "method": "Newcombe hybrid score (method 10)"
+     },
+     "blocklist_declared_vendor": {
+      "k": 42,
+      "n": 59,
+      "p": 0.711864406779661,
+      "lo": 0.5861915332329743,
+      "hi": 0.811635004295755
+     },
+     "reference_excluded": 35
+    },
+    "denied": {
+     "blocklist": {
+      "k": 20,
+      "n": 45,
+      "p": 0.4444444444444444,
+      "lo": 0.30938929939922566,
+      "hi": 0.5882386561425615
+     },
+     "reference": {
+      "k": 36,
+      "n": 158,
+      "p": 0.22784810126582278,
+      "lo": 0.16936427745452148,
+      "hi": 0.2992514864266146
+     },
+     "diff": {
+      "k1": 20,
+      "n1": 45,
+      "k2": 36,
+      "n2": 158,
+      "p1": 0.4444444444444444,
+      "p2": 0.22784810126582278,
+      "diff": 0.21659634317862164,
+      "diff_lo": 0.06382744707864499,
+      "diff_hi": 0.3718288557701347,
+      "method": "Newcombe hybrid score (method 10)"
+     },
+     "blocklist_declared_vendor": {
+      "k": 16,
+      "n": 45,
+      "p": 0.35555555555555557,
+      "lo": 0.23219082522121015,
+      "hi": 0.5016418591874369
+     }
+    },
+    "denied_no_yes": {
+     "blocklist": {
+      "k": 6,
+      "n": 30,
+      "p": 0.2,
+      "lo": 0.09505107121882947,
+      "hi": 0.3730569656380418
+     },
+     "reference": {
+      "k": 24,
+      "n": 145,
+      "p": 0.16551724137931034,
+      "lo": 0.11382328040690132,
+      "hi": 0.23447657684349416
+     },
+     "diff": {
+      "k1": 6,
+      "n1": 30,
+      "k2": 24,
+      "n2": 145,
+      "p1": 0.2,
+      "p2": 0.16551724137931034,
+      "diff": 0.03448275862068967,
+      "diff_lo": -0.0910945785065844,
+      "diff_hi": 0.21509554597768532,
+      "method": "Newcombe hybrid score (method 10)"
+     },
+     "blocklist_declared_vendor": {
+      "k": 4,
+      "n": 30,
+      "p": 0.13333333333333333,
+      "lo": 0.05309655447112463,
+      "hi": 0.2968132683539402
+     },
+     "reference_excluded": 13
+    },
+    "mh": {
+     "n_strata": 2,
+     "rd": 0.2125517561443385,
+     "rd_lo": 0.12751662657880475,
+     "rd_hi": 0.29758688570987224,
+     "rd_method": "Mantel-Haenszel, Sato variance",
+     "k1": 86,
+     "n1": 117,
+     "k0": 159,
+     "n0": 332,
+     "odds_ratio": 3.4576767040036205,
+     "or_lo": 2.0025258169171547,
+     "or_hi": 5.970224248002265,
+     "or_method": "Mantel-Haenszel, Robins-Breslow-Greenland variance"
+    },
+    "mh_no_yes": {
+     "n_strata": 2,
+     "rd": 0.13371580356851262,
+     "rd_lo": 0.039650850685757646,
+     "rd_hi": 0.2277807564512676,
+     "rd_method": "Mantel-Haenszel, Sato variance",
+     "k1": 59,
+     "n1": 89,
+     "k0": 122,
+     "n0": 284,
+     "odds_ratio": 2.4154313476040343,
+     "or_lo": 1.2764710562662225,
+     "or_hi": 4.5706548271090846,
+     "or_method": "Mantel-Haenszel, Robins-Breslow-Greenland variance",
+     "reduction_ruled_out_beyond": 0.0
+    }
+   }
+  },
+  "main_vs_expansion_primary": {
+   "k1": 7,
+   "n1": 14,
+   "k2": 39,
+   "n2": 75,
+   "p1": 0.5,
+   "p2": 0.52,
+   "diff": -0.020000000000000018,
+   "diff_lo": -0.27646858413737374,
+   "diff_hi": 0.2373052836712266,
+   "method": "Newcombe hybrid score (method 10)",
+   "fisher_p": 1.0
+  },
+  "expansion_funnel": {
+   "candidates": 120,
+   "prepared": 120,
+   "decisions": {
+    "load_tagged": 120
+   },
+   "page_source": {
+    "homepage_link": 112,
+    "products_json_r4": 5,
+    "homepage_escaped": 3
+   },
+   "loads_run": 360,
+   "loads_ok": 348,
+   "loads_ok_by_arm": {
+    "A0": 116,
+    "A1": 116,
+    "A2": 116
+   },
+   "stores_with_any_load": 120,
+   "captured_all_three": 116,
+   "captured_records": 116,
+   "blocklist_at_runtime": 96,
+   "blocklist_by_static_prediction": {
+    "yes": 93,
+    "unknown": 3
+   },
+   "static_yes_confirmed": {
+    "k": 93,
+    "n": 95
+   },
+   "static_unknown_confirmed": {
+    "k": 3,
+    "n": 21
+   },
+   "failed_loads": [
+    {
+     "load_id": "E0038__A0",
+     "goto_status": "404",
+     "goto_error": "nan",
+     "blocked_hint": "False",
+     "has_shopify": "True",
+     "n_requests": "465"
+    },
+    {
+     "load_id": "E0038__A1",
+     "goto_status": "404",
+     "goto_error": "nan",
+     "blocked_hint": "False",
+     "has_shopify": "True",
+     "n_requests": "914"
+    },
+    {
+     "load_id": "E0038__A2",
+     "goto_status": "404",
+     "goto_error": "nan",
+     "blocked_hint": "False",
+     "has_shopify": "True",
+     "n_requests": "490"
+    },
+    {
+     "load_id": "E0067__A0",
+     "goto_status": "200",
+     "goto_error": "nan",
+     "blocked_hint": "True",
+     "has_shopify": "False",
+     "n_requests": "231"
+    },
+    {
+     "load_id": "E0067__A1",
+     "goto_status": "200",
+     "goto_error": "nan",
+     "blocked_hint": "True",
+     "has_shopify": "False",
+     "n_requests": "181"
+    },
+    {
+     "load_id": "E0067__A2",
+     "goto_status": "200",
+     "goto_error": "nan",
+     "blocked_hint": "True",
+     "has_shopify": "False",
+     "n_requests": "180"
+    },
+    {
+     "load_id": "E0102__A0",
+     "goto_status": "404",
+     "goto_error": "nan",
+     "blocked_hint": "False",
+     "has_shopify": "False",
+     "n_requests": "1"
+    },
+    {
+     "load_id": "E0102__A1",
+     "goto_status": "404",
+     "goto_error": "nan",
+     "blocked_hint": "False",
+     "has_shopify": "False",
+     "n_requests": "1"
+    },
+    {
+     "load_id": "E0102__A2",
+     "goto_status": "404",
+     "goto_error": "nan",
+     "blocked_hint": "False",
+     "has_shopify": "False",
+     "n_requests": "1"
+    },
+    {
+     "load_id": "E0107__A0",
+     "goto_status": "404",
+     "goto_error": "nan",
+     "blocked_hint": "False",
+     "has_shopify": "True",
+     "n_requests": "430"
+    },
+    {
+     "load_id": "E0107__A1",
+     "goto_status": "404",
+     "goto_error": "nan",
+     "blocked_hint": "False",
+     "has_shopify": "True",
+     "n_requests": "692"
+    },
+    {
+     "load_id": "E0107__A2",
+     "goto_status": "404",
+     "goto_error": "nan",
+     "blocked_hint": "False",
+     "has_shopify": "True",
+     "n_requests": "388"
+    }
+   ]
+  },
+  "_meta": {
+   "bootstrap_B": 2000,
+   "seed": 20260926,
+   "reference": "main-sample banner stores without a declared-blocked ad vendor",
+   "note": "unweighted store-level shares (as the main paper); design-weighted primary rate is a sensitivity"
+  }
+ },
+ "beyond": {
+  "_meta": {
+   "bootstrap_B": 2000,
+   "seed": 20260926,
+   "n_raw_files": 570,
+   "definitions": "Round 4 B2: beyond-Shopify pilot analysis (round4/beyond/PROTOCOL.md sections 3-5, 8).\n\nReads round4/beyond/crawl/raw/<site>__<arm>.json.gz (crawl_r4.js --set beyond) and round4/beyond/candidates.csv.\nClassification of each request, in this order (PROTOCOL.md section 4):\n  1. the Part A host map (the crawler's own `vendor`/`ad` labels), then the 39 host entries added in\n     vendor_endpoints_extra.json;\n  2. first-party rules (same site or a hosted-sGTM host): `strong` ones count in the headline as 'via first-party\n     endpoint', `moderate` ones are reported separately; the Partytown proxy (?url=<vendor URL>) is attributed to the\n     inner URL's vendor.\n  'ad request' = a request to an advertising vendor (Part A map or the added hosts) or a strong first-party hit whose\n  wire format names an ad vendor (Google Ads / Meta / TikTok). 'first-party collect' = any strong first-party beacon\n  (GA4, Google Ads, UA, Meta, TikTok, Zaraz track call). Requests blocked by the browser (blockedReason) and CORS\n  preflights are not counted as data sent. Server-side forwarding is never inferred.\nLoad qualification (replaces Part A's window.Shopify test, PROTOCOL.md 5): HTTP 2xx/3xx, not 401/403/429/503, no\n  challenge-page title, no redirect to another site, more than 20 requests.\nArms: A0 Default (all requests are before any choice); A1 Decline (click only 'Decline/Reject'; after = same page\n  after the click + the next page); A2 GPC.\nCIs: Wilson (primary) plus a site bootstrap (percentile, B = 2000, seed 20260926). Paired A0 vs A2: exact McNemar and\n  Newcombe's paired interval (analysis/analyze.py). PT (8 sites) and ZZ (1 site) are case studies: no rates."
+  },
+  "funnel": {
+   "partytown": {
+    "selected": 8,
+    "loads_run": 15,
+    "loads_ok": 15,
+    "sites_any_ok": 5,
+    "captured": 5,
+    "failures": {}
+   },
+   "zaraz": {
+    "selected": 1,
+    "loads_run": 3,
+    "loads_ok": 3,
+    "sites_any_ok": 1,
+    "captured": 1,
+    "failures": {}
+   },
+   "gateway": {
+    "selected": 26,
+    "loads_run": 72,
+    "loads_ok": 72,
+    "sites_any_ok": 24,
+    "captured": 24,
+    "failures": {}
+   },
+   "wix": {
+    "selected": 80,
+    "loads_run": 240,
+    "loads_ok": 240,
+    "sites_any_ok": 80,
+    "captured": 80,
+    "failures": {}
+   },
+   "bigcommerce": {
+    "selected": 80,
+    "loads_run": 240,
+    "loads_ok": 231,
+    "sites_any_ok": 77,
+    "captured": 77,
+    "failures": {
+     "http_403": 6,
+     "http_404": 3
+    }
+   }
+  },
+  "rates": {
+   "wix": {
+    "n_A0": 80,
+    "banner": {
+     "k": 57,
+     "n": 80,
+     "p": 0.7125,
+     "lo": 0.6053965369833818,
+     "hi": 0.800130757670898,
+     "boot_lo": 0.6125,
+     "boot_hi": 0.8125
+    },
+    "prechoice_ad_all": {
+     "k": 40,
+     "n": 80,
+     "p": 0.5,
+     "lo": 0.3929741500556709,
+     "hi": 0.6070258499443291,
+     "boot_lo": 0.3875,
+     "boot_hi": 0.6125
+    },
+    "prechoice_ad_banner": {
+     "k": 28,
+     "n": 57,
+     "p": 0.49122807017543857,
+     "lo": 0.3661628232639367,
+     "hi": 0.6174010159603817,
+     "boot_lo": 0.3684210526315789,
+     "boot_hi": 0.631578947368421
+    },
+    "prechoice_ad_beacon_banner": {
+     "k": 28,
+     "n": 57,
+     "p": 0.49122807017543857,
+     "lo": 0.3661628232639367,
+     "hi": 0.6174010159603817,
+     "boot_lo": 0.3684210526315789,
+     "boot_hi": 0.631578947368421
+    },
+    "prechoice_ad_offmain_banner": {
+     "k": 14,
+     "n": 57,
+     "p": 0.24561403508771928,
+     "lo": 0.15232837411479627,
+     "hi": 0.3710229633904384,
+     "boot_lo": 0.14035087719298245,
+     "boot_hi": 0.3684210526315789
+    },
+    "prechoice_fp_collect_all": {
+     "k": 12,
+     "n": 80,
+     "p": 0.15,
+     "lo": 0.08794040469045901,
+     "hi": 0.24413228646719792,
+     "boot_lo": 0.075,
+     "boot_hi": 0.2375
+    },
+    "prechoice_fp_collect_banner": {
+     "k": 8,
+     "n": 57,
+     "p": 0.14035087719298245,
+     "lo": 0.07287276105928868,
+     "hi": 0.25324464713776723,
+     "boot_lo": 0.05263157894736842,
+     "boot_hi": 0.22807017543859648
+    },
+    "prechoice_ad_via_fp_banner": {
+     "k": 0,
+     "n": 57,
+     "p": 0.0,
+     "lo": 0.0,
+     "hi": 0.0631388357861509,
+     "boot_lo": 0.0,
+     "boot_hi": 0.0
+    },
+    "decline": {
+     "n_A1": 80,
+     "banner_found": {
+      "k": 57,
+      "n": 80,
+      "p": 0.7125,
+      "lo": 0.6053965369833818,
+      "hi": 0.800130757670898,
+      "boot_lo": 0.6125,
+      "boot_hi": 0.8125
+     },
+     "no_decline_option": 24,
+     "clicked": 33,
+     "click_ok": 33,
+     "after_ad": {
+      "k": 14,
+      "n": 33,
+      "p": 0.42424242424242425,
+      "lo": 0.27235596531401507,
+      "hi": 0.5919273678702078,
+      "boot_lo": 0.2727272727272727,
+      "boot_hi": 0.5757575757575758
+     },
+     "after_ad_beacon": {
+      "k": 14,
+      "n": 33,
+      "p": 0.42424242424242425,
+      "lo": 0.27235596531401507,
+      "hi": 0.5919273678702078,
+      "boot_lo": 0.2727272727272727,
+      "boot_hi": 0.5757575757575758
+     },
+     "next_page_ad": {
+      "k": 14,
+      "n": 33,
+      "p": 0.42424242424242425,
+      "lo": 0.27235596531401507,
+      "hi": 0.5919273678702078,
+      "boot_lo": 0.2727272727272727,
+      "boot_hi": 0.5757575757575758
+     },
+     "after_fp_collect": {
+      "k": 5,
+      "n": 33,
+      "p": 0.15151515151515152,
+      "lo": 0.06650457239529714,
+      "hi": 0.30919876025212834,
+      "boot_lo": 0.030303030303030304,
+      "boot_hi": 0.2727272727272727
+     },
+     "after_server_id_cookie": {
+      "k": 4,
+      "n": 33,
+      "p": 0.12121212121212122,
+      "lo": 0.048161612759131084,
+      "hi": 0.2732550531619836,
+      "boot_lo": 0.030303030303030304,
+      "boot_hi": 0.24242424242424243
+     },
+     "pre_ad_then_after": {
+      "pre": 15,
+      "pre_and_after": 14
+     },
+     "after_fp_consent_states": {
+      "none": 4,
+      "denied": 1
+     }
+    },
+    "gpc": {
+     "n_pairs": 80,
+     "A0_ad": {
+      "k": 40,
+      "n": 80,
+      "p": 0.5,
+      "lo": 0.3929741500556709,
+      "hi": 0.6070258499443291,
+      "boot_lo": 0.3875,
+      "boot_hi": 0.6125
+     },
+     "A2_ad": {
+      "k": 40,
+      "n": 80,
+      "p": 0.5,
+      "lo": 0.3929741500556709,
+      "hi": 0.6070258499443291,
+      "boot_lo": 0.3875,
+      "boot_hi": 0.6125
+     },
+     "mcnemar": {
+      "n": 80,
+      "a_only": 0,
+      "b_only": 0,
+      "both": 40,
+      "neither": 40,
+      "p_exact": 1.0,
+      "k_a": 40,
+      "k_b": 40
+     },
+     "diff": {
+      "n": 80,
+      "k_a": 40,
+      "k_b": 40,
+      "a_only": 0,
+      "b_only": 0,
+      "diff": 0.0,
+      "diff_lo": -0.02393170758252123,
+      "diff_hi": 0.02393170758252123,
+      "method": "Newcombe paired hybrid score (method 10)"
+     },
+     "banner_sites": {
+      "n": 57,
+      "A0_ad": {
+       "k": 28,
+       "n": 57,
+       "p": 0.49122807017543857,
+       "lo": 0.3661628232639367,
+       "hi": 0.6174010159603817,
+       "boot_lo": 0.3684210526315789,
+       "boot_hi": 0.631578947368421
+      },
+      "A2_ad": {
+       "k": 28,
+       "n": 57,
+       "p": 0.49122807017543857,
+       "lo": 0.3661628232639367,
+       "hi": 0.6174010159603817,
+       "boot_lo": 0.3684210526315789,
+       "boot_hi": 0.631578947368421
+      }
+     },
+     "workers_gpc_injected": {
+      "workers": 85,
+      "gpc_true": 82
+     }
+    },
+    "adv_denied_default": {
+     "n": 26,
+     "banner": {
+      "k": 22,
+      "n": 26,
+      "p": 0.8461538461538461,
+      "lo": 0.6646880050648342,
+      "hi": 0.9384996631922972,
+      "boot_lo": 0.6923076923076923,
+      "boot_hi": 0.9615384615384616
+     },
+     "ad": {
+      "k": 16,
+      "n": 26,
+      "p": 0.6153846153846154,
+      "lo": 0.42534849943440245,
+      "hi": 0.775714056651308,
+      "boot_lo": 0.4230769230769231,
+      "boot_hi": 0.8076923076923077
+     },
+     "ad_top_frame": {
+      "k": 15,
+      "n": 26,
+      "p": 0.5769230769230769,
+      "lo": 0.3894861361059128,
+      "hi": 0.7445555679512275,
+      "boot_lo": 0.38461538461538464,
+      "boot_hi": 0.7692307692307693
+     },
+     "ad_embed_or_app_frame": {
+      "k": 2,
+      "n": 26,
+      "p": 0.07692307692307693,
+      "lo": 0.0213550882794125,
+      "hi": 0.24141553940631577,
+      "boot_lo": 0.0,
+      "boot_hi": 0.19230769230769232
+     },
+     "gdpr_geo_true": 0
+    },
+    "adv_allowed_default": {
+     "n": 53,
+     "banner": {
+      "k": 34,
+      "n": 53,
+      "p": 0.6415094339622641,
+      "lo": 0.5069114144879365,
+      "hi": 0.7569804752562204,
+      "boot_lo": 0.5094339622641509,
+      "boot_hi": 0.7735849056603774
+     },
+     "ad": {
+      "k": 23,
+      "n": 53,
+      "p": 0.4339622641509434,
+      "lo": 0.3095039647138256,
+      "hi": 0.5673464867389011,
+      "boot_lo": 0.3018867924528302,
+      "boot_hi": 0.5660377358490566
+     },
+     "ad_top_frame": {
+      "k": 19,
+      "n": 53,
+      "p": 0.3584905660377358,
+      "lo": 0.24301952474377947,
+      "hi": 0.4930885855120634,
+      "boot_lo": 0.22641509433962265,
+      "boot_hi": 0.49056603773584906
+     },
+     "ad_embed_or_app_frame": {
+      "k": 1,
+      "n": 53,
+      "p": 0.018867924528301886,
+      "lo": 0.003338453351346228,
+      "hi": 0.09942912151851982,
+      "boot_lo": 0.0,
+      "boot_hi": 0.05660377358490566
+     },
+     "gdpr_geo_true": 0
+    },
+    "default_policy_unread": 1,
+    "prechoice_ad_vendor_sites": {
+     "google_ads": 21,
+     "meta": 11,
+     "linkedin": 8,
+     "hubspot_ads": 4,
+     "zoominfo": 3,
+     "amazon_ads": 3,
+     "microsoft_uet": 3,
+     "bidswitch": 2,
+     "xandr": 2,
+     "index_exchange": 2,
+     "reddit": 2,
+     "pubmatic": 2
+    },
+    "prechoice_ad_origin_sites": {
+     "main_thread": 24,
+     "subframe": 13,
+     "wix_embed_iframe": 2
+    },
+    "prechoice_ad_via_sites": {
+     "host_map": 27,
+     "host_map_extra": 6
+    }
+   },
+   "bigcommerce": {
+    "n_A0": 77,
+    "banner": {
+     "k": 72,
+     "n": 77,
+     "p": 0.935064935064935,
+     "lo": 0.8568357485589534,
+     "hi": 0.9719469197298488,
+     "boot_lo": 0.8701298701298701,
+     "boot_hi": 0.987012987012987
+    },
+    "prechoice_ad_all": {
+     "k": 52,
+     "n": 77,
+     "p": 0.6753246753246753,
+     "lo": 0.5645808380682676,
+     "hi": 0.7694062073615483,
+     "boot_lo": 0.5714285714285714,
+     "boot_hi": 0.7792207792207793
+    },
+    "prechoice_ad_banner": {
+     "k": 48,
+     "n": 72,
+     "p": 0.6666666666666666,
+     "lo": 0.5517960426376316,
+     "hi": 0.7646535662440201,
+     "boot_lo": 0.5555555555555556,
+     "boot_hi": 0.7777777777777778
+    },
+    "prechoice_ad_beacon_banner": {
+     "k": 47,
+     "n": 72,
+     "p": 0.6527777777777778,
+     "lo": 0.5376130375315409,
+     "hi": 0.7524657706099733,
+     "boot_lo": 0.5416666666666666,
+     "boot_hi": 0.7638888888888888
+    },
+    "prechoice_ad_offmain_banner": {
+     "k": 12,
+     "n": 72,
+     "p": 0.16666666666666666,
+     "lo": 0.09799371201285148,
+     "hi": 0.26910707022384484,
+     "boot_lo": 0.08333333333333333,
+     "boot_hi": 0.2638888888888889
+    },
+    "prechoice_fp_collect_all": {
+     "k": 4,
+     "n": 77,
+     "p": 0.05194805194805195,
+     "lo": 0.020384718362032546,
+     "hi": 0.12609283220621575,
+     "boot_lo": 0.012987012987012988,
+     "boot_hi": 0.1038961038961039
+    },
+    "prechoice_fp_collect_banner": {
+     "k": 4,
+     "n": 72,
+     "p": 0.05555555555555555,
+     "lo": 0.02181421582976354,
+     "hi": 0.13432016048583154,
+     "boot_lo": 0.013888888888888888,
+     "boot_hi": 0.1111111111111111
+    },
+    "prechoice_ad_via_fp_banner": {
+     "k": 0,
+     "n": 72,
+     "p": 0.0,
+     "lo": 0.0,
+     "hi": 0.05065117335504446,
+     "boot_lo": 0.0,
+     "boot_hi": 0.0
+    },
+    "decline": {
+     "n_A1": 77,
+     "banner_found": {
+      "k": 70,
+      "n": 77,
+      "p": 0.9090909090909091,
+      "lo": 0.8240388163605563,
+      "hi": 0.9552642896423473,
+      "boot_lo": 0.8441558441558441,
+      "boot_hi": 0.974025974025974
+     },
+     "no_decline_option": 15,
+     "clicked": 55,
+     "click_ok": 53,
+     "after_ad": {
+      "k": 32,
+      "n": 53,
+      "p": 0.6037735849056604,
+      "lo": 0.4694147856894524,
+      "hi": 0.7241059334562627,
+      "boot_lo": 0.4716981132075472,
+      "boot_hi": 0.7358490566037735
+     },
+     "after_ad_beacon": {
+      "k": 32,
+      "n": 53,
+      "p": 0.6037735849056604,
+      "lo": 0.4694147856894524,
+      "hi": 0.7241059334562627,
+      "boot_lo": 0.4716981132075472,
+      "boot_hi": 0.7358490566037735
+     },
+     "next_page_ad": {
+      "k": 32,
+      "n": 53,
+      "p": 0.6037735849056604,
+      "lo": 0.4694147856894524,
+      "hi": 0.7241059334562627,
+      "boot_lo": 0.4716981132075472,
+      "boot_hi": 0.7358490566037735
+     },
+     "after_fp_collect": {
+      "k": 45,
+      "n": 53,
+      "p": 0.8490566037735849,
+      "lo": 0.7294575061422911,
+      "hi": 0.9214758218932962,
+      "boot_lo": 0.7547169811320755,
+      "boot_hi": 0.9433962264150944
+     },
+     "after_server_id_cookie": {
+      "k": 45,
+      "n": 53,
+      "p": 0.8490566037735849,
+      "lo": 0.7294575061422911,
+      "hi": 0.9214758218932962,
+      "boot_lo": 0.7547169811320755,
+      "boot_hi": 0.9433962264150944
+     },
+     "pre_ad_then_after": {
+      "pre": 33,
+      "pre_and_after": 31
+     },
+     "after_fp_consent_states": {
+      "none": 45,
+      "not_set": 1
+     }
+    },
+    "gpc": {
+     "n_pairs": 77,
+     "A0_ad": {
+      "k": 52,
+      "n": 77,
+      "p": 0.6753246753246753,
+      "lo": 0.5645808380682676,
+      "hi": 0.7694062073615483,
+      "boot_lo": 0.5714285714285714,
+      "boot_hi": 0.7792207792207793
+     },
+     "A2_ad": {
+      "k": 48,
+      "n": 77,
+      "p": 0.6233766233766234,
+      "lo": 0.5117280362354844,
+      "hi": 0.7232998846225343,
+      "boot_lo": 0.5194805194805194,
+      "boot_hi": 0.7272727272727273
+     },
+     "mcnemar": {
+      "n": 77,
+      "a_only": 4,
+      "b_only": 0,
+      "both": 48,
+      "neither": 25,
+      "p_exact": 0.125,
+      "k_a": 52,
+      "k_b": 48
+     },
+     "diff": {
+      "n": 77,
+      "k_a": 48,
+      "k_b": 52,
+      "a_only": 0,
+      "b_only": 4,
+      "diff": -0.051948051948051965,
+      "diff_lo": -0.1083187030470659,
+      "diff_hi": 0.004083958614467281,
+      "method": "Newcombe paired hybrid score (method 10)"
+     },
+     "banner_sites": {
+      "n": 72,
+      "A0_ad": {
+       "k": 48,
+       "n": 72,
+       "p": 0.6666666666666666,
+       "lo": 0.5517960426376316,
+       "hi": 0.7646535662440201,
+       "boot_lo": 0.5555555555555556,
+       "boot_hi": 0.7777777777777778
+      },
+      "A2_ad": {
+       "k": 44,
+       "n": 72,
+       "p": 0.6111111111111112,
+       "lo": 0.49562354903304096,
+       "hi": 0.7153428568880604,
+       "boot_lo": 0.5,
+       "boot_hi": 0.7222222222222222
+      }
+     },
+     "workers_gpc_injected": {
+      "workers": 48,
+      "gpc_true": 28
+     }
+    },
+    "consent_enabled": {
+     "n": 56,
+     "banner": {
+      "k": 54,
+      "n": 56,
+      "p": 0.9642857142857143,
+      "lo": 0.8788121972263885,
+      "hi": 0.9901505749404693,
+      "boot_lo": 0.9107142857142857,
+      "boot_hi": 1.0
+     },
+     "prechoice_ad": {
+      "k": 33,
+      "n": 56,
+      "p": 0.5892857142857143,
+      "lo": 0.4587759674567856,
+      "hi": 0.7083322579599177,
+      "boot_lo": 0.4642857142857143,
+      "boot_hi": 0.7147321428571405
+     },
+     "prechoice_ad_banner": {
+      "k": 32,
+      "n": 54,
+      "p": 0.5925925925925926,
+      "lo": 0.45966849240857033,
+      "hi": 0.7132178799860525,
+      "boot_lo": 0.46296296296296297,
+      "boot_hi": 0.7222222222222222
+     },
+     "held_back_first_mean": 4.910714285714286,
+     "held_back_last_mean": 4.910714285714286,
+     "held_back_released_sites": 0
+    },
+    "consent_not_enabled": {
+     "n": 21,
+     "prechoice_ad": {
+      "k": 19,
+      "n": 21,
+      "p": 0.9047619047619048,
+      "lo": 0.7108586073515344,
+      "hi": 0.9734812328017302,
+      "boot_lo": 0.7619047619047619,
+      "boot_hi": 1.0
+     }
+    },
+    "prechoice_ad_vendor_sites": {
+     "google_ads": 39,
+     "meta": 19,
+     "microsoft_uet": 10,
+     "linkedin": 6,
+     "reddit": 5,
+     "pinterest": 5,
+     "tiktok": 4,
+     "hubspot_ads": 2,
+     "liveramp": 2,
+     "triplelift": 1,
+     "tradedesk": 1,
+     "vibe": 1
+    },
+    "prechoice_ad_origin_sites": {
+     "main_thread": 46,
+     "subframe": 12
+    },
+    "prechoice_ad_via_sites": {
+     "host_map": 48,
+     "host_map_extra": 5
+    }
+   },
+   "gateway": {
+    "n_A0": 24,
+    "banner": {
+     "k": 19,
+     "n": 24,
+     "p": 0.7916666666666666,
+     "lo": 0.5952954657887158,
+     "hi": 0.9075517470563429,
+     "boot_lo": 0.625,
+     "boot_hi": 0.9583333333333334
+    },
+    "prechoice_ad_all": {
+     "k": 22,
+     "n": 24,
+     "p": 0.9166666666666666,
+     "lo": 0.7415119762950233,
+     "hi": 0.9768411849122034,
+     "boot_lo": 0.7916666666666666,
+     "boot_hi": 1.0
+    },
+    "prechoice_ad_banner": {
+     "k": 17,
+     "n": 19,
+     "p": 0.8947368421052632,
+     "lo": 0.6860591708809097,
+     "hi": 0.9706414399668032,
+     "boot_lo": 0.7368421052631579,
+     "boot_hi": 1.0
+    },
+    "prechoice_ad_beacon_banner": {
+     "k": 17,
+     "n": 19,
+     "p": 0.8947368421052632,
+     "lo": 0.6860591708809097,
+     "hi": 0.9706414399668032,
+     "boot_lo": 0.7368421052631579,
+     "boot_hi": 1.0
+    },
+    "prechoice_ad_offmain_banner": {
+     "k": 7,
+     "n": 19,
+     "p": 0.3684210526315789,
+     "lo": 0.19149512641954003,
+     "hi": 0.5896046699645555,
+     "boot_lo": 0.15789473684210525,
+     "boot_hi": 0.5789473684210527
+    },
+    "prechoice_fp_collect_all": {
+     "k": 20,
+     "n": 24,
+     "p": 0.8333333333333334,
+     "lo": 0.6414692917870997,
+     "hi": 0.9332132371786819,
+     "boot_lo": 0.6666666666666666,
+     "boot_hi": 0.9583333333333334
+    },
+    "prechoice_fp_collect_banner": {
+     "k": 15,
+     "n": 19,
+     "p": 0.7894736842105263,
+     "lo": 0.5666572136911628,
+     "hi": 0.9149232342638266,
+     "boot_lo": 0.6302631578947369,
+     "boot_hi": 0.9473684210526315
+    },
+    "prechoice_ad_via_fp_banner": {
+     "k": 0,
+     "n": 19,
+     "p": 0.0,
+     "lo": 0.0,
+     "hi": 0.16817922625956366,
+     "boot_lo": 0.0,
+     "boot_hi": 0.0
+    },
+    "decline": {
+     "n_A1": 24,
+     "banner_found": {
+      "k": 18,
+      "n": 24,
+      "p": 0.75,
+      "lo": 0.5510055583116656,
+      "hi": 0.8800063384126703,
+      "boot_lo": 0.5833333333333334,
+      "boot_hi": 0.9166666666666666
+     },
+     "no_decline_option": 10,
+     "clicked": 8,
+     "click_ok": 8,
+     "after_ad": {
+      "k": 7,
+      "n": 8,
+      "p": 0.875,
+      "lo": 0.5291118149439162,
+      "hi": 0.9775825088000281,
+      "boot_lo": 0.625,
+      "boot_hi": 1.0
+     },
+     "after_ad_beacon": {
+      "k": 7,
+      "n": 8,
+      "p": 0.875,
+      "lo": 0.5291118149439162,
+      "hi": 0.9775825088000281,
+      "boot_lo": 0.625,
+      "boot_hi": 1.0
+     },
+     "next_page_ad": {
+      "k": 7,
+      "n": 8,
+      "p": 0.875,
+      "lo": 0.5291118149439162,
+      "hi": 0.9775825088000281,
+      "boot_lo": 0.625,
+      "boot_hi": 1.0
+     },
+     "after_fp_collect": {
+      "k": 6,
+      "n": 8,
+      "p": 0.75,
+      "lo": 0.40927542792725174,
+      "hi": 0.9285207879020445,
+      "boot_lo": 0.375,
+      "boot_hi": 1.0
+     },
+     "after_server_id_cookie": {
+      "k": 1,
+      "n": 8,
+      "p": 0.125,
+      "lo": 0.022417491199971912,
+      "hi": 0.47088818505608376,
+      "boot_lo": 0.0,
+      "boot_hi": 0.375
+     },
+     "pre_ad_then_after": {
+      "pre": 7,
+      "pre_and_after": 7
+     },
+     "after_fp_consent_states": {
+      "denied": 6,
+      "granted": 1
+     }
+    },
+    "gpc": {
+     "n_pairs": 24,
+     "A0_ad": {
+      "k": 22,
+      "n": 24,
+      "p": 0.9166666666666666,
+      "lo": 0.7415119762950233,
+      "hi": 0.9768411849122034,
+      "boot_lo": 0.7916666666666666,
+      "boot_hi": 1.0
+     },
+     "A2_ad": {
+      "k": 20,
+      "n": 24,
+      "p": 0.8333333333333334,
+      "lo": 0.6414692917870997,
+      "hi": 0.9332132371786819,
+      "boot_lo": 0.6666666666666666,
+      "boot_hi": 0.9583333333333334
+     },
+     "mcnemar": {
+      "n": 24,
+      "a_only": 2,
+      "b_only": 0,
+      "both": 20,
+      "neither": 2,
+      "p_exact": 0.5,
+      "k_a": 22,
+      "k_b": 20
+     },
+     "diff": {
+      "n": 24,
+      "k_a": 20,
+      "k_b": 22,
+      "a_only": 0,
+      "b_only": 2,
+      "diff": -0.08333333333333326,
+      "diff_lo": -0.2551919460040958,
+      "diff_hi": 0.07204529487205666,
+      "method": "Newcombe paired hybrid score (method 10)"
+     },
+     "banner_sites": {
+      "n": 19,
+      "A0_ad": {
+       "k": 17,
+       "n": 19,
+       "p": 0.8947368421052632,
+       "lo": 0.6860591708809097,
+       "hi": 0.9706414399668032,
+       "boot_lo": 0.7368421052631579,
+       "boot_hi": 1.0
+      },
+      "A2_ad": {
+       "k": 16,
+       "n": 19,
+       "p": 0.8421052631578947,
+       "lo": 0.6243452453548595,
+       "hi": 0.9447952840464915,
+       "boot_lo": 0.6842105263157895,
+       "boot_hi": 1.0
+      }
+     },
+     "workers_gpc_injected": {
+      "workers": 64,
+      "gpc_true": 21
+     }
+    },
+    "prechoice_ad_vendor_sites": {
+     "google_ads": 15,
+     "microsoft_uet": 9,
+     "meta": 8,
+     "reddit": 5,
+     "tiktok": 5,
+     "linkedin": 4,
+     "xandr": 3,
+     "x_twitter": 3,
+     "pinterest": 3,
+     "criteo": 3,
+     "applovin": 2,
+     "tradedesk": 2
+    },
+    "prechoice_ad_origin_sites": {
+     "main_thread": 17,
+     "subframe": 7
+    },
+    "prechoice_ad_via_sites": {
+     "host_map": 17,
+     "host_map_extra": 9
+    }
+   }
+  },
+  "gcd_vs_gcs": {
+   "n": 1655,
+   "agree": 1655,
+   "table": {
+    "denied|denied": 1069,
+    "granted|granted": 574,
+    "not_set|not_set": 12
+   }
+  },
+  "case_summary": {
+   "partytown": {
+    "selected": 8,
+    "captured": 5,
+    "readout": 4,
+    "banner": 4,
+    "decline_clicked": 4,
+    "pt_worker_requests": 0,
+    "zaraz_track_calls": 0,
+    "sites_ad_default": 3,
+    "sites_ad_main_thread_default": 3,
+    "sites_ad_subframe_default": 1,
+    "sites_ad_after_decline": 3,
+    "sites_ad_gpc": 3
+   },
+   "zaraz": {
+    "selected": 1,
+    "captured": 1,
+    "readout": 1,
+    "banner": 0,
+    "decline_clicked": 0,
+    "pt_worker_requests": 0,
+    "zaraz_track_calls": 0,
+    "sites_ad_default": 0,
+    "sites_ad_main_thread_default": 0,
+    "sites_ad_subframe_default": 0,
+    "sites_ad_after_decline": 0,
+    "sites_ad_gpc": 0
+   }
+  },
+  "case_studies_file": "case_studies.json",
+  "case_study_sites": [
+   "b2-PT001",
+   "b2-PT002",
+   "b2-PT003",
+   "b2-PT004",
+   "b2-PT005",
+   "b2-PT006",
+   "b2-PT007",
+   "b2-PT008",
+   "b2-ZZ001"
+  ]
+ },
+ "main_paper": {
+  "primary": {
+   "k": 7,
+   "n": 14,
+   "p": 0.5,
+   "lo": 0.2679920230881164,
+   "hi": 0.7320079769118836
+  },
+  "unconditioned": {
+   "k": 12,
+   "n": 21,
+   "p": 0.5714285714285714,
+   "lo": 0.36546554224185784,
+   "hi": 0.7553003119028359
+  },
+  "mh_no_yes": {
+   "n_strata": 2,
+   "rd": 0.1361361226130246,
+   "rd_lo": -0.08378153481357994,
+   "rd_hi": 0.3560537800396292,
+   "rd_method": "Mantel-Haenszel, Sato variance",
+   "k1": 8,
+   "n1": 14,
+   "k0": 122,
+   "n0": 284,
+   "odds_ratio": 2.2434600197433365,
+   "or_lo": 0.5873225620996774,
+   "or_hi": 8.569588817077621,
+   "or_method": "Mantel-Haenszel, Robins-Breslow-Greenland variance",
+   "reduction_ruled_out_beyond": 0.08378153481357994
+  }
+ }
+}

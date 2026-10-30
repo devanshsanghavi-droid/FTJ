@@ -1,6 +1,6 @@
 {
  "A0": {
-  "ad_requests_crawl": 40375,
+  "ad_requests_crawl": 40334,
   "preflights": 318,
   "preflights_by_origin": {
    "main_thread": 318
@@ -23,10 +23,10 @@
   "ambiguous_kept_subframe": 52,
   "sandboxed_crawl_labels": 12359,
   "sandboxed_now": 12604,
-  "ad_requests_now": 40057
+  "ad_requests_now": 40016
  },
  "A0r": {
-  "ad_requests_crawl": 7530,
+  "ad_requests_crawl": 7524,
   "preflights": 66,
   "preflights_by_origin": {
    "main_thread": 66
@@ -46,10 +46,10 @@
   "ambiguous_kept_subframe": 8,
   "sandboxed_crawl_labels": 2150,
   "sandboxed_now": 2198,
-  "ad_requests_now": 7464
+  "ad_requests_now": 7458
  },
  "A1": {
-  "ad_requests_crawl": 43105,
+  "ad_requests_crawl": 43055,
   "preflights": 338,
   "preflights_by_origin": {
    "main_thread": 338
@@ -72,10 +72,10 @@
   "ambiguous_kept_subframe": 47,
   "sandboxed_crawl_labels": 12868,
   "sandboxed_now": 13111,
-  "ad_requests_now": 42767
+  "ad_requests_now": 42717
  },
  "A2": {
-  "ad_requests_crawl": 25817,
+  "ad_requests_crawl": 25791,
   "preflights": 81,
   "preflights_by_origin": {
    "main_thread": 81
@@ -96,10 +96,10 @@
   "ambiguous_kept_subframe": 12,
   "sandboxed_crawl_labels": 2688,
   "sandboxed_now": 2760,
-  "ad_requests_now": 25736
+  "ad_requests_now": 25710
  },
  "A2r": {
-  "ad_requests_crawl": 4910,
+  "ad_requests_crawl": 4905,
   "preflights": 24,
   "preflights_by_origin": {
    "main_thread": 24
@@ -117,10 +117,10 @@
   "ambiguous_kept_subframe": 2,
   "sandboxed_crawl_labels": 406,
   "sandboxed_now": 413,
-  "ad_requests_now": 4886
+  "ad_requests_now": 4881
  },
  "V1": {
-  "ad_requests_crawl": 1923,
+  "ad_requests_crawl": 1918,
   "preflights": 2,
   "preflights_by_origin": {
    "main_thread": 2
@@ -137,6 +137,6 @@
   "ambiguous_kept_subframe": 2,
   "sandboxed_crawl_labels": 142,
   "sandboxed_now": 143,
-  "ad_requests_now": 1921
+  "ad_requests_now": 1916
  }
 }

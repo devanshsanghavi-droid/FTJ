@@ -1,0 +1,163 @@
+{
+ "funnel": {
+  "BC|any_arch": 338,
+  "BC|ok": 338,
+  "BC|out:http_403": 6,
+  "BC|out:robots_disallowed": 1,
+  "BC|out:robots_unreachable": 3,
+  "BC|screened": 348,
+  "CF|any_arch": 7,
+  "CF|ok": 612,
+  "CF|out:error": 2,
+  "CF|out:http_202": 1,
+  "CF|out:http_400": 1,
+  "CF|out:http_401": 1,
+  "CF|out:http_403": 317,
+  "CF|out:http_404": 12,
+  "CF|out:http_406": 2,
+  "CF|out:http_429": 2,
+  "CF|out:http_503": 2,
+  "CF|out:http_520": 9,
+  "CF|out:not_html": 4,
+  "CF|out:redirect_robots_disallowed": 1,
+  "CF|out:robots_disallowed": 18,
+  "CF|out:robots_unreachable": 61,
+  "CF|screened": 1045,
+  "J|any_arch": 58,
+  "J|ok": 1783,
+  "J|out:error": 4,
+  "J|out:http_202": 1,
+  "J|out:http_401": 1,
+  "J|out:http_402": 1,
+  "J|out:http_403": 61,
+  "J|out:http_404": 30,
+  "J|out:http_429": 210,
+  "J|out:robots_disallowed": 20,
+  "J|out:robots_unreachable": 109,
+  "J|screened": 2220,
+  "J2|any_arch": 9,
+  "J2|ok": 351,
+  "J2|out:error": 1,
+  "J2|out:http_403": 7,
+  "J2|out:http_404": 1,
+  "J2|out:http_429": 27,
+  "J2|out:redirect_robots_unreachable": 1,
+  "J2|out:robots_disallowed": 3,
+  "J2|out:robots_unreachable": 89,
+  "J2|screened": 480,
+  "R|any_arch": 8,
+  "R|ok": 686,
+  "R|out:error": 9,
+  "R|out:http_202": 1,
+  "R|out:http_204": 1,
+  "R|out:http_307": 1,
+  "R|out:http_400": 3,
+  "R|out:http_401": 3,
+  "R|out:http_402": 1,
+  "R|out:http_403": 217,
+  "R|out:http_404": 14,
+  "R|out:http_405": 3,
+  "R|out:http_406": 4,
+  "R|out:http_410": 1,
+  "R|out:http_418": 2,
+  "R|out:http_429": 5,
+  "R|out:http_444": 1,
+  "R|out:http_472": 1,
+  "R|out:http_500": 1,
+  "R|out:http_503": 3,
+  "R|out:http_508": 1,
+  "R|out:http_520": 1,
+  "R|out:not_html": 5,
+  "R|out:redirect_robots_disallowed": 2,
+  "R|out:redirect_robots_unreachable": 3,
+  "R|out:robots_disallowed": 30,
+  "R|out:robots_unreachable": 201,
+  "R|screened": 1200,
+  "W|any_arch": 412,
+  "W|ok": 412,
+  "W|out:http_403": 1,
+  "W|out:http_404": 33,
+  "W|out:redirect_robots_unreachable": 1,
+  "W|out:robots_disallowed": 1,
+  "W|out:robots_unreachable": 17,
+  "W|screened": 465
+ },
+ "per_architecture": {
+  "partytown": {
+   "eligible": 8,
+   "selected": 8,
+   "reserve": 0,
+   "tiers": {
+    "A": 3,
+    "L": 5
+   },
+   "backup_unconfirmed_cmp": 7,
+   "candidates_any": 21
+  },
+  "zaraz": {
+   "eligible": 1,
+   "selected": 1,
+   "reserve": 0,
+   "tiers": {
+    "Z": 1
+   },
+   "backup_unconfirmed_cmp": 0,
+   "candidates_any": 1
+  },
+  "gateway": {
+   "eligible": 26,
+   "selected": 26,
+   "reserve": 0,
+   "tiers": {
+    "A": 26
+   },
+   "backup_unconfirmed_cmp": 22,
+   "candidates_any": 57
+  },
+  "wix": {
+   "eligible": 120,
+   "selected": 80,
+   "reserve": 20,
+   "tiers": {
+    "A": 42,
+    "B": 78
+   },
+   "backup_unconfirmed_cmp": 0,
+   "candidates_any": 412
+  },
+  "bigcommerce": {
+   "eligible": 149,
+   "selected": 80,
+   "reserve": 20,
+   "tiers": {
+    "A": 146,
+    "B": 3
+   },
+   "backup_unconfirmed_cmp": 0,
+   "candidates_any": 347
+  }
+ },
+ "random_stratum_prevalence": {
+  "partytown": {
+   "k": 0,
+   "n": 686,
+   "share": 0.0
+  },
+  "zaraz": {
+   "k": 0,
+   "n": 686,
+   "share": 0.0
+  },
+  "gateway": {
+   "k": 8,
+   "n": 686,
+   "share": 0.011661807580174927
+  },
+  "static_cmp": {
+   "k": 156,
+   "n": 686,
+   "share": 0.22740524781341107
+  }
+ },
+ "note": "prevalence over R-stratum HTTP-200 pages; saved (marker) pages re-analysed with the current markers.py, other pages keep the stored fields (no marker at screening time)"
+}

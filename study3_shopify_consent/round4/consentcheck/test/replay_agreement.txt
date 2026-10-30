@@ -1,0 +1,15 @@
+ConsentCheck analysis replayed on the study crawl (main sample, 1,362 captured stores; offline, no site visited)
+
+Ad vendor sent data before any choice (crawl A0_any)                         1362 /  1362  (100.0%)
+... from the sandbox (A0_sbx)                                                1362 /  1362  (100.0%)
+Ad vendor sent data under GPC (A2_any)                                       1362 /  1362  (100.0%)
+Clicked stores: ad data on the page after Decline (A1next_any)                242 /   242  (100.0%)
+Clicked stores: Decline written to Shopify as "no" (refusal_cat)              242 /   242  (100.0%)
+Shopify's default allows marketing (region_optout)                           1358 /  1362  (99.7%)
+GPC recorded by Shopify, where the crawl read the API (cp_sale_end_A2)       1171 /  1172  (99.9%)
+Number of pixels declaring no purpose (pixels.csv)                           1362 /  1362  (100.0%)
+
+Known differences: (1) replayed crawl records carry no frame/worker ids, so leftover requests of an old sandbox after
+the reload count as "fresh page" (a live ConsentCheck run separates them); (2) where the page never loaded Shopify's
+Customer Privacy API (190 GPC loads) the crawl has no reading, while ConsentCheck also reads the Server-Timing
+consent header; (3) the region default can differ on a few stores whose consent header came from an edge cache.

@@ -1,0 +1,105 @@
+load_id,store_id,arm,cmp,integration_mode,vendor,is_advertising,declared_prechoice,declared_after_decline,detail,fired_sbx,fired_any,ds
+S0103__A0,S0103,A0,onetrust,C,google_ads,True,blocked,blocked,"OtAutoBlock https://ad.doubleclick.net/ddm/activity/src\x3d<n> cat=C0004 active=,C0001,",False,True,main
+S0103__A0,S0103,A0,onetrust,C,meta,True,blocked,blocked,"OtAutoBlock https://connect.facebook.net/en_US/fbevents.js cat=C0004 active=,C0001,",False,False,main
+S0125__A0,S0125,A0,pandectes,C,microsoft_uet,True,blocked,blocked,v4 pandectes.blackList[4] bat.bing.com; defaultBlocked=7; isActive=True,False,False,main
+S0125__A0,S0125,A0,pandectes,C,google_ads,True,blocked,blocked,v4 pandectes.blackList[4] googleads.g.doubleclick.net; defaultBlocked=7; isActive=True,False,False,main
+S0125__A0,S0125,A0,pandectes,C,adroll,True,blocked,blocked,v4 pandectes.blackList[4] s.adroll.com/j/; defaultBlocked=7; isActive=True,False,False,main
+S0125__A0,S0125,A0,pandectes,C,tiktok,True,blocked,blocked,v4 pandectes.blackList[4] analytics.tiktok.com/i18n/pixel; defaultBlocked=7; isActive=True,False,False,main
+S0125__A0,S0125,A0,pandectes,C,x_twitter,True,blocked,blocked,v4 pandectes.blackList[4] static.ads-twitter.com/uwt.js; defaultBlocked=7; isActive=True,False,False,main
+S0125__A0,S0125,A0,pandectes,C,meta,True,blocked,blocked,v4 pandectes.blackList[4] connect.facebook.net; defaultBlocked=7; isActive=True,False,False,main
+S0125__A0,S0125,A0,pandectes,C,pinterest,True,blocked,blocked,v4 pandectes.blackList[4] log.pinterest.com; defaultBlocked=7; isActive=True,False,True,main
+S0165__A0,S0165,A0,pandectes,C,tiktok,True,blocked,blocked,v4 pandectes.blackList[4] analytics.tiktok.com/i18n/pixel; defaultBlocked=7; isActive=True,True,True,main
+S0165__A0,S0165,A0,pandectes,C,meta,True,blocked,blocked,v4 pandectes.blackList[4] connect.facebook.net; defaultBlocked=7; isActive=True,True,True,main
+S0167__A0,S0167,A0,pandectes,C,snap,True,blocked,blocked,v4 pandectes.blackList[4] sc-static.net; defaultBlocked=7; isActive=True,False,True,main
+S0167__A0,S0167,A0,pandectes,C,meta,True,blocked,blocked,v4 pandectes.blackList[4] connect.facebook.net; defaultBlocked=7; isActive=True,False,False,main
+S0173__A0,S0173,A0,pandectes,C,microsoft_uet,True,blocked,blocked,v5 blocker.scripts[4] bat.bing.com; region=USCA; optin_region=True; enabled=True,True,True,main
+S0173__A0,S0173,A0,pandectes,C,google_ads,True,blocked,blocked,v5 blocker.scripts[4] googleads.g.doubleclick.net; region=USCA; optin_region=True; enabled=True,False,True,main
+S0173__A0,S0173,A0,pandectes,C,meta,True,blocked,blocked,v5 blocker.scripts[4] connect.facebook.net; region=USCA; optin_region=True; enabled=True,False,True,main
+S0173__A0,S0173,A0,pandectes,C,pinterest,True,blocked,blocked,v5 blocker.scripts[4] s.pinimg.com/ct/core.js; region=USCA; optin_region=True; enabled=True,True,True,main
+S0173__A0,S0173,A0,pandectes,C,tiktok,True,blocked,blocked,v5 blocker.scripts[4] analytics.tiktok.com/i18n/pixel; region=USCA; optin_region=True; enabled=True,True,True,main
+S0173__A0,S0173,A0,pandectes,C,reddit,True,blocked,blocked,v5 blocker.scripts[4] alb.reddit.com; region=USCA; optin_region=True; enabled=True,True,True,main
+S0200__A0,S0200,A0,cookiebot,C,meta,True,blocked,blocked,"cookiebot https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v1 cat=[4, 5] blockingmode=auto",False,False,main
+S0209__A0,S0209,A0,pandectes,C,snap,True,blocked,blocked,v4 pandectes.blackList[4] intg.snapchat.com/shopify/shopify-scevent-init.js; defaultBlocked=7; isActive=True,True,True,main
+S0213__A0,S0213,A0,pandectes,C,microsoft_uet,True,blocked,blocked,v4 pandectes.blackList[4] bat.bing.com; defaultBlocked=7; isActive=True,True,True,main
+S0213__A0,S0213,A0,pandectes,C,pinterest,True,blocked,blocked,v4 pandectes.blackList[4] s.pinimg.com/ct/core.js; defaultBlocked=7; isActive=True,False,False,main
+S0214__A0,S0214,A0,pandectes,C,microsoft_uet,True,blocked,blocked,v4 pandectes.blackList[4] bat.bing.com; defaultBlocked=7; isActive=True,False,False,main
+S0214__A0,S0214,A0,pandectes,C,google_ads,True,blocked,blocked,v4 pandectes.blackList[4] googleads.g.doubleclick.net; defaultBlocked=7; isActive=True,False,False,main
+S0214__A0,S0214,A0,pandectes,C,meta,True,blocked,blocked,v4 pandectes.blackList[4] connect.facebook.net; defaultBlocked=7; isActive=True,False,False,main
+S0214__A0,S0214,A0,pandectes,C,pinterest,True,blocked,blocked,v4 pandectes.blackList[4] s.pinimg.com/ct/core.js; defaultBlocked=7; isActive=True,False,False,main
+S0214__A0,S0214,A0,pandectes,C,adroll,True,blocked,blocked,v4 pandectes.blackList[4] s.adroll.com/j/; defaultBlocked=7; isActive=True,False,False,main
+S0214__A0,S0214,A0,pandectes,C,snap,True,blocked,blocked,v4 pandectes.blackList[4] intg.snapchat.com/shopify/shopify-scevent-init.js; defaultBlocked=7; isActive=True,False,False,main
+S0214__A0,S0214,A0,pandectes,C,tiktok,True,blocked,blocked,v4 pandectes.blackList[4] analytics.tiktok.com/i18n/pixel; defaultBlocked=7; isActive=True,False,False,main
+S0214__A0,S0214,A0,pandectes,C,x_twitter,True,blocked,blocked,v4 pandectes.blackList[4] static.ads-twitter.com/uwt.js; defaultBlocked=7; isActive=True,False,False,main
+S0219__A0,S0219,A0,pandectes,C,microsoft_uet,True,blocked,blocked,v4 pandectes.blackList[4] bat.bing.com; defaultBlocked=7; isActive=True,True,True,main
+S0219__A0,S0219,A0,pandectes,C,pinterest,True,blocked,blocked,v4 pandectes.blackList[4] s.pinimg.com/ct/core.js; defaultBlocked=7; isActive=True,False,False,main
+S0219__A0,S0219,A0,pandectes,C,adroll,True,blocked,blocked,v4 pandectes.blackList[4] s.adroll.com/j/; defaultBlocked=7; isActive=True,False,False,main
+S0219__A0,S0219,A0,pandectes,C,tiktok,True,blocked,blocked,v4 pandectes.blackList[4] analytics.tiktok.com/i18n/pixel; defaultBlocked=7; isActive=True,False,False,main
+S0219__A0,S0219,A0,pandectes,C,snap,True,blocked,blocked,v4 pandectes.blackList[4] intg.snapchat.com/shopify/shopify-scevent-init.js; defaultBlocked=7; isActive=True,False,False,main
+S0219__A0,S0219,A0,pandectes,C,x_twitter,True,blocked,blocked,v4 pandectes.blackList[4] static.ads-twitter.com/uwt.js; defaultBlocked=7; isActive=True,False,False,main
+S0265__A0,S0265,A0,pandectes,C,microsoft_uet,True,blocked,blocked,v5 blocker.scripts[4] bat.bing.com; region=USCA; optin_region=True; enabled=True,True,True,main
+S0265__A0,S0265,A0,pandectes,C,google_ads,True,blocked,blocked,v5 blocker.scripts[4] googleads.g.doubleclick.net; region=USCA; optin_region=True; enabled=True,False,True,main
+S0265__A0,S0265,A0,pandectes,C,meta,True,blocked,blocked,v5 blocker.scripts[4] connect.facebook.net; region=USCA; optin_region=True; enabled=True,False,False,main
+S0265__A0,S0265,A0,pandectes,C,pinterest,True,blocked,blocked,v5 blocker.scripts[4] s.pinimg.com/ct/core.js; region=USCA; optin_region=True; enabled=True,True,True,main
+S0265__A0,S0265,A0,pandectes,C,adroll,True,blocked,blocked,v5 blocker.scripts[4] s.adroll.com/j/; region=USCA; optin_region=True; enabled=True,False,False,main
+S0265__A0,S0265,A0,pandectes,C,snap,True,blocked,blocked,v5 blocker.scripts[4] intg.snapchat.com/shopify/shopify-scevent-init.js; region=USCA; optin_region=True; enabled=True,False,False,main
+S0265__A0,S0265,A0,pandectes,C,tiktok,True,blocked,blocked,v5 blocker.scripts[4] analytics.tiktok.com/i18n/pixel; region=USCA; optin_region=True; enabled=True,False,False,main
+S0268__A0,S0268,A0,pandectes,C,retention_com,True,blocked,blocked,v4 pandectes.blackList[4] usbrowserspeed.com; defaultBlocked=7; isActive=True,False,False,main
+S0268__A0,S0268,A0,pandectes,C,applovin,True,blocked,blocked,v4 pandectes.blackList[4] applovin.com; defaultBlocked=7; isActive=True,False,True,main
+S0268__A0,S0268,A0,pandectes,C,liveintent,True,blocked,blocked,v4 pandectes.blackList[4] liadm.com; defaultBlocked=7; isActive=True,False,True,main
+S0332__A0,S0332,A0,pandectes,C,microsoft_uet,True,blocked,blocked,v4 pandectes.blackList[4] bat.bing.com; defaultBlocked=7; isActive=True,False,True,main
+S0332__A0,S0332,A0,pandectes,C,meta,True,blocked,blocked,v4 pandectes.blackList[4] connect.facebook.net; defaultBlocked=7; isActive=True,False,True,main
+S0332__A0,S0332,A0,pandectes,C,pinterest,True,blocked,blocked,v4 pandectes.blackList[4] s.pinimg.com/ct/core.js; defaultBlocked=7; isActive=True,False,True,main
+S0332__A0,S0332,A0,pandectes,C,snap,True,blocked,blocked,v4 pandectes.blackList[4] intg.snapchat.com/shopify/shopify-scevent-init.js; defaultBlocked=7; isActive=True,True,True,main
+S0332__A0,S0332,A0,pandectes,C,tiktok,True,blocked,blocked,v4 pandectes.blackList[4] analytics.tiktok.com/i18n/pixel; defaultBlocked=7; isActive=True,True,True,main
+S0332__A0,S0332,A0,pandectes,C,google_ads,True,blocked,blocked,v4 pandectes.blackList[4] googleadservices.com; defaultBlocked=7; isActive=True,False,True,main
+S0344__A0,S0344,A0,pandectes,C,x_twitter,True,blocked,blocked,v4 pandectes.blackList[4] static.ads-twitter.com/uwt.js; defaultBlocked=7; isActive=True,False,False,main
+S0370__A0,S0370,A0,pandectes,C,pinterest,True,blocked,blocked,v4 pandectes.blackList[4] s.pinimg.com/ct/core.js; defaultBlocked=7; isActive=True,True,True,main
+S0370__A0,S0370,A0,pandectes,C,tiktok,True,blocked,blocked,v4 pandectes.blackList[4] analytics.tiktok.com/i18n/pixel; defaultBlocked=7; isActive=True,False,False,main
+S0370__A0,S0370,A0,pandectes,C,meta,True,blocked,blocked,v4 pandectes.blackList[4] connect.facebook.net; defaultBlocked=7; isActive=True,False,False,main
+S0370__A0,S0370,A0,pandectes,C,microsoft_uet,True,blocked,blocked,v4 pandectes.blackList[4] bat.bing.com; defaultBlocked=7; isActive=True,True,True,main
+S0370__A0,S0370,A0,pandectes,C,snap,True,blocked,blocked,v4 pandectes.blackList[4] sc-static.net; defaultBlocked=7; isActive=True,True,True,main
+S0370__A0,S0370,A0,pandectes,C,amazon_ads,True,blocked,blocked,v4 pandectes.blackList[4] amazon-adsystem.com; defaultBlocked=7; isActive=True,True,True,main
+S0370__A0,S0370,A0,pandectes,C,outbrain,True,blocked,blocked,v4 pandectes.blackList[4] outbrain.com; defaultBlocked=7; isActive=True,False,False,main
+S0519__A0,S0519,A0,onetrust,C,tiktok,True,blocked,blocked,"OtAutoBlock https://www.tiktok.com/embed/v2/<n> cat=C0004 active=,C0001,",False,False,main
+S0519__A0,S0519,A0,onetrust,C,google_ads,True,blocked,blocked,"OtAutoBlock https://cm.g.doubleclick.net/pixel cat=C0004 active=,C0001,",False,False,main
+S0519__A0,S0519,A0,onetrust,C,criteo,True,blocked,blocked,"OtAutoBlock https://sslwidget.criteo.com/event cat=C0004 active=,C0001,",False,False,main
+S0519__A0,S0519,A0,onetrust,C,pinterest,True,blocked,blocked,"OtAutoBlock https://s.pinimg.com/ct/lib/main.0cb4b510.js cat=C0004 active=,C0001,",False,False,main
+S0519__A0,S0519,A0,onetrust,C,meta,True,blocked,blocked,"OtAutoBlock https://connect.facebook.net/en_US/fbevents.js cat=C0004 active=,C0001,",False,False,main
+S0519__A0,S0519,A0,onetrust,C,x_twitter,True,blocked,blocked,"OtAutoBlock https://syndication.twitter.com/settings cat=C0004 active=,C0001,",False,False,main
+S0519__A0,S0519,A0,onetrust,C,microsoft_uet,True,blocked,blocked,"OtAutoBlock https://bat.bing.com/action/0 cat=C0004 active=,C0001,",False,False,main
+S0519__A0,S0519,A0,onetrust,C,reddit,True,blocked,blocked,"OtAutoBlock https://www.redditstatic.com/ads/pixel.js cat=C0004 active=,C0001,",False,False,main
+S0519__A0,S0519,A0,onetrust,C,snap,True,blocked,blocked,"OtAutoBlock https://sc-static.net/scevent.min.js cat=C0004 active=,C0001,",False,False,main
+S0589__A0,S0589,A0,onetrust,C,snap,True,blocked,blocked,"OtAutoBlock https://sc-static.net/scevent.min.js cat=C0004,C0005 active=",True,True,main
+S0589__A0,S0589,A0,onetrust,C,tradedesk,True,blocked,blocked,OtAutoBlock https://insight.adsrvr.org/track/pxl/ cat=C0004 active=,False,False,main
+S0589__A0,S0589,A0,onetrust,C,pinterest,True,blocked,blocked,OtAutoBlock https://ct.pinterest.com/user/ cat=C0004 active=,True,True,main
+S0589__A0,S0589,A0,onetrust,C,tapad,True,blocked,blocked,OtAutoBlock https://pixel.tapad.com/idsync/ex/push/check cat=C0004 active=,False,False,main
+S0589__A0,S0589,A0,onetrust,C,google_ads,True,blocked,blocked,OtAutoBlock https://www.google.com/pagead/1p-user-list/<n>/ cat=C0004 active=,True,True,main
+S0589__A0,S0589,A0,onetrust,C,tiktok,True,blocked,blocked,OtAutoBlock https://tiktok.com/ cat=C0002 active=,True,True,main
+S0589__A0,S0589,A0,onetrust,C,microsoft_uet,True,blocked,blocked,OtAutoBlock https://bat.bing.com/action/0 cat=C0004 active=,False,False,main
+S0589__A0,S0589,A0,onetrust,C,meta,True,blocked,blocked,OtAutoBlock https://www.facebook.com/tr/ cat=C0004 active=,False,True,main
+S0697__A0,S0697,A0,pandectes,C,google_ads,True,blocked,blocked,v4 pandectes.blackList[4] googleadservices.com; defaultBlocked=7; isActive=True,True,True,main
+S0698__A0,S0698,A0,onetrust,C,linkedin,True,blocked,blocked,"OtAutoBlock https://www.linkedin.com/security/csp cat=4 active=,BG96,1,BG97,3,",False,False,main
+S0698__A0,S0698,A0,onetrust,C,google_ads,True,blocked,blocked,"OtAutoBlock https://googleads.g.doubleclick.net/pagead/viewthroughconver cat=4 active=,BG96,1,BG97,3,",True,True,main
+S0698__A0,S0698,A0,onetrust,C,mntn,True,blocked,blocked,"OtAutoBlock https://dx.mountain.com/spx cat=4 active=,BG96,1,BG97,3,",False,False,main
+S0698__A0,S0698,A0,onetrust,C,quantcast,True,blocked,blocked,"OtAutoBlock https://pixel.quantserve.com/pixel cat=4 active=,BG96,1,BG97,3,",False,False,main
+S1082__A0,S1082,A0,pandectes,C,snap,True,blocked,blocked,v5 blocker.scripts[4] intg.snapchat.com/shopify/shopify-scevent-init.js; region=USCA; optin_region=True; enabled=True,False,False,main
+S1082__A0,S1082,A0,pandectes,C,adroll,True,blocked,blocked,v5 blocker.scripts[4] s.adroll.com/j/; region=USCA; optin_region=True; enabled=True,False,False,main
+S1082__A0,S1082,A0,pandectes,C,microsoft_uet,True,blocked,blocked,v5 blocker.scripts[4] bat.bing.com; region=USCA; optin_region=True; enabled=True,False,False,main
+S1082__A0,S1082,A0,pandectes,C,meta,True,blocked,blocked,v5 blocker.scripts[4] connect.facebook.net; region=USCA; optin_region=True; enabled=True,False,False,main
+S1082__A0,S1082,A0,pandectes,C,google_ads,True,blocked,blocked,v5 blocker.scripts[4] googleads.g.doubleclick.net; region=USCA; optin_region=True; enabled=True,False,False,main
+S1082__A0,S1082,A0,pandectes,C,pinterest,True,blocked,blocked,v5 blocker.scripts[4] s.pinimg.com/ct/core.js; region=USCA; optin_region=True; enabled=True,False,False,main
+S1082__A0,S1082,A0,pandectes,C,tiktok,True,blocked,blocked,v5 blocker.scripts[4] analytics.tiktok.com/i18n/pixel; region=USCA; optin_region=True; enabled=True,False,False,main
+S1082__A0,S1082,A0,pandectes,C,x_twitter,True,blocked,blocked,v5 blocker.scripts[4] static.ads-twitter.com/uwt.js; region=USCA; optin_region=True; enabled=True,False,False,main
+S1193__A0,S1193,A0,onetrust,C,tradedesk,True,blocked,blocked,"OtAutoBlock https://match.adsrvr.org/track/cmf/generic cat=C0004 active=,C0001,",False,False,main
+S1193__A0,S1193,A0,onetrust,C,microsoft_uet,True,blocked,blocked,"OtAutoBlock https://bat.bing.com/p/action/<n>.js cat=C0003 active=,C0001,",True,True,main
+S1193__A0,S1193,A0,onetrust,C,linkedin,True,blocked,blocked,"OtAutoBlock https://px.ads.linkedin.com/db_sync cat=C0004 active=,C0001,",False,False,main
+S1193__A0,S1193,A0,onetrust,C,liveramp,True,blocked,blocked,"OtAutoBlock https://ei.rlcdn.com/<n>.gif cat=C0004 active=,C0001,",False,False,main
+S1193__A0,S1193,A0,onetrust,C,liveintent,True,blocked,blocked,"OtAutoBlock https://i.liadm.com/sync-container cat=C0004 active=,C0001,",False,False,main
+S1193__A0,S1193,A0,onetrust,C,pinterest,True,blocked,blocked,"OtAutoBlock https://ct.pinterest.com/v3/ cat=C0004 active=,C0001,",False,False,main
+S1193__A0,S1193,A0,onetrust,C,yahoo,True,blocked,blocked,"OtAutoBlock https://ups.analytics.yahoo.com/ups/<n>/cms cat=C0004 active=,C0001,",False,False,main
+S1193__A0,S1193,A0,onetrust,C,tapad,True,blocked,blocked,"OtAutoBlock https://pixel.tapad.com/idsync/ex/receive cat=C0004 active=,C0001,",False,False,main
+S1193__A0,S1193,A0,onetrust,C,simplifi,True,blocked,blocked,"OtAutoBlock https://tag.simpli.fi/sifitag/79f920bf-dd85-4823-92e6-9027f1 cat=C0004 active=,C0001,",False,False,main
+S1193__A0,S1193,A0,onetrust,C,outbrain,True,blocked,blocked,"OtAutoBlock https://b1sync.outbrain.com/usersync/disqus cat=C0004 active=,C0001,",False,False,main
+S1193__A0,S1193,A0,onetrust,C,zeta,True,blocked,blocked,"OtAutoBlock https://p.rfihub.com/cm cat=C0004 active=,C0001,",False,False,main
+S1193__A0,S1193,A0,onetrust,C,google_ads,True,blocked,blocked,"OtAutoBlock https://cm.g.doubleclick.net/pixel cat=C0004 active=,C0001,",True,True,main
+S1193__A0,S1193,A0,onetrust,C,epsilon_conversant,True,blocked,blocked,"OtAutoBlock https://smaato-match.dotomi.com/match/bounce/current cat=C0004 active=,C0001,",False,False,main

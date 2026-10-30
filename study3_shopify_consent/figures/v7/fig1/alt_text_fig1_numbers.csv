@@ -1,0 +1,11 @@
+text,shown,source,key,fmt,value
+46,46,stats,round4/blocklist/combined/primary/fired/k,int,46
+89,89,stats,round4/blocklist/combined/primary/fired/n,int,89
+2.7,2.7,fig1_derived,fig1b_trace/t_tag_neutralized_ms,f1/1000,2695
+5,5,fig1_derived,fig1b_trace/n_libraries_within_axis,int,5
+2,2,fig1_derived,fig1b_trace/n_beacons_within_axis,int,2
+2.4,2.4,fig1_derived,fig1b_trace/t_first_sandbox_ms,f1/1000,2357
+3.2,3.2,fig1_derived,fig1b_trace/tick_groups/3/t_ms_last,f1/1000,3170
+1.3,1.3,fig1_derived,fig1b_trace/t_banner_ms,f1/1000,1278
+205,205,stats,fig3/b/n,int,205
+74,74,stats,fig3/b/before_banner/p,pct0,0.7365853658536585

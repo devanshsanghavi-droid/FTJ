@@ -1,0 +1,115 @@
+% Figure 6a, left part (v7; binding spec ../DESIGN_V7.md sections 3.3 and 7; the idiom of ../fig1/fig1a_pipeline.tex):
+% the path of a creator's per-video code in Store C (Default load), as a small line drawing on Fig. 1a's grammar. The
+% per-load counts are the plot to its right (panels/fig6a_loads.pdf, scripts/make_fig6_panels.py); together they are
+% panel a, the hero.
+% Message: the code arrives in the landing page's URL; the page hands its URL to the pixels Shopify runs in sandboxes,
+% and they send it to the ad vendors outside the browser (brick: consent lost); the page's other routes reach vendors
+% too (grey: the grey 'Any route' squares of the plot).
+%
+% Nested regions (FigGenie; three levels at most), each named at its top-left in muted 7 pt:
+%   level 1  'Store C in the browser': an outline-only frame (0.6 pt NEUTRAL). The creator's link enters it from the
+%            left and the ad vendors stand outside it, so the brick paths visibly LEAVE the browser;
+%   level 2  'Page (main thread)' (TINT PAGE ground, NEUTRAL outline) and 'Pixel sandboxes' (TINT SAND ground, SAND
+%            outline): the same two grounds as Fig. 1a's regions and Fig. 1b's lanes (one meaning each). The two
+%            regions share their left and right edges (as Fig. 1a's and Fig. 2b's stacked regions);
+%   level 3  white boxes, 0.6 pt SPAXIS, sized to their text with 2.4 x 1.6 mm padding, corners 0.5 mm. The landing
+%            page carries its URL's query string as a muted 6 pt second line, 'utm_campaign=desc-...' with the video's
+%            identifier elided (as Fig. 2b elides its example request; never Store C's real code), the caption's form;
+%            each pixel box carries its Shopify runtime as a muted 6 pt qualifier ('strict', 'lax'), as Fig. 1a.
+% Paths: the link enters as a 0.6 pt SPAXIS connector, its label right-aligned at the tail; the page URL drops from the
+% landing page into the sandbox region along its left side (the trunk, \xT) and forks into the two pixels (|-, 0.8 mm
+% bends, stopping 0.6 mm short), so the pixel boxes and the region's name stand right of the trunk (\xB); the one
+% accent is the two leak paths (LEAK 1.0 pt, Stealth 4.25 x 3.4 bp); the page's other routes are one NEUTRAL 0.8 pt
+% arrow (context). No dashes, numerals or digits.
+% The ad vendors (outside the browser) are not boxed: each vendor that received the code in the Default load is named
+% at the head of the path that reached it, in 7 pt (outputs labelled at their heads, as Fig. 1a's inputs are labelled at
+% their tails): TikTok and Google Ads at the leak paths, Google Merchant Center and the Reddit/other group at the grey
+% arrow (derived_numbers.json fig6a_store_c_vendors, asserted in scripts/make_fig6_panels.check_composite). The column
+% is named 'Ad vendors' in muted 7 pt, on the baseline of 'Page (main thread)'. The page region's top (= \yTop) is the
+% top line of a's plot box (make_fig6_panels.TOP); 'Store C in the browser' shares its baseline with the plot's key.
+% Cell: 114 x 48 mm (= fig6.tex via panels/fig6_layout.tex; asserted). The composite draws the letter; the top-left
+% 4.5 x 4.5 mm stays empty.
+% Build (from fig6/): <workspace>/tools/texenv/bin/tectonic --chatter minimal --outdir panels fig6a_path.tex
+\documentclass[tikz,border=0pt]{standalone}
+\def\StyleDir{../style/}
+\input{\StyleDir tikzstyle_v2.tex}
+\tikzset{
+  every node/.append style={text=SPFG},
+  el/.style={draw=SPAXIS, fill=surface, line width=0.6bp, rounded corners=0.5mm, inner xsep=2.4mm, inner ysep=1.6mm,
+             minimum height=6mm, font=\fsLabel, align=center},
+  el px/.style={el, minimum width=\wPx mm, anchor=west},
+  region browser/.style={draw=NEUTRAL, fill=none, line width=0.6bp, rounded corners=0.5mm},
+  region page/.style={draw=NEUTRAL, fill=TINTPAGE, line width=0.6bp, rounded corners=0.5mm},
+  region sbx/.style={draw=SAND, fill=TINTSAND, line width=0.6bp, rounded corners=0.5mm},
+  regionlbl/.style={font=\fsLabel, text=SPMUTED, inner sep=0pt, anchor=base west},
+  t/.style={font=\fsLabel, inner sep=0pt},
+  sub/.style={font=\fsNote, text=SPMUTED, inner sep=0pt},
+  vend/.style={font=\fsLabel, inner sep=0pt, anchor=west, align=left},
+  con/.style={-{Stealth[length=3.4bp, width=2.8bp, inset=0.9bp]}, draw=SPAXIS, line width=0.6bp, rounded corners=0.8mm},
+  leakarr/.style={-{Stealth[length=4.25bp, width=3.4bp, inset=1.2bp]}, draw=LEAK, line width=1bp},
+  otherarr/.style={-{Stealth[length=3.4bp, width=2.8bp, inset=0.9bp]}, draw=NEUTRAL, line width=0.8bp},
+}
+\newlength\vendW
+\def\wPx{35.0}    % the two pixel boxes' shared width
+\begin{document}
+\settowidth\vendW{\fsLabel Google Merchant Center}%
+\begin{tikzpicture}
+\PanelCanvas{114}{48}
+\def\yP{-15.5}    % page tier centre line: the link, the landing page, the other routes
+\def\yT{-35.0}    % TikTok pixel
+\def\yG{-42.2}    % Google Ads pixel
+\def\yTop{-5.5}   % top of the page region = top of a's plot box (TOP)
+\def\yBot{-46.6}  % bottom of the sandbox region
+\def\xL{20.8}     % the two regions' shared left edge
+\def\xT{26.0}     % the page-URL trunk (inside the sandbox region, left of its name and boxes)
+\def\xB{30.6}     % the pixel boxes' west side = the sandbox region's name
+\pgfmathsetmacro\xR{\xB + \wPx + 2.4}   % the two regions' shared right edge (2.4 mm past the pixel boxes)
+\pgfmathsetmacro\xF{\xR + 2.4}          % the browser frame's right edge
+\pgfmathsetmacro\xV{\xF + 7.2}          % the vendor names, outside the browser
+% the longest vendor name must end inside the cell, clear of a's plot (\vendW is measured before the picture)
+\pgfmathsetmacro\xVend{\xV + \vendW/1mm}
+\pgfmathtruncatemacro\vendOut{(\xVend > 114 - 6)}
+\ifnum\vendOut=1 \PackageError{fig6a}{the vendor names end at \xVend\space mm, too close to a's plot}{}\fi
+
+% ---------------------------------------------------------------- level 1: Store C in the browser
+\draw[region browser] (18.4,-0.6) rectangle (\xF,-47.4);
+\node[regionlbl] at (20.8,-4.3) {Store C in the browser};
+
+% ---------------------------------------------------------------- level 2: the page (main thread)
+\draw[region page] (\xL,\yTop) rectangle (\xR,-22.0);
+\node[regionlbl] at (23.2,\yTop-3.5) {Page (main thread)};
+\node[el, anchor=west, inner ysep=1.2mm] (land) at (23.2,\yP)
+  {Landing page\\[-0.4mm]{\fsNote\color{SPMUTED}utm\_campaign=desc-…}};
+% the creator's video link enters from the left (its label right-aligned at the tail, as Fig. 1a's inputs)
+\draw[con] (14.0,\yP) -- ($(land.west)+(-0.6,0)$);
+\node[t, anchor=mid east, align=right] at (12.8,\yP) {Creator’s\\video link};
+
+% ---------------------------------------------------------------- level 2: the pixel sandboxes (left-aligned with the page)
+\draw[region sbx] (\xL,-26.4) rectangle (\xR,\yBot);
+\node[regionlbl] at (\xB,-29.9) {Pixel sandboxes};
+\node[el px] (tt) at (\xB,\yT) {};
+\node[el px] (ga) at (\xB,\yG) {};
+% each box: the pixel's name left, its Shopify runtime (muted 6 pt) right -- as Fig. 1a's 'strict' and 'lax'
+\node[t, anchor=mid west] at ($(tt.west)+(2.4,0)$) {TikTok pixel};
+\node[sub, anchor=mid east] at ($(tt.east)+(-2.4,0)$) {strict};
+\node[t, anchor=mid west] at ($(ga.west)+(2.4,0)$) {Google Ads pixel};
+\node[sub, anchor=mid east] at ($(ga.east)+(-2.4,0)$) {lax};
+% the page hands its URL to both pixels: one trunk from the landing page, into the sandbox region, forked with |-
+\draw[con] (\xT,0 |- land.south) |- ($(tt.west)+(-0.6,0)$);
+\draw[con] (\xT,0 |- land.south) |- ($(ga.west)+(-0.6,0)$);
+\node[t, anchor=base west] at (\xT+1.4,-25.0) {page URL};
+
+% ---------------------------------------------------------------- outside the browser: the ad vendors that got the code
+% named at the heads of the paths that reached them (no box: FigGenie's 'no empty box'), the column named in muted 7 pt
+\node[regionlbl] at (\xV,\yTop-3.5) {Ad vendors};
+\node[vend] at (\xV,\yP) {Google Merchant Center\\Reddit/other};
+\node[vend] at (\xV,\yT) {TikTok};
+\node[vend] at (\xV,\yG) {Google Ads};
+% the page's other routes (scripts outside the sandboxes): grey, the 'Any route' grey of the plot
+\draw[otherarr] (land.east) -- (\xV-0.8,\yP);
+\node[t, anchor=base] at ($(land.east)!0.5!(\xR,\yP)+(0,1.25)$) {other routes};
+% the leak: the sandboxed pixels send the code to the vendors, out of the browser
+\draw[leakarr] (tt.east) -- (\xV-0.8,\yT);
+\draw[leakarr] (ga.east) -- (\xV-0.8,\yG);
+\end{tikzpicture}
+\end{document}

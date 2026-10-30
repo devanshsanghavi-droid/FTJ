@@ -1,0 +1,128 @@
+% figS1.tex -- Supplementary Figure S1, v7 (binding: ../DESIGN_V7.md sections 6-7; drawn in the idiom of the v7
+% reference schematic ../fig1/fig1a_pipeline.tex, whose tikzset block and region grammar are copied here).
+% Claim: Shopify's Web Pixels Manager (WPM) decides in the page's main thread whether a sandboxed pixel starts, and
+% never stops it afterwards. One schematic, so the figure carries no panel letter (a lone 'a' would read as a missing
+% 'b'; the caption cites no panel). It reads left to right like Fig 1a: consent signals (left) -> the manager bundle in
+% the page (middle) -> the containers a pixel runs in (right).
+%
+% Regions (FigGenie: nested and labelled, three levels at most; the same frames and grounds as Fig 1a and Fig 2b, one
+% meaning each), every region named at its top-left in muted 7 pt:
+%   level 1  'Shopify store in the browser': the outline-only 0.6 pt NEUTRAL frame of Fig 1a around everything that runs
+%            in the visitor's browser -- the consent signals, the page and the pixel sandboxes;
+%   level 2  'Page (main thread)' (TINT PAGE ground, NEUTRAL outline): a rectangle holding the inline loader, the
+%            manager bundle and the page script (an OPEN pixel runs in the page, where a blocker can see it); beside it
+%            'Pixel sandboxes' (TINT SAND ground, SAND outline): the web worker and the sandboxed iframe, isolated from
+%            the page. The two grounds are Fig 1a's (and Fig 1b's two lanes);
+%   inside the page, 'Manager bundle': an outline-only 0.6 pt NEUTRAL frame (never louder than its boxes) around the
+%            consent state, the consent gate and the event bus.
+% Grid: three rows, so every container sits on a row of the gate's column -- row 1 the inline loader and the web
+% worker, row 2 the consent gate and the sandboxed iframe (the gate's output runs straight through), row 3 the event bus
+% and the page script; the consent state spans rows 2-3 at the left of the bundle.
+% Boxes (sciplot S.box): white, 0.6 pt SPAXIS, 0.5 mm corners, padded 2.4 x 1.6 mm; boxes in a column share their
+% width (state 30, gate column 24, containers 33 mm = Fig 1a's sandbox boxes) and boxes in a row their centre line.
+% No empty boxes (FigGenie): the gate column's boxes carry a muted 6 pt second line ('pixel list', 'declared purposes',
+% 'page events'), the containers their runtime context as a right-aligned 6 pt qualifier (strict, lax, open: Shopify's
+% runtimeContext STRICT / LAX / OPEN, as in Fig 1a), and the consent state lists its five sources in the order the
+% bundle reads them.
+% Connectors: 0.6 pt SPAXIS, Stealth 3.4 x 2.8 bp, stopping 0.6 mm short, 0.8 mm rounded bends; the three consent
+% signals enter from the left with their labels right-aligned at one tail x (Fig 1a's words); the gate's output leaves
+% one trunk and forks with |- to the three containers. No accent colour (nothing here is a lost request: the brick
+% leak paths are Fig 1a's), no numerals, no data numbers; everything else is in the caption.
+% Geometry: one TikZ picture, 190 x 53 mm (this file is the composite).
+\documentclass[tikz,border=0pt]{standalone}
+\def\StyleDir{../style/}
+\input{\StyleDir tikzstyle_v2.tex}
+\tikzset{
+  every node/.append style={text=SPFG},
+  el/.style={draw=SPAXIS, fill=surface, line width=0.6bp, rounded corners=0.5mm, inner xsep=2.4mm, inner ysep=1.6mm,
+             minimum height=6mm, font=\fsLabel, align=center, anchor=center},
+  el two/.style={el, inner ysep=1.2mm, minimum height=8.4mm},
+  region browser/.style={draw=NEUTRAL, fill=none, line width=0.6bp, rounded corners=0.5mm},
+  region outline/.style={draw=NEUTRAL, fill=none, line width=0.6bp, rounded corners=0.5mm},
+  region page/.style={draw=NEUTRAL, fill=TINTPAGE, line width=0.6bp, rounded corners=0.5mm},
+  region sbx/.style={draw=SAND, fill=TINTSAND, line width=0.6bp, rounded corners=0.5mm},
+  regionlbl/.style={font=\fsLabel, text=SPMUTED, inner sep=0pt, anchor=base west},
+  t/.style={font=\fsLabel, inner sep=0pt},
+  sub/.style={font=\fsNote, text=SPMUTED, inner sep=0pt},
+  con/.style={-{Stealth[length=3.4bp, width=2.8bp, inset=0.9bp]}, draw=SPAXIS, line width=0.6bp, rounded corners=0.8mm},
+  conplain/.style={draw=SPAXIS, line width=0.6bp, rounded corners=0.8mm},
+}
+% \namedbox{name}{x,y}{label}{qualifier}: a one-row container box (33 mm, Fig 1a's sandbox boxes) -- its name left, its
+% runtime context as a muted qualifier right ('Web worker  strict')
+\newcommand{\namedbox}[4]{%
+  \node[el, minimum width=33mm] (#1) at (#2) {};%
+  \node[t, anchor=mid west] at ($(#1.west)+(2.4,0)$) {#3};%
+  \node[sub, anchor=mid east] at ($(#1.east)+(-2.4,0)$) {#4};}
+% \twobox{name}{x,y}{label}{second line}: a gate-column box -- its name over a muted 6 pt second line
+\newcommand{\twobox}[4]{%
+  \node[el two, minimum width=24mm] (#1) at (#2) {#3\\[-0.4mm]{\fsNote\color{SPMUTED}#4}};}
+\begin{document}
+\hyphenpenalty=10000 \exhyphenpenalty=10000 \frenchspacing
+\begin{tikzpicture}
+\FigureCanvas{53}
+% ---------------------------------------------------------------- grid (mm; y runs down)
+\def\yTop{-2.6}      % top of the page and of the sandbox region
+\def\yRowA{-11.4}    % row 1: inline loader, web worker
+\def\yIn{-24.0}      % top of the consent state and of the consent gate
+\def\yRowB{-28.2}    % row 2: consent gate (8.4 mm, top at \yIn), sandboxed iframe
+\def\yStB{-45.4}     % bottom of the consent state (and of the event bus)
+\def\yRowC{-41.2}    % row 3: event bus (8.4 mm, bottom at \yStB), page script
+\def\xPage{36.0}     % page region: left
+\def\xPageR{145.2}   % page region: right
+\def\xSbx{149.2}     % sandbox region: left (4 mm from the page)
+\def\xSbxR{187.0}    % sandbox region: right (2.6 mm inside the browser frame)
+\def\xS{55.8}        % column: consent state (30 mm)
+\def\xG{88.8}        % column: inline loader / consent gate / event bus (24 mm)
+\def\xP{126.3}       % column: page script (33 mm)
+\def\xR{168.1}       % column: web worker / sandboxed iframe (33 mm)
+\def\xFork{106.2}    % the gate's trunk forks here
+\def\xTail{29.0}     % the consent signals' tails (their labels end 1.4 mm to the left)
+
+% ---------------------------------------------------------------- level 1: the Shopify store in the browser
+\draw[region browser] (0.4,-0.4) rectangle (189.6,-52.6);
+\node[regionlbl] at (2.8,-4.0) {Shopify store in the browser};
+
+% ---------------------------------------------------------------- level 2: the page (main thread)
+\draw[region page] (\xPage,\yTop) rectangle (\xPageR,-50.2);
+\node[regionlbl] at (\xPage+2.4,-6.1) {Page (main thread)};
+% the inline loader, in the page HTML: its pixel list feeds the gate from above
+\twobox{loader}{\xG,\yRowA}{Inline loader}{pixel list}
+
+% the manager bundle: an outline-only frame inside the page
+\draw[region outline] (\xS-15-2.4,-18.4) rectangle (\xG+12+2.4,-47.8);
+\node[regionlbl] at (\xS-15,-21.9) {Manager bundle};
+% the consent state: its name, then the sources it reads, first one found wins (a muted member list, as Fig 1a's
+% vendor list)
+\node[el, anchor=north, minimum width=30mm, minimum height=21.4mm, inner sep=0pt] (state) at (\xS,\yIn) {};
+\node[t, anchor=base west] at ($(state.north west)+(2.4,-4.2)$) {Consent state};
+\node[sub, anchor=north west, align=left, text depth=0pt] at ($(state.north west)+(2.4,-6.3)$)
+  {cachedConsent\\[0.36mm]injectedConsent\\[0.36mm]\_cs URL parameter\\[0.36mm]\_tracking\_consent cookie\\[0.36mm]%
+   Server-Timing: \_cmp};
+% the gate (top-aligned with the state) and the event bus (bottom-aligned with it), in the loader's column
+\twobox{gate}{\xG,\yRowB}{Consent gate}{declared purposes}
+\twobox{bus}{\xG,\yRowC}{Event bus}{page events}
+\draw[con] (state.east |- gate.west) -- ($(gate.west)+(-0.6,0)$);
+\draw[con] (bus.north) -- ($(gate.south)+(0,-0.6)$);
+\draw[con] (loader.south) -- ($(gate.north)+(0,0.6)$);
+% the page script: an OPEN pixel runs in the page, in the event bus's row
+\namedbox{page}{\xP,\yRowC}{Page script}{open}
+
+% ---------------------------------------------------------------- the consent signals, from the left (Fig 1a's words)
+\foreach \dy/\name in {4.4/{CMP’s choice}, 0/{Region default}, -4.4/{Global Privacy Control}} {
+  \draw[con] (\xTail,{-34.7+\dy}) -- ($(state.west |- 0,{-34.7+\dy})+(-0.6,0)$);
+  \node[t, anchor=mid east] at (\xTail-1.4,{-34.7+\dy}) {\name};
+}
+
+% ---------------------------------------------------------------- level 2: the pixel sandboxes, beside the page
+\draw[region sbx] (\xSbx,\yTop) rectangle (\xSbxR,-33.6);
+\node[regionlbl] at (\xSbx+2.4,-6.1) {Pixel sandboxes};
+\namedbox{worker}{\xR,\yRowA}{Web worker}{strict}
+\namedbox{iframe}{\xR,\yRowB}{Sandboxed iframe}{lax}
+
+% ---------------------------------------------------------------- the gate starts each pixel in its container
+\draw[conplain] (gate.east) -- (\xFork,\yRowB);
+\draw[con] (\xFork,\yRowB) |- ($(worker.west)+(-0.6,0)$);
+\draw[con] (\xFork,\yRowB) -- ($(iframe.west)+(-0.6,0)$);
+\draw[con] (\xFork,\yRowB) |- ($(page.west)+(-0.6,0)$);
+\end{tikzpicture}
+\end{document}

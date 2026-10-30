@@ -1,4 +1,4 @@
-# Palette validation for Study 3 figures (2026-09-26T21:58Z); validator: dataviz/scripts/validate_palette.js
+# Palette validation for Study 3 figures (2026-09-29T20:07Z); validator: dataviz/scripts/validate_palette.js
 # Revised after review: section 4 is the NEW 4-step ordinal heatmap ramp (no Google hex); section 6 documents the
 # all-pairs failure of the 7 vendor colours, which is why Fig 1c gives each vendor its own sub-row and Fig 6b adds
 # sandbox/other sub-rows and a TikTok marker (colour is never the only identity cue for scatter-like marks).

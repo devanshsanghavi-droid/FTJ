@@ -1,0 +1,17 @@
+% figS8.tex -- Supplementary Figure S8 composite, v7 (../../DESIGN_V7.md; worked example ../../fig1): after a choice.
+% Layout 190 x 137 mm: row 1 a | b (92 x 64); row 2 c | d (66, 118 x 67; d the hero); 6 mm gutters; the plots of a
+% row share their top and x-axis line (asserted in scripts/s8.py). Panels: scripts/s8.py, drawn at final size (never
+% rescaled; the cells are asserted there); \Panel checks each size and draws the 8 pt bold lowercase letters.
+\documentclass[tikz,border=0pt]{standalone}
+\def\StyleDir{../style/}
+\input{\StyleDir tikzstyle_v2.tex}
+\begin{document}
+\begin{tikzpicture}
+  \FigureCanvas{137}
+  %      letter  x     y     w     h     file
+  \Panel {a}     {0}   {0}   {92}  {64}  {panels/figS8a_vendor.pdf}
+  \Panel {b}     {98}  {0}   {92}  {64}  {panels/figS8b_subgroups.pdf}
+  \Panel {c}     {0}   {70}  {66}  {67}  {panels/figS8c_classes.pdf}
+  \Panel {d}     {72}  {70}  {118} {67}  {panels/figS8d_race.pdf}
+\end{tikzpicture}
+\end{document}

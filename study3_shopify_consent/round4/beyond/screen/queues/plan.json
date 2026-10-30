@@ -1,0 +1,56 @@
+{
+ "note": "Read before every batch by screen_runner.py. weight = items per round-robin turn; cap = max items screened in the stratum; stop_when = drop stratum once all targets (candidate counts with a static CMP) are met.",
+ "strata": {
+  "CAL": {
+   "queue": "queue_CAL.csv",
+   "weight": 4,
+   "note": "calibration of static markers on vendor-owned pages; never candidates"
+  },
+  "W": {
+   "queue": "queue_W.csv",
+   "weight": 2,
+   "stop_when": {
+    "wix_cmp": 112
+   }
+  },
+  "BC": {
+   "queue": "queue_BC.csv",
+   "weight": 2,
+   "stop_when": {
+    "bc_cmp": 150
+   }
+  },
+  "J": {
+   "queue": "queue_J.csv",
+   "weight": 2,
+   "stop_when": {
+    "partytown_cmp": 100
+   }
+  },
+  "CF": {
+   "queue": "queue_CF.csv",
+   "weight": 2,
+   "cap": 1000,
+   "stop_when": {
+    "zaraz_cmp": 100,
+    "gateway_cmp": 100
+   }
+  },
+  "R": {
+   "queue": "queue_R.csv",
+   "weight": 1,
+   "cap": 1200
+  },
+  "J2": {
+   "queue": "queue_J2.csv",
+   "weight": 1,
+   "cap": 480,
+   "stop_when": {
+    "gateway_cmp": 80,
+    "partytown_cmp": 60
+   }
+  }
+ },
+ "pause": false,
+ "budget_note": "00:25 PDT 27 Sep: CF capped at 1,500 (about half of Cloudflare sites refuse the library user agent) and R at 1,200 to keep screening to about 2 h; J remains a census. 01:00 PDT: CF stopped at 1,000 screened (0 Zaraz sites among the reachable pages; Zaraz may not be injected for non-browser clients, see PROTOCOL limitations). 01:03 PDT: DNS scan of ranks 200k-1M finished; W/BC queues rebuilt (1,325 / 1,341 domains, rank order) and screened in rank order until about 140/150 sites with a static CMP, enough for 80 selected + 20 reserve after exclusions. 03:20 PDT: J2 added (Vercel/Netlify, ranks 200k-1M, rank order; cap 3,600; stop at 80 gateway or 60 Partytown sites with a static CMP) at 0.5 homepage GET/s and 0.5 robots GET/s, 4 sites in flight, because the round4/expansion screener was running at the same time (about 1 homepage GET/s to different, Shopify, sites). 03:35 PDT: J2 cap cut from 3,600 to 480 (the top 480 by rank): after 240 sites there were 0 new Partytown sites and 0 new gateway sites with a static CMP (fixed detector), so a full run (about 3 h at 0.5/s) was expected to add only a handful."
+}

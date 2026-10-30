@@ -1,0 +1,17 @@
+% style_sheet.tex -- one-page v2 style sheet (190 x 180 mm), assembled exactly like a real figure (see
+% composite_template.tex). Panels: demo/ (TikZ A, B, E, F; matplotlib C, D from demo/make_demo_panels.py).
+% Build: ./build_style_sheet.sh
+\documentclass[tikz,border=0pt]{standalone}
+\def\StyleDir{./}
+\input{\StyleDir tikzstyle_v2.tex}
+\begin{document}
+\begin{tikzpicture}
+  \FigureCanvas{180}
+  \Panel[Type scale at print size, Arial]{A}{0}{0}{92}{62}{demo/build/demo_a_type.pdf}
+  \Panel[Colour and glyph dictionary]{B}{98}{0}{92}{62}{demo/build/demo_b_dictionary.pdf}
+  \Panel[Arms by shape, vendors by chip]{C}{0}{68}{92}{60}{demo/build/demo_c.pdf}
+  \Panel[Red means consent failed, hatch a sandbox]{D}{98}{68}{92}{60}{demo/build/demo_d.pdf}
+  \Panel[Icons: hand-built vector paths]{E}{0}{134}{128}{46}{demo/build/demo_e_icons.pdf}
+  \Panel[Strokes]{F}{134}{134}{56}{46}{demo/build/demo_f_strokes.pdf}
+\end{tikzpicture}
+\end{document}

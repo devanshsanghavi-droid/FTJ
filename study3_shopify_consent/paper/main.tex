@@ -1,0 +1,21 @@
+% main.tex -- manuscript for Computers & Security (Elsevier), elsarticle; A4 paper.
+% Layout (changed 2026-10-06): the journal's own two-column 5p layout, Times, with line numbers for reviewers.
+% C&S accepts any layout at first submission ("Your Paper Your Way"); the earlier double-spaced single-column review
+% layout is kept in _main_review_layout_backup.tex.
+% Build: ./build.sh (compiles supplement, main, supplement, so that cross-references resolve both ways).
+% ./build.sh flat makes the single-folder submission bundle (submission/), in which any remaining \todo is an error.
+\documentclass[5p,times,twocolumn,authoryear,a4paper]{elsarticle}
+\input{preamble}
+\externaldocument[S:]{supplement}
+\usepackage[switch]{lineno}
+\renewcommand\linenumberfont{\normalfont\tiny\sffamily\color{gray}}
+\journal{Computers \& Security}
+
+\begin{document}
+\input{frontmatter}
+% Line numbers start after the title page: switching them on before the elsarticle front matter numbered only the
+% title and headings (not the abstract) and pushed the title-page footnotes into the footer. Editorial Manager adds its own.
+\linenumbers
+\input{body}
+\input{backmatter}
+\end{document}

@@ -1,0 +1,1097 @@
+{
+ "s7b_routes": {
+  "value": {
+   "cfg": {
+    "n": 29,
+    "n_stores": 15,
+    "sandbox": 21,
+    "page": 8,
+    "both": 6,
+    "neither": 6,
+    "sandbox_only": 15,
+    "page_only": 2
+   },
+   "nocfg": {
+    "n": 75,
+    "n_stores": 20,
+    "any": 15
+   },
+   "n_blocklist_stores": 21,
+   "n_entries": 104
+  },
+  "definition": "Blocklist entries (an ad vendor that a CMP blocklist declared blocked before any choice), all 21 blocklist stores, Default load. cfg: the vendor has a configured sandboxed Shopify pixel on the store; flags sandbox / page are independent (fired from a Shopify sandbox; fired from an ordinary page script). nocfg: no configured sandboxed pixel of the vendor identified; any = fired by any route (sandbox, OPEN pixel, relay or page).",
+  "script": "figures/v7/supp/scripts/derive_supp_numbers.py",
+  "inputs": [
+   "analysis/outputs/fig4c_declared_blocked_pairs.csv",
+   "analysis/outputs/ad_requests.csv.gz"
+  ],
+  "check": "cfg equals figures/v7/derived_numbers.json fig4a_routes.all_stores and fig4.c.cfg.sandbox; nocfg.any equals fig4.c.nocfg.any"
+ },
+ "s7c_recheck_nesting": {
+  "value": {
+   "stores": 21,
+   "active": 18,
+   "declared_tag_neutralized": 8,
+   "neutralized_and_sbx": 5,
+   "nested": true,
+   "excluded": {
+    "not_active": 3,
+    "not_neutralised": 10,
+    "sent_nothing": 3
+   },
+   "fired_main_crawl": 12,
+   "fired_main_crawl_fired_again": 11
+  },
+  "definition": "Re-check load, 21 blocklist stores: blocker active; of those, the tag of a declared-blocked vendor was neutralised; of those, the same vendor's sandboxed pixel sent an ad request. Each set is contained in the previous one.",
+  "script": "figures/v7/supp/scripts/derive_supp_numbers.py",
+  "inputs": [
+   "crawl/recheck/blocker_by_store.csv (read only)"
+  ],
+  "check": "counts equal checks.recheck.blocker.{stores, active.k, stores_declared_tag_neutralized, stores_neutralized_and_sbx}"
+ },
+ "s8d_race_loads": {
+  "value": {
+   "deny_A0": {
+    "loads": 59,
+    "first_before": 59,
+    "first_after": 0,
+    "min_ms": -4352.0,
+    "max_ms": -121.0
+   },
+   "deny_A2": {
+    "loads": 87,
+    "first_before": 85,
+    "first_after": 2,
+    "min_ms": -3772.0,
+    "max_ms": 836.0
+   },
+   "grant_A0": {
+    "loads": 22,
+    "first_before": 0,
+    "first_after": 22,
+    "min_ms": 5.0,
+    "max_ms": 1241.0
+   },
+   "grant_A2": {
+    "loads": 13,
+    "first_before": 0,
+    "first_after": 13,
+    "min_ms": 6.0,
+    "max_ms": 17.0
+   }
+  },
+  "definition": "Loads in which a CMP wrote 'marketing: no' (deny) or 'yes' (grant) without a click, by arm (A0 Default, A2 GPC): number of loads, and loads whose first third-party marketing sandbox started before / at or after the write.",
+  "script": "figures/v7/supp/scripts/derive_supp_numbers.py",
+  "inputs": [
+   "analysis/outputs/fig5d.csv"
+  ],
+  "check": "deny loads by arm equal fig5.d.deny.by_arm; first-before totals equal fig5.d.*.loads_first_before"
+ },
+ "s9b_gcs_states": {
+  "value": {
+   "Default": {
+    "n": 20480,
+    "G100": 614,
+    "G101": 72,
+    "G111": 9782,
+    "other_state": 70,
+    "no_state": 9942
+   },
+   "Decline_next": {
+    "n": 1219,
+    "G100": 357,
+    "G101": 43,
+    "G111": 128,
+    "other_state": 2,
+    "no_state": 689
+   },
+   "GPC": {
+    "n": 16703,
+    "G100": 690,
+    "G101": 147,
+    "G111": 9085,
+    "other_state": 52,
+    "no_state": 6729
+   }
+  },
+  "definition": "Google ad beacons by the Consent Mode state in their 'gcs' parameter: G100 (ad and analytics storage denied), G101 (ad storage denied, analytics granted), G111 (both granted), other states, no state. other_state = with_gcs - G100 - G101 - G111.",
+  "script": "figures/v7/supp/scripts/derive_supp_numbers.py",
+  "inputs": [
+   "stats.json:fig5.flags.google_beacons_gcs"
+  ],
+  "check": "with_gcs + none == n for every arm"
+ },
+ "s9c_google_flag_shares": {
+  "value": {
+   "Default": {
+    "n": 20503,
+    "gcs_ad_denied": {
+     "k": 687,
+     "p": 0.03350729161586109
+    },
+    "gcd_denied": {
+     "k": 707,
+     "p": 0.034482758620689655
+    },
+    "npa": {
+     "k": 802,
+     "p": 0.039116226893625324
+    },
+    "rdp": {
+     "k": 20,
+     "p": 0.0009754670048285616
+    },
+    "us_privacy_optout": {
+     "k": 14,
+     "p": 0.0006828269033799932
+    }
+   },
+   "Decline_next": {
+    "n": 1220,
+    "gcs_ad_denied": {
+     "k": 401,
+     "p": 0.32868852459016396
+    },
+    "gcd_denied": {
+     "k": 403,
+     "p": 0.330327868852459
+    },
+    "npa": {
+     "k": 419,
+     "p": 0.3434426229508197
+    },
+    "rdp": {
+     "k": 7,
+     "p": 0.005737704918032787
+    },
+    "us_privacy_optout": {
+     "k": 87,
+     "p": 0.07131147540983607
+    }
+   },
+   "GPC": {
+    "n": 16718,
+    "gcs_ad_denied": {
+     "k": 839,
+     "p": 0.050185428879052515
+    },
+    "gcd_denied": {
+     "k": 856,
+     "p": 0.051202296925469556
+    },
+    "npa": {
+     "k": 2914,
+     "p": 0.17430314630936716
+    },
+    "rdp": {
+     "k": 5809,
+     "p": 0.3474697930374447
+    },
+    "us_privacy_optout": {
+     "k": 265,
+     "p": 0.015851178370618495
+    }
+   }
+  },
+  "definition": "Google ad requests by arm (Default load; next page after Decline; GPC load): share carrying each refusal signal in the URL: Consent Mode 'gcs' with ad storage denied, 'gcd' denied, npa=1, rdp=1, us_privacy opt-out. p = k / n.",
+  "script": "figures/v7/supp/scripts/derive_supp_numbers.py",
+  "inputs": [
+   "stats.json:fig5.flags.google_flag_kinds"
+  ],
+  "check": "Decline_next n equals fig5.flags.by_group.Google.Decline.n"
+ },
+ "s9c_other_state": {
+  "value": {
+   "by_arm": {
+    "Default": {
+     "k": 70,
+     "n": 20480,
+     "p": 0.00341796875
+    },
+    "Decline_next": {
+     "k": 2,
+     "n": 1219,
+     "p": 0.0016406890894175555
+    },
+    "GPC": {
+     "k": 52,
+     "n": 16703,
+     "p": 0.003113213195234389
+    }
+   },
+   "max_share": 0.00341796875
+  },
+  "definition": "Google ad beacons whose 'gcs' state is none of G100, G101, G111, by arm, and the largest of these shares. In Fig. S9C such a segment is narrower than the white gap between segments, so it is not drawn.",
+  "script": "figures/v7/supp/scripts/derive_supp_numbers.py",
+  "inputs": [
+   "figures/v7/supp/derived_numbers.json:s9b_gcs_states"
+  ],
+  "check": "k equals s9b_gcs_states other_state"
+ },
+ "s9d_tick_groups": {
+  "value": {
+   "merge_ms": 50,
+   "loads": {
+    "A0": {
+     "sandbox": [
+      {
+       "t_ms_first": 2272,
+       "t_ms_last": 2273,
+       "n": 3,
+       "n_code": 3,
+       "vgroup": "Google",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 2635,
+       "t_ms_last": 2635,
+       "n": 1,
+       "n_code": 1,
+       "vgroup": "Google",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 11484,
+       "t_ms_last": 11484,
+       "n": 1,
+       "n_code": 0,
+       "vgroup": "TikTok",
+       "mark": "short"
+      },
+      {
+       "t_ms_first": 11652,
+       "t_ms_last": 11652,
+       "n": 1,
+       "n_code": 0,
+       "vgroup": "TikTok",
+       "mark": "short"
+      },
+      {
+       "t_ms_first": 11806,
+       "t_ms_last": 11808,
+       "n": 4,
+       "n_code": 4,
+       "vgroup": "TikTok",
+       "mark": "tall"
+      }
+     ],
+     "other": [
+      {
+       "t_ms_first": 442,
+       "t_ms_last": 442,
+       "n": 1,
+       "n_code": 0,
+       "vgroup": "Reddit/other",
+       "mark": "short"
+      },
+      {
+       "t_ms_first": 765,
+       "t_ms_last": 765,
+       "n": 1,
+       "n_code": 1,
+       "vgroup": "Reddit/other",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 1140,
+       "t_ms_last": 1140,
+       "n": 2,
+       "n_code": 0,
+       "vgroup": "Reddit/other",
+       "mark": "short"
+      },
+      {
+       "t_ms_first": 1385,
+       "t_ms_last": 1385,
+       "n": 1,
+       "n_code": 0,
+       "vgroup": "Reddit/other",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 1884,
+       "t_ms_last": 1884,
+       "n": 2,
+       "n_code": 1,
+       "vgroup": "Google",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 2129,
+       "t_ms_last": 2129,
+       "n": 1,
+       "n_code": 1,
+       "vgroup": "Google",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 2234,
+       "t_ms_last": 2234,
+       "n": 1,
+       "n_code": 0,
+       "vgroup": "Meta",
+       "mark": "short"
+      },
+      {
+       "t_ms_first": 2247,
+       "t_ms_last": 2261,
+       "n": 5,
+       "n_code": 5,
+       "vgroup": "Google",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 2561,
+       "t_ms_last": 2623,
+       "n": 5,
+       "n_code": 5,
+       "vgroup": "Google",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 2687,
+       "t_ms_last": 2687,
+       "n": 1,
+       "n_code": 1,
+       "vgroup": "Google",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 2718,
+       "t_ms_last": 2718,
+       "n": 1,
+       "n_code": 0,
+       "vgroup": "Meta",
+       "mark": "short"
+      },
+      {
+       "t_ms_first": 2894,
+       "t_ms_last": 2942,
+       "n": 2,
+       "n_code": 2,
+       "vgroup": "Google",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 3148,
+       "t_ms_last": 3155,
+       "n": 2,
+       "n_code": 2,
+       "vgroup": "Google",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 8156,
+       "t_ms_last": 8156,
+       "n": 1,
+       "n_code": 1,
+       "vgroup": "Google",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 11440,
+       "t_ms_last": 11440,
+       "n": 1,
+       "n_code": 0,
+       "vgroup": "Reddit/other",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 11713,
+       "t_ms_last": 11713,
+       "n": 1,
+       "n_code": 1,
+       "vgroup": "Reddit/other",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 12004,
+       "t_ms_last": 12004,
+       "n": 1,
+       "n_code": 1,
+       "vgroup": "Reddit/other",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 12105,
+       "t_ms_last": 12105,
+       "n": 1,
+       "n_code": 0,
+       "vgroup": "Reddit/other",
+       "mark": "tall"
+      }
+     ]
+    },
+    "A0r": {
+     "sandbox": [
+      {
+       "t_ms_first": 1491,
+       "t_ms_last": 1492,
+       "n": 4,
+       "n_code": 3,
+       "vgroup": "Google",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 1759,
+       "t_ms_last": 1759,
+       "n": 1,
+       "n_code": 1,
+       "vgroup": "Google",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 2759,
+       "t_ms_last": 2759,
+       "n": 1,
+       "n_code": 0,
+       "vgroup": "TikTok",
+       "mark": "short"
+      },
+      {
+       "t_ms_first": 3024,
+       "t_ms_last": 3024,
+       "n": 1,
+       "n_code": 0,
+       "vgroup": "TikTok",
+       "mark": "short"
+      },
+      {
+       "t_ms_first": 3143,
+       "t_ms_last": 3144,
+       "n": 4,
+       "n_code": 4,
+       "vgroup": "TikTok",
+       "mark": "tall"
+      }
+     ],
+     "other": [
+      {
+       "t_ms_first": 223,
+       "t_ms_last": 223,
+       "n": 1,
+       "n_code": 0,
+       "vgroup": "Reddit/other",
+       "mark": "short"
+      },
+      {
+       "t_ms_first": 465,
+       "t_ms_last": 465,
+       "n": 1,
+       "n_code": 1,
+       "vgroup": "Reddit/other",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 775,
+       "t_ms_last": 775,
+       "n": 2,
+       "n_code": 0,
+       "vgroup": "Reddit/other",
+       "mark": "short"
+      },
+      {
+       "t_ms_first": 1003,
+       "t_ms_last": 1003,
+       "n": 1,
+       "n_code": 0,
+       "vgroup": "Meta",
+       "mark": "short"
+      },
+      {
+       "t_ms_first": 1046,
+       "t_ms_last": 1046,
+       "n": 1,
+       "n_code": 0,
+       "vgroup": "Reddit/other",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 1212,
+       "t_ms_last": 1212,
+       "n": 2,
+       "n_code": 1,
+       "vgroup": "Google",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 1253,
+       "t_ms_last": 1253,
+       "n": 1,
+       "n_code": 0,
+       "vgroup": "Meta",
+       "mark": "short"
+      },
+      {
+       "t_ms_first": 1404,
+       "t_ms_last": 1408,
+       "n": 2,
+       "n_code": 2,
+       "vgroup": "Google",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 1515,
+       "t_ms_last": 1528,
+       "n": 11,
+       "n_code": 11,
+       "vgroup": "Google",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 1759,
+       "t_ms_last": 1769,
+       "n": 4,
+       "n_code": 4,
+       "vgroup": "Google",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 1980,
+       "t_ms_last": 1980,
+       "n": 1,
+       "n_code": 1,
+       "vgroup": "Google",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 2147,
+       "t_ms_last": 2147,
+       "n": 1,
+       "n_code": 1,
+       "vgroup": "Google",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 2695,
+       "t_ms_last": 2695,
+       "n": 1,
+       "n_code": 0,
+       "vgroup": "Reddit/other",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 2959,
+       "t_ms_last": 2959,
+       "n": 1,
+       "n_code": 1,
+       "vgroup": "Reddit/other",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 3272,
+       "t_ms_last": 3272,
+       "n": 1,
+       "n_code": 1,
+       "vgroup": "Reddit/other",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 3361,
+       "t_ms_last": 3361,
+       "n": 1,
+       "n_code": 0,
+       "vgroup": "Reddit/other",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 6409,
+       "t_ms_last": 6409,
+       "n": 1,
+       "n_code": 1,
+       "vgroup": "Google",
+       "mark": "tall"
+      }
+     ]
+    },
+    "A1": {
+     "sandbox": [
+      {
+       "t_ms_first": 1396,
+       "t_ms_last": 1397,
+       "n": 4,
+       "n_code": 3,
+       "vgroup": "Google",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 1734,
+       "t_ms_last": 1734,
+       "n": 1,
+       "n_code": 1,
+       "vgroup": "Google",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 2483,
+       "t_ms_last": 2483,
+       "n": 1,
+       "n_code": 0,
+       "vgroup": "TikTok",
+       "mark": "short"
+      },
+      {
+       "t_ms_first": 2638,
+       "t_ms_last": 2638,
+       "n": 1,
+       "n_code": 0,
+       "vgroup": "TikTok",
+       "mark": "short"
+      },
+      {
+       "t_ms_first": 2731,
+       "t_ms_last": 2733,
+       "n": 4,
+       "n_code": 4,
+       "vgroup": "TikTok",
+       "mark": "tall"
+      }
+     ],
+     "other": [
+      {
+       "t_ms_first": 321,
+       "t_ms_last": 321,
+       "n": 1,
+       "n_code": 0,
+       "vgroup": "Reddit/other",
+       "mark": "short"
+      },
+      {
+       "t_ms_first": 435,
+       "t_ms_last": 435,
+       "n": 1,
+       "n_code": 1,
+       "vgroup": "Reddit/other",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 746,
+       "t_ms_last": 746,
+       "n": 2,
+       "n_code": 0,
+       "vgroup": "Reddit/other",
+       "mark": "short"
+      },
+      {
+       "t_ms_first": 964,
+       "t_ms_last": 964,
+       "n": 1,
+       "n_code": 0,
+       "vgroup": "Meta",
+       "mark": "short"
+      },
+      {
+       "t_ms_first": 1040,
+       "t_ms_last": 1040,
+       "n": 1,
+       "n_code": 0,
+       "vgroup": "Reddit/other",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 1091,
+       "t_ms_last": 1091,
+       "n": 2,
+       "n_code": 1,
+       "vgroup": "Google",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 1258,
+       "t_ms_last": 1258,
+       "n": 1,
+       "n_code": 0,
+       "vgroup": "Meta",
+       "mark": "short"
+      },
+      {
+       "t_ms_first": 1372,
+       "t_ms_last": 1385,
+       "n": 11,
+       "n_code": 11,
+       "vgroup": "Google",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 1508,
+       "t_ms_last": 1512,
+       "n": 2,
+       "n_code": 2,
+       "vgroup": "Google",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 1733,
+       "t_ms_last": 1734,
+       "n": 4,
+       "n_code": 4,
+       "vgroup": "Google",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 2024,
+       "t_ms_last": 2035,
+       "n": 2,
+       "n_code": 2,
+       "vgroup": "Google",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 2450,
+       "t_ms_last": 2450,
+       "n": 1,
+       "n_code": 0,
+       "vgroup": "Reddit/other",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 2712,
+       "t_ms_last": 2712,
+       "n": 1,
+       "n_code": 1,
+       "vgroup": "Reddit/other",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 3063,
+       "t_ms_last": 3063,
+       "n": 1,
+       "n_code": 1,
+       "vgroup": "Reddit/other",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 3144,
+       "t_ms_last": 3144,
+       "n": 1,
+       "n_code": 0,
+       "vgroup": "Reddit/other",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 6515,
+       "t_ms_last": 6515,
+       "n": 1,
+       "n_code": 1,
+       "vgroup": "Google",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 18664,
+       "t_ms_last": 18664,
+       "n": 1,
+       "n_code": 1,
+       "vgroup": "Google",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 18722,
+       "t_ms_last": 18722,
+       "n": 1,
+       "n_code": 1,
+       "vgroup": "Reddit/other",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 18795,
+       "t_ms_last": 18795,
+       "n": 1,
+       "n_code": 0,
+       "vgroup": "Reddit/other",
+       "mark": "short"
+      },
+      {
+       "t_ms_first": 19030,
+       "t_ms_last": 19077,
+       "n": 4,
+       "n_code": 4,
+       "vgroup": "Google",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 19167,
+       "t_ms_last": 19167,
+       "n": 1,
+       "n_code": 1,
+       "vgroup": "Google",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 19228,
+       "t_ms_last": 19228,
+       "n": 2,
+       "n_code": 0,
+       "vgroup": "Reddit/other",
+       "mark": "short"
+      },
+      {
+       "t_ms_first": 19288,
+       "t_ms_last": 19288,
+       "n": 1,
+       "n_code": 1,
+       "vgroup": "Google",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 19375,
+       "t_ms_last": 19375,
+       "n": 1,
+       "n_code": 0,
+       "vgroup": "Reddit/other",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 19485,
+       "t_ms_last": 19485,
+       "n": 1,
+       "n_code": 0,
+       "vgroup": "Reddit/other",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 19634,
+       "t_ms_last": 19634,
+       "n": 1,
+       "n_code": 1,
+       "vgroup": "Reddit/other",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 19799,
+       "t_ms_last": 19799,
+       "n": 1,
+       "n_code": 0,
+       "vgroup": "Reddit/other",
+       "mark": "tall"
+      }
+     ]
+    },
+    "A2": {
+     "sandbox": [],
+     "other": [
+      {
+       "t_ms_first": 319,
+       "t_ms_last": 319,
+       "n": 1,
+       "n_code": 0,
+       "vgroup": "Reddit/other",
+       "mark": "short"
+      },
+      {
+       "t_ms_first": 458,
+       "t_ms_last": 458,
+       "n": 1,
+       "n_code": 1,
+       "vgroup": "Reddit/other",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 771,
+       "t_ms_last": 771,
+       "n": 2,
+       "n_code": 0,
+       "vgroup": "Reddit/other",
+       "mark": "short"
+      },
+      {
+       "t_ms_first": 1201,
+       "t_ms_last": 1201,
+       "n": 1,
+       "n_code": 0,
+       "vgroup": "Reddit/other",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 1240,
+       "t_ms_last": 1240,
+       "n": 2,
+       "n_code": 1,
+       "vgroup": "Google",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 1665,
+       "t_ms_last": 1681,
+       "n": 11,
+       "n_code": 11,
+       "vgroup": "Google",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 1733,
+       "t_ms_last": 1736,
+       "n": 2,
+       "n_code": 2,
+       "vgroup": "Google",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 1954,
+       "t_ms_last": 1955,
+       "n": 2,
+       "n_code": 2,
+       "vgroup": "Google",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 2179,
+       "t_ms_last": 2203,
+       "n": 2,
+       "n_code": 2,
+       "vgroup": "Google",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 6737,
+       "t_ms_last": 6737,
+       "n": 1,
+       "n_code": 1,
+       "vgroup": "Google",
+       "mark": "tall"
+      }
+     ]
+    },
+    "A2r": {
+     "sandbox": [],
+     "other": [
+      {
+       "t_ms_first": 235,
+       "t_ms_last": 235,
+       "n": 1,
+       "n_code": 0,
+       "vgroup": "Reddit/other",
+       "mark": "short"
+      },
+      {
+       "t_ms_first": 423,
+       "t_ms_last": 423,
+       "n": 1,
+       "n_code": 1,
+       "vgroup": "Reddit/other",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 969,
+       "t_ms_last": 969,
+       "n": 2,
+       "n_code": 0,
+       "vgroup": "Reddit/other",
+       "mark": "short"
+      },
+      {
+       "t_ms_first": 1187,
+       "t_ms_last": 1187,
+       "n": 2,
+       "n_code": 1,
+       "vgroup": "Google",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 1289,
+       "t_ms_last": 1289,
+       "n": 1,
+       "n_code": 0,
+       "vgroup": "Reddit/other",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 1441,
+       "t_ms_last": 1441,
+       "n": 1,
+       "n_code": 1,
+       "vgroup": "Google",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 1502,
+       "t_ms_last": 1513,
+       "n": 8,
+       "n_code": 8,
+       "vgroup": "Google",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 1822,
+       "t_ms_last": 1822,
+       "n": 2,
+       "n_code": 2,
+       "vgroup": "Google",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 2081,
+       "t_ms_last": 2081,
+       "n": 2,
+       "n_code": 2,
+       "vgroup": "Google",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 2403,
+       "t_ms_last": 2419,
+       "n": 4,
+       "n_code": 4,
+       "vgroup": "Google",
+       "mark": "tall"
+      },
+      {
+       "t_ms_first": 7404,
+       "t_ms_last": 7404,
+       "n": 1,
+       "n_code": 1,
+       "vgroup": "Google",
+       "mark": "tall"
+      }
+     ]
+    }
+   },
+   "n_groups_multi": 37,
+   "max_span_ms": 62,
+   "example": {
+    "load": "A0",
+    "sub": "sandbox",
+    "vgroup": "TikTok",
+    "n": 4
+   }
+  },
+  "definition": "Fig. S9D: the requests of each Store C load, per sub-row (sandbox / other), grouped into drawn ticks by the Fig. 4C rule: requests of one kind (one vendor group and one tick height: tall = data beacons and other requests, short = library loads) whose consecutive members are less than merge_ms apart form one tick, labelled with its count n when n > 1. n_code: members that carried the per-video code. example: the TikTok tick of the Default load (sandbox).",
+  "script": "figures/v7/supp/scripts/derive_supp_numbers.py",
+  "inputs": [
+   "analysis/outputs/fig6b_store_c.csv",
+   "figures/v7/fig4/derived_numbers.json:fig4c_recheck.tick_merge_ms",
+   "stats.json:fig6.b.store_c"
+  ],
+  "check": "reproduces fig4c_recheck.tick_groups on Fig. 4C's requests; n sums to the requests per load and sub-row; TikTok's sandboxed code-carrying requests equal fig6.b.store_c.<load>.n_creator_token_tiktok_sbx"
+ },
+ "s9b_refusal_store_share": {
+  "value": {
+   "resid_decline_fresh": {
+    "k": 9,
+    "n": 53,
+    "p": 0.16981132075471697
+   },
+   "resid_gpc": {
+    "k": 18,
+    "n": 279,
+    "p": 0.06451612903225806
+   }
+  },
+  "definition": "Fig. S9B (bottom): among the stores that still sent a sandboxed ad request (Decline: fresh page; GPC: whole load), the share on which every remaining sandboxed request carried a refusal signal: p = k / n.",
+  "script": "figures/v7/supp/scripts/derive_supp_numbers.py",
+  "inputs": [
+   "stats.json:fig5.flags.resid_decline_fresh",
+   "stats.json:fig5.flags.resid_gpc"
+  ],
+  "check": "k and n equal fig5.flags.<row>.stores_all_flagged and .stores"
+ },
+ "s10_crawl_date": {
+  "value": "27 Sep 2026",
+  "definition": "Fig. S10 caption: the day of the beyond-Shopify pilot crawl, rendered as day, month abbreviation and year; the first and last load fall on this day in UTC and in California (PDT, UTC-7).",
+  "script": "figures/v7/supp/scripts/derive_supp_numbers.py",
+  "inputs": [
+   "stats.json:round4.crawl.beyond.first_load_utc",
+   "stats.json:round4.crawl.beyond.last_load_utc"
+  ],
+  "check": "first and last load on the same date in UTC and in UTC-7"
+ }
+}

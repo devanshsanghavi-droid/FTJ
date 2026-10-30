@@ -1,8 +1,8 @@
 block,bar,cat,k,n,p,lo,hi
-GPC,declares sale of data,refused,0,1358,0.0,0.0,0.00282078273960878
-GPC,declares only purposes GPC leaves allowed,left_allowed,111,1358,0.0817378497790869,0.0683193600008091,0.09751599286531432
-GPC,declares no purpose,none,191,1358,0.1406480117820324,0.123169379712018,0.1601539516236655
-Decline,"started before the click, kept sending (same page or unload beacon)",refused,32,198,0.16161616161616163,0.11686791887805995,0.21924468780496012
-Decline,"new sandbox after the refusal, declares a refused purpose",refused,0,198,0.0,0.0,0.019032060621178834
-Decline,declares only purposes the Decline left allowed (any window),left_allowed,13,198,0.06565656565656566,0.03876806168907584,0.109077970769726
-Decline,declares no purpose (any window),none,28,198,0.1414141414141414,0.09968595589325518,0.19679158253203471
+GPC,declares sale of data,refused,0,1354,0.0,0.0,0.00282909234813092
+GPC,declares only purposes GPC leaves allowed,left_allowed,111,1354,0.08197932053175776,0.0685225259576025,0.09780135331720119
+GPC,declares no purpose,none,191,1354,0.1410635155096012,0.1235366766870899,0.1606212832555861
+Decline,"started before the click, kept sending (same page or unload beacon)",refused,32,196,0.16326530612244897,0.1180866401841853,0.22138975906284586
+Decline,"new sandbox after the refusal, declares a refused purpose",refused,0,196,0.0,0.0,0.01922253221528868
+Decline,declares only purposes the Decline left allowed (any window),left_allowed,13,196,0.0663265306122449,0.039167849031757684,0.11015781666517638
+Decline,declares no purpose (any window),none,28,196,0.14285714285714285,0.10072324835355079,0.19872141751451255

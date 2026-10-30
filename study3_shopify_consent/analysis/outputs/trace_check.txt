@@ -1,4 +1,6 @@
-RESULTS.md: 2075 numeric tokens, 2075 traced to stats.json via 2061 registry entries
+RESULTS.md: 1992 numeric tokens, 1992 traced to stats.json via 1979 registry entries
 takeaways.md: 54 numeric tokens, 54 traced to stats.json via 55 registry entries
 write_results.py: 0 hard-coded numbers in text templates
+derived numbers (figures/v2): 31 records from 9 files checked against stats.json[derived_v2]
+round4 numbers: stats.json[round4] in sync with stats_r4.json (11 files hashed); Round 4 trace check PASS
 RESULT: PASS

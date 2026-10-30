@@ -1,0 +1,283 @@
+% tikzstyle_v2.tex -- the one LaTeX/TikZ style for every v6 schematic panel AND every composite figure.
+% Binding spec: ../RESTRAINT.md (wins over ../DESIGN_V6.md). Colours, sizes and strokes come from palette_v2.tex, which
+% figstyle.py generates (python3 figstyle.py --write-tex): never hard-code a hex here.
+%
+% v6 RESTRAINT (rule 8): schematics are thin line art in near-black and greys plus at most ONE accent (the leak path,
+% LEAK): plain rectangles with square or slightly rounded (<= 0.5 mm) corners, thin arrows, short labels. No fills
+% behind content (zone / comp / card styles are plain thin outlines with NO fill), no tints, no shadows, no icons
+% (\CompText draws no icon unless \FigIconstrue), no numbered discs. Composites draw 8.5 pt bold lowercase panel
+% letters and NO panel titles (the optional title argument of \Panel is ignored, with a warning).
+%
+% Use (compile with tools/texenv/bin/tectonic):
+%   \documentclass[tikz,border=0pt]{standalone}
+%   \def\StyleDir{../style/}          % path from the compiled .tex to figures/v7/style/ (trailing slash; no spaces)
+%   \input{\StyleDir tikzstyle_v2.tex}
+%   \begin{document}
+%   \begin{tikzpicture}
+%     \PanelCanvas{120}{78}            % schematic panel: exact w x h mm; origin top-left, y runs DOWN (negative)
+%     ...                              % keep the top-left \figLetterZoneW x \figLetterZoneH mm empty (letter zone)
+%   \end{tikzpicture}
+%   \end{document}
+% Composites: see composite_template.tex (\FigureCanvas, \Panel, \PanelLetter).
+%
+% Colours (palette_v2.tex): LEAK brick (consent lost; also `accent`), HONOUR slate (consent honoured), THIRD lavender,
+% EVENT amber (the consent event), NEUTRAL grey (= greyM), LIGHT grey (= greyL), AXIS near-black (= axisc), SAND dark
+% slate (the solid sandbox fill), vendor hues vGoogle ... vOther (only where vendors are the categories).
+
+% ---------------------------------------------------------------- fonts: Arial everywhere (no serif, no monospace)
+\usepackage{fontspec}
+\IfFontExistsTF{Arial}{%
+  \setmainfont{Arial}\setsansfont{Arial}\setmonofont{Arial}%
+}{%
+  \setmainfont{TeX Gyre Heros}\setsansfont{TeX Gyre Heros}\setmonofont{TeX Gyre Heros}%
+}
+\renewcommand{\familydefault}{\sfdefault}
+\usepackage{xcolor}
+\usepackage{graphicx}
+\usetikzlibrary{arrows.meta,calc,patterns.meta,shapes.geometric,positioning,backgrounds,decorations.pathreplacing}
+\providecommand{\StyleDir}{./}
+\input{\StyleDir palette_v2.tex}
+
+% ---------------------------------------------------------------- type scale (bp at print size; = figstyle.FS)
+% v7 (../DESIGN_V7.md section 2): axis titles, labels, legend and schematic box text 7 pt (\fsAxis, \fsCat, \fsLabel,
+% \fsLegend); tick labels, muted secondary text and loss numerals 6 pt (\fsTick, \fsNote, \fsNumeral); panel letters
+% 8 pt bold lowercase (\fsLetter). Nothing below 6 pt.
+% \figFs<X>TeX is the size in TeX pt that equals <X> bp (matplotlib/PDF points), so LaTeX and matplotlib text match.
+\newcommand{\fsLetter}{\fontsize{\figFsLetterTeX}{\figFsLetterLead}\selectfont\bfseries}  % panel letter 8 pt bold (lowercase)
+\newcommand{\fsTitle}{\fontsize{\figFsTitleTeX}{\figFsTitleLead}\selectfont}              % (no panel titles in v6)
+\newcommand{\fsAxis}{\fontsize{\figFsAxisTeX}{\figFsAxisLead}\selectfont}                 % axis titles 7 pt
+\newcommand{\fsBoxTitle}{\fontsize{\figFsAxisTeX}{\figFsAxisLead}\selectfont}             % a short section label 7 pt
+\newcommand{\fsTick}{\fontsize{\figFsTickTeX}{\figFsTickLead}\selectfont}                 % tick labels 6 pt
+\newcommand{\fsCat}{\fontsize{\figFsCatTeX}{\figFsCatLead}\selectfont}                    % row / category labels 7 pt
+\newcommand{\fsLegend}{\fontsize{\figFsLegendTeX}{\figFsLegendLead}\selectfont}           % legend entries 7 pt
+\newcommand{\fsLabel}{\fontsize{\figFsLabelTeX}{\figFsLabelLead}\selectfont}              % schematic box text 7 pt
+\newcommand{\fsNote}{\fontsize{\figFsNoteTeX}{\figFsNoteLead}\selectfont}                 % muted secondary text 6 pt (v7)
+\newcommand{\fsNumeral}{\fontsize{\figFsNumeralTeX}{\figFsNumeralLead}\selectfont}        % loss numeral 6 pt (v7)
+\newcommand{\fsHero}{\fontsize{\figFsHeroTeX}{\figFsHeroLead}\selectfont\bfseries}        % (no hero numbers: 7 pt bold)
+\newcommand{\fsHeroSub}{\fontsize{\figFsHerosubTeX}{\figFsHerosubLead}\selectfont}        % its line 6.5 pt
+\newcommand{\code}[1]{`#1'}                                                % code identifiers: Arial, in quotes
+
+% ---------------------------------------------------------------- styles (v6 RESTRAINT: thin line art)
+\tikzset{
+  fig/.style={x=1mm, y=1mm, line width=\figLwBox, line cap=butt, line join=miter},
+  every picture/.append style={fig},
+  every node/.append style={font=\fsLabel, text=ink},
+  % plain line art: thin near-black strokes, no fill
+  lineart/.style={draw=AXIS, fill=none, line width=\figLwBox},
+  lineart grey/.style={draw=greyM, fill=none, line width=\figLwBox},
+  % rectangles: thin, square or slightly rounded (<= 0.5 mm) corners. `box` keeps a white knock-out fill (it hides a
+  % line passing behind it; invisible on the white page); `rect` / `container` are outline only
+  box/.style={draw=AXIS, fill=surface, line width=\figLwBox, rounded corners=0.4mm},
+  rect/.style={lineart, rounded corners=0.4mm},
+  rect sq/.style={lineart, sharp corners},
+  container/.style={draw=greyD, fill=none, line width=\figLwBox, rounded corners=0.5mm},
+  lightbox/.style={draw=greyD, fill=greyL, line width=\figLwBox},             % light grey fill: always outlined
+  failedfill/.style={fill=LEAK, draw=none},                                    % brick = consent lost ONLY
+  % "runs in a Shopify sandbox": ONE solid SAND (dark slate) fill -- bars and swatches; never a tinted zone
+  sandbox/.style={fill=sand},
+  sandbox box/.style={sandbox, draw=sandD, line width=\figLwBox, rounded corners=0.4mm},
+  % thin arrows: 0.5 pt, one Stealth head (= figstyle.STEALTH)
+  arr/.style={-{Stealth[length=\figStealthLength, width=\figStealthWidth, inset=\figStealthInset]},
+              draw=AXIS, line width=\figLwArrow},
+  arrg/.style={arr, draw=greyD},
+  arrboth/.style={{Stealth[length=\figStealthLength, width=\figStealthWidth, inset=\figStealthInset]}-%
+                  {Stealth[length=\figStealthLength, width=\figStealthWidth, inset=\figStealthInset]},
+                  draw=AXIS, line width=\figLwArrow},
+  % the one accent of a schematic: the leak path (LEAK, 0.75 pt)
+  arrfail/.style={arr, draw=LEAK, line width=\figLwLeakpath},
+  leakpath/.style={arrfail},
+  % rules
+  hairline/.style={draw=greyD, line width=\figLwHairline},
+  event/.style={draw=EVENT, line width=\figLwEvent},                          % the consent event (banner, Decline, GPC)
+  eventrule/.style={event},
+  dataline/.style={draw=ink, line width=\figLwData},
+  axisline/.style={draw=AXIS, line width=\figLwAxis},                          % 0.5 pt near-black chrome
+  gridline/.style={draw=none},                                                 % v6: no gridlines
+  connect/.style={draw=ink, line width=\figLwConnect},                         % joins two estimates (<= CI weight)
+  leader/.style={draw=greyM, line width=\figLwLeader, line cap=butt},          % displaced label -> its mark
+  bracket/.style={hairline, decorate, decoration={brace, amplitude=1.2mm, raise=0.6mm}},
+  % text
+  lbl/.style={font=\fsLabel, text=ink, inner sep=0pt},
+  catlbl/.style={font=\fsCat, text=ink, inner sep=0pt},                         % row / category label 7 pt
+  lblc/.style={lbl, align=center},
+  note/.style={font=\fsNote, text=greyD, inner sep=0pt},
+  boxtitle/.style={font=\fsBoxTitle, text=ink, inner sep=0pt},                  % a short section label (regular)
+  % (legacy) numbered leak disc -- RESTRAINT rule 8 bans numbered discs; kept so older files compile
+  leak/.style={circle, fill=LEAK, draw=none, minimum size=\figLeakDiam, inner sep=0pt,
+               font=\fsNote\bfseries, text=surface},
+  % the Shopify consent gate
+  gate/.style={diamond, draw=AXIS, fill=surface, line width=\figLwBox, aspect=1.5, inner sep=0.4mm, font=\fsLabel},
+}
+
+% ---------------------------------------------------------------- arm markers (= figstyle.ARM geometry, bp)
+% Default filled circle ink; Decline open square greyD; GPC filled triangle greyM; Repeat open diamond greyD;
+% Comparison open circle ink (the comparison group within the Default arm, never an arm).
+\tikzset{
+  pics/mkDefault/.style={code={\filldraw[fill=ink, draw=ink, line width=\figMewDefault]
+      (0,0) circle[radius=\figMsDefault/2];}},
+  pics/mkDecline/.style={code={\filldraw[fill=surface, draw=greyD, line width=\figMewDecline]
+      (-\figMsDecline/2,-\figMsDecline/2) rectangle (\figMsDecline/2,\figMsDecline/2);}},
+  pics/mkGPC/.style={code={\filldraw[fill=greyM, draw=greyM, line width=\figMewGPC, line join=miter]
+      (0,\figMsGPC/2) -- (-\figMsGPC/2,-\figMsGPC/2) -- (\figMsGPC/2,-\figMsGPC/2) -- cycle;}},
+  pics/mkRepeat/.style={code={\filldraw[fill=surface, draw=greyD, line width=\figMewRepeat, line join=miter]
+      (0,\figMsRepeatHalfDiag) -- (\figMsRepeatHalfDiag,0) -- (0,-\figMsRepeatHalfDiag)
+      -- (-\figMsRepeatHalfDiag,0) -- cycle;}},
+  pics/mkComparison/.style={code={\filldraw[fill=surface, draw=ink, line width=\figMewComparison]
+      (0,0) circle[radius=\figMsComparison/2];}},
+}
+% inline versions for running text / legends (centred on the x-height)
+\newcommand{\mkDefault}{\tikz[baseline=-0.55ex]\pic{mkDefault};}
+\newcommand{\mkDecline}{\tikz[baseline=-0.55ex]\pic{mkDecline};}
+\newcommand{\mkGPC}{\tikz[baseline=-0.55ex]\pic{mkGPC};}
+\newcommand{\mkRepeat}{\tikz[baseline=-0.55ex]\pic{mkRepeat};}
+\newcommand{\mkComparison}{\tikz[baseline=-0.55ex]\pic{mkComparison};}
+% vendor chip (identity is always also named in text) and fill swatches
+\newcommand{\chip}[1]{\tikz[baseline=-0.1mm]\fill[#1] (0,0) rectangle (4bp,4bp);}
+\newcommand{\swSandbox}{\tikz[baseline=-0.1mm]\fill[sand] (0,0) rectangle (3.4mm,2.2mm);}
+% the schematic sandbox CONTAINER, legend size: SAND frame with a white inner box (= pic sandbox, frame 1.0 mm)
+\newcommand{\swSandboxFrame}{\tikz[baseline=-0.1mm]{\draw[sandbox, draw=sandD, line width=\figLwBox,
+  rounded corners=0.4mm] (0,0) rectangle (5.4mm,3.6mm); \draw[draw=sandD, fill=surface, line width=\figLwBox,
+  rounded corners=0.25mm] (1.0mm,1.0mm) rectangle (4.4mm,2.6mm);}}
+\newcommand{\swLight}{\tikz[baseline=-0.1mm]\draw[lightbox] (0,0) rectangle (3.4mm,2.2mm);}
+\newcommand{\swFailed}{\tikz[baseline=-0.1mm]\fill[LEAK] (0,0) rectangle (3.4mm,2.2mm);}
+% token swatches and inline rules (keys under a schematic): \swToken{LEAK}, \swRule{EVENT}
+\newcommand{\swToken}[1]{\tikz[baseline=-0.1mm]\fill[#1] (0,0) rectangle (3.4mm,2.2mm);}
+\newcommand{\swRule}[1]{\tikz[baseline=-0.55ex]\draw[#1, line width=\figLwData] (0,0) -- (3.4mm,0);}
+\newcommand{\leakmark}[1]{\tikz[baseline=-0.6ex]\node[leak]{#1};}
+
+% ---------------------------------------------------------------- canvases and composition (all in mm, origin top-left)
+\newif\ifFigGrid \FigGridfalse       % \FigGridtrue draws cell outlines for layout work; qa_check.py fails on them
+\newlength\figLetterCap
+\newlength\figTmpLen
+\newsavebox\figPanelBox
+\def\figCanvasW{0}\def\figCanvasH{0}
+\AtBeginDocument{\settoheight{\figLetterCap}{\fsLetter b}}
+
+% \PanelCanvas{w}{h}: exact size of a schematic panel (a composite cell). Use inside tikzpicture, first.
+\newcommand{\PanelCanvas}[2]{%
+  \xdef\figCanvasW{#1}\xdef\figCanvasH{#2}%
+  \path[use as bounding box] (0,0) rectangle (#1,-#2);%
+  \ifFigGrid\draw[cyan, line width=0.2pt] (0,0) rectangle (\figLetterZoneW,-\figLetterZoneH);\fi}
+
+% \FigureCanvas[w]{h}: a whole figure, 190 mm wide by default, height capped at \figMaxHeight mm.
+\newcommand{\FigureCanvas}[2][\figWidth]{%
+  \xdef\figCanvasW{#1}\xdef\figCanvasH{#2}%
+  \pgfmathtruncatemacro\figTooTall{(#2>\figMaxHeight+0.01)}%
+  \ifnum\figTooTall=1 \PackageError{figv2}{Figure height #2 mm exceeds the \figMaxHeight\space mm cap}{}\fi
+  \path[use as bounding box] (0,0) rectangle (#1,-#2);}
+
+% \PanelLetter[title]{A}{x}{y}: 8.5 pt bold LOWERCASE letter whose cap top sits at the cell's top-left (x, y) mm, so
+% letters in one row share one baseline and letters in one column share one x. v6 RESTRAINT rule 2: NO panel titles --
+% the optional [title] argument is accepted (so older composites compile) but never drawn; a non-empty one warns.
+\newcommand{\PanelLetter}[4][]{%
+  \node[anchor=base west, inner sep=0pt, outer sep=0pt, font=\fsLetter, text=ink]
+    at ($(#3,-#4)+(0pt,-\figLetterCap)$) {\MakeLowercase{#2}};%
+  \def\figTmpTitle{#1}%
+  \ifx\figTmpTitle\empty\else
+    \PackageWarning{figv2}{Panel #2: panel title ignored (RESTRAINT rule 2: no panel titles)}%
+  \fi}
+
+\newcommand{\figCheckDim}[4]{% {letter}{what}{actual dimen}{target mm}
+  \figTmpLen=\dimexpr #3 - #4mm\relax
+  \ifdim\figTmpLen<0pt \figTmpLen=-\figTmpLen\fi
+  \ifdim\figTmpLen>0.2mm
+    \PackageError{figv2}{Panel #1: the PDF #2 differs from its #4 mm cell by \the\figTmpLen. Draw panels at
+      final size (figstyle.panel / \string\PanelCanvas); never rescale}{}%
+  \fi}
+
+\newcommand{\figCheckInside}[5]{% {letter}{x}{y}{w}{h}
+  \pgfmathtruncatemacro\figOut{(#2+#4>\figCanvasW+0.01) || (#3+#5>\figCanvasH+0.01) || (#2<0) || (#3<0)}%
+  \ifnum\figOut=1 \PackageError{figv2}{Panel #1 (#2, #3, #4 x #5 mm) falls outside the \figCanvasW\space x
+    \figCanvasH\space mm canvas}{}\fi}
+
+% \Panel[title]{A}{x}{y}{w}{h}{file.pdf}: place a vector panel PDF (never rescaled) with its top-left at (x, y) mm,
+% check that its size equals the w x h cell, then draw the 8.5 pt lowercase letter (the title is ignored). A missing file draws a
+% labelled placeholder ("MISSING PANEL"), which qa_check.py fails, so layouts can be tried before panels exist.
+\newcommand{\Panel}[7][]{%
+  \figCheckInside{#2}{#3}{#4}{#5}{#6}%
+  \IfFileExists{#7}{%
+    \sbox\figPanelBox{\includegraphics{#7}}%
+    \figCheckDim{#2}{width}{\wd\figPanelBox}{#5}%
+    \figCheckDim{#2}{height}{\dimexpr\ht\figPanelBox+\dp\figPanelBox\relax}{#6}%
+    \node[anchor=north west, inner sep=0pt, outer sep=0pt] at (#3,-#4) {\usebox\figPanelBox};%
+  }{%
+    \PackageWarning{figv2}{Panel #2: file #7 not found, drawing a placeholder}%
+    \draw[context, line width=0.4pt] (#3,-#4) rectangle ++(#5,-#6);%
+    \node[note, align=center] at ($(#3,-#4)+(#5/2,-#6/2)$) {MISSING PANEL\\\detokenize{#7}\\#5 x #6 mm};%
+  }%
+  \ifFigGrid
+    \draw[cyan, line width=0.2pt] (#3,-#4) rectangle ++(#5,-#6);%
+    \draw[cyan, line width=0.2pt] (#3,-#4) rectangle ++(\figLetterZoneW,-\figLetterZoneH);%
+  \fi
+  \PanelLetter[#1]{#2}{#3}{#4}}
+
+% ---------------------------------------------------------------- icons (hand-built vector shapes; no generative AI)
+\input{\StyleDir tikzicons_v2.tex}
+
+% v6: the sandbox container pic, redrawn as thin line art (corners <= 0.5 mm): a SAND frame band with a white inner box.
+% (Overrides tikzicons_v2.tex's 0.9 mm version; same name, arguments and anchors.)
+\tikzset{
+  pics/sandbox/.style 2 args={code={%
+    \draw[sandbox, draw=sandD, line width=\figLwBox, rounded corners=0.5mm] ({-#1/2},{-#2/2}) rectangle ({#1/2},{#2/2});
+    \draw[draw=sandD, fill=surface, line width=\figLwBox, rounded corners=0.3mm]
+      ({-#1/2+1.4},{-#2/2+1.4}) rectangle ({#1/2-1.4},{#2/2-1.4});
+    \iconanchors{#1/2}{#2/2}}},
+}
+
+% \SandboxFrame{x0}{y0}{x1}{y1}: the ONE schematic "runs in a Shopify sandbox" container, placed by its corners (mm):
+% the SAND frame with a white inner box of pic sandbox. The solid SAND FILL is for data bars and their legend swatches;
+% the legend swatch for this container is \swSandboxFrame.
+% (cross-figure QA 2: the centre and size are computed first -- a pic argument cannot hold pgfmath expressions.)
+\newcommand{\SandboxFrame}[4]{%
+  \pgfmathsetmacro\figSbfX{(#1+#3)/2}\pgfmathsetmacro\figSbfY{(#2+#4)/2}%
+  \pgfmathsetmacro\figSbfW{abs(#3-(#1))}\pgfmathsetmacro\figSbfH{abs(#4-(#2))}%
+  \pic at (\figSbfX,\figSbfY) {sandbox={\figSbfW}{\figSbfH}};}
+
+% ================================================================ zones, components, cards, connectors (v6 RESTRAINT)
+% v3 built schematics from tinted ZONES, white COMPONENT cards with icons and rounded CONNECTORS. v6 keeps the style
+% names (so older files compile) but every one renders as plain thin line art: zones, components and cards are thin
+% outlines with NO fill, corners <= 0.5 mm, no dashes, no tints; labels are short, regular weight; no icons.
+%   zone main = where a CMP's blocker acts (greyD outline); zone sand = the Shopify sandbox (SAND outline);
+%   zone ext = outside the browser (greyM outline).
+\usepackage{fontawesome5}
+\newif\ifFigIcons \FigIconsfalse     % RESTRAINT rule 8: no icons. \FigIconstrue restores v3 icons (never in a delivered figure)
+\tikzset{
+  zone/.style={fill=none, line width=\figLwBox, rounded corners=0.5mm, solid},
+  zone main/.style={zone, draw=mainD},
+  zone sand/.style={zone, draw=sandD},
+  zone ext/.style={zone, draw=greyM},
+  zone label/.style={font=\fsLabel, inner sep=0pt, anchor=north west},
+  zone label main/.style={zone label, text=mainD},
+  zone label sand/.style={zone label, text=sandD},
+  zone label ext/.style={zone label, text=greyD},
+  comp/.style={draw=AXIS, fill=none, line width=\figLwBox, rounded corners=0.4mm, inner sep=1.3mm, anchor=center},
+  comp muted/.style={comp, draw=greyM, text=greyD},
+  card/.style={comp},
+  card muted/.style={comp muted},
+  conn/.style={-{Stealth[length=\figStealthLength, width=\figStealthWidth, inset=\figStealthInset]},
+               draw=AXIS, line width=\figLwArrow, rounded corners=0.5mm},
+  conn plain/.style={draw=AXIS, line width=\figLwArrow, rounded corners=0.5mm},
+  conn fail/.style={conn, draw=LEAK, line width=\figLwLeakpath},
+  conn lbl/.style={font=\fsNote, text=greyD, fill=surface, inner sep=0.5mm},   % white knock-out on the line, no box
+  conn lbl tint/.style={font=\fsNote, text=greyD, inner sep=0.5mm},
+  stop/.style={font=\fsLabel, text=greyD},
+}
+% \CompText[icon colour]{icon name}{Title}{subtitle}: the content of a component node. v6: no icon (unless
+% \FigIconstrue), a 7 pt regular title and a 6.5 pt grey subtitle. \node[comp] at (x,y) {\CompText{x}{Cookie banner}{CMP}};
+\newcommand{\CompIcon}[2][greyD]{\ifFigIcons{\fontsize{10.5}{10.5}\selectfont\color{#1}\faIcon{#2}}\fi}
+\newcommand{\CompText}[4][greyD]{%
+  \ifFigIcons
+    \begin{tabular}{@{}c@{\hspace{1.5mm}}l@{}}%
+      \CompIcon[#1]{#2} &
+      \begin{tabular}[c]{@{}l@{}}{\fsLabel #3}\\[-0.4mm]{\fsNote\color{greyD}#4}\end{tabular}%
+    \end{tabular}%
+  \else
+    \begin{tabular}[c]{@{}l@{}}{\fsLabel #3}\\[-0.4mm]{\fsNote\color{greyD}#4}\end{tabular}%
+  \fi}
+% one-line variant (no subtitle)
+\newcommand{\CompTextOne}[3][greyD]{%
+  \ifFigIcons
+    \begin{tabular}{@{}c@{\hspace{1.5mm}}l@{}}\CompIcon[#1]{#2} & {\fsLabel #3}\end{tabular}%
+  \else
+    {\fsLabel #3}%
+  \fi}

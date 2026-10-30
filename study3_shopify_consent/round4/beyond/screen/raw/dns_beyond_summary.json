@@ -1,0 +1,25 @@
+{
+ "counts": {
+  "200k_1m_bigcommerce": 1209,
+  "200k_1m_cloudflare": 440,
+  "200k_1m_netlify": 1143,
+  "200k_1m_shopify": 27835,
+  "200k_1m_vercel": 5380,
+  "200k_1m_wix": 1186,
+  "top200k_bigcommerce": 141,
+  "top200k_cloudflare": 60232,
+  "top200k_netlify": 470,
+  "top200k_shopify": 2641,
+  "top200k_vercel": 1766,
+  "top200k_wix": 153
+ },
+ "scan_progress": {
+  "resolved": 701962,
+  "nx": 98038,
+  "err": 0,
+  "flagged": 36753,
+  "done": 800000,
+  "watermark": 800000
+ },
+ "note": "top200k: apex+www from study3 dns_results.csv; 200k_1m: www host only. Domains counted once per flag."
+}

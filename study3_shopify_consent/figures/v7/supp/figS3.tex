@@ -1,0 +1,23 @@
+% figS3.tex -- Supplementary Figure S3 composite, v7 (../DESIGN_V7.md; reference figure ../fig1): 190 x 35 mm, one
+% panel (five dot plots sharing the Tranco-bucket rows under a muted 'Tranco rank' header; the three consent-lost rates
+% tested in Fig S5 in brick on its pale brick band, the two context plots grey). A single-panel figure carries no panel
+% letter (a lone 'a' reads as a missing 'b'; the caption cites no panel), so the panel is placed with \PanelBare, which
+% makes \Panel's size checks and draws no letter. Panel: panels/figS3_rank.pdf (scripts/s3.py, drawn at final size in
+% fs.v7_context(); it asserts this cell). No panel title.
+\documentclass[tikz,border=0pt]{standalone}
+\def\StyleDir{../style/}
+\input{\StyleDir tikzstyle_v2.tex}
+% \PanelBare{x}{y}{w}{h}{file.pdf}: \Panel without the letter (single-panel figures only)
+\newcommand{\PanelBare}[5]{%
+  \figCheckInside{-}{#1}{#2}{#3}{#4}%
+  \sbox\figPanelBox{\includegraphics{#5}}%
+  \figCheckDim{-}{width}{\wd\figPanelBox}{#3}%
+  \figCheckDim{-}{height}{\dimexpr\ht\figPanelBox+\dp\figPanelBox\relax}{#4}%
+  \node[anchor=north west, inner sep=0pt, outer sep=0pt] at (#1,-#2) {\usebox\figPanelBox};}
+\begin{document}
+\begin{tikzpicture}
+  \FigureCanvas{35}
+  %          x   y    w     h    file
+  \PanelBare {0} {0}  {190} {35} {panels/figS3_rank.pdf}
+\end{tikzpicture}
+\end{document}

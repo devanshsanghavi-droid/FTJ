@@ -1,7 +1,11 @@
 """Headline raw (unweighted) rates from the crawl tables. Writes crawl_summary.json and prints it.
 All rates are store-level shares with Wilson 95% intervals. Main sample only unless noted;
 the creator stratum is reported separately. Unweighted = no Tranco-bucket weights applied here.
-Usage: python summarize_crawl.py [--dir DIR]
+Usage: python summarize_crawl.py [--dir DIR] [--exclude CSV --out NAME]
+  --exclude CSV  drop the stores listed in CSV (column store_id; rows whose status starts 'excluded from all analyses')
+                 before summarising, and write NAME instead of crawl_summary.json. The analysis uses
+                 --exclude ../analysis/ethics_flags.csv --out crawl_summary_analysed.json for its cross-check of the
+                 analysed stores (content-sensitivity exclusions, 2026-09-29); crawl_summary.json stays the whole crawl.
 """
 import json, math, os, sys
 import pandas as pd
@@ -9,6 +13,8 @@ import pandas as pd
 HERE = os.path.dirname(os.path.abspath(__file__))
 D = sys.argv[sys.argv.index('--dir') + 1] if '--dir' in sys.argv else HERE
 SANDBOX = {'strict_worker', 'lax_iframe'}
+EXCL = sys.argv[sys.argv.index('--exclude') + 1] if '--exclude' in sys.argv else None
+OUTNAME = sys.argv[sys.argv.index('--out') + 1] if '--out' in sys.argv else 'crawl_summary.json'
 
 
 def wilson(k, n, z=1.96):
@@ -25,6 +31,12 @@ def main():
     L = pd.read_csv(os.path.join(D, 'loads.csv'), low_memory=False)
     R = pd.read_csv(os.path.join(D, 'requests.csv.gz'), low_memory=False)
     out = {}
+    if EXCL:
+        fl = pd.read_csv(EXCL)
+        ex = set(fl[fl.status.str.startswith('excluded from all analyses')].store_id)
+        L = L[~L.store_id.isin(ex)]
+        R = R[R.load_id.isin(L.load_id)]
+        out['excluded_stores'] = sorted(ex)
     L['ok'] = (L.goto_status.fillna(0).between(200, 399)) & (L.has_shopify == True) & (L.blocked_hint != True) & (L.n_requests.fillna(0) > 20)
     out['loads'] = {a: dict(n=int((L.arm == a).sum()), ok=int(((L.arm == a) & L.ok).sum())) for a in sorted(L.arm.unique())}
     base = ['A0', 'A1', 'A2']
@@ -127,7 +139,7 @@ def main():
     out['ad_beacons_with_canary_main'] = wilson(((adm.kind != 'library') & adm.has_canary).sum(), int((adm.kind != 'library').sum()))
     out['ad_beacons_with_full_url_main'] = wilson(((adm.kind != 'library') & adm.has_full_url).sum(), int((adm.kind != 'library').sum()))
     out['origin_share_of_ad_requests_main'] = {k: int(v) for k, v in adm.origin.value_counts().items()}
-    json.dump(out, open(os.path.join(D, 'crawl_summary.json'), 'w'), indent=1)
+    json.dump(out, open(os.path.join(D, OUTNAME), 'w'), indent=1)
     print(json.dumps(out, indent=1))
 
 

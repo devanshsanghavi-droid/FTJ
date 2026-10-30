@@ -1,0 +1,36 @@
+% ga_style.tex -- additions for the graphical abstract only; loaded after ../style/tikzstyle_v2.tex.
+% Spec: ../FIGURE_PLAN_v2.md section 5 and notes/venue.md (Elsevier: >= 531 x 1328 px, legible at 5 x 13 cm on a
+% 96 dpi screen). The GA is 130 x 50 mm, so no text is set below 10 pt; the hero numbers keep the 18 pt \fsHero.
+% Everything else (colours, strokes, hatch, arrow heads, icons) comes unchanged from the v2 style.
+
+% 10 bp in TeX pt (10 x 72.27 / 72), leading 1.2x -- the same bp convention as palette_v2.tex
+\def\gaFsTeX{10.0375}\def\gaFsLead{12.0450}
+\newcommand{\fsGA}{\fontsize{\gaFsTeX}{\gaFsLead}\selectfont}
+\tikzset{
+  galbl/.style={font=\fsGA, text=ink, inner sep=0pt, outer sep=0pt},
+  gahero/.style={font=\fsHero, text=ink, inner sep=0pt, outer sep=0pt},
+  % the blind spot: the blocker's reach (mid grey: the grey that may touch red, plan section 0) ends in a red stop bar
+  reach/.style={draw=greyM, line width=\figLwArrow, line cap=butt,
+                -{Bar[width=5mm, line width=1.6bp, color=accent]}},
+  % meter track: light grey always outlined when next to red (plan section 0, correction 3)
+  metertrack/.style={fill=greyL, draw=none},
+  meterfill/.style={fill=accent, draw=none},
+  meteroutline/.style={draw=greyD, line width=\figLwBox, fill=none},
+}
+% cap height of 10 pt Arial in mm (1466/2048 em): used to centre a baseline on a y
+\def\gaCapMM{2.525}
+% cap height of the 18 pt hero in mm
+\def\gaHeroCapMM{4.546}
+
+% \GAPanel{x}{y}{w}{h}{file}: place a panel PDF at 100 % with its top-left at (x, y) mm and check its size.
+% (Like \Panel from tikzstyle_v2.tex, but with no panel letter: a graphical abstract is one picture.)
+\newcommand{\GAPanel}[5]{%
+  \figCheckInside{GA}{#1}{#2}{#3}{#4}%
+  \IfFileExists{#5}{%
+    \sbox\figPanelBox{\includegraphics{#5}}%
+    \figCheckDim{GA}{width}{\wd\figPanelBox}{#3}%
+    \figCheckDim{GA}{height}{\dimexpr\ht\figPanelBox+\dp\figPanelBox\relax}{#4}%
+    \node[anchor=north west, inner sep=0pt, outer sep=0pt] at (#1,-#2) {\usebox\figPanelBox};%
+  }{%
+    \PackageError{ga}{Panel file #5 not found (build the panels first)}{}%
+  }}

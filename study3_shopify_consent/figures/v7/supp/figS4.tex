@@ -1,0 +1,21 @@
+% figS4.tex -- Supplementary Figure S4 composite, v7 (../DESIGN_V7.md; reference figure ../fig1): 190 x 39 mm, one
+% row: a 38 x 39, b and c 26 x 39 (2 x 2 matrices of counts, crawler vs screenshot audit, in Fig S7b's grammar: square
+% 12 mm cells split by crossing 0.6 pt rules, no fills; the rows are shared and named once, at the left of a; a's
+% unaudited row is one merged row reading 'not audited'), d 82 x 39 (Cohen's kappa per comparison, stores and
+% store x vendor pairs, on open L axes, 2 mm of air above kappa = 1; its muted key right of the plot); the style's 6 mm
+% gutters. The four plots share their top and bottom line and the three matrices are equally spaced (asserted in
+% scripts/s4.py, which draws the panels at final size in fs.v7_context() and asserts these cells); \Panel checks each
+% size and draws the 8 pt bold lowercase letters (no panel titles).
+\documentclass[tikz,border=0pt]{standalone}
+\def\StyleDir{../style/}
+\input{\StyleDir tikzstyle_v2.tex}
+\begin{document}
+\begin{tikzpicture}
+  \FigureCanvas{39}
+  %      letter x     y    w    h    file
+  \Panel {a}    {0}   {0}  {38} {39} {panels/figS4a_banner.pdf}
+  \Panel {b}    {44}  {0}  {26} {39} {panels/figS4b_reject.pdf}
+  \Panel {c}    {76}  {0}  {26} {39} {panels/figS4c_click.pdf}
+  \Panel {d}    {108} {0}  {82} {39} {panels/figS4d_kappa.pdf}
+\end{tikzpicture}
+\end{document}

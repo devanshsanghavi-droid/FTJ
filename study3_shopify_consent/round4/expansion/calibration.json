@@ -1,0 +1,81 @@
+{
+ "n_stores": 1400,
+ "static_readable": 54,
+ "runtime_listed": 58,
+ "runtime_prechoice_blocked": 21,
+ "agree_table_static_x_runtime_listed": {
+  "static=0,runtime=0": 1342,
+  "static=1,runtime=1": 54,
+  "static=0,runtime=1": 4
+ },
+ "runtime_prechoice_blocked_by_static": {
+  "static_readable=1,static_pre=unknown": 6,
+  "static_readable=1,static_pre=yes": 15
+ },
+ "static_pre_x_runtime_pre_among_static_readable": {
+  "static_pre=no,runtime_pre=0": 28,
+  "static_pre=unknown,runtime_pre=1": 6,
+  "static_pre=yes,runtime_pre=1": 15,
+  "static_pre=unknown,runtime_pre=0": 5
+ },
+ "static_target_cmp": {
+  "cookiebot": 38,
+  "pandectes": 116,
+  "onetrust": 92
+ },
+ "runtime_target_cmp": {
+  "cookiebot": 63,
+  "pandectes": 116,
+  "onetrust": 122
+ },
+ "disagreements": [
+  {
+   "store_id": "S0020",
+   "st_cmps": "",
+   "rt_cmps": "onetrust",
+   "st_readable": 0,
+   "st_pre": "",
+   "rt_listed": 1,
+   "rt_pre": 0,
+   "ot_autoblock": 0,
+   "cb_auto": 0,
+   "pd_version": ""
+  },
+  {
+   "store_id": "S0062",
+   "st_cmps": "pandectes",
+   "rt_cmps": "pandectes",
+   "st_readable": 0,
+   "st_pre": "",
+   "rt_listed": 1,
+   "rt_pre": 0,
+   "ot_autoblock": 0,
+   "cb_auto": 0,
+   "pd_version": ""
+  },
+  {
+   "store_id": "S0127",
+   "st_cmps": "",
+   "rt_cmps": "onetrust",
+   "st_readable": 0,
+   "st_pre": "",
+   "rt_listed": 1,
+   "rt_pre": 0,
+   "ot_autoblock": 0,
+   "cb_auto": 0,
+   "pd_version": ""
+  },
+  {
+   "store_id": "S0508",
+   "st_cmps": "onetrust",
+   "rt_cmps": "onetrust",
+   "st_readable": 0,
+   "st_pre": "",
+   "rt_listed": 1,
+   "rt_pre": 0,
+   "ot_autoblock": 0,
+   "cb_auto": 0,
+   "pd_version": ""
+  }
+ ]
+}

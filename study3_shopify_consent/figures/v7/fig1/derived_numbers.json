@@ -1,0 +1,503 @@
+{
+ "fig1b_trace": {
+  "value": {
+   "store_id": "S0165",
+   "cmp": "pandectes",
+   "vendor": "tiktok",
+   "vendor_label": "TikTok",
+   "rule_store": "first store ID in stats.json checks.recheck.blocker.stores_neutralized_and_sbx_ids whose CMP wrote no 'marketing: yes' (not in fig4.a.blocklist.primary.stores_excluded)",
+   "rule_vendor": "declared-blocked vendor of that store with a neutralised page tag and the most sandboxed ad requests",
+   "candidates": [
+    "S0165",
+    "S0213",
+    "S0219",
+    "S0370",
+    "S0697"
+   ],
+   "vendors_neutralized_and_sbx": [
+    "meta",
+    "tiktok"
+   ],
+   "t_tag_neutralized_ms": 2695,
+   "n_tag_elements_neutralized": 2,
+   "neutralized_type": [
+    "javascript/blocked"
+   ],
+   "t_banner_ms": 1278,
+   "clicks": null,
+   "cmp_yes_writes": 0,
+   "n_sandbox_requests": 8,
+   "n_sandbox_beacons": 3,
+   "n_sandbox_libraries": 5,
+   "sandbox_origins": [
+    "lax_iframe"
+   ],
+   "t_first_sandbox_ms": 2357,
+   "lead_first_sandbox_over_tag_ms": 338,
+   "n_page_requests": 0,
+   "axis_ms": 6000,
+   "n_within_axis": 7,
+   "n_beyond_axis": 1,
+   "n_beacons_within_axis": 2,
+   "n_libraries_within_axis": 5,
+   "n_distinct_times_within_axis": 6,
+   "beyond_axis_ms": [
+    13180
+   ],
+   "beyond_axis_kinds": [
+    "beacon"
+   ],
+   "t_obs_end_ms": 18850,
+   "time_origin_minus_nav_ms": -0.10009765625,
+   "requests": [
+    {
+     "t_ms": 2357,
+     "kind": "library",
+     "origin": "lax_iframe",
+     "type": "Script"
+    },
+    {
+     "t_ms": 2357,
+     "kind": "library",
+     "origin": "lax_iframe",
+     "type": "Script"
+    },
+    {
+     "t_ms": 2749,
+     "kind": "library",
+     "origin": "lax_iframe",
+     "type": "Script"
+    },
+    {
+     "t_ms": 2761,
+     "kind": "library",
+     "origin": "lax_iframe",
+     "type": "Script"
+    },
+    {
+     "t_ms": 3066,
+     "kind": "library",
+     "origin": "lax_iframe",
+     "type": "Script"
+    },
+    {
+     "t_ms": 3169,
+     "kind": "beacon",
+     "origin": "lax_iframe",
+     "type": "Ping"
+    },
+    {
+     "t_ms": 3170,
+     "kind": "beacon",
+     "origin": "lax_iframe",
+     "type": "Ping"
+    },
+    {
+     "t_ms": 13180,
+     "kind": "beacon",
+     "origin": "lax_iframe",
+     "type": "Ping"
+    }
+   ],
+   "tick_merge_ms": 50,
+   "tick_groups": [
+    {
+     "kind": "library",
+     "t_ms_first": 2357,
+     "t_ms_last": 2357,
+     "n": 2
+    },
+    {
+     "kind": "library",
+     "t_ms_first": 2749,
+     "t_ms_last": 2761,
+     "n": 2
+    },
+    {
+     "kind": "library",
+     "t_ms_first": 3066,
+     "t_ms_last": 3066,
+     "n": 1
+    },
+    {
+     "kind": "beacon",
+     "t_ms_first": 3169,
+     "t_ms_last": 3170,
+     "n": 2
+    }
+   ],
+   "n_tick_groups": 4,
+   "n_tick_groups_multi": 3
+  },
+  "definition": "Fig 1b (v4 Fig 4d): one re-check load (arm R0: no interaction) of the store and vendor chosen by the rules in value.rule_store / value.rule_vendor. Times are ms since navigation start (requests: wall time minus the navigation request; page scriptlog and banner detector: performance.now() plus time_origin minus nav_wall). 'Tag neutralised' = the vendor's script element entered the page with, or was changed to, a blocked type; sandboxed requests = the vendor's ad requests from a Shopify worker or sandboxed iframe (kind from the vendor classifier: beacon or library). tick_groups: the requests within the axis, grouped when of the same kind and less than tick_merge_ms apart (drawn as one tick with a count badge).",
+  "script": "figures/v7/fig1/scripts/derive_fig1.py",
+  "inputs": [
+   "crawl/recheck/raw/<store>__R0.json.gz (read-only)",
+   "crawl/recheck/blocker_by_entry.csv",
+   "crawl/recheck/blocker_by_store.csv",
+   "stats.json:checks.recheck.blocker",
+   "stats.json:fig4.a.blocklist.primary.stores_excluded",
+   "stats.json:design.timeline_axis_s"
+  ],
+  "check": "store is in checks.recheck.blocker.stores_neutralized_and_sbx_ids and blocker_by_store.neutralized_and_sbx; the vendor has a neutralised tag and sandboxed requests and no page-script requests; no click, no CMP 'yes' write; equals figures/v7/fig4/derived_numbers.json:fig4c_recheck while that record exists"
+ },
+ "fig1c_raster": {
+  "value": {
+   "x_lo_s": -4.0,
+   "x_hi_s": 8.0,
+   "n_stores": 205,
+   "n_requests": 3356,
+   "n_requests_left": 55,
+   "n_requests_right": 68,
+   "n_requests_within": 3233,
+   "n_first_left": 4,
+   "n_first_right": 1
+  },
+  "definition": "Fig 1c raster: the banner stores whose Default load sent a sandboxed ad request before any choice (one row each) and their sandboxed ad requests, timed relative to the banner becoming visible. n_requests_left / _right: requests before x_lo_s / after x_hi_s (not drawn; counted in the panel); n_first_left / _right: stores whose FIRST request lies outside the axis (the first-request line is clipped there).",
+  "script": "figures/v7/fig1/scripts/derive_fig1.py",
+  "inputs": [
+   "analysis/outputs/store_table.csv",
+   "analysis/outputs/ad_requests.csv.gz",
+   "analysis/common.py:CONTENT_EXCLUDED",
+   "stats.json:fig3.b"
+  ],
+  "check": "n_stores == stats.json fig3.b.n == fig1b.banner_fires.k; first request < 0 on fig3.b.before_banner.k stores; left + right + within == n_requests"
+ },
+ "fig1c_lead_s": {
+  "value": {
+   "first_sandboxed_lead_s": 0.674,
+   "first_sandboxed_t_s": 2.099,
+   "banner_t_s": 2.773,
+   "first_sandboxed_vgroup": "Microsoft",
+   "first_sandboxed_kind": "library",
+   "first_sandboxed_beacon_lead_ms": 84,
+   "first_sandboxed_beacon_vgroup": "Microsoft"
+  },
+  "definition": "Store S1152 Default load: banner-visible time minus the first sandboxed ad request, in seconds (Fig 1C bracket label; that request is a library load), plus the two event times in seconds (bracket ends), the row and kind of the first sandboxed request, and the banner-visible time minus the first sandboxed DATA BEACON in ms (caption).",
+  "script": "figures/v7/fig1/scripts/derive_fig1.py",
+  "inputs": [
+   "analysis/outputs/stats.json:fig1c",
+   "analysis/outputs/fig1c_timeline.csv"
+  ],
+  "check": "first_sandboxed_lead_s * 1000 == figures/v7/derived_numbers.json:fig1c_lead_ms.first_sandboxed_lead_ms; first sandboxed row of fig1c_timeline.csv == stats.json:fig1c.t_first_sandboxed and its kind agrees with fig1c.first_sandboxed_is_library; first sandboxed non-library row == fig1c.t_first_sandboxed_beacon; first_sandboxed_beacon_lead_ms == figures/v7/derived_numbers.json:fig1c_lead_ms.first_sandboxed_beacon_lead_ms"
+ },
+ "fig1c_beyond_axis": {
+  "value": {
+   "axis_s": 6,
+   "n_beyond": 2,
+   "by_row": {
+    "outside": 2
+   }
+  },
+  "definition": "Ad requests of the Fig 1C load sent after the 6 s axis crop (design.timeline_axis_s), by row (vendor group for sandboxed requests, \"outside\" otherwise); drawn as an edge count.",
+  "script": "figures/v7/fig1/scripts/derive_fig1.py",
+  "inputs": [
+   "analysis/outputs/fig1c_timeline.csv",
+   "analysis/outputs/stats.json:design"
+  ],
+  "check": "n_beyond == figures/v7/derived_numbers.json:fig1c_lead_ms.n_beyond_axis"
+ },
+ "fig1c_ticks": {
+  "value": {
+   "merge_ms": 50,
+   "n_within_axis": 76,
+   "n_ticks": 40,
+   "n_ticks_multi": 14,
+   "largest": {
+    "n": 10,
+    "row": "outside",
+    "t_s": 3.57,
+    "n_library": 0
+   },
+   "groups": [
+    {
+     "row": "Google",
+     "t_ms_first": 2720,
+     "t_ms_last": 2721,
+     "n": 4,
+     "n_library": 0
+    },
+    {
+     "row": "Google",
+     "t_ms_first": 2841,
+     "t_ms_last": 2842,
+     "n": 4,
+     "n_library": 0
+    },
+    {
+     "row": "Google",
+     "t_ms_first": 3129,
+     "t_ms_last": 3136,
+     "n": 3,
+     "n_library": 0
+    },
+    {
+     "row": "Google",
+     "t_ms_first": 3246,
+     "t_ms_last": 3246,
+     "n": 1,
+     "n_library": 0
+    },
+    {
+     "row": "Google",
+     "t_ms_first": 3435,
+     "t_ms_last": 3450,
+     "n": 6,
+     "n_library": 0
+    },
+    {
+     "row": "Google",
+     "t_ms_first": 3585,
+     "t_ms_last": 3585,
+     "n": 2,
+     "n_library": 0
+    },
+    {
+     "row": "Google",
+     "t_ms_first": 4694,
+     "t_ms_last": 4697,
+     "n": 3,
+     "n_library": 0
+    },
+    {
+     "row": "Google",
+     "t_ms_first": 4850,
+     "t_ms_last": 4850,
+     "n": 1,
+     "n_library": 0
+    },
+    {
+     "row": "Meta",
+     "t_ms_first": 2624,
+     "t_ms_last": 2624,
+     "n": 1,
+     "n_library": 1
+    },
+    {
+     "row": "Meta",
+     "t_ms_first": 2806,
+     "t_ms_last": 2806,
+     "n": 1,
+     "n_library": 1
+    },
+    {
+     "row": "Meta",
+     "t_ms_first": 2905,
+     "t_ms_last": 2905,
+     "n": 1,
+     "n_library": 1
+    },
+    {
+     "row": "Meta",
+     "t_ms_first": 3111,
+     "t_ms_last": 3111,
+     "n": 1,
+     "n_library": 1
+    },
+    {
+     "row": "Microsoft",
+     "t_ms_first": 2099,
+     "t_ms_last": 2099,
+     "n": 1,
+     "n_library": 1
+    },
+    {
+     "row": "Microsoft",
+     "t_ms_first": 2689,
+     "t_ms_last": 2689,
+     "n": 1,
+     "n_library": 0
+    },
+    {
+     "row": "Microsoft",
+     "t_ms_first": 2929,
+     "t_ms_last": 2929,
+     "n": 1,
+     "n_library": 0
+    },
+    {
+     "row": "Pinterest",
+     "t_ms_first": 2913,
+     "t_ms_last": 2913,
+     "n": 1,
+     "n_library": 0
+    },
+    {
+     "row": "Pinterest",
+     "t_ms_first": 3473,
+     "t_ms_last": 3473,
+     "n": 1,
+     "n_library": 0
+    },
+    {
+     "row": "Pinterest",
+     "t_ms_first": 3572,
+     "t_ms_last": 3572,
+     "n": 1,
+     "n_library": 0
+    },
+    {
+     "row": "Pinterest",
+     "t_ms_first": 3648,
+     "t_ms_last": 3648,
+     "n": 1,
+     "n_library": 0
+    },
+    {
+     "row": "Reddit/other",
+     "t_ms_first": 3096,
+     "t_ms_last": 3097,
+     "n": 3,
+     "n_library": 0
+    },
+    {
+     "row": "Snap",
+     "t_ms_first": 2584,
+     "t_ms_last": 2584,
+     "n": 1,
+     "n_library": 1
+    },
+    {
+     "row": "Snap",
+     "t_ms_first": 3403,
+     "t_ms_last": 3403,
+     "n": 1,
+     "n_library": 0
+    },
+    {
+     "row": "Snap",
+     "t_ms_first": 3565,
+     "t_ms_last": 3565,
+     "n": 1,
+     "n_library": 0
+    },
+    {
+     "row": "TikTok",
+     "t_ms_first": 2583,
+     "t_ms_last": 2583,
+     "n": 1,
+     "n_library": 1
+    },
+    {
+     "row": "TikTok",
+     "t_ms_first": 2863,
+     "t_ms_last": 2863,
+     "n": 1,
+     "n_library": 1
+    },
+    {
+     "row": "TikTok",
+     "t_ms_first": 3453,
+     "t_ms_last": 3461,
+     "n": 4,
+     "n_library": 0
+    },
+    {
+     "row": "outside",
+     "t_ms_first": 1729,
+     "t_ms_last": 1729,
+     "n": 1,
+     "n_library": 1
+    },
+    {
+     "row": "outside",
+     "t_ms_first": 3268,
+     "t_ms_last": 3268,
+     "n": 1,
+     "n_library": 1
+    },
+    {
+     "row": "outside",
+     "t_ms_first": 3570,
+     "t_ms_last": 3581,
+     "n": 10,
+     "n_library": 0
+    },
+    {
+     "row": "outside",
+     "t_ms_first": 3685,
+     "t_ms_last": 3693,
+     "n": 2,
+     "n_library": 1
+    },
+    {
+     "row": "outside",
+     "t_ms_first": 3950,
+     "t_ms_last": 3950,
+     "n": 2,
+     "n_library": 0
+    },
+    {
+     "row": "outside",
+     "t_ms_first": 4024,
+     "t_ms_last": 4024,
+     "n": 1,
+     "n_library": 0
+    },
+    {
+     "row": "outside",
+     "t_ms_first": 4175,
+     "t_ms_last": 4176,
+     "n": 2,
+     "n_library": 0
+    },
+    {
+     "row": "outside",
+     "t_ms_first": 4385,
+     "t_ms_last": 4385,
+     "n": 1,
+     "n_library": 1
+    },
+    {
+     "row": "outside",
+     "t_ms_first": 4465,
+     "t_ms_last": 4465,
+     "n": 2,
+     "n_library": 1
+    },
+    {
+     "row": "outside",
+     "t_ms_first": 4703,
+     "t_ms_last": 4705,
+     "n": 3,
+     "n_library": 0
+    },
+    {
+     "row": "outside",
+     "t_ms_first": 4850,
+     "t_ms_last": 4850,
+     "n": 1,
+     "n_library": 1
+    },
+    {
+     "row": "outside",
+     "t_ms_first": 5197,
+     "t_ms_last": 5197,
+     "n": 1,
+     "n_library": 0
+    },
+    {
+     "row": "outside",
+     "t_ms_first": 5332,
+     "t_ms_last": 5332,
+     "n": 1,
+     "n_library": 0
+    },
+    {
+     "row": "outside",
+     "t_ms_first": 5449,
+     "t_ms_last": 5449,
+     "n": 1,
+     "n_library": 0
+    }
+   ]
+  },
+  "definition": "Fig 1C ticks as drawn: the ad requests within the 6 s axis, grouped per row (vendor group if sandboxed, else \"outside\") so that a request joins the current group when it left less than merge_ms after the group's first request, whatever its kind (a short library tick under a tall beacon tick is hidden). Distinct groups in a row are at least merge_ms apart, so \"requests less than merge_ms apart share a tick\" holds exactly. n_ticks = visible ticks; largest = the group with the most requests (caption). Window as the Fig 1b trace (fig1b_trace.tick_merge_ms).",
+  "script": "figures/v7/fig1/scripts/derive_fig1.py",
+  "inputs": [
+   "analysis/outputs/fig1c_timeline.csv",
+   "analysis/outputs/stats.json:design,fig1c"
+  ],
+  "check": "sum of group sizes == n_within_axis == stats.json:fig1c.n_ad_requests - fig1c_beyond_axis.n_beyond; gaps between groups in a row >= merge_ms; merge_ms == fig1b_trace.tick_merge_ms"
+ }
+}

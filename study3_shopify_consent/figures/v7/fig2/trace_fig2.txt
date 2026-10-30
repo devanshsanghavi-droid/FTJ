@@ -1,0 +1,10 @@
+fig2_numbers.csv: 25 registered values, 0 stale
+caption_fig2_numbers.csv: 49 registered values, 0 stale
+tableS_arms_numbers.csv: 29 registered values, 0 stale
+figure text: 17 numeric tokens (5 of them c's tick labels), 0 untraced
+caption: 37 numeric tokens, 0 untraced
+alt text: 10 numeric tokens, 0 untraced
+table S-arms: 29 numeric tokens, 0 untraced
+panel d moved to Fig 6d: no "(d)" or "Fig. 2d" left in caption or table: yes
+redaction: product slug and account number absent from figure, caption and registries: yes
+RESULT: PASS

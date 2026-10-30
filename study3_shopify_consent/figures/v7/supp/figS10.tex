@@ -1,0 +1,17 @@
+% figS10.tex -- Supplementary Figure S10 composite, v7 (../../DESIGN_V7.md; worked example ../../fig1): beyond
+% Shopify. Layout 190 x 44 mm, one row of small multiples on one 0-100 scale: a (60.6) | b (74.7; two plots) | c (42.7);
+% 6 mm gutters; every plot shares its top, height and width (asserted in scripts/s10.py). Panels: scripts/s10.py, drawn
+% at final size (never rescaled; the cells are asserted there); \Panel checks each size and draws the 8 pt bold
+% lowercase letters.
+\documentclass[tikz,border=0pt]{standalone}
+\def\StyleDir{../style/}
+\input{\StyleDir tikzstyle_v2.tex}
+\begin{document}
+\begin{tikzpicture}
+  \FigureCanvas{44}
+  %      letter  x       y    w      h     file
+  \Panel {a}     {0}     {0}  {60.6} {44}  {panels/figS10a_prechoice.pdf}
+  \Panel {b}     {66.6}  {0}  {74.7} {44}  {panels/figS10b_decline.pdf}
+  \Panel {c}     {147.3} {0}  {42.7} {44}  {panels/figS10c_gpc.pdf}
+\end{tikzpicture}
+\end{document}

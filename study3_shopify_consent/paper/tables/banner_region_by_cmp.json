@@ -1,0 +1,42 @@
+{
+ "cookiebot": {
+  "n": 45,
+  "denied": 8,
+  "share_denied": 0.178
+ },
+ "iubenda": {
+  "n": 10,
+  "denied": 2,
+  "share_denied": 0.2
+ },
+ "none": {
+  "n": 25,
+  "denied": 4,
+  "share_denied": 0.16
+ },
+ "onetrust": {
+  "n": 89,
+  "denied": 21,
+  "share_denied": 0.236
+ },
+ "osano": {
+  "n": 16,
+  "denied": 9,
+  "share_denied": 0.562
+ },
+ "pandectes": {
+  "n": 93,
+  "denied": 44,
+  "share_denied": 0.473
+ },
+ "shopify_native": {
+  "n": 66,
+  "denied": 65,
+  "share_denied": 0.985
+ },
+ "_all_banner_stores": {
+  "n": 402,
+  "denied": 167,
+  "share_denied": 0.415
+ }
+}

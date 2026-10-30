@@ -1,0 +1,23 @@
+% fig4.tex -- Figure 4, v7 (../DESIGN_V7.md; worked example ../fig1/): blocked on paper.
+% Layout: 190 x 72 mm, two full-width rows with the 6 mm gutter and no outer margin:
+%   a 190 x 31  (hero) the blocked-on-paper share by sample: one thin unit bar per sample (a cell per store, brick =
+%               the declared-blocked vendor fired) with its summary below, then the combined sample (primary estimate)
+%   b 190 x 35  like for like per region default, blocklist (brick) vs no declaration (grey) with the gap between them
+%               as the key area (left), and the pooled Mantel-Haenszel difference on rows of its own, on pale brick
+%               bars from the zero line (right; cited as 'Fig. 4b, right'); one length per percentage point in both
+% Every plot starts at x = 32 mm (a's 0 % above b-left's 0 %) and b-right ends with a's at 185 mm. Panels are vector
+% PDFs drawn at final size by scripts/make_fig4_panels.py (cells mirrored and asserted there); \Panel checks each size
+% and draws the 8 pt bold lowercase letters (no panel titles).
+% Build: PATH=/opt/anaconda3/bin:$PATH zsh build_fig4.sh
+\documentclass[tikz,border=0pt]{standalone}
+\def\StyleDir{../style/}
+\input{\StyleDir tikzstyle_v2.tex}
+\providecommand{\PanelDir}{panels}
+\begin{document}
+\begin{tikzpicture}
+  \FigureCanvas{72}
+  %      letter  x    y     w     h    file
+  \Panel {a}     {0}  {0}   {190} {31} {\PanelDir/fig4a_primary.pdf}
+  \Panel {b}     {0}  {37}  {190} {35} {\PanelDir/fig4b_like_for_like.pdf}
+\end{tikzpicture}
+\end{document}

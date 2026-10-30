@@ -1,0 +1,29 @@
+% backmatter.tex -- declarations required by Computers & Security / Elsevier (shared by both builds).
+% Order follows the Elsevier guide: declarations, then the generative-AI declaration immediately before the references.
+% Finalized for a sole author on 2026-09-28; author details, data link, AI declaration and biography filled in on
+% 2026-09-29. No placeholder or \todo remains, so the strict build compiles.
+
+\section*{Ethics statement}
+This study involved no human subjects: it measured the behaviour of public web pages and the third-party code on them, observed no person and collected no personal data of real users. No institutional review board or ethics committee determination was sought, for the reasons and with the safeguards given in Section~\ref{sec:ethics}, which also describes the responsible disclosure made before submission.
+
+\section*{Data and code availability}
+The crawler and its configuration (CMP signatures, vendor endpoint map, Web Pixels URL patterns), the analysis scripts (including the gate audit, which joins declared purposes, Shopify's consent state and container starts), ConsentCheck, the figure code and the aggregate outputs are available at \url{https://github.com/devanshsanghavi-droid/FTJ}. One script regenerates the analysis outputs, every data figure and almost every number in this paper from the saved crawl data; the few remaining numbers (from the crawl log, pilot notes and literature) are traced to their saved sources by an automated check. The store sample (Tranco rank bucket, Shopify verification markers and design weights), the request-level data (vendor, origin, timing and payload flags; hosts only, no full URLs; canary tokens only, no user data), the consent-state readings, the re-check results, the \code{robots.txt} and frame-recall summaries, and the text part of a kit for blind re-labelling of every validation label are released with pseudonymous store identifiers. Screenshots (which show store names), raw browser captures (which may contain third-party cookies set during crawling, and which include the re-check's script-element logs) and the mapping to domains are available to researchers on request, and merchants can ask for their store's records to be removed, from the author (devansh.sanghavi@gmail.com).
+
+\section*{CRediT authorship contribution statement}
+\textbf{Devansh Sanghavi:} Conceptualization, Methodology, Software, Validation, Formal analysis, Investigation, Data curation, Visualization, Project administration, Writing -- original draft, Writing -- review \& editing.
+
+\section*{Declaration of competing interest}
+The author declares that they have no known competing financial interests or personal relationships that could have appeared to influence the work reported in this paper.
+
+\section*{Funding}
+This research did not receive any specific grant from funding agencies in the public, commercial, or not-for-profit sectors.
+
+\section*{Declaration of generative AI and AI-assisted technologies in the manuscript preparation process}
+During the preparation of this work the author used Anthropic's Claude to assist with writing and debugging the measurement, analysis, and figure-generation scripts. The author reviewed the code and its outputs and takes full responsibility for the content of the publication.
+
+\bibliographystyle{elsarticle-harv}
+\bibliography{refs}
+
+% ---- Author biography (Elsevier: 50-100 words per author for full-length articles) ----
+\section*{Author biography}
+\noindent\textbf{Devansh Sanghavi} is a junior at Los Altos High School in Los Altos, California, USA. His research interests are web privacy measurement and the evaluation of AI systems. For this study he designed and ran a large-scale web measurement with Playwright browser automation, and analysed the data in Python with pandas and statsmodels, including cluster-bootstrap confidence intervals. He is a research intern at Paper Lantern, surveying benchmarks and environments for evaluating AI models, and builds civic-technology apps with security features such as field-level encryption. He also competes in mathematics and robotics.

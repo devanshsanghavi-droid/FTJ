@@ -6,6 +6,9 @@ Checks
   2. Coverage: every numeric token in the Markdown files is either (a) a registered rendering, or
      (b) a structural token (figure/panel/arm/prediction labels, dates, file names, list numbering,
      the "95%" CI level, table headers). Anything else is reported as UNTRACED.
+  3. No number typed into write_results.py's text templates.
+  4. The v2 figures' derived numbers (figures/v2/**/derived_numbers.json) are merged, unchanged, into stats.json
+     ['derived_v2'] and outputs/derived_numbers_provenance.json (merge_derived_numbers.py), each with script and inputs.
 Exit code 1 if any check fails. Writes outputs/trace_check.txt.
 """
 import csv
@@ -104,6 +107,52 @@ def main():
             report.append(f'HARD-CODED write_results.py:{line}: "{d.group(1)}" in {mm.group(1)[:100]}')
             fails += 1
     report.append(f'write_results.py: {n_lit} hard-coded numbers in text templates')
+    # 4. v2 figures' derived numbers (merge_derived_numbers.py): stats.json['derived_v2'] and the provenance file must equal
+    #    what the figure folders hold now, and every recorded script must exist (2026-09-27, v2 figure integration)
+    import merge_derived_numbers as mdn
+    want_vals, want_prov = mdn.collect()
+    have_prov = json.load(open(mdn.PROV)) if os.path.exists(mdn.PROV) else {}
+    if not os.path.isdir(mdn.V2):
+        # Public release: figures/v2 (the earlier figure set whose scripts derived these numbers) is not shipped.
+        # Check that stats.json[derived_v2] and the shipped provenance file list the same numbers; their values
+        # were checked against the figure folders in the project before release.
+        want_vals = stats.get('derived_v2') or {}
+        if {f'{t}/{n}' for t, d in want_vals.items() for n in d} != set(have_prov):
+            report.append('FAIL stats.json[derived_v2] and outputs/derived_numbers_provenance.json list different numbers')
+            fails += 1
+        want_prov = have_prov
+    if stats.get('derived_v2') != json.loads(json.dumps(want_vals)):
+        report.append('FAIL derived_v2 in stats.json differs from figures/v2/**/derived_numbers.json: run merge_derived_numbers.py')
+        fails += 1
+    if have_prov != json.loads(json.dumps(want_prov)):
+        report.append('FAIL outputs/derived_numbers_provenance.json is stale: run merge_derived_numbers.py')
+        fails += 1
+    for k, p in want_prov.items():
+        if not p['script_exists'] or not p['inputs']:
+            report.append(f'FAIL derived number {k}: script {p["script"]!r} missing or no inputs recorded')
+            fails += 1
+    report.append(f'derived numbers (figures/v2): {len(want_prov)} records from {len(want_vals)} files checked against stats.json[derived_v2]')
+    # 5. Round 4 numbers (merge_round4_numbers.py, 2026-09-27): stats.json['round4'] must equal round4/analysis/stats_r4.json,
+    #    the provenance file must match the Round 4 files on disk, and the Round 4 trace check must have passed
+    import merge_round4_numbers as mr4
+    r4_vals, r4_screen, r4_prov = mr4.collect()
+    have_r4 = json.load(open(mr4.PROV)) if os.path.exists(mr4.PROV) else {}
+    if stats.get('round4') != json.loads(json.dumps(r4_vals)) or stats.get('round4_screen') != json.loads(json.dumps(r4_screen)):
+        report.append('FAIL round4 / round4_screen in stats.json differ from stats_r4.json / expansion funnel.json: run merge_round4_numbers.py')
+        fails += 1
+    if not os.path.isdir(mdn.V2):
+        # Public release: the Round 4 files are released pseudonymized (run_r4.sh also patched), so their SHA-256
+        # differ from the hashes recorded in the project; compare the recorded file list and trace result instead.
+        have_r4 = dict(have_r4, files=sorted(have_r4.get('files', {})))
+        r4_prov = dict(r4_prov, files=sorted(r4_prov['files']))
+    if have_r4 != json.loads(json.dumps(r4_prov)):
+        report.append('FAIL outputs/round4_provenance.json is stale: run merge_round4_numbers.py')
+        fails += 1
+    if r4_prov['trace_check_r4_result'] != 'PASS':
+        report.append(f"FAIL Round 4 trace check: {r4_prov['trace_check_r4_result']}")
+        fails += 1
+    report.append(f"round4 numbers: stats.json[round4] in sync with stats_r4.json ({len(r4_prov['files'])} files hashed); "
+                  f"Round 4 trace check {r4_prov['trace_check_r4_result']}")
     report.append('RESULT: ' + ('PASS' if fails == 0 else f'FAIL ({fails} problems)'))
     open(os.path.join(OUT, 'trace_check.txt'), 'w').write('\n'.join(report) + '\n')
     print('\n'.join(report))

@@ -1,0 +1,17 @@
+% figS5.tex -- Supplementary Figure S5 composite, v7 (../DESIGN_V7.md; reference figure ../fig1): 190 x 186 mm,
+% a 190 x 60, b 190 x 54, c 190 x 60 (one dot plot with 95% intervals per headline rate on one shared x origin and
+% scale; the main estimate's Wilson interval is carried through each plot as a pale brick ground, the key area); the
+% style's 6 mm gutters. Panels: scripts/s5.py, drawn at final size in fs.v7_context() (it asserts these cells);
+% \Panel checks each size and draws the 8 pt bold lowercase letters (no panel titles).
+\documentclass[tikz,border=0pt]{standalone}
+\def\StyleDir{../style/}
+\input{\StyleDir tikzstyle_v2.tex}
+\begin{document}
+\begin{tikzpicture}
+  \FigureCanvas{186}
+  %      letter x   y     w     h    file
+  \Panel {a}    {0} {0}   {190} {60} {panels/figS5a_prechoice_sbx_banner.pdf}
+  \Panel {b}    {0} {66}  {190} {54} {panels/figS5b_decline_residual.pdf}
+  \Panel {c}    {0} {126} {190} {60} {panels/figS5c_gpc_residual.pdf}
+\end{tikzpicture}
+\end{document}

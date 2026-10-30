@@ -1,0 +1,29 @@
+== fig2.pdf: 1 page, 190.0 x 104.82 mm, 71 KB, raster images: 0
+   font Arial-BoldMT: Type0 (CID TrueType, Type 42), embedded  [ok]
+   font ArialMT: Type0 (CID TrueType, Type 42), embedded  [ok]
+   text sizes (pt: runs): {6.0: 20, 7.0: 34, 8.0: 3}  -> smallest 6.0 pt [ok]
+   non-numeric text sizes (pt: runs): {7.0: 28, 8.0: 3}  [ok: words >= 7 pt; tick labels 6 pt; 6 pt words only as muted secondary text (SP_MUTED runs: {6.0: 15})]
+   Elsevier width class: 190 mm [ok]; vector PDF [ok]; colour space RGB (DeviceRGB operators)
+   colours drawn (WCAG contrast vs #ffffff; CIE L*):
+     #000000  21.00:1  L*=  0.0  the panel letters (composite); the Default arm glyph, a filled circle (c)  [ok]
+     #1f2328  15.80:1  L*= 13.5  sciplot text colour: every 7 pt word and count  [ok]
+     #3b4656   9.56:1  L*= 29.4  SAND: the pixel-sandbox region outline (b)  [ok]
+     #3d434b   9.99:1  L*= 28.2  sciplot chrome: stage boxes and the spine (a); target and crawler boxes, the bus and its fork (b); the page-load lines and the time axis (c)  [ok]
+     #555555   7.46:1  L*= 36.1  the Decline arm glyph, an open square (c)  [ok]
+     #6b7280   4.83:1  L*= 47.9  sciplot muted text: region names (a, b), removal labels (a), runtime qualifiers, the crawler's protocol, the bus note, 'Example request' and the bracket keys (b), 'next page', 'reload' and 'compared window' (c)  [ok]
+     #a0a0a0   2.61:1  L*= 65.9  NEUTRAL grey: context lines -- the phase frames and removal branches (a), the browser frame, the page outline and the request brackets (b), the window brackets and the reload end tick (c); the GPC arm glyph, a filled triangle (c)  [below 3.0:1, accepted: v7 neutral, context only: frames, branches and brackets carry no data, every branch and bracket is labelled in muted text, and the GPC triangle is told apart by shape and by the arm name beside it]
+     #c65358   4.39:1  L*= 50.6  LEAK brick: the one captured request, a request sent before any choice, landing on its test code (b; brick as in Fig 1c)  [ok]
+     #e8a33a   2.16:1  L*= 72.0  EVENT amber: the consent events -- the cookie-banner outline (b) and the banner, Decline-click and GPC ticks (c), each named in text  [below 3.0:1, accepted: v7 fixes amber for the consent moment; every tick (one per arm) is named in text above it, and the banner box is named in its own label]
+     #e9ebed   1.20:1  L*= 93.0  ground: the pixel-sandbox region (b), = Fig 1a; text on it >= 4.1:1 (muted region name)  [n/a (decorative/surface)]
+     #f4f5f6   1.09:1  L*= 96.5  ground: the page region (b), = Fig 1a, one step lighter than the sandbox ground  [n/a (decorative/surface)]
+     #fbeddb   1.15:1  L*= 94.4  fill: amber tint behind the cookie-banner label (b; text on it 13.7:1)  [n/a (decorative/surface)]
+     #ffffff   1.00:1  L*=100.0  surface  [n/a (decorative/surface)]
+== category separation without hue (skill grayscale screen, delta L* >= 10; heuristic):
+     page-load lines (near-black) vs consent-event ticks (amber), c; also differ by orientation (horizontal lines, vertical ticks): #3d434b vs #e8a33a  delta L* = 43.8  separates in grayscale
+     the captured request (brick, 1.0 pt, larger head) vs the crawler's taps (b): #c65358 vs #3d434b  delta L* = 22.4  separates in grayscale
+     stages and the spine vs removal branches (a); load lines vs window brackets and the reload end tick (c): #3d434b vs #a0a0a0  delta L* = 37.7  separates in grayscale
+     page ground vs sandbox ground (b); also outlined NEUTRAL vs SAND: #f4f5f6 vs #e9ebed  delta L* =  3.5  does NOT separate in grayscale
+     Default vs GPC glyph (c); also differ by shape (circle, triangle): #000000 vs #a0a0a0  delta L* = 65.9  separates in grayscale
+   No vendor hues are drawn (identity is not this figure's point). Brick appears once, as b's one accent (the captured request, a request sent before any choice, brick as in Fig 1c). The arms differ by glyph shape (filled circle, open square, filled triangle) and are named at the lane; amber has one meaning (the consent moment), named in text and in the caption; the two grounds repeat Fig 1a.
+== preview _v7_review-p01.png: 1496 x 825 px, RGBA, opaque=True, 200 ppi at 190 mm (a review render; the submission file is the vector PDF)
+RESULT: PASS (automatic screen; not a compliance certificate)

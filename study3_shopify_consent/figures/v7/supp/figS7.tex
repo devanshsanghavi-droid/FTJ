@@ -1,0 +1,18 @@
+% figS7.tex -- Supplementary Figure S7 composite, v7 (../../DESIGN_V7.md; worked example ../../fig1): blocked on paper
+% in the main sample. Layout 190 x 94 mm: row 1 a | b (92 x 40); row 2 c | d (68, 116 x 48; d the hero); 6 mm
+% gutters; a and b's plots share their top and x-axis line (asserted in scripts/s7.py). Panels: scripts/s7.py, drawn at
+% final size (never rescaled; the cells are asserted there); \Panel checks each size and draws the 8 pt bold
+% lowercase letters.
+\documentclass[tikz,border=0pt]{standalone}
+\def\StyleDir{../style/}
+\input{\StyleDir tikzstyle_v2.tex}
+\begin{document}
+\begin{tikzpicture}
+  \FigureCanvas{94}
+  %      letter  x     y     w      h     file
+  \Panel {a}     {0}   {0}   {92}   {40}  {panels/figS7a_rows.pdf}
+  \Panel {b}     {98}  {0}   {92}   {40}  {panels/figS7b_units.pdf}
+  \Panel {c}     {0}   {46}  {68}   {48}  {panels/figS7c_recheck.pdf}
+  \Panel {d}     {74}  {46}  {116}  {48}  {panels/figS7d_matrix.pdf}
+\end{tikzpicture}
+\end{document}

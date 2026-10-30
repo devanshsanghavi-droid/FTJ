@@ -1,0 +1,413 @@
+{
+ "fig4a_entries": {
+  "value": {
+   "counts": {
+    "n": 19,
+    "n_stores": 11,
+    "sandbox": 12,
+    "page": 5,
+    "both": 4,
+    "sandbox_only": 8,
+    "page_only": 1,
+    "neither_route": 6,
+    "stores_sandbox": 6
+   },
+   "class_order": [
+    "both",
+    "sandbox_only",
+    "page_only",
+    "neither"
+   ],
+   "entries": [
+    {
+     "col": 1,
+     "store_id": "S0209",
+     "cmp": "pandectes",
+     "vendor": "snap",
+     "vgroup": "Snap",
+     "sandbox": true,
+     "page": true,
+     "cls": "both"
+    },
+    {
+     "col": 2,
+     "store_id": "S0213",
+     "cmp": "pandectes",
+     "vendor": "microsoft_uet",
+     "vgroup": "Microsoft",
+     "sandbox": true,
+     "page": true,
+     "cls": "both"
+    },
+    {
+     "col": 3,
+     "store_id": "S0370",
+     "cmp": "pandectes",
+     "vendor": "snap",
+     "vgroup": "Snap",
+     "sandbox": true,
+     "page": true,
+     "cls": "both"
+    },
+    {
+     "col": 4,
+     "store_id": "S0698",
+     "cmp": "onetrust",
+     "vendor": "google_ads",
+     "vgroup": "Google",
+     "sandbox": true,
+     "page": true,
+     "cls": "both"
+    },
+    {
+     "col": 5,
+     "store_id": "S0370",
+     "cmp": "pandectes",
+     "vendor": "microsoft_uet",
+     "vgroup": "Microsoft",
+     "sandbox": true,
+     "page": false,
+     "cls": "sandbox_only"
+    },
+    {
+     "col": 6,
+     "store_id": "S0370",
+     "cmp": "pandectes",
+     "vendor": "pinterest",
+     "vgroup": "Pinterest",
+     "sandbox": true,
+     "page": false,
+     "cls": "sandbox_only"
+    },
+    {
+     "col": 7,
+     "store_id": "S0370",
+     "cmp": "pandectes",
+     "vendor": "amazon_ads",
+     "vgroup": "Reddit/other",
+     "sandbox": true,
+     "page": false,
+     "cls": "sandbox_only"
+    },
+    {
+     "col": 8,
+     "store_id": "S0589",
+     "cmp": "onetrust",
+     "vendor": "pinterest",
+     "vgroup": "Pinterest",
+     "sandbox": true,
+     "page": false,
+     "cls": "sandbox_only"
+    },
+    {
+     "col": 9,
+     "store_id": "S0589",
+     "cmp": "onetrust",
+     "vendor": "snap",
+     "vgroup": "Snap",
+     "sandbox": true,
+     "page": false,
+     "cls": "sandbox_only"
+    },
+    {
+     "col": 10,
+     "store_id": "S0589",
+     "cmp": "onetrust",
+     "vendor": "tiktok",
+     "vgroup": "TikTok",
+     "sandbox": true,
+     "page": false,
+     "cls": "sandbox_only"
+    },
+    {
+     "col": 11,
+     "store_id": "S1193",
+     "cmp": "onetrust",
+     "vendor": "google_ads",
+     "vgroup": "Google",
+     "sandbox": true,
+     "page": false,
+     "cls": "sandbox_only"
+    },
+    {
+     "col": 12,
+     "store_id": "S1193",
+     "cmp": "onetrust",
+     "vendor": "microsoft_uet",
+     "vgroup": "Microsoft",
+     "sandbox": true,
+     "page": false,
+     "cls": "sandbox_only"
+    },
+    {
+     "col": 13,
+     "store_id": "S0167",
+     "cmp": "pandectes",
+     "vendor": "snap",
+     "vgroup": "Snap",
+     "sandbox": false,
+     "page": true,
+     "cls": "page_only"
+    },
+    {
+     "col": 14,
+     "store_id": "S0125",
+     "cmp": "pandectes",
+     "vendor": "google_ads",
+     "vgroup": "Google",
+     "sandbox": false,
+     "page": false,
+     "cls": "neither"
+    },
+    {
+     "col": 15,
+     "store_id": "S0214",
+     "cmp": "pandectes",
+     "vendor": "google_ads",
+     "vgroup": "Google",
+     "sandbox": false,
+     "page": false,
+     "cls": "neither"
+    },
+    {
+     "col": 16,
+     "store_id": "S0519",
+     "cmp": "onetrust",
+     "vendor": "google_ads",
+     "vgroup": "Google",
+     "sandbox": false,
+     "page": false,
+     "cls": "neither"
+    },
+    {
+     "col": 17,
+     "store_id": "S1082",
+     "cmp": "pandectes",
+     "vendor": "microsoft_uet",
+     "vgroup": "Microsoft",
+     "sandbox": false,
+     "page": false,
+     "cls": "neither"
+    },
+    {
+     "col": 18,
+     "store_id": "S1082",
+     "cmp": "pandectes",
+     "vendor": "pinterest",
+     "vgroup": "Pinterest",
+     "sandbox": false,
+     "page": false,
+     "cls": "neither"
+    },
+    {
+     "col": 19,
+     "store_id": "S1082",
+     "cmp": "pandectes",
+     "vendor": "tiktok",
+     "vgroup": "TikTok",
+     "sandbox": false,
+     "page": false,
+     "cls": "neither"
+    }
+   ]
+  },
+  "definition": "Panel A columns: blocklist entries (ad vendor declared blocked before any choice) whose vendor has a configured sandboxed Shopify pixel, on stores whose CMP wrote no 'marketing: yes' in the Default load. Route flags are independent: 'sandbox' = the vendor sent an ad request from a Shopify sandbox (worker or iframe) in the Default load; 'page' = it sent one from an ordinary page script. Columns are ordered both routes, sandbox only, page only, neither (the same order as Fig. S7B), then by store and vendor.",
+  "script": "figures/v7/fig4/scripts/derive_fig4.py",
+  "inputs": [
+   "analysis/outputs/fig4c_declared_blocked_pairs.csv",
+   "analysis/outputs/ad_requests.csv.gz",
+   "stats.json:fig4.a.blocklist.primary.stores_excluded"
+  ],
+  "check": "counts == figures/v7/derived_numbers.json fig4a_routes.primary_no_yes; hierarchical outcome reproduces analyze.py"
+ },
+ "fig4a_kg": {
+  "value": {
+   "sandbox": {
+    "k": 12,
+    "n": 19,
+    "p": 0.631578947368421,
+    "kg_lo": 0.24001346818356795,
+    "kg_hi": 0.9232431368561638,
+    "n_eff": 7.563591841494592,
+    "n_stores": 11,
+    "kg_rule": "design effect"
+   },
+   "page": {
+    "k": 5,
+    "n": 19,
+    "p": 0.2631578947368421,
+    "kg_lo": 0.07052319818692311,
+    "kg_hi": 0.5606530713867592,
+    "n_eff": 13.826827718261358,
+    "n_stores": 11,
+    "kg_rule": "design effect"
+   }
+  },
+  "definition": "Shares of the panel A entries that fired by each route, with Korn-Graubard 95% intervals clustered by store (analysis/analyze.py kg_share: Clopper-Pearson on the effective sample size from a store bootstrap, B = 2,000, seed 20260926, with the degrees-of-freedom correction for the number of stores).",
+  "script": "figures/v7/fig4/scripts/derive_fig4.py",
+  "inputs": [
+   "fig4a_entries (this file)",
+   "analysis/analyze.py:kg_share"
+  ],
+  "check": "kg_share on the all-store set reproduces stats.json fig4.c.cfg.sandbox (k, n, kg_lo, kg_hi)"
+ },
+ "fig4c_recheck": {
+  "value": {
+   "store_id": "S0165",
+   "cmp": "pandectes",
+   "vendor": "tiktok",
+   "vendor_label": "TikTok",
+   "rule_store": "first store ID in stats.json checks.recheck.blocker.stores_neutralized_and_sbx_ids whose CMP wrote no 'marketing: yes' (not in fig4.a.blocklist.primary.stores_excluded)",
+   "rule_vendor": "declared-blocked vendor of that store with a neutralised page tag and the most sandboxed ad requests",
+   "candidates": [
+    "S0165",
+    "S0213",
+    "S0219",
+    "S0370",
+    "S0697"
+   ],
+   "vendors_neutralized_and_sbx": [
+    "meta",
+    "tiktok"
+   ],
+   "t_tag_neutralized_ms": 2695,
+   "n_tag_elements_neutralized": 2,
+   "neutralized_type": [
+    "javascript/blocked"
+   ],
+   "t_banner_ms": 1278,
+   "clicks": null,
+   "cmp_yes_writes": 0,
+   "n_sandbox_requests": 8,
+   "n_sandbox_beacons": 3,
+   "n_sandbox_libraries": 5,
+   "sandbox_origins": [
+    "lax_iframe"
+   ],
+   "t_first_sandbox_ms": 2357,
+   "lead_first_sandbox_over_tag_ms": 338,
+   "n_page_requests": 0,
+   "axis_ms": 6000,
+   "n_within_axis": 7,
+   "n_beyond_axis": 1,
+   "n_beacons_within_axis": 2,
+   "n_libraries_within_axis": 5,
+   "n_distinct_times_within_axis": 6,
+   "beyond_axis_ms": [
+    13180
+   ],
+   "beyond_axis_kinds": [
+    "beacon"
+   ],
+   "t_obs_end_ms": 18850,
+   "time_origin_minus_nav_ms": -0.10009765625,
+   "requests": [
+    {
+     "t_ms": 2357,
+     "kind": "library",
+     "origin": "lax_iframe",
+     "type": "Script"
+    },
+    {
+     "t_ms": 2357,
+     "kind": "library",
+     "origin": "lax_iframe",
+     "type": "Script"
+    },
+    {
+     "t_ms": 2749,
+     "kind": "library",
+     "origin": "lax_iframe",
+     "type": "Script"
+    },
+    {
+     "t_ms": 2761,
+     "kind": "library",
+     "origin": "lax_iframe",
+     "type": "Script"
+    },
+    {
+     "t_ms": 3066,
+     "kind": "library",
+     "origin": "lax_iframe",
+     "type": "Script"
+    },
+    {
+     "t_ms": 3169,
+     "kind": "beacon",
+     "origin": "lax_iframe",
+     "type": "Ping"
+    },
+    {
+     "t_ms": 3170,
+     "kind": "beacon",
+     "origin": "lax_iframe",
+     "type": "Ping"
+    },
+    {
+     "t_ms": 13180,
+     "kind": "beacon",
+     "origin": "lax_iframe",
+     "type": "Ping"
+    }
+   ],
+   "tick_merge_ms": 50,
+   "tick_groups": [
+    {
+     "kind": "library",
+     "t_ms_first": 2357,
+     "t_ms_last": 2357,
+     "n": 2
+    },
+    {
+     "kind": "library",
+     "t_ms_first": 2749,
+     "t_ms_last": 2761,
+     "n": 2
+    },
+    {
+     "kind": "library",
+     "t_ms_first": 3066,
+     "t_ms_last": 3066,
+     "n": 1
+    },
+    {
+     "kind": "beacon",
+     "t_ms_first": 3169,
+     "t_ms_last": 3170,
+     "n": 2
+    }
+   ],
+   "n_tick_groups": 4,
+   "n_tick_groups_multi": 3
+  },
+  "definition": "Panel C: one re-check load (arm R0: no interaction) of the store and vendor chosen by the rules above. Times are ms since navigation start (requests: wall time minus the navigation request; page scriptlog and banner detector: performance.now() plus time_origin minus nav_wall). 'Tag neutralised' = the vendor's script element entered the page with, or was changed to, a blocked type; sandboxed requests = the vendor's ad requests from a Shopify worker or sandboxed iframe (kind from the vendor classifier: beacon or library). tick_groups: the requests within the axis, grouped when of the same kind and less than tick_merge_ms apart (drawn as one tick with a count badge).",
+  "script": "figures/v7/fig4/scripts/derive_fig4.py",
+  "inputs": [
+   "crawl/recheck/raw/<store>__R0.json.gz (read-only)",
+   "crawl/recheck/blocker_by_entry.csv",
+   "crawl/recheck/blocker_by_store.csv",
+   "stats.json:checks.recheck.blocker",
+   "stats.json:design.timeline_axis_s"
+  ],
+  "check": "store is in checks.recheck.blocker.stores_neutralized_and_sbx_ids and blocker_by_store.neutralized_and_sbx; the vendor has a neutralised tag and sandboxed requests and no page-script requests; no click, no CMP yes write"
+ },
+ "fig4_samples": {
+  "value": {
+   "main_top_n": 200000,
+   "main_top_k": 200,
+   "expansion_rank_lo": 200001,
+   "expansion_rank_hi": 1000000,
+   "expansion_rank_lo_k": 200,
+   "expansion_rank_hi_m": 1,
+   "tranco_list_id": "L5PZ4"
+  },
+  "definition": "Tranco rank ranges of the two samples in Fig. 4. Main sample: the top main_top_n domains (main_top_k in thousands, shown as 'top 200k'). Round 4 expansion: ranks expansion_rank_lo to expansion_rank_hi of the same Tranco list, shown as '200k-1M' (expansion_rank_lo_k in thousands, i.e. the rank just below the range's first rank, and expansion_rank_hi_m in millions).",
+  "script": "figures/v7/fig4/scripts/derive_fig4.py",
+  "inputs": [
+   "stats.json:design.tranco_top_n",
+   "round4/expansion/funnel.json:ranks,tranco_list_id (read-only)"
+  ],
+  "check": "expansion_rank_lo == design.tranco_top_n + 1; round4.blocklist.expansion_funnel.blocklist_at_runtime == round4.blocklist.expansion.n_blocklist; round4 main primary and mh_no_yes equal the paper values"
+ }
+}

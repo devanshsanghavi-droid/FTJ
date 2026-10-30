@@ -1,0 +1,42 @@
+% ============================================================================
+\section{Related work}\label{sec:related}
+% ============================================================================
+
+Table~\ref{tab:positioning} positions this work against its closest neighbours.
+
+\begin{table*}[!tbp]
+\centering
+\caption{Positioning against the closest related work. Columns: the work studies one hosting platform; attributes requests to the context in which their code runs (worker, iframe, main thread); compares a declared policy or consent state with observed behaviour; audits the enforcement point that starts third-party code (joins the platform's consent state to what starts); has a US vantage point or a GPC arm; checks an emulated GPC signal against a browser's native one. \checkmark: central to the work; (\checkmark): partly, or for another platform or signal; --: not addressed. Marks summarise each paper's main focus as we read it.}
+\label{tab:positioning}
+\footnotesize\setlength{\tabcolsep}{2.5pt}
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}Xcccccc@{}}
+\toprule
+Work & Platform- & Context & Declared vs & Enforcement point & US or & Native \\
+ & specific & attribution & observed & that starts code & GPC arm & GPC check \\
+\midrule
+\citealt{matte2020banners} & -- & -- & \checkmark & -- & -- & -- \\
+\citealt{bollinger2022automating} & -- & -- & \checkmark & -- & -- & -- \\
+\citealt{bouhoula2024automated} & -- & -- & \checkmark & -- & -- & -- \\
+\citealt{tang2025navigating} & -- & -- & (\checkmark) & -- & (\checkmark) & -- \\
+\citealt{kancherla2025revoke} & -- & -- & (\checkmark) & -- & -- & -- \\
+\citealt{zimmeck2023gpc} & -- & -- & (\checkmark) & -- & \checkmark & -- \\
+\citealt{rasaii2025intractable} & -- & -- & -- & -- & \checkmark & -- \\
+\citealt{hausladen2025gpc} & -- & -- & (\checkmark) & -- & \checkmark & (\checkmark) \\
+\citealt{nouwens2025crosscountry} & (\checkmark) & -- & -- & -- & -- & -- \\
+\citealt{mertens2025gtm} & \checkmark & (\checkmark) & (\checkmark) & (\checkmark) & -- & -- \\
+This work & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark & \checkmark \\
+\bottomrule
+\end{tabularx}
+\end{table*}
+
+\subsection*{Consent banners and declared-versus-observed audits}
+Much work measures cookie banners, from the spread of banners and CMPs \citep{degeling2019value,hils2020emergence,kretschmer2021cookie,trevisan2019cookie,sanchezrola2019optout,woods2022commodification} to their dark patterns \citep{nouwens2020dark,berens2024cookie}, and several studies compare what a site or its CMP declares with what the browser observes. \citet{matte2020banners} found TCF consent strings that recorded consent before any choice or after an opt-out; \citet{bollinger2022automating} compared the cookie declarations of four CMP products with the cookies sites actually set; \citet{zhang2024cschecker} compared consent data with behaviour under the GDPR and the CCPA; and \citet{bouhoula2024automated} estimated that 65.4\% of sites that offer a reject option are likely to collect data after rejection. Tracking before a choice or after a rejection is common \citep{papadogiannakis2021post,martinez2022compliance}; GPC and rejection each remove only part of the cookies set \citep{rasaii2025intractable}; sites often fail to inform third parties when consent is revoked \citep{kancherla2025revoke}; and opt-out interfaces often fail to stop third-party tracking \citep{singh2026umbra}. Pre-choice tracking is well established, and we do not claim it as new; what is new in our blocked-on-paper comparison is the attribution of requests to the context in which their code runs, not the comparison itself.
+
+\subsection*{Why CMPs fail}
+\citet{tang2025navigating} measured 1,793 sites in eight regions and named, among the root causes of violations, incorrect script embedding (a CMP blocks only tags it recognizes) and incomplete automatic scanning, noting that content loaded only in particular contexts can escape a CMP's scanner. \citet{toth2022dark} showed how CMP configuration flows steer publishers toward non-compliant defaults, \citet{santos2021cmp} discussed the legal role of CMPs, and \citet{dimova2026history} traced banner compliance over time. These works locate the causes in configuration and scanning; we measure an execution-context cause, which no CMP configuration can fix. The only academic measurement of Shopify's consent layer that we found assessed the design of its native banner across 31 national top lists, not what the pixels behind it do \citep{nouwens2025crosscountry}. Consent vendors and practitioners already describe the mechanism \citep{truevault_apppixel,onetrust_ecommerce,pandectes_blocking,analyticsninja2025pixels,weltpixel2026race} without measuring how often it matters; we quantify it.
+
+\subsection*{US opt-outs and GPC}
+GPC compliance has been measured through privacy strings: \citet{zimmeck2023gpc} and \citet{hausladen2025gpc} read the US Privacy and GPP strings, OneTrust's consent cookie and \code{/.well-known/\allowbreak gpc.json} to decide whether a site recorded the opt-out. \citet{liu2024opted} and \citet{aziz2024johnny} followed opt-outs from CMPs into advertising systems, \citet{tran2024ccpa,tran2025darkoptout} studied CCPA opt-out links and dark patterns in them, and \citet{zimmeck2024gapc,zimmeck2026android,zimmeck2026gpceu} extended GPC to interface design, Android and EU law; \citet{hils2021conflicting} examined conflicting preference signals. \citet{dawoud2026privaudit} found limited-to-moderate responsiveness of websites to privacy signals and consent choices, and a grey-literature audit found that 55\% of 7,634 California sites set advertising cookies despite GPC \citep{libert2026webxray}. Prior work thus reads consent states, such as TCF strings \citep{matte2020banners} and GPP strings \citep{hausladen2025gpc}, and follows opt-outs into advertising data flows \citep{liu2024opted,aziz2024johnny}; to our knowledge, none attributes vendor requests to the context in which their code runs, or joins them to the platform's gate that starts that code.
+
+\subsection*{Sandboxes and tools that trackers slip past}
+Trackers have moved code or traffic to where user-side blocking tools do not look: WebSockets \citep{bashir2018websockets}, CNAME cloaking \citep{dimova2021cname}, scripts that evade filter lists \citep{chen2021filterlist}, and first-party and server-side tracking \citep{bottger2026fpt,jazlan2026sstguard}; two recent systematizations of web tracking do not discuss web workers or platform pixels \citep{vekaria2025sok,rieder2026sok}. Our case differs: the bypassed control belongs to the site itself, and the site's own platform bypasses it, with no intent to evade. The closest analogue of a platform consent gate is Google Tag Manager with Consent Mode, whose tags can leak data \citep{mertens2025gtm,mertens2026gtm80k}. Pixel studies have examined server-side event APIs \citep{elfraihi2024meta}, the Meta pixel's configuration and click identifiers \citep{kieserman2025tracker,ghani2026pixelconfig,bekos2023hitchhiker} and the TikTok pixel's reading of the full page URL \citep{zagi2025referrer}; e-commerce studies have examined dark patterns, cookie policies and data leakage \citep{mathur2019dark,singh2025crumbled,vlachogiannakis2025bought}, and site operators adopt third-party services mainly for convenience \citep{utz2023privacy}. Isolating third-party JavaScript in iframes or web workers was proposed to protect the host page \citep{terlouw2010adjail,ingram2012treehouse}; workers can create privacy risks of their own \citep{karami2021sleeper}, performance libraries move chosen tags into workers \citep{partytown}, and crawler instrumentation can fail to reach some frames \citep{krumnow2022openwpm}, which is why we checked it in every worker and frame. We found no academic study that measures how this isolation interacts with the page's own privacy tool.

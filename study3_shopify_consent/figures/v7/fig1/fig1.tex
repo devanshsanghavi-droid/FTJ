@@ -1,0 +1,24 @@
+% fig1.tex -- Figure 1, v7 reference figure (../DESIGN_V7.md): v6 content in the sciplot clean theme plus the grafts.
+% Layout: 190 x 132 mm, three full-width rows with 6 mm gutters and no outer margin:
+%   a 190 x 44  (hero) where consent is lost: nested labelled regions on one column grid, five loss numerals (TikZ,
+%               fig1a_pipeline.tex)
+%   b 190 x 24  one re-check load as a two-lane event strip on a's two region grounds (the page tag blocked, the
+%               sandboxed pixel sending), timed from the banner
+%   c 190 x 52  every banner store that sent before any choice, one row each, aligned to the banner
+% c's plot area runs 17-186 mm; b's axis is inset from it (about 59-179 mm) on a larger time scale, placed so that b's
+% 0 (the banner) sits exactly above c's 0 and the two amber rules form one vertical. The cells are mirrored and
+% asserted in scripts/make_panels.py; \Panel checks each panel's size and draws the 8 pt bold lowercase letters
+% (no panel titles).
+% Build: PATH=/opt/anaconda3/bin:$PATH zsh build.sh
+\documentclass[tikz,border=0pt]{standalone}
+\def\StyleDir{../style/}
+\input{\StyleDir tikzstyle_v2.tex}
+\begin{document}
+\begin{tikzpicture}
+  \FigureCanvas{132}
+  %      letter  x    y     w     h    file
+  \Panel {a}     {0}  {0}   {190} {44} {panels/fig1a_pipeline.pdf}
+  \Panel {b}     {0}  {50}  {190} {24} {panels/fig1b_trace.pdf}
+  \Panel {c}     {0}  {80}  {190} {52} {panels/fig1c_raster.pdf}
+\end{tikzpicture}
+\end{document}

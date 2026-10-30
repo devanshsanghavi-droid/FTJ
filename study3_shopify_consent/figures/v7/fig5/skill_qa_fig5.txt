@@ -1,0 +1,28 @@
+== fig5.pdf: 1 page, 190.0 x 114.0 mm, 79 KB, raster images: 0
+   font Arial-BoldMT: Type0 (CID TrueType, Type 42), embedded  [ok]
+   font ArialMT: Type0 (CID TrueType, Type 42), embedded  [ok]
+   text sizes (pt: runs): {6.0: 22, 7.0: 28, 8.0: 3}  -> smallest 6.0 pt [ok]
+   non-numeric text sizes (pt: runs): {7.0: 28, 8.0: 3}  [ok: words >= 7 pt; tick labels 6 pt; 6 pt words only as muted secondary text (SP_MUTED runs: {})]
+   Elsevier width class: 190 mm [ok]; vector PDF [ok]; colour space RGB (DeviceRGB operators)
+   colours drawn (WCAG contrast vs #ffffff; CIE L*):
+     #000000  21.00:1  L*=  0.0  the panel letters (composite); the Default circles, their CIs and key marker (a)  [ok]
+     #1f2328  15.80:1  L*= 13.5  sciplot text colour: category and row labels, axis titles, b's three class names at the Decline bar, the two block labels (c); each bar's total (a short rising tick) and its CI line just under the bar (b, Fig. 4a's grammar)  [ok]
+     #3d434b   9.99:1  L*= 28.2  sciplot chrome: the open L axes, their outward major and minor ticks and tick labels (a, b, c); the two segments of c's broken row axis and the two cut marks in its break  [ok]
+     #555555   7.46:1  L*= 36.1  the Decline open squares, their CIs and key marker (a); the 'no purpose' segments (b, Fig. S8c's colour for that class)  [ok]
+     #5d769d   4.62:1  L*= 49.2  HONOUR slate, consent honoured: the sandboxes of the 'yes' loads and their key handle (c)  [ok]
+     #6b7280   4.83:1  L*= 47.9  sciplot muted text: the two keys (a: the arms; c: the tick colours, as Fig. S8d)  [ok]
+     #a0a0a0   2.61:1  L*= 65.9  NEUTRAL grey: the GPC triangles, their CIs and key marker (a); the 'only purposes left allowed' segments and the three label leaders (b); the sandboxes that started after the 'no' and their key handle (c)  [below 3.0:1, accepted: DESIGN_V7 section 3.2 neutral and the fixed GPC arm grey (figstyle.ARM); the GPC mark is told apart by shape (a triangle) and the key, the b segment by its direct label and white gaps, the leaders are hairlines to labelled segments, and the c ticks are context (their side of the amber rule carries the point; the key names them)]
+     #c65358   4.39:1  L*= 50.6  LEAK brick, consent lost: the 'a refused purpose' segment (b); the sandboxes that started before the CMP wrote 'no' and their key handle (c)  [ok]
+     #d9d9d9   1.41:1  L*= 86.7  decorative: the thin line joining each group's three estimates (a)  [n/a (decorative/surface)]
+     #e8a33a   2.16:1  L*= 72.0  EVENT amber: the CMP's consent write, the rule at 0 (c)  [below 3.0:1, accepted: DESIGN_V7 section 3.1 fixes amber for the consent moment; the rule sits on the labelled 0 tick of an axis titled 'minus the CMP's consent write', so it is never read by colour alone]
+     #fbeeed   1.13:1  L*= 95.1  ground: c's key area, row by row from each 'no' load's first sandbox to the write (the brick ticks drawn on it, 3.9:1)  [n/a (decorative/surface)]
+     #ffffff   1.00:1  L*=100.0  surface; open-square fills (a); the thin white gaps between stacked segments (b)  [n/a (decorative/surface)]
+== category separation without hue (skill grayscale screen, delta L* >= 10; heuristic):
+     Default vs Decline (a; also filled circle vs open square): #000000 vs #555555  delta L* = 36.1  separates in grayscale
+     Decline vs GPC (a; also open square vs triangle); 'only purposes left allowed' vs 'no purpose' (b, adjacent segments split by a white gap and named at the Decline bar): #555555 vs #a0a0a0  delta L* = 29.7  separates in grayscale
+     'a refused purpose' vs 'only purposes left allowed' (b, adjacent segments split by a white gap); before vs after the 'no' (c, also left vs right of the amber rule): #c65358 vs #a0a0a0  delta L* = 15.3  separates in grayscale
+     'no' loads before the write vs 'yes' loads (c; also upper vs lower block and left vs right of the amber rule): #c65358 vs #5d769d  delta L* =  1.4  does NOT separate in grayscale
+   No vendor hue is drawn: a uses the arm neutrals of Fig. S8a (the vendor groups are named by their tick labels), so the key's marks are the plotted marks. Arms differ by marker shape (filled circle, open square, filled triangle) as well as grey level. In b the classes are split by white gaps and named once by direct labels at the Decline bar (Fig. S8c's names, colours and order), so b's greys are never read through a's arm key; in c brick, grey and slate also differ by block and by side of the amber rule, and a key names them (Fig. S8d's). Brick and slate (delta L* 1.4) never have to be told apart by lightness alone. The one fill is a pre-mixed tint (sciplot), never alpha, repeating its token's meaning: TINT LEAK, c's key area where consent was lost.
+== preview _v7_review-p01.png: 1496 x 898 px, RGBA, opaque=True, 200 ppi at 190 mm (a review render; the submission file is the vector PDF)
+   v7 type check: words 7 pt; tick labels 6 pt; letters 8 pt (DESIGN_V7 section 2). Elsevier asks for about 7 pt lettering: 6 pt is the sciplot Nature tick size the v7 spec adopts; confirm against the C&S Guide for Authors before submission.
+RESULT: PASS (automatic screen; not a compliance certificate)

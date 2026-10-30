@@ -1,16 +1,16 @@
 model,term,OR,lo,hi,n_term,events_term,n,events,method,n_groups,re_sd,converged
-"Decline, unadjusted",mgroup=Blocker only / unknown / none,3.112965340179205,1.1676344627871111,8.58330306580434,32.0,12.0,233,53,"Firth, profile-penalised-likelihood CI",,,
-"Decline, unadjusted",mgroup=CMP writes to Shopify API,1.4748538011691161,0.6852599836259171,3.4291091194274204,144.0,32.0,233,53,"Firth, profile-penalised-likelihood CI",,,
-"Decline, adjusted",mgroup=Blocker only / unknown / none,2.880066223993336,0.863736517497752,9.67443247947149,32.0,12.0,233,53,"Firth, profile-penalised-likelihood CI",,,
-"Decline, adjusted",mgroup=CMP writes to Shopify API,1.5786143884360029,0.6025681499846942,4.276530722997354,144.0,32.0,233,53,"Firth, profile-penalised-likelihood CI",,,
-"Decline, adjusted",refused,0.2903437800139567,0.13360193953962088,0.6326228239142049,198.0,37.0,233,53,"Firth, profile-penalised-likelihood CI",,,
-"Decline, adjusted",region_optout,1.0141352528527066,0.4694759696800423,2.2627981419569885,118.0,32.0,233,53,"Firth, profile-penalised-likelihood CI",,,
+"Decline, unadjusted",mgroup=Blocker only / unknown / none,3.2726045883938504,1.2222039198187515,9.070686941298074,31.0,12.0,231,53,"Firth, profile-penalised-likelihood CI",,,
+"Decline, unadjusted",mgroup=CMP writes to Shopify API,1.4880811895204078,0.6912673907491422,3.4604679574648145,143.0,32.0,231,53,"Firth, profile-penalised-likelihood CI",,,
+"Decline, adjusted",mgroup=Blocker only / unknown / none,3.0686086048738517,0.9072121383990295,10.473244094746143,31.0,12.0,231,53,"Firth, profile-penalised-likelihood CI",,,
+"Decline, adjusted",mgroup=CMP writes to Shopify API,1.6163541072229473,0.617771843816594,4.373982618471228,143.0,32.0,231,53,"Firth, profile-penalised-likelihood CI",,,
+"Decline, adjusted",refused,0.29409725276197396,0.13521513176060693,0.6414000018926674,196.0,37.0,231,53,"Firth, profile-penalised-likelihood CI",,,
+"Decline, adjusted",region_optout,0.9886221801498567,0.45513912401456197,2.2151323520668282,117.0,32.0,231,53,"Firth, profile-penalised-likelihood CI",,,
 "GPC, unadjusted",mgroup=Blocker only / unknown / none,0.7611067987763698,0.5199311133111514,1.1189017436070101,389.0,118.0,803,279,"Firth, profile-penalised-likelihood CI",,,
 "GPC, unadjusted",mgroup=CMP writes to Shopify API,1.1918913654451606,0.7965810569118512,1.7904874824171382,249.0,101.0,803,279,"Firth, profile-penalised-likelihood CI",,,
 "GPC, adjusted",mgroup=Blocker only / unknown / none,0.7838620788005817,0.5345746943836277,1.1545187302681428,389.0,118.0,803,279,"Firth, profile-penalised-likelihood CI",,,
 "GPC, adjusted",mgroup=CMP writes to Shopify API,1.1286420768419518,0.7501598646219091,1.70333469393272,249.0,101.0,803,279,"Firth, profile-penalised-likelihood CI",,,
 "GPC, adjusted",region_optout,0.5908905134748549,0.33951823787419444,1.0286650810068059,745.0,250.0,803,279,"Firth, profile-penalised-likelihood CI",,,
-"Decline, CMP random intercept",mgroup=Blocker only / unknown / none,3.199999088848917,1.1660829455285817,8.781531543617714,,,233,53,"mixed logistic, random intercept per CMP product (Gauss-Hermite ML, Wald CI)",19.0,5.588733226087208e-08,True
-"Decline, CMP random intercept",mgroup=CMP writes to Shopify API,1.523809239688955,0.675740736403591,3.436221133151581,,,233,53,"mixed logistic, random intercept per CMP product (Gauss-Hermite ML, Wald CI)",19.0,5.588733226087208e-08,True
+"Decline, CMP random intercept",mgroup=Blocker only / unknown / none,3.368420785165347,1.2213400669363639,9.290007667066172,,,231,53,"mixed logistic, random intercept per CMP product (Gauss-Hermite ML, Wald CI)",19.0,0.0001825805069829476,True
+"Decline, CMP random intercept",mgroup=CMP writes to Shopify API,1.537537498227682,0.681698942078033,3.46783809176813,,,231,53,"mixed logistic, random intercept per CMP product (Gauss-Hermite ML, Wald CI)",19.0,0.0001825805069829476,True
 "GPC, CMP random intercept",mgroup=Blocker only / unknown / none,0.7619929045140461,0.5190915107080267,1.1185565060345222,,,803,279,"mixed logistic, random intercept per CMP product (Gauss-Hermite ML, Wald CI)",21.0,0.0003399493078419302,False
 "GPC, CMP random intercept",mgroup=CMP writes to Shopify API,1.1942567321312003,0.7959706425801447,1.7918363642376263,,,803,279,"mixed logistic, random intercept per CMP product (Gauss-Hermite ML, Wald CI)",21.0,0.0003399493078419302,False

@@ -1,0 +1,1035 @@
+{
+ "tool": {
+  "name": "ConsentCheck",
+  "version": "0.1.0",
+  "crawl_lib": "../../crawl/lib",
+  "playwright": "1.61.0"
+ },
+ "generated_at": "2026-09-27T06:27:52.501Z",
+ "target": {
+  "url": "https://www.store-a.example/products/<slug>",
+  "loaded_url": "https://www.store-a.example/products/<slug>?utm_source=privacy-research&utm_medium=measurement&utm_campaign=cmpstudy-S1154-consentcheck",
+  "host": "www.store-a.example",
+  "shop": "shop.myshopify.com",
+  "title": null
+ },
+ "run": {
+  "started_at": "2026-09-27T06:15:47.618Z",
+  "ended_at": "2026-09-27T06:16:51.648Z",
+  "robots": {
+   "reason": "allowed by robots.txt",
+   "robots_url": "https://www.store-a.example/robots.txt",
+   "status": 200,
+   "group": "none"
+  },
+  "navigations": [
+   {
+    "label": "default",
+    "at": "2026-09-27T06:15:47.965Z"
+   },
+   {
+    "label": "decline",
+    "at": "2026-09-27T06:16:05.160Z"
+   },
+   {
+    "label": "decline-next-page",
+    "at": "2026-09-27T06:16:23.449Z"
+   },
+   {
+    "label": "gpc",
+    "at": "2026-09-27T06:16:34.778Z"
+   }
+  ],
+  "browser": "149.0.7827.55",
+  "user_agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/149.0.7827.55 Safari/537.36",
+  "webdriver": true,
+  "headed": false
+ },
+ "visits": {
+  "default": {
+   "usable": true,
+   "why_not": null,
+   "http_status": 200,
+   "requests": 524,
+   "ad_requests": 18,
+   "errors": []
+  },
+  "decline": {
+   "usable": true,
+   "why_not": null,
+   "http_status": 200,
+   "requests": 951,
+   "ad_requests": 21,
+   "errors": []
+  },
+  "gpc": {
+   "usable": true,
+   "why_not": null,
+   "http_status": 200,
+   "requests": 513,
+   "ad_requests": 16,
+   "errors": []
+  }
+ },
+ "store": {
+  "region": "USCA",
+  "shopify_default": {
+   "header": "3.AMPS_USCA_f_f_…",
+   "marketing_allowed_before_choice": true,
+   "sale_allowed_before_choice": true,
+   "banner_required_by_shopify": false
+  },
+  "banner": {
+   "shown": true,
+   "default_visit": {
+    "visible": true,
+    "t": 1415,
+    "cmp": "onetrust",
+    "controls": [
+     "Cookies Settings",
+     "Reject All",
+     "Accept All Cookies"
+    ],
+    "text": null
+   },
+   "decline_visit": {
+    "visible": true,
+    "t": 1357,
+    "cmp": "onetrust",
+    "controls": [
+     "Cookies Settings",
+     "Reject All",
+     "Accept All Cookies"
+    ],
+    "text": null
+   }
+  },
+  "consent_app": "onetrust",
+  "consent_app_name": "OneTrust",
+  "consent_apps_detected": [
+   "onetrust"
+  ],
+  "automatic_before_choice": {
+   "first_yes_ms": null,
+   "first_no_ms": 1334,
+   "first_sandboxed_ad_ms": 1021,
+   "first_ad_ms": 865
+  },
+  "decline": {
+   "clicked": true,
+   "click_ms": 3145,
+   "next_page_ms": 18287,
+   "status": "recorded",
+   "t": 4149,
+   "delay_ms": 1004,
+   "banner_gone": true,
+   "next_page_header": "3amps._USCA_f_f_…",
+   "clicked_text": "Reject All",
+   "after_click": [
+    {
+     "tag": "click+1",
+     "marketing": "no",
+     "sale_of_data": "no",
+     "marketingAllowed": false,
+     "saleOfDataAllowed": false
+    },
+    {
+     "tag": "end",
+     "marketing": "no",
+     "sale_of_data": "no",
+     "marketingAllowed": false,
+     "saleOfDataAllowed": false
+    }
+   ]
+  },
+  "allowed_after_decline": {
+   "ANALYTICS": false,
+   "MARKETING": false,
+   "SALE_OF_DATA": false
+  },
+  "gpc": {
+   "shopify_recorded_opt_out": true,
+   "header": "3s.AMP_USCA_f_f_…",
+   "signal_visible": {
+    "frames": "19/19",
+    "workers": "0/4"
+   }
+  },
+  "pixel_config_found": true
+ },
+ "vendors": [
+  {
+   "vendor": "google_ads",
+   "name": "Google Ads / DoubleClick / Floodlight",
+   "group": "Google",
+   "before_choice": "sends",
+   "where_before": [
+    "sandbox"
+   ],
+   "decline": "not_stopped",
+   "gpc": "not_stopped",
+   "pixels": [
+    {
+     "id": "px11",
+     "type": "CUSTOM",
+     "runtime": "LAX",
+     "name": "PM Conversions",
+     "label": "PM Conversions (custom)",
+     "purposes": []
+    }
+   ],
+   "declared_by_banner": null,
+   "blocked_on_paper": false,
+   "detail": {
+    "default": {
+     "sent": true,
+     "n": 8,
+     "beacons": 8,
+     "where": [
+      "sandbox"
+     ],
+     "origins": [
+      "lax_iframe"
+     ],
+     "pixels": [
+      "px11"
+     ],
+     "first_t": 1331,
+     "page_url": true,
+     "endpoints": [
+      "googleads.g.doubleclick.net/pagead/viewthroughconversion/…/",
+      "www.google.com/rmkt/collect/…/",
+      "www.google.com/ccm/collect",
+      "ad.doubleclick.net/ccm/s/collect"
+     ]
+    },
+    "decline": {
+     "before": {
+      "sent": true,
+      "n": 8,
+      "beacons": 8,
+      "where": [
+       "sandbox"
+      ],
+      "origins": [
+       "lax_iframe"
+      ],
+      "pixels": [
+       "px11"
+      ],
+      "first_t": 1287,
+      "page_url": true,
+      "endpoints": [
+       "googleads.g.doubleclick.net/pagead/viewthroughconversion/…/",
+       "www.google.com/rmkt/collect/…/",
+       "www.google.com/ccm/collect",
+       "ad.doubleclick.net/ccm/s/collect"
+      ]
+     },
+     "same_page": {
+      "sent": false,
+      "n": 0
+     },
+     "unload": {
+      "sent": false,
+      "n": 0
+     },
+     "next_page": {
+      "sent": true,
+      "n": 1,
+      "beacons": 1,
+      "where": [
+       "sandbox"
+      ],
+      "origins": [
+       "lax_iframe"
+      ],
+      "pixels": [
+       "px11"
+      ],
+      "first_t": 18737,
+      "page_url": true,
+      "endpoints": [
+       "pagead2.googlesyndication.com/ccm/collect"
+      ]
+     }
+    },
+    "gpc": {
+     "sent": true,
+     "n": 8,
+     "beacons": 8,
+     "where": [
+      "sandbox"
+     ],
+     "origins": [
+      "lax_iframe"
+     ],
+     "pixels": [
+      "px11"
+     ],
+     "first_t": 969,
+     "page_url": true,
+     "endpoints": [
+      "googleads.g.doubleclick.net/pagead/viewthroughconversion/…/",
+      "www.google.com/rmkt/collect/…/",
+      "www.google.com/ccm/collect",
+      "ad.doubleclick.net/ccm/s/collect"
+     ]
+    }
+   },
+   "why": {
+    "decline": "\"PM Conversions\" declares no purpose, so no choice can stop it.",
+    "gpc": "\"PM Conversions\" declares no purpose, so no choice can stop it."
+   }
+  },
+  {
+   "vendor": "microsoft_uet",
+   "name": "Microsoft Advertising UET (Bing)",
+   "group": "Microsoft",
+   "before_choice": "sends",
+   "where_before": [
+    "sandbox"
+   ],
+   "decline": "partly",
+   "gpc": "not_stopped",
+   "pixels": [
+    {
+     "id": "px10",
+     "type": "CUSTOM",
+     "runtime": "LAX",
+     "name": "uet_custom_pixel_prod",
+     "label": "uet_custom_pixel_prod (custom)",
+     "purposes": [
+      "marketing"
+     ]
+    },
+    {
+     "id": "px14",
+     "type": "CUSTOM",
+     "runtime": "LAX",
+     "name": "bing_ads_storea",
+     "label": "bing_ads_storea (custom)",
+     "purposes": [
+      "analytics",
+      "marketing"
+     ]
+    }
+   ],
+   "declared_by_banner": null,
+   "blocked_on_paper": false,
+   "detail": {
+    "default": {
+     "sent": true,
+     "n": 8,
+     "beacons": 6,
+     "where": [
+      "sandbox"
+     ],
+     "origins": [
+      "lax_iframe"
+     ],
+     "pixels": [
+      "px10",
+      "px14"
+     ],
+     "first_t": 1021,
+     "page_url": true,
+     "endpoints": [
+      "bat.bing.com/bat.js",
+      "bat.bing.com/p/action/…",
+      "bat.bing.com/actionp/0",
+      "bat.bing.com/action/0"
+     ]
+    },
+    "decline": {
+     "before": {
+      "sent": true,
+      "n": 8,
+      "beacons": 6,
+      "where": [
+       "sandbox"
+      ],
+      "origins": [
+       "lax_iframe"
+      ],
+      "pixels": [
+       "px10",
+       "px14"
+      ],
+      "first_t": 927,
+      "page_url": true,
+      "endpoints": [
+       "bat.bing.com/bat.js",
+       "bat.bing.com/p/action/…",
+       "bat.bing.com/actionp/0",
+       "bat.bing.com/action/0"
+      ]
+     },
+     "same_page": {
+      "sent": false,
+      "n": 0
+     },
+     "unload": {
+      "sent": true,
+      "n": 2,
+      "beacons": 2,
+      "where": [
+       "sandbox"
+      ],
+      "origins": [
+       "lax_iframe"
+      ],
+      "pixels": [
+       "px10",
+       "px14"
+      ],
+      "first_t": 18509,
+      "page_url": false,
+      "endpoints": [
+       "bat.bing.com/actionp/0"
+      ]
+     },
+     "next_page": {
+      "sent": false,
+      "n": 0
+     }
+    },
+    "gpc": {
+     "sent": true,
+     "n": 8,
+     "beacons": 6,
+     "where": [
+      "sandbox"
+     ],
+     "origins": [
+      "lax_iframe"
+     ],
+     "pixels": [
+      "px10",
+      "px14"
+     ],
+     "first_t": 753,
+     "page_url": true,
+     "endpoints": [
+      "bat.bing.com/bat.js",
+      "bat.bing.com/p/action/…",
+      "bat.bing.com/actionp/0",
+      "bat.bing.com/action/0"
+     ]
+    }
+   },
+   "why": {
+    "gpc": "\"uet_custom_pixel_prod\" declares marketing but not data sale, and Shopify applies GPC only to pixels that declare data sale. \"bing_ads_storea\" declares analytics + marketing but not data sale, and Shopify applies GPC only to pixels that declare data sale."
+   }
+  },
+  {
+   "vendor": "meta",
+   "name": "Meta (Facebook/Instagram)",
+   "group": "Meta",
+   "before_choice": "sends",
+   "where_before": [
+    "shopify_open"
+   ],
+   "decline": "stopped",
+   "gpc": "stopped",
+   "pixels": [
+    {
+     "id": "px05",
+     "type": "APP",
+     "runtime": "OPEN",
+     "name": null,
+     "label": "Meta (Facebook/Instagram) app pixel",
+     "purposes": [
+      "analytics",
+      "marketing",
+      "data sale"
+     ]
+    }
+   ],
+   "declared_by_banner": null,
+   "blocked_on_paper": false,
+   "detail": {
+    "default": {
+     "sent": true,
+     "n": 2,
+     "beacons": 0,
+     "where": [
+      "shopify_open"
+     ],
+     "origins": [
+      "open_pixel",
+      "open_pixel_chain"
+     ],
+     "pixels": [
+      "px05"
+     ],
+     "first_t": 865,
+     "page_url": false,
+     "endpoints": [
+      "connect.facebook.net/en_US/fbevents.js",
+      "connect.facebook.net/signals/config/…"
+     ]
+    },
+    "decline": {
+     "before": {
+      "sent": true,
+      "n": 2,
+      "beacons": 0,
+      "where": [
+       "shopify_open"
+      ],
+      "origins": [
+       "open_pixel",
+       "open_pixel_chain"
+      ],
+      "pixels": [
+       "px05"
+      ],
+      "first_t": 819,
+      "page_url": false,
+      "endpoints": [
+       "connect.facebook.net/en_US/fbevents.js",
+       "connect.facebook.net/signals/config/…"
+      ]
+     },
+     "same_page": {
+      "sent": false,
+      "n": 0
+     },
+     "unload": {
+      "sent": false,
+      "n": 0
+     },
+     "next_page": {
+      "sent": false,
+      "n": 0
+     }
+    },
+    "gpc": {
+     "sent": false,
+     "n": 0
+    }
+   },
+   "why": {}
+  }
+ ],
+ "pixels": [
+  {
+   "id": "px01",
+   "type": "APP",
+   "runtime": "STRICT",
+   "runtime_label": "sandbox (web worker)",
+   "name": null,
+   "app": "app (API client 35679600641)",
+   "purposes": [
+    "analytics",
+    "marketing",
+    "data sale"
+   ],
+   "shopify_own": false,
+   "contacted": [],
+   "sent_ad_data": false,
+   "sent_when": [],
+   "flags": {
+    "no_purpose": false,
+    "marketing_without_data_sale": false
+   }
+  },
+  {
+   "id": "px02",
+   "type": "APP",
+   "runtime": "STRICT",
+   "runtime_label": "sandbox (web worker)",
+   "name": null,
+   "app": "app (API client 136563032065)",
+   "purposes": [
+    "analytics",
+    "marketing",
+    "data sale"
+   ],
+   "shopify_own": false,
+   "contacted": [],
+   "sent_ad_data": false,
+   "sent_when": [],
+   "flags": {
+    "no_purpose": false,
+    "marketing_without_data_sale": false
+   }
+  },
+  {
+   "id": "px03",
+   "type": "APP",
+   "runtime": "STRICT",
+   "runtime_label": "sandbox (web worker)",
+   "name": null,
+   "app": "app (API client 309716254721)",
+   "purposes": [
+    "analytics",
+    "marketing",
+    "data sale"
+   ],
+   "shopify_own": false,
+   "contacted": [],
+   "sent_ad_data": false,
+   "sent_when": [],
+   "flags": {
+    "no_purpose": false,
+    "marketing_without_data_sale": false
+   }
+  },
+  {
+   "id": "px04",
+   "type": "APP",
+   "runtime": "STRICT",
+   "runtime_label": "sandbox (web worker)",
+   "name": null,
+   "app": "app (API client 2632399)",
+   "purposes": [],
+   "shopify_own": false,
+   "contacted": [],
+   "sent_ad_data": false,
+   "sent_when": [],
+   "flags": {
+    "no_purpose": true,
+    "marketing_without_data_sale": false
+   }
+  },
+  {
+   "id": "px05",
+   "type": "APP",
+   "runtime": "OPEN",
+   "runtime_label": "main page",
+   "name": null,
+   "app": "Meta (Facebook/Instagram)",
+   "purposes": [
+    "analytics",
+    "marketing",
+    "data sale"
+   ],
+   "shopify_own": false,
+   "contacted": [
+    "Meta (Facebook/Instagram)"
+   ],
+   "sent_ad_data": true,
+   "sent_when": [
+    "default:window",
+    "decline:before"
+   ],
+   "flags": {
+    "no_purpose": false,
+    "marketing_without_data_sale": false
+   }
+  },
+  {
+   "id": "px06",
+   "type": "APP",
+   "runtime": "LAX",
+   "runtime_label": "sandbox (hidden iframe)",
+   "name": null,
+   "app": "app (API client 145825267713)",
+   "purposes": [
+    "analytics"
+   ],
+   "shopify_own": false,
+   "contacted": [],
+   "sent_ad_data": false,
+   "sent_when": [],
+   "flags": {
+    "no_purpose": false,
+    "marketing_without_data_sale": false
+   }
+  },
+  {
+   "id": "px07",
+   "type": "APP",
+   "runtime": "STRICT",
+   "runtime_label": "sandbox (web worker)",
+   "name": null,
+   "app": "app (API client 1461275)",
+   "purposes": [
+    "analytics",
+    "preferences"
+   ],
+   "shopify_own": false,
+   "contacted": [],
+   "sent_ad_data": false,
+   "sent_when": [],
+   "flags": {
+    "no_purpose": false,
+    "marketing_without_data_sale": false
+   }
+  },
+  {
+   "id": "px08",
+   "type": "APP",
+   "runtime": "STRICT",
+   "runtime_label": "sandbox (web worker)",
+   "name": null,
+   "app": "app (API client 2887701)",
+   "purposes": [
+    "analytics",
+    "marketing"
+   ],
+   "shopify_own": false,
+   "contacted": [],
+   "sent_ad_data": false,
+   "sent_when": [],
+   "flags": {
+    "no_purpose": false,
+    "marketing_without_data_sale": true
+   }
+  },
+  {
+   "id": "px09",
+   "type": "CUSTOM",
+   "runtime": "LAX",
+   "runtime_label": "sandbox (hidden iframe)",
+   "name": "gtm_pixel_storea_prod",
+   "app": null,
+   "purposes": [],
+   "shopify_own": false,
+   "contacted": [
+    "Google Tag Manager / gtag loader",
+    "Google Analytics 4 / UA"
+   ],
+   "sent_ad_data": false,
+   "sent_when": [],
+   "flags": {
+    "no_purpose": true,
+    "marketing_without_data_sale": false
+   }
+  },
+  {
+   "id": "px10",
+   "type": "CUSTOM",
+   "runtime": "LAX",
+   "runtime_label": "sandbox (hidden iframe)",
+   "name": "uet_custom_pixel_prod",
+   "app": null,
+   "purposes": [
+    "marketing"
+   ],
+   "shopify_own": false,
+   "contacted": [
+    "Microsoft Advertising UET (Bing)"
+   ],
+   "sent_ad_data": true,
+   "sent_when": [
+    "default:window",
+    "decline:before",
+    "decline:unload",
+    "gpc:window"
+   ],
+   "flags": {
+    "no_purpose": false,
+    "marketing_without_data_sale": true
+   }
+  },
+  {
+   "id": "px11",
+   "type": "CUSTOM",
+   "runtime": "LAX",
+   "runtime_label": "sandbox (hidden iframe)",
+   "name": "PM Conversions",
+   "app": null,
+   "purposes": [],
+   "shopify_own": false,
+   "contacted": [
+    "Google Tag Manager / gtag loader",
+    "Google Ads / DoubleClick / Floodlight"
+   ],
+   "sent_ad_data": true,
+   "sent_when": [
+    "default:window",
+    "decline:before",
+    "decline:next_page",
+    "gpc:window"
+   ],
+   "flags": {
+    "no_purpose": true,
+    "marketing_without_data_sale": false
+   }
+  },
+  {
+   "id": "px12",
+   "type": "CUSTOM",
+   "runtime": "LAX",
+   "runtime_label": "sandbox (hidden iframe)",
+   "name": "Upsellit Pixel",
+   "app": null,
+   "purposes": [
+    "analytics",
+    "marketing"
+   ],
+   "shopify_own": false,
+   "contacted": [],
+   "sent_ad_data": false,
+   "sent_when": [],
+   "flags": {
+    "no_purpose": false,
+    "marketing_without_data_sale": true
+   }
+  },
+  {
+   "id": "px13",
+   "type": "CUSTOM",
+   "runtime": "LAX",
+   "runtime_label": "sandbox (hidden iframe)",
+   "name": "storeaapps_pixel",
+   "app": null,
+   "purposes": [],
+   "shopify_own": false,
+   "contacted": [],
+   "sent_ad_data": false,
+   "sent_when": [],
+   "flags": {
+    "no_purpose": true,
+    "marketing_without_data_sale": false
+   }
+  },
+  {
+   "id": "px14",
+   "type": "CUSTOM",
+   "runtime": "LAX",
+   "runtime_label": "sandbox (hidden iframe)",
+   "name": "bing_ads_storea",
+   "app": null,
+   "purposes": [
+    "analytics",
+    "marketing"
+   ],
+   "shopify_own": false,
+   "contacted": [
+    "Microsoft Advertising UET (Bing)"
+   ],
+   "sent_ad_data": true,
+   "sent_when": [
+    "default:window",
+    "decline:before",
+    "decline:unload",
+    "gpc:window"
+   ],
+   "flags": {
+    "no_purpose": false,
+    "marketing_without_data_sale": true
+   }
+  },
+  {
+   "id": "shopify-app-pixel",
+   "type": "APP",
+   "runtime": "STRICT",
+   "runtime_label": "sandbox (web worker)",
+   "name": "Shopify's own pixel",
+   "app": "app (API client shopify-pixel)",
+   "purposes": [
+    "analytics",
+    "marketing"
+   ],
+   "shopify_own": true,
+   "contacted": [],
+   "sent_ad_data": false,
+   "sent_when": [],
+   "flags": {
+    "no_purpose": false,
+    "marketing_without_data_sale": false
+   }
+  },
+  {
+   "id": "shopify-custom-pixel",
+   "type": "CUSTOM",
+   "runtime": "LAX",
+   "runtime_label": "sandbox (hidden iframe)",
+   "name": "Shopify's own pixel",
+   "app": null,
+   "purposes": [
+    "analytics",
+    "marketing"
+   ],
+   "shopify_own": true,
+   "contacted": [],
+   "sent_ad_data": false,
+   "sent_when": [],
+   "flags": {
+    "no_purpose": false,
+    "marketing_without_data_sale": false
+   }
+  }
+ ],
+ "findings": [
+  {
+   "id": "sent_before_choice",
+   "severity": "high",
+   "title": "3 ad vendors received data before the visitor chose",
+   "text": "Your banner asks visitors to choose, but Google Ads / DoubleClick / Floodlight, Microsoft Advertising UET (Bing), Meta (Facebook/Instagram) sent requests before any choice was made; Google Ads / DoubleClick / Floodlight, Microsoft Advertising UET (Bing) did so from Shopify's pixel sandbox, which your consent app's script blocking cannot reach. Shopify's own setting for this visitor's region was \"allowed until the visitor opts out\", so Shopify let the pixels start.",
+   "fixes": [
+    "region_default",
+    "cpapi_initial"
+   ],
+   "evidence": {
+    "first_ad_request_ms": 865,
+    "banner_visible_ms": 1415
+   }
+  },
+  {
+   "id": "decline_not_stopped",
+   "severity": "high",
+   "title": "Decline did not stop Google Ads / DoubleClick / Floodlight",
+   "text": "On a fresh page after the Decline, Google Ads / DoubleClick / Floodlight started again and sent data. \"PM Conversions\" declares no purpose, so no choice can stop it.",
+   "fixes": [
+    "custom_purposes"
+   ],
+   "evidence": null
+  },
+  {
+   "id": "gpc_not_stopped",
+   "severity": "high",
+   "title": "GPC did not stop Google Ads / DoubleClick / Floodlight, Microsoft Advertising UET (Bing)",
+   "text": "With the browser's Global Privacy Control signal on, Google Ads / DoubleClick / Floodlight, Microsoft Advertising UET (Bing) still sent data. \"PM Conversions\" declares no purpose, so no choice can stop it. \"uet_custom_pixel_prod\" declares marketing but not data sale, and Shopify applies GPC only to pixels that declare data sale. \"bing_ads_storea\" declares analytics + marketing but not data sale, and Shopify applies GPC only to pixels that declare data sale.",
+   "fixes": [
+    "custom_purposes",
+    "custom_data_sale"
+   ],
+   "evidence": null
+  },
+  {
+   "id": "no_purpose",
+   "severity": "high",
+   "title": "4 installed pixels declare no consent purpose",
+   "text": "\"app (API client 2632399)\" (app pixel), \"gtm_pixel_storea_prod\" (custom pixel), \"PM Conversions\" (custom pixel), \"storeaapps_pixel\" (custom pixel) declare no privacy purpose to Shopify, so Shopify starts them regardless of what the visitor chooses; \"PM Conversions\" (custom pixel) sent ad data in this test.",
+   "fixes": [
+    "custom_purposes",
+    "app_purposes"
+   ],
+   "evidence": null
+  },
+  {
+   "id": "race",
+   "severity": "medium",
+   "title": "Pixels started before your consent app said \"no\"",
+   "text": "Your consent app told Shopify \"no\" automatically, but only 1.3 s after the page started; a sandboxed ad pixel had already sent data at 1.0 s. Shopify never stops a pixel that has already started.",
+   "fixes": [
+    "region_default",
+    "cpapi_initial"
+   ],
+   "evidence": {
+    "first_sandboxed_ms": 1021,
+    "first_no_ms": 1334
+   }
+  },
+  {
+   "id": "decline_leftover",
+   "severity": "medium",
+   "title": "Microsoft Advertising UET (Bing) kept sending for a while after the Decline",
+   "text": "Pixels that had already started before the click kept sending on the same page (or as the page unloaded). They stopped on the next page. Pixels that never start before a choice avoid this.",
+   "fixes": [
+    "region_default",
+    "cpapi_initial"
+   ],
+   "evidence": null
+  },
+  {
+   "id": "marketing_not_sale",
+   "severity": "medium",
+   "title": "2 ad pixels declare marketing but not \"data sale\"",
+   "text": "\"uet_custom_pixel_prod\" (custom pixel), \"bing_ads_storea\" (custom pixel) are not treated as a sale or sharing of data, so GPC and \"Do not sell or share\" opt-outs do not stop them.",
+   "fixes": [
+    "custom_data_sale"
+   ],
+   "evidence": null
+  },
+  {
+   "id": "page_url",
+   "severity": "info",
+   "title": "Vendors received the full page address",
+   "text": "Google Ads / DoubleClick / Floodlight, Microsoft Advertising UET (Bing) received the page address including its query string (ConsentCheck's test tag was found in their requests). Shopify passes the full URL to pixels; campaign codes and any personal data in URLs travel with it.",
+   "fixes": [],
+   "evidence": null
+  }
+ ],
+ "fixes": [
+  {
+   "id": "region_default",
+   "title": "Make Shopify's default match your banner",
+   "steps": [
+    "In Shopify admin, go to Settings > Customer privacy and review the cookie banner / consent settings for the regions where your banner asks visitors to choose.",
+    "If visitors there should be asked before tracking, set those regions so that tracking requires consent; Shopify then holds marketing pixels until the visitor accepts.",
+    "Keep only one banner: if you use a third-party consent app, Shopify recommends disabling its own banner."
+   ],
+   "links": [
+    "https://help.shopify.com/en/manual/privacy-and-security/privacy/customer-privacy-settings/privacy-settings"
+   ]
+  },
+  {
+   "id": "cpapi_initial",
+   "title": "Have your consent app report the initial state before pixels start",
+   "steps": [
+    "Ask your consent app vendor whether it reports \"no\" (or \"not yet\") to Shopify as soon as the page starts, for visitors who have not chosen.",
+    "Where it cannot, rely on Shopify's own region setting (next fix) so that pixels wait by default."
+   ],
+   "links": [
+    "https://shopify.dev/docs/api/customer-privacy"
+   ]
+  },
+  {
+   "id": "custom_purposes",
+   "title": "Set a privacy purpose on every custom pixel",
+   "steps": [
+    "In Shopify admin, go to Settings > Customer events and open the Custom pixels tab.",
+    "Open each pixel listed above as declaring no purpose, find Customer privacy > Permission, choose \"Required\" and tick the purposes the pixel serves (Marketing for ad pixels; Analytics for measurement).",
+    "Under Customer privacy > Data sale, keep \"qualifies as data sale\" for advertising pixels (this is the default for new custom pixels), then save."
+   ],
+   "links": [
+    "https://help.shopify.com/en/manual/promoting-marketing/pixels/custom-pixels/manage",
+    "https://help.shopify.com/en/manual/promoting-marketing/pixels/custom-pixels/code"
+   ]
+  },
+  {
+   "id": "custom_data_sale",
+   "title": "Mark ad custom pixels as \"data sale\"",
+   "steps": [
+    "In Settings > Customer events > Custom pixels, open each advertising pixel listed above.",
+    "Under Customer privacy > Data sale, choose the option saying the data collected qualifies as data sale, then save. Shopify then stops the pixel for visitors who opted out, including by GPC."
+   ],
+   "links": [
+    "https://help.shopify.com/en/manual/promoting-marketing/pixels/custom-pixels/code"
+   ]
+  },
+  {
+   "id": "app_purposes",
+   "title": "Ask app developers about purposes (you cannot edit them yourself)",
+   "steps": [
+    "An app pixel's privacy purposes are set by the app developer. Contact the developer of each app pixel listed above and ask it to declare marketing and data sale for advertising data.",
+    "Check whether the app has its own consent settings (for example consent mode or limited data use), and turn them on.",
+    "If an advertising app cannot declare its purposes, consider replacing it with a custom pixel whose purposes you control, or removing it."
+   ],
+   "links": [
+    "https://help.shopify.com/en/manual/promoting-marketing/pixels/app-pixels",
+    "https://shopify.dev/docs/api/web-pixels-api/pixel-privacy"
+   ]
+  },
+  {
+   "id": "no_script_blocking",
+   "title": "Don't rely on script blocking for app and custom pixels",
+   "steps": [
+    "Your consent app's auto-blocking or blocklist only reaches scripts in the main page. App and custom pixels run in Shopify's sandbox (a web worker or hidden iframe) and are controlled only by Shopify's consent state.",
+    "Keep the blocklist for theme scripts, but make sure the Shopify integration and pixel purposes (above) are right, because that is what controls the sandbox."
+   ],
+   "links": [
+    "https://shopify.dev/docs/apps/build/marketing-analytics/pixels"
+   ]
+  }
+ ],
+ "screenshots": null,
+ "limitations": [
+  "One visit per condition from one location. Results depend on where the test runs: Shopify and consent apps behave differently by region. Run it from the regions you care about.",
+  "The test browser is automated and says so (headless Chrome user agent, automation flag on). Some consent apps and pixels behave differently for automated browsers; confirm important results in a normal browser.",
+  "Only one page is loaded; other pages, checkout and logged-in states can differ. Nothing is added to the cart and no form is submitted.",
+  "Vendor recognition uses the study's list of about 70 advertising and analytics endpoints; unknown vendors are not counted.",
+  "Requests are attributed to the sandbox or the main page from browser debugging data; a small share can be misattributed.",
+  "This is a technical check, not legal advice. Whether a given behaviour is lawful depends on your jurisdiction, your notices and your contracts."
+ ],
+ "anonymized": {
+  "label": "Store A",
+  "note": "Store-identifying names, addresses, ids and screenshots replaced or removed by tools/anonymize.js."
+ }
+}

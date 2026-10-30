@@ -1,5 +1,5 @@
 load_id,store_id,arm,cmp,integration_mode,vendor,is_advertising,declared_prechoice,declared_after_decline,detail,vgroup,cfg_sandboxed,cfg_open,outcome
-S0103__A0,S0103,A0,onetrust,C,google_ads,True,blocked,blocked,"OtAutoBlock https://ad.doubleclick.net/ddm/activity/src\x3d4405841 cat=C0004 active=,C0001,",Google,False,False,page
+S0103__A0,S0103,A0,onetrust,C,google_ads,True,blocked,blocked,"OtAutoBlock https://ad.doubleclick.net/ddm/activity/src\x3d<n> cat=C0004 active=,C0001,",Google,False,False,page
 S0103__A0,S0103,A0,onetrust,C,meta,True,blocked,blocked,"OtAutoBlock https://connect.facebook.net/en_US/fbevents.js cat=C0004 active=,C0001,",Meta,False,False,none
 S0125__A0,S0125,A0,pandectes,C,microsoft_uet,True,blocked,blocked,v4 pandectes.blackList[4] bat.bing.com; defaultBlocked=7; isActive=True,Microsoft,False,False,none
 S0125__A0,S0125,A0,pandectes,C,google_ads,True,blocked,blocked,v4 pandectes.blackList[4] googleads.g.doubleclick.net; defaultBlocked=7; isActive=True,Google,True,False,none
@@ -60,7 +60,7 @@ S0370__A0,S0370,A0,pandectes,C,microsoft_uet,True,blocked,blocked,v4 pandectes.b
 S0370__A0,S0370,A0,pandectes,C,snap,True,blocked,blocked,v4 pandectes.blackList[4] sc-static.net; defaultBlocked=7; isActive=True,Snap,True,False,sandbox
 S0370__A0,S0370,A0,pandectes,C,amazon_ads,True,blocked,blocked,v4 pandectes.blackList[4] amazon-adsystem.com; defaultBlocked=7; isActive=True,Reddit/other,True,False,sandbox
 S0370__A0,S0370,A0,pandectes,C,outbrain,True,blocked,blocked,v4 pandectes.blackList[4] outbrain.com; defaultBlocked=7; isActive=True,Reddit/other,False,False,none
-S0519__A0,S0519,A0,onetrust,C,tiktok,True,blocked,blocked,"OtAutoBlock https://www.tiktok.com/embed/v2/6921084909578669317 cat=C0004 active=,C0001,",TikTok,False,False,none
+S0519__A0,S0519,A0,onetrust,C,tiktok,True,blocked,blocked,"OtAutoBlock https://www.tiktok.com/embed/v2/<n> cat=C0004 active=,C0001,",TikTok,False,False,none
 S0519__A0,S0519,A0,onetrust,C,google_ads,True,blocked,blocked,"OtAutoBlock https://cm.g.doubleclick.net/pixel cat=C0004 active=,C0001,",Google,True,False,none
 S0519__A0,S0519,A0,onetrust,C,criteo,True,blocked,blocked,"OtAutoBlock https://sslwidget.criteo.com/event cat=C0004 active=,C0001,",Reddit/other,False,False,none
 S0519__A0,S0519,A0,onetrust,C,pinterest,True,blocked,blocked,"OtAutoBlock https://s.pinimg.com/ct/lib/main.0cb4b510.js cat=C0004 active=,C0001,",Pinterest,False,False,none
@@ -73,7 +73,7 @@ S0589__A0,S0589,A0,onetrust,C,snap,True,blocked,blocked,"OtAutoBlock https://sc-
 S0589__A0,S0589,A0,onetrust,C,tradedesk,True,blocked,blocked,OtAutoBlock https://insight.adsrvr.org/track/pxl/ cat=C0004 active=,Reddit/other,False,False,none
 S0589__A0,S0589,A0,onetrust,C,pinterest,True,blocked,blocked,OtAutoBlock https://ct.pinterest.com/user/ cat=C0004 active=,Pinterest,True,False,sandbox
 S0589__A0,S0589,A0,onetrust,C,tapad,True,blocked,blocked,OtAutoBlock https://pixel.tapad.com/idsync/ex/push/check cat=C0004 active=,Reddit/other,False,False,none
-S0589__A0,S0589,A0,onetrust,C,google_ads,True,blocked,blocked,OtAutoBlock https://www.google.com/pagead/1p-user-list/727142071/ cat=C0004 active=,Google,False,True,sandbox
+S0589__A0,S0589,A0,onetrust,C,google_ads,True,blocked,blocked,OtAutoBlock https://www.google.com/pagead/1p-user-list/<n>/ cat=C0004 active=,Google,False,True,sandbox
 S0589__A0,S0589,A0,onetrust,C,tiktok,True,blocked,blocked,OtAutoBlock https://tiktok.com/ cat=C0002 active=,TikTok,True,False,sandbox
 S0589__A0,S0589,A0,onetrust,C,microsoft_uet,True,blocked,blocked,OtAutoBlock https://bat.bing.com/action/0 cat=C0004 active=,Microsoft,False,False,none
 S0589__A0,S0589,A0,onetrust,C,meta,True,blocked,blocked,OtAutoBlock https://www.facebook.com/tr/ cat=C0004 active=,Meta,False,True,open_pixel
@@ -91,12 +91,12 @@ S1082__A0,S1082,A0,pandectes,C,pinterest,True,blocked,blocked,v5 blocker.scripts
 S1082__A0,S1082,A0,pandectes,C,tiktok,True,blocked,blocked,v5 blocker.scripts[4] analytics.tiktok.com/i18n/pixel; region=USCA; optin_region=True; enabled=True,TikTok,True,False,none
 S1082__A0,S1082,A0,pandectes,C,x_twitter,True,blocked,blocked,v5 blocker.scripts[4] static.ads-twitter.com/uwt.js; region=USCA; optin_region=True; enabled=True,Reddit/other,False,False,none
 S1193__A0,S1193,A0,onetrust,C,tradedesk,True,blocked,blocked,"OtAutoBlock https://match.adsrvr.org/track/cmf/generic cat=C0004 active=,C0001,",Reddit/other,False,False,none
-S1193__A0,S1193,A0,onetrust,C,microsoft_uet,True,blocked,blocked,"OtAutoBlock https://bat.bing.com/p/action/343154803.js cat=C0003 active=,C0001,",Microsoft,True,False,sandbox
+S1193__A0,S1193,A0,onetrust,C,microsoft_uet,True,blocked,blocked,"OtAutoBlock https://bat.bing.com/p/action/<n>.js cat=C0003 active=,C0001,",Microsoft,True,False,sandbox
 S1193__A0,S1193,A0,onetrust,C,linkedin,True,blocked,blocked,"OtAutoBlock https://px.ads.linkedin.com/db_sync cat=C0004 active=,C0001,",Reddit/other,False,False,none
-S1193__A0,S1193,A0,onetrust,C,liveramp,True,blocked,blocked,"OtAutoBlock https://ei.rlcdn.com/448046.gif cat=C0004 active=,C0001,",Reddit/other,False,False,none
+S1193__A0,S1193,A0,onetrust,C,liveramp,True,blocked,blocked,"OtAutoBlock https://ei.rlcdn.com/<n>.gif cat=C0004 active=,C0001,",Reddit/other,False,False,none
 S1193__A0,S1193,A0,onetrust,C,liveintent,True,blocked,blocked,"OtAutoBlock https://i.liadm.com/sync-container cat=C0004 active=,C0001,",Reddit/other,False,False,none
 S1193__A0,S1193,A0,onetrust,C,pinterest,True,blocked,blocked,"OtAutoBlock https://ct.pinterest.com/v3/ cat=C0004 active=,C0001,",Pinterest,False,False,none
-S1193__A0,S1193,A0,onetrust,C,yahoo,True,blocked,blocked,"OtAutoBlock https://ups.analytics.yahoo.com/ups/58726/cms cat=C0004 active=,C0001,",Reddit/other,False,False,none
+S1193__A0,S1193,A0,onetrust,C,yahoo,True,blocked,blocked,"OtAutoBlock https://ups.analytics.yahoo.com/ups/<n>/cms cat=C0004 active=,C0001,",Reddit/other,False,False,none
 S1193__A0,S1193,A0,onetrust,C,tapad,True,blocked,blocked,"OtAutoBlock https://pixel.tapad.com/idsync/ex/receive cat=C0004 active=,C0001,",Reddit/other,False,False,none
 S1193__A0,S1193,A0,onetrust,C,simplifi,True,blocked,blocked,"OtAutoBlock https://tag.simpli.fi/sifitag/79f920bf-dd85-4823-92e6-9027f1 cat=C0004 active=,C0001,",Reddit/other,False,False,none
 S1193__A0,S1193,A0,onetrust,C,outbrain,True,blocked,blocked,"OtAutoBlock https://b1sync.outbrain.com/usersync/disqus cat=C0004 active=,C0001,",Reddit/other,False,False,none

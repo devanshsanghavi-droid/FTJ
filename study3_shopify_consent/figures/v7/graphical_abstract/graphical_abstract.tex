@@ -1,0 +1,17 @@
+% graphical_abstract.tex -- Elsevier graphical abstract (optional), 130 x 50 mm landscape, vector, Arial, white.
+% Spec: ../FIGURE_PLAN_v2.md section 5; Elsevier sizing in notes/venue.md (>= 531 x 1328 px h x w, legible at
+% 5 x 13 cm on a 96 dpi screen, PDF accepted, no generative AI). Build: ./build.sh (numbers -> panels -> this file).
+% Left half: the pipeline (panels/ga_pipeline.pdf); right half: three stat tiles (panels/ga_tiles.pdf). A graphical
+% abstract is one picture, so there are no panel letters. 6 mm gutter between the halves, as in the main figures.
+\documentclass[tikz,border=0pt]{standalone}
+\def\StyleDir{../style/}
+\input{\StyleDir tikzstyle_v2.tex}
+\input{ga_style.tex}
+\begin{document}
+\begin{tikzpicture}
+  \FigureCanvas[130]{50}
+  %        x   y   w    h    file
+  \GAPanel{0} {0} {62} {50} {panels/ga_pipeline.pdf}
+  \GAPanel{68}{0} {62} {50} {panels/ga_tiles.pdf}
+\end{tikzpicture}
+\end{document}

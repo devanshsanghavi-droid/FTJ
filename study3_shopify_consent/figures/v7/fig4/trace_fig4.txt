@@ -1,0 +1,7 @@
+fig4_numbers.csv: 31 registered numbers (31 drawn-only marks), 0 stale
+caption_fig4_numbers.csv: 49 registered numbers (0 drawn-only marks), 0 stale
+panel fig4a_primary.pdf: 5 numeric tokens, 0 untraced
+panel fig4b_like_for_like.pdf: 9 numeric tokens, 0 untraced
+caption_fig4.tex: 34 numeric tokens, 0 untraced
+alt_text_fig4.txt: 15 numeric tokens, 0 untraced
+RESULT: PASS

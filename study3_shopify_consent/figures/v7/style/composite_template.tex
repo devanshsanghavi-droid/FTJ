@@ -1,0 +1,35 @@
+% composite_template.tex -- copy this file to assemble a v6 figure (main or supplementary) from vector panel PDFs.
+%
+% How it works
+%  * The page is exactly \figWidth mm (190) wide and H mm high (H <= \figMaxHeight = 230): \FigureCanvas{H}.
+%  * Each panel is a vector PDF drawn at its FINAL cell size (matplotlib: figstyle.panel(w, h) + save_panel;
+%    TikZ: standalone + \PanelCanvas{w}{h}). \Panel places it with its top-left at (x, y) mm from the page's top-left
+%    and stops the build if the PDF is not exactly w x h mm (never rescale) or falls outside the canvas.
+%  * \Panel draws the 8.5 pt bold LOWERCASE letter at the cell's top-left corner, so every letter in a row shares one
+%    baseline and every letter in a column shares one x. Panels must leave their top-left 4.5 x 4.5 mm empty
+%    (figstyle.save_panel checks this). v6 RESTRAINT rule 2: NO panel titles -- \Panel[...] still accepts the optional
+%    title argument (older composites compile) but never draws it, and warns.
+%  * Grid: 6 mm gutters, no outer margin. Cells come from the layout tables of FIGURE_PLAN_v2.md.
+%  * A missing panel file draws a labelled placeholder, so a layout can be tried before its panels exist;
+%    qa_check.py fails any figure that still shows one. \FigGridtrue outlines cells and letter zones (also failed by QA).
+%  * Fonts: Arial via fontspec (TeX Gyre Heros if Arial is absent), the same face matplotlib embeds.
+%
+% Build and check (from the directory holding this file; paths below are relative to it):
+%   <study>/../tools/texenv/bin/tectonic --chatter minimal fig1.tex
+%   python3 <study>/figures/v7/style/qa_check.py fig1.pdf        # renders 300 dpi PNG, checks size/fonts/palette, prints checklist
+%
+% The example below is Figure 1's grid from FIGURE_PLAN_v2.md (190 x 150 mm); its panel files do not exist yet, so it
+% compiles to placeholders.
+\documentclass[tikz,border=0pt]{standalone}
+\def\StyleDir{./}                 % path from THIS file to figures/v7/style/ (trailing slash); e.g. ../style/
+\input{\StyleDir tikzstyle_v2.tex}
+% \FigGridtrue                    % layout aid only; never in a delivered figure
+\begin{document}
+\begin{tikzpicture}
+  \FigureCanvas{150}                                           % 190 x 150 mm
+  %      (no title) letter x   y    w     h    file
+  \Panel         {a}     {0}  {0}  {190} {78} {panels/fig1a_pipeline.pdf}
+  \Panel         {b}     {0}  {84} {62}  {66} {panels/fig1b_prechoice.pdf}
+  \Panel         {c}     {68} {84} {122} {66} {panels/fig1c_timeline.pdf}
+\end{tikzpicture}
+\end{document}

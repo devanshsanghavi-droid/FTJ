@@ -1,0 +1,3 @@
+sciplot palette check [fig3.pdf]: categorical hues drawn ['#c65358', '#5d769d'] (of 9 colours; OKLCH chroma > 0.04)
+  #c65358 vs #5d769d: dE2000 normal 35.4, deutan 35.8, protan 26.4, tritan 49.4  -> pass (>= 10 pass, 6-10 warn)
+RESULT: PASS

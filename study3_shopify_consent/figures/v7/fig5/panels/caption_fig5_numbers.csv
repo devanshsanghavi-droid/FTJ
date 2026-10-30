@@ -1,0 +1,85 @@
+text,shown,source,key,fmt,value
+231,231,stats,fig5/a/n_clicked,int,231
+10,10,stats,design/equal_window_s,int,10
+106,106,stats,fig5/a/Any vendor/Default/k,int,106
+231,231,stats,fig5/a/Any vendor/Default/n,int,231
+45.9,45.9,stats,fig5/a/Any vendor/Default/p,pct1,0.4588744588744589
+39.6,39.6,stats,fig5/a/Any vendor/Default/lo,pct1,0.39581175548243125
+52.3,52.3,stats,fig5/a/Any vendor/Default/hi,pct1,0.5232825982551521
+53,53,stats,fig5/a/Any vendor/Decline/k,int,53
+231,231,stats,fig5/a/Any vendor/Decline/n,int,231
+22.9,22.9,stats,fig5/a/Any vendor/Decline/p,pct1,0.22943722943722944
+18.0,18.0,stats,fig5/a/Any vendor/Decline/lo,pct1,0.17990418358994265
+28.8,28.8,stats,fig5/a/Any vendor/Decline/hi,pct1,0.28782182784152677
+41,41,stats,fig5/a/Any vendor/GPC/k,int,41
+231,231,stats,fig5/a/Any vendor/GPC/n,int,231
+17.7,17.7,stats,fig5/a/Any vendor/GPC/p,pct1,0.1774891774891775
+13.4,13.4,stats,fig5/a/Any vendor/GPC/lo,pct1,0.13361356409420147
+23.2,23.2,stats,fig5/a/Any vendor/GPC/hi,pct1,0.23191584153211006
+22.9,22.9,stats,fig5/compare/default_vs_decline/paired_diff/diff,pct1,0.22943722943722944
+17.4,17.4,stats,fig5/compare/default_vs_decline/paired_diff/diff_lo,pct1,0.17377503925309074
+28.3,28.3,stats,fig5/compare/default_vs_decline/paired_diff/diff_hi,pct1,0.28316750011310754
+28.1,28.1,stats,fig5/compare/default_vs_gpc/paired_diff/diff,pct1,0.2813852813852814
+22.2,22.2,stats,fig5/compare/default_vs_gpc/paired_diff/diff_lo,pct1,0.22176670929682477
+33.9,33.9,stats,fig5/compare/default_vs_gpc/paired_diff/diff_hi,pct1,0.33871450829302596
+5.2,5.2,stats,fig5/compare/equal_window/paired_diff/diff,pct1,0.05194805194805194
+0.2,0.2,stats,fig5/compare/equal_window/paired_diff/diff_lo,pct1,0.0019832008130858184
+10.3,10.3,stats,fig5/compare/equal_window/paired_diff/diff_hi,pct1,0.10254366003814022
+23,23,stats,fig5/compare/equal_window/a_only,int,23
+11,11,stats,fig5/compare/equal_window/b_only,int,11
+0.058,0.058,stats,fig5/compare/equal_window/p_exact,f3,0.05761267291381955
+0,0,derived,fig5b_exclusive_classes/decline_refused/new_pixel_declaring_refused_purpose,int,0
+196,196,stats,fig5/c/decline_n,int,196
+0,0,stats,fig5/c/gate_audit/gpc_sale_pixels/k,int,0
+"7,458","7,458",stats,fig5/c/gate_audit/gpc_sale_pixels/n,int,7458
+0,0,stats,fig5/c/gate_audit/gpc_sale_pixels/loads_with_start/k,int,0
+"1,264","1,264",stats,fig5/c/gate_audit/gpc_sale_pixels/loads_with_start/n,int,1264
+0,0,derived,fig5b_exclusive_classes/gpc/pixel_declaring_sale,int,0
+"2,206","2,206",stats,fig5/c/gate_audit/default_denied_mkt_pixels/k,int,2206
+"2,234","2,234",stats,fig5/c/gate_audit/default_denied_mkt_pixels/n,int,2234
+98.7,98.7,stats,fig5/c/gate_audit/default_denied_mkt_pixels/p,pct1,0.9874664279319606
+28,28,stats,fig5/c/gate_audit/default_denied_mkt_pixels/started,int,28
+64,64,stats,fig5/b/Shopify recorded a refusal/decline_any_after/k,int,64
+196,196,stats,fig5/b/Shopify recorded a refusal/decline_any_after/n,int,196
+32.7,32.7,stats,fig5/b/Shopify recorded a refusal/decline_any_after/p,pct1,0.32653061224489793
+26.5,26.5,stats,fig5/b/Shopify recorded a refusal/decline_any_after/lo,pct1,0.2647627922798265
+39.5,39.5,stats,fig5/b/Shopify recorded a refusal/decline_any_after/hi,pct1,0.3949674739989471
+279,279,stats,fig5/c/composition/gpc/any/k,int,279
+"1,354","1,354",stats,fig5/c/composition/gpc/any/n,int,1354
+20.6,20.6,stats,fig5/c/composition/gpc/any/p,pct1,0.20605612998522896
+18.5,18.5,stats,fig5/c/composition/gpc/any/lo,pct1,0.18535814994275424
+22.8,22.8,stats,fig5/c/composition/gpc/any/hi,pct1,0.22841729873458128
+32,32,derived,fig5b_exclusive_classes/decline_refused/kept_sending_refused_purpose,int,32
+11,11,derived,fig5b_exclusive_classes/decline_refused/only_left_allowed_purposes,int,11
+111,111,derived,fig5b_exclusive_classes/gpc/only_left_allowed_purposes,int,111
+21,21,derived,fig5b_exclusive_classes/decline_refused/no_purpose,int,21
+167,167,derived,fig5b_exclusive_classes/gpc/no_purpose,int,167
+1,1,derived,fig5b_exclusive_classes/gpc/other_unmatched,int,1
+196,196,stats,fig5/c/decline_n,int,196
+"1,354","1,354",stats,fig5/c/gpc_n,int,1354
+146,146,stats,fig5/d/deny/loads,int,146
+99,99,stats,fig5/d/deny/stores,int,99
+35,35,stats,fig5/d/grant/loads,int,35
+23,23,stats,fig5/d/grant/stores,int,23
+535,535,stats,fig5/d/deny/pixels,int,535
+525,525,stats,fig5/d/deny/pixels_before,int,525
+-653,−653,derived,fig5c_race_per_sandbox/deny/median_lag_ms,int,-653.0
+10,10,stats,fig5/d/deny/pixels_after,int,10
+342,342,stats,fig5/d/grant/pixels,int,342
+14,14,derived,fig5c_race_per_sandbox/grant/median_lag_ms,int,14.0
+231,231,stats,fig5/a/n_clicked,int,231
+46,46,stats,fig5/a/Any vendor/Default/p,pct0,0.4588744588744589
+23,23,stats,fig5/a/Any vendor/Decline/p,pct0,0.22943722943722944
+18,18,stats,fig5/a/Any vendor/GPC/p,pct0,0.1774891774891775
+0,0,derived,fig5b_exclusive_classes/decline_refused/new_pixel_declaring_refused_purpose,int,0
+196,196,stats,fig5/c/decline_n,int,196
+0,0,stats,fig5/c/gate_audit/gpc_sale_pixels/k,int,0
+"7,458","7,458",stats,fig5/c/gate_audit/gpc_sale_pixels/n,int,7458
+"2,206","2,206",stats,fig5/c/gate_audit/default_denied_mkt_pixels/k,int,2206
+"2,234","2,234",stats,fig5/c/gate_audit/default_denied_mkt_pixels/n,int,2234
+33,33,stats,fig5/b/Shopify recorded a refusal/decline_any_after/p,pct0,0.32653061224489793
+21,21,stats,fig5/c/composition/gpc/any/p,pct0,0.20605612998522896
+32,32,derived,fig5b_exclusive_classes/decline_refused/kept_sending_refused_purpose,int,32
+525,525,stats,fig5/d/deny/pixels_before,int,525
+535,535,stats,fig5/d/deny/pixels,int,535
+342,342,stats,fig5/d/grant/pixels,int,342

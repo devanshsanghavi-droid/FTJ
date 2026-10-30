@@ -1,0 +1,1571 @@
+{
+ "_meta": {
+  "description": "Build cmp_signatures.json for the Study 3 crawler.",
+  "built": "2026-09-26 by build_cmp_signatures.py",
+  "evidence_levels": {
+   "code": "seen in downloaded vendor JS or live storefront HTML",
+   "study2": "observed in Study 2 captures",
+   "docs": "documentation",
+   "unverified": "not verified here; confirm in the manual audit"
+  },
+  "integration_modes": {
+   "N": "Shopify native banner (writes CPAPI)",
+   "A": "CPAPI only (setTrackingConsent on choice; no main-thread blocker)",
+   "B": "main-thread script blocker only (never writes CPAPI; cannot gate sandboxed web pixels)",
+   "C": "CPAPI + main-thread blocker",
+   "X": "unknown"
+  },
+  "generic_reject": {
+   "text_regex": "^\\s*(reject( all)?( cookies| optional cookies)?|decline( all)?( optional( cookies)?)?|deny( all)?( non[- ]essential)?|refuse( all)?|disagree|i decline|no,? thanks|(strictly )?necessary( cookies)? only|use (only )?(strictly )?necessary( cookies)?( only)?|only (necessary|essential|required)( cookies)?|required only|continue without (accepting|agreeing))\\s*$",
+   "never_click_regex": "accept|agree|allow|consent|got it|^ok(ay)?$|continue$|save|confirm|preferences|manage|settings|customi[sz]e|do not sell|opt[- ]?out|close|x$|\u00d7",
+   "procedure": [
+    "wait until a known CMP container or the generic banner detector is visible (<=10 s)",
+    "search visible buttons/links (piercing open shadow roots) inside the container; take the first whose trimmed text fully matches text_regex, else a CMP-specific selector",
+    "never click an element whose text matches never_click_regex; never follow \"Do Not Sell/Share\" links or submit forms",
+    "if no reject-type control exists, record reject_available=false and do not click anything",
+    "screenshot before/after; record click time, selector/text used, and Shopify.customerPrivacy.currentVisitorConsent() 1 s and 5 s after the click"
+   ]
+  },
+  "per_store_integration_test": {
+   "definition": "A store is CPAPI-integrated (observed) if, after the Decline click, Shopify.customerPrivacy.currentVisitorConsent().marketing becomes \"no\" (or a visitorConsentCollected event with marketingAllowed=false fires) within 5 s; otherwise the CMP is script-blocking-only on that store (observed mode B) even if the product supports CPAPI.",
+   "also_record": [
+    "_tracking_consent cookie present/changed (value not stored)",
+    "Shopify.customerPrivacy.shouldShowBanner()",
+    "Server-Timing _cmp of the navigation response"
+   ]
+  },
+  "shopify_consent_readout": {
+   "js_methods": [
+    "getRegion()",
+    "shouldShowBanner()",
+    "saleOfDataRegion()",
+    "analyticsProcessingAllowed()",
+    "marketingAllowed()",
+    "preferencesProcessingAllowed()",
+    "saleOfDataAllowed()",
+    "currentVisitorConsent()",
+    "getTrackingConsent()",
+    "consentId()"
+   ],
+   "js_methods_source": "exports of /cdn/shopifycloud/consent-tracking-api/v0.1/consent-tracking-api.js (static_mechanism/consent_tracking_api.pretty.js); also deprecated aliases userCanBeTracked, userDataCanBeSold, firstPartyMarketingAllowed, thirdPartyMarketingAllowed, setCCPAConsent, getCCPAConsent",
+   "event": "document \"visitorConsentCollected\" CustomEvent, detail {analyticsAllowed, marketingAllowed, preferencesAllowed, saleOfDataAllowed}",
+   "server_timing": {
+    "header": "Server-Timing: _cmp;desc=\"3<choices>.<purposes>_<region>_<display_banner t|f>_<sale_of_data_region t|f>_<consent id>\"",
+    "decode": "choices: lower-case letter = declined, upper-case = accepted, absent = no choice; purposes: upper-case letter present = processing allowed (A analytics, M marketing, P preferences, S sale of data)",
+    "examples": {
+     "3.AMPS_USCA_f_f_...": "no choice; all allowed (opt-out mode); no banner required",
+     "3.ampS_USCA_t_t_...": "no choice; analytics/marketing/preferences NOT allowed until consent (opt-in mode); banner required",
+     "3s.AMP_USCA_f_t_...": "Sec-GPC: 1 sent -> sale_of_data declined, S removed"
+    },
+    "decoder": "static_mechanism/probe_cmp_headers.py: decode_cmp()"
+   },
+   "web_pixels_config": "inline <script> calling wpmLoader({... webPixelsConfigList: [...] ...}); parse the JSON array between \"webPixelsConfigList:\" and \", isMerchantRequest\" (fields id, type APP|CUSTOM, runtimeContext STRICT|LAX|OPEN, apiClientId, privacyPurposes, configuration)",
+   "edge_cache_flags": [
+    "window.Nostra or /_nostra/ scripts",
+    "response header cf-cache-status: HIT with large age",
+    "_cmp region differs from the vantage region -> consent header cached from another visitor"
+   ]
+  }
+ },
+ "cmps": {
+  "shopify_native": {
+   "name": "Shopify cookie banner (Customer Privacy app / Settings > Customer privacy)",
+   "integration_mode": "N",
+   "mode_evidence": "code+docs",
+   "detect": {
+    "script_url_regex": [
+     "/cdn/shopifycloud/privacy-banner/storefront-banner\\.js"
+    ],
+    "globals": [],
+    "dom_selectors": [
+     "#shopify-pc__banner",
+     ".shopify-pc__banner__dialog",
+     "#shopify-pc__prefs"
+    ],
+    "cookies": [
+     "_tracking_consent"
+    ],
+    "evidence": "code (storefront-banner.js element ids) + study2 (selector matched 51 loads)"
+   },
+   "reject": {
+    "selectors": [
+     "#shopify-pc__banner__btn-decline",
+     "#shopify-pc__prefs__header-decline"
+    ],
+    "text_regex": "^\\s*(reject( all)?( cookies| optional cookies)?|decline( all)?( optional( cookies)?)?|deny( all)?( non[- ]essential)?|refuse( all)?|disagree|i decline|no,? thanks|(strictly )?necessary( cookies)? only|use (only )?(strictly )?necessary( cookies)?( only)?|only (necessary|essential|required)( cookies)?|required only|continue without (accepting|agreeing))\\s*$",
+    "observed_texts_study2": {
+     "Decline": 20,
+     "No Thanks": 1,
+     "DECLINE": 1
+    },
+    "evidence": "code"
+   },
+   "declared_config": {
+    "available": false,
+    "how": "No blocklist. What Shopify will allow is readable from Shopify.customerPrivacy (shouldShowBanner(), marketingAllowed() ...) and from the Server-Timing `_cmp` consent string (see _meta.shopify_consent_readout)."
+   },
+   "cpapi": {
+    "calls_setTrackingConsent": true,
+    "when": "on visitor choice",
+    "evidence": "code: 10 occurrences in storefront-banner.js"
+   },
+   "script_blocker": {
+    "present": false
+   },
+   "notes": "Region behaviour is set in Shopify admin; Shopify documents automated settings for EEA/UK/CH and \"all processing allowed by default\" elsewhere (https://shopify.dev/docs/api/customer-privacy).",
+   "code_scan": [
+    {
+     "url": "https://www.dominique.com/cdn/shopifycloud/privacy-banner/storefront-banner.js",
+     "bytes": 100269,
+     "setTrackingConsent": 10,
+     "customerPrivacy": 16,
+     "visitorConsentCollected": 1,
+     "globalPrivacyControl": 4,
+     "MutationObserver": 0,
+     "type_text_plain": 0,
+     "createElement_override": 0,
+     "blocklist_keys": 0
+    }
+   ],
+   "study2_default_loads": 0,
+   "study2_default_loads_with_window_Shopify": 0
+  },
+  "pandectes": {
+   "name": "Pandectes GDPR Compliance",
+   "integration_mode": "C",
+   "mode_evidence": "code+docs",
+   "detect": {
+    "script_url_regex": [
+     "cdn\\.shopify\\.com/extensions/[0-9a-f-]+/gdpr-cookie-consent-\\d+/assets/pandectes-(core|rules)(-latest)?\\.js",
+     "/cdn/shop/(files|t/\\d+/assets)/pandectes-(rules|consent)\\.js"
+    ],
+    "globals": [
+     "PandectesSettings",
+     "PandectesRulesSettings",
+     "Pandectes",
+     "pandectesBannerSettings"
+    ],
+    "dom_selectors": [
+     "pandectes-cmp",
+     "#pandectes-banner",
+     ".pd-cookie-banner-window",
+     "[id^=\"pandectes-\"]"
+    ],
+    "cookies": [
+     "_pandectes_gdpr"
+    ],
+    "shadow_dom": "open (attachShadow mode \"open\" in pandectes-core-latest.js; Playwright CSS pierces it)",
+    "evidence": "code + study2 (38 loads)"
+   },
+   "reject": {
+    "selectors": [],
+    "text_regex": "^\\s*(reject( all)?( cookies| optional cookies)?|decline( all)?( optional( cookies)?)?|deny( all)?( non[- ]essential)?|refuse( all)?|disagree|i decline|no,? thanks|(strictly )?necessary( cookies)? only|use (only )?(strictly )?necessary( cookies)?( only)?|only (necessary|essential|required)( cookies)?|required only|continue without (accepting|agreeing))\\s*$",
+    "observed_texts_study2": {
+     "DECLINE": 21,
+     "Decline": 2
+    },
+    "notes": "Button classes are generated; click by text inside the Pandectes container/shadow root. Internal action name is \"deny\" (code).",
+    "evidence": "study2+code"
+   },
+   "declared_config": {
+    "available": true,
+    "how": "Inline JSON in page HTML: window.PandectesRulesSettings and PandectesSettings (json.JSONDecoder().raw_decode after \"PandectesSettings = \").",
+    "paths": {
+     "blocker_active": "PandectesSettings.blocker.isActive",
+     "default_blocked_bitmask": "PandectesSettings.blocker.defaultBlocked (or PandectesRulesSettings.banner.cookiesBlockedByDefault)",
+     "script_blocklist": "PandectesSettings.blocker.patterns.blackList[<category bit>] -> list of URL substrings (\"|\" = alternatives)",
+     "iframe_blocklist": "PandectesSettings.blocker.patterns.iframesBlackList",
+     "beacon_blocklist": "PandectesSettings.blocker.patterns.beaconsBlackList",
+     "gpc_honoured_by_cmp": "PandectesSettings.blocker.gpcIsActive",
+     "banner_geo": "PandectesSettings.geolocation (*Only flags, globalVisibility)"
+    },
+    "category_bits": {
+     "1": "functionality/preferences",
+     "2": "performance/analytics",
+     "4": "targeting/marketing",
+     "8": "unclassified (inferred; verify)"
+    },
+    "category_evidence": "Store C config: googleConsentMode.adStorageCategory=4, analyticsStorageCategory=2, functionality/personalizationStorageCategory=1 (static_mechanism/store_c_pandectes_settings.json)",
+    "declared_blocked_rule": "vendor URL matches a blackList[c] pattern AND (defaultBlocked & c) != 0 -> declared blocked before choice; after Decline all non-essential categories are declared blocked",
+    "example": "c005.store.example: isActive=true, defaultBlocked=7, gpcIsActive=false, globalVisibility=true, blackList[\"4\"] includes analytics.tiktok.com/i18n/pixel and connect.facebook.net"
+   },
+   "cpapi": {
+    "calls_setTrackingConsent": true,
+    "when": "on visitor choice; can also read Shopify saleOfDataAllowed() when its Shopify consent option is on",
+    "evidence": "code: wrapper around Shopify.customerPrivacy.setTrackingConsent in pandectes-core-latest.js",
+    "docs": [
+     "https://help.pandectes.io/en/article/shopify-customer-privacy-api-1vv23qb/ (\"When no country is selected, all Shopify cookies ... will fire before consent\")"
+    ]
+   },
+   "script_blocker": {
+    "present": true,
+    "mechanism": "pandectes-rules: MutationObserver + patched document.createElement, appendChild/insertBefore/replaceChild and XMLHttpRequest.send on the main thread; runs only while consent != all-allowed",
+    "reaches_web_workers": false,
+    "evidence": "code (no Worker/importScripts hooks)"
+   },
+   "code_scan": [
+    {
+     "url": "https://cdn.shopify.com/extensions/01a0d309-5aa0-76cf-9f48-2a42b2760403/gdpr-cookie-consent-411/assets/pandectes-core-latest.js",
+     "bytes": 151654,
+     "setTrackingConsent": 5,
+     "customerPrivacy": 14,
+     "visitorConsentCollected": 0,
+     "globalPrivacyControl": 1,
+     "MutationObserver": 1,
+     "type_text_plain": 0,
+     "createElement_override": 0,
+     "blocklist_keys": 0
+    },
+    {
+     "url": "https://cdn.shopify.com/extensions/01a0d309-5aa0-76cf-9f48-2a42b2760403/gdpr-cookie-consent-411/assets/pandectes-rules-latest.js",
+     "bytes": 24913,
+     "setTrackingConsent": 0,
+     "customerPrivacy": 0,
+     "visitorConsentCollected": 0,
+     "globalPrivacyControl": 2,
+     "MutationObserver": 6,
+     "type_text_plain": 0,
+     "createElement_override": 0,
+     "blocklist_keys": 0
+    }
+   ],
+   "study2_default_loads": 38,
+   "study2_default_loads_with_window_Shopify": 38
+  },
+  "consentmo": {
+   "name": "Consentmo GDPR/CCPA compliance (formerly isenselabs)",
+   "integration_mode": "A",
+   "mode_evidence": "code+docs (blocking delegated to Shopify)",
+   "detect": {
+    "script_url_regex": [
+     "cdn\\.shopify\\.com/extensions/[0-9a-f-]+/gdpr-backpack-\\d+/assets/(consentmo_cookie_consent|\\d+\\.consentmo|layout-[a-z-]+\\.consentmo)\\.js",
+     "gdprcdn\\.b-cdn\\.net/js/(gdpr_cookie_consent\\.min|\\d+\\.consentmo)\\.js",
+     "(^|//)(app|workers)\\.consentmo\\.com/"
+    ],
+    "globals": [
+     "isenseGDPR",
+     "isConsentmoCMPRegistered",
+     "iSenseAppSettings"
+    ],
+    "dom_selectors": [
+     "csm-cookie-consent",
+     ".csm-cmp-root",
+     "#cookie-bar",
+     ".isense-cc-window",
+     "#gdpr-blocking-page-overlay"
+    ],
+    "cookies": [
+     "cookieconsent_status",
+     "cookieconsent_preferences_disabled"
+    ],
+    "shadow_dom": "open",
+    "evidence": "code + study2 (19 loads; note #cookie-bar is generic and can false-positive)"
+   },
+   "reject": {
+    "selectors": [],
+    "text_regex": "^\\s*(reject( all)?( cookies| optional cookies)?|decline( all)?( optional( cookies)?)?|deny( all)?( non[- ]essential)?|refuse( all)?|disagree|i decline|no,? thanks|(strictly )?necessary( cookies)? only|use (only )?(strictly )?necessary( cookies)?( only)?|only (necessary|essential|required)( cookies)?|required only|continue without (accepting|agreeing))\\s*$",
+    "observed_texts_study2": {
+     "NO, THANKS": 1,
+     "NO THANKS": 1,
+     "Decline": 1
+    },
+    "evidence": "study2+code (actions \"deny\"/\"decline\")"
+   },
+   "declared_config": {
+    "available": false,
+    "how": "Per-store settings are fetched from Consentmo servers, not inline; categories in code: strict, analytics, marketing, functionality, sale_of_data. Declared-blocked = category not granted."
+   },
+   "cpapi": {
+    "calls_setTrackingConsent": true,
+    "when": "on visitor choice",
+    "evidence": "code: 4 occurrences in consentmo_cookie_consent.js",
+    "docs": [
+     "https://support.consentmo.com/en/article/shopify-customer-privacy-api-integration-1284c47/ (automatic since 2024-12-12)"
+    ]
+   },
+   "script_blocker": {
+    "present": "not found",
+    "mechanism": "no script type-rewriting or createElement patch found; docs say blocking is done by Shopify",
+    "evidence": "code (text/plain 0, createElement override 0)"
+   },
+   "code_scan": [
+    {
+     "url": "https://cdn.shopify.com/extensions/01a0d7a2-a36b-73ee-b8cb-ead3ca4862c3/gdpr-backpack-896/assets/consentmo_cookie_consent.js",
+     "bytes": 133443,
+     "setTrackingConsent": 4,
+     "customerPrivacy": 3,
+     "visitorConsentCollected": 0,
+     "globalPrivacyControl": 1,
+     "MutationObserver": 4,
+     "type_text_plain": 0,
+     "createElement_override": 0,
+     "blocklist_keys": 0
+    },
+    {
+     "url": "https://cdn.shopify.com/extensions/01a0d7a2-a36b-73ee-b8cb-ead3ca4862c3/gdpr-backpack-896/assets/63.consentmo.js",
+     "bytes": 3727,
+     "setTrackingConsent": 0,
+     "customerPrivacy": 0,
+     "visitorConsentCollected": 0,
+     "globalPrivacyControl": 0,
+     "MutationObserver": 0,
+     "type_text_plain": 0,
+     "createElement_override": 0,
+     "blocklist_keys": 0
+    },
+    {
+     "url": "https://gdprcdn.b-cdn.net/js/gdpr_cookie_consent.min.js",
+     "bytes": 133443,
+     "setTrackingConsent": 4,
+     "customerPrivacy": 3,
+     "visitorConsentCollected": 0,
+     "globalPrivacyControl": 1,
+     "MutationObserver": 4,
+     "type_text_plain": 0,
+     "createElement_override": 0,
+     "blocklist_keys": 0
+    }
+   ],
+   "study2_default_loads": 19,
+   "study2_default_loads_with_window_Shopify": 14
+  },
+  "cookiebot": {
+   "name": "Cookiebot (Usercentrics)",
+   "integration_mode": "C",
+   "mode_evidence": "docs (Shopify app sync) + code (auto-blocker); manual theme install = B",
+   "detect": {
+    "script_url_regex": [
+     "consent\\.cookiebot\\.(com|eu)/uc\\.js",
+     "consent\\.cookiebot\\.(com|eu)/[0-9a-f-]{36}/cc\\.js",
+     "consentcdn\\.cookiebot\\.(com|eu)/consentconfig/"
+    ],
+    "globals": [
+     "Cookiebot",
+     "CookieConsent"
+    ],
+    "dom_selectors": [
+     "#CybotCookiebotDialog"
+    ],
+    "cookies": [
+     "CookieConsent"
+    ],
+    "evidence": "code + study2 (12 loads)"
+   },
+   "reject": {
+    "selectors": [
+     "#CybotCookiebotDialogBodyButtonDecline",
+     "#CybotCookiebotDialogBodyLevelButtonLevelOptinDeclineAll"
+    ],
+    "text_regex": "^\\s*(reject( all)?( cookies| optional cookies)?|decline( all)?( optional( cookies)?)?|deny( all)?( non[- ]essential)?|refuse( all)?|disagree|i decline|no,? thanks|(strictly )?necessary( cookies)? only|use (only )?(strictly )?necessary( cookies)?( only)?|only (necessary|essential|required)( cookies)?|required only|continue without (accepting|agreeing))\\s*$",
+    "observed_texts_study2": {
+     "Necessary (button text includes cookie count)": 3
+    },
+    "evidence": "unverified selectors; study2 texts"
+   },
+   "declared_config": {
+    "available": true,
+    "how": "GET consentcdn.cookiebot.com/consentconfig/<cbid>/<domain>/configuration.js -> lines CookieConsent.configuration.tags.push({url, resolvedUrl, cat:[..]}) (+ trackingDomains). Blocking mode: data-blockingmode=\"auto\" attribute on the uc.js <script> tag.",
+    "category_ids": "cat numbers as used in configuration.js; mapping 1 necessary, 2 preferences, 3 statistics, 4 marketing, 5 unclassified is unverified",
+    "evidence": "code: cmp_code/cookiebot__configuration_augustinusbader.js"
+   },
+   "cpapi": {
+    "calls_setTrackingConsent": "via Shopify app only",
+    "evidence": "uc.js: 0 occurrences",
+    "docs": [
+     "https://shopify-support.cookiebot.com/hc/en-us/articles/26202116855068 (\"handles this Customer Privacy API sync automatically\"; manual theme.liquid installs need separate code)"
+    ]
+   },
+   "script_blocker": {
+    "present": true,
+    "mechanism": "auto-blocking mode: MutationObserver + type rewriting (text/plain) + createElement patch",
+    "reaches_web_workers": false,
+    "evidence": "code (uc.js)"
+   },
+   "code_scan": [
+    {
+     "url": "https://consent.cookiebot.com/uc.js",
+     "bytes": 121004,
+     "setTrackingConsent": 0,
+     "customerPrivacy": 0,
+     "visitorConsentCollected": 0,
+     "globalPrivacyControl": 2,
+     "MutationObserver": 11,
+     "type_text_plain": 10,
+     "createElement_override": 1,
+     "blocklist_keys": 5
+    }
+   ],
+   "study2_default_loads": 12,
+   "study2_default_loads_with_window_Shopify": 1
+  },
+  "onetrust": {
+   "name": "OneTrust",
+   "integration_mode": "C",
+   "mode_evidence": "code (Shopify app storefront-consent.js + OtAutoBlock.js) + docs; without the app = B",
+   "detect": {
+    "script_url_regex": [
+     "cdn\\.cookielaw\\.org/scripttemplates/otSDKStub\\.js",
+     "cdn\\.cookielaw\\.org/consent/[0-9a-f-]+/OtAutoBlock\\.js",
+     "(cdn\\.cookielaw\\.org|optanon\\.blob\\.core\\.windows\\.net)/",
+     "cdn\\.shopify\\.com/extensions/[0-9a-f-]+/onetrust-consent-management-\\d+/assets/storefront-consent\\.js",
+     "geolocation\\.onetrust\\.com/"
+    ],
+    "globals": [
+     "OneTrust",
+     "OnetrustActiveGroups",
+     "OptanonActiveGroups",
+     "OptanonWrapper"
+    ],
+    "dom_selectors": [
+     "#onetrust-banner-sdk",
+     "#onetrust-pc-sdk",
+     "#onetrust-consent-sdk"
+    ],
+    "cookies": [
+     "OptanonConsent",
+     "OptanonAlertBoxClosed"
+    ],
+    "evidence": "code + study2 (74 loads, 16 with window.Shopify)"
+   },
+   "reject": {
+    "selectors": [
+     "#onetrust-reject-all-handler",
+     ".ot-pc-refuse-all-handler"
+    ],
+    "text_regex": "^\\s*(reject( all)?( cookies| optional cookies)?|decline( all)?( optional( cookies)?)?|deny( all)?( non[- ]essential)?|refuse( all)?|disagree|i decline|no,? thanks|(strictly )?necessary( cookies)? only|use (only )?(strictly )?necessary( cookies)?( only)?|only (necessary|essential|required)( cookies)?|required only|continue without (accepting|agreeing))\\s*$",
+    "observed_texts_study2": {
+     "Reject All": 6,
+     "Decline all optional": 3,
+     "Reject Optional Cookies": 1,
+     "Necessary Cookies Only": 1
+    },
+    "notes": "US notice-only templates often have no reject button (only a \"Do Not Sell or Share\" link, which we must not follow into a form); record reject_available=false.",
+    "evidence": "unverified selectors; study2 texts"
+   },
+   "declared_config": {
+    "available": true,
+    "how": "OtAutoBlock.js (cdn.cookielaw.org/consent/<domainId>/OtAutoBlock.js) embeds JSON.parse('[{\"Tag\":\"<url>\",\"CategoryId\":[\"C0004\"],...}]') = URL -> category map used for blocking. Groups: C0001 strictly necessary, C0002 performance, C0003 functional, C0004 targeting, C0005 social media (OneTrust default ids; tenants can rename).",
+    "example": "[S0589] OtAutoBlock.js: 40 entries incl. https://tiktok.com/ (C0004), https://www.facebook.com/tr/ (C0004) and Shopify web-pixel sandbox iframe URLs",
+    "declared_blocked_rule": "URL prefix matches Tag and none of its CategoryId is in OnetrustActiveGroups",
+    "evidence": "code"
+   },
+   "cpapi": {
+    "calls_setTrackingConsent": "via Shopify app extension",
+    "evidence": "code: storefront-consent.js calls Shopify.customerPrivacy.setTrackingConsent",
+    "docs": [
+     "https://developer.onetrust.com/onetrust/docs/ecommerce (category mapping C0002->analytics, C0004->marketing & sale_of_data, C0003->preferences; \"AutoBlocking can not be used as custom pixels are added as iFrames\")"
+    ]
+   },
+   "script_blocker": {
+    "present": "if OtAutoBlock.js loaded",
+    "mechanism": "MutationObserver on script/iframe/img/embed + type text/plain rewriting",
+    "reaches_web_workers": false,
+    "evidence": "code"
+   },
+   "code_scan": [
+    {
+     "url": "https://cdn.shopify.com/extensions/01a061ba-09b8-7f28-a51f-be55b3ced758/onetrust-consent-management-67/assets/storefront-consent.js",
+     "bytes": 6344,
+     "setTrackingConsent": 1,
+     "customerPrivacy": 8,
+     "visitorConsentCollected": 0,
+     "globalPrivacyControl": 0,
+     "MutationObserver": 0,
+     "type_text_plain": 0,
+     "createElement_override": 0,
+     "blocklist_keys": 0
+    },
+    {
+     "url": "https://cdn.cookielaw.org/scripttemplates/otSDKStub.js",
+     "bytes": 26961,
+     "setTrackingConsent": 0,
+     "customerPrivacy": 0,
+     "visitorConsentCollected": 0,
+     "globalPrivacyControl": 0,
+     "MutationObserver": 0,
+     "type_text_plain": 0,
+     "createElement_override": 0,
+     "blocklist_keys": 0
+    },
+    {
+     "url": "https://cdn.cookielaw.org/consent/019074af-b6fa-794f-b5d2-dc43921ade93/OtAutoBlock.js",
+     "bytes": 8302,
+     "setTrackingConsent": 0,
+     "customerPrivacy": 0,
+     "visitorConsentCollected": 0,
+     "globalPrivacyControl": 0,
+     "MutationObserver": 1,
+     "type_text_plain": 4,
+     "createElement_override": 1,
+     "blocklist_keys": 0
+    }
+   ],
+   "study2_default_loads": 74,
+   "study2_default_loads_with_window_Shopify": 16
+  },
+  "osano": {
+   "name": "Osano",
+   "integration_mode": "C",
+   "mode_evidence": "code (setTrackingConsent in osano.js) + docs; blocker capability from code (MutationObserver) not fully characterised",
+   "detect": {
+    "script_url_regex": [
+     "cmp\\.osano\\.com/[A-Za-z0-9]+/[0-9a-f-]+/osano(-ui)?\\.js",
+     "consent\\.api\\.osano\\.com/"
+    ],
+    "globals": [
+     "Osano"
+    ],
+    "dom_selectors": [
+     ".osano-cm-dialog:not(.osano-cm-dialog--hidden)",
+     ".osano-cm-window"
+    ],
+    "cookies": [
+     "osano_consentmanager"
+    ],
+    "evidence": "code + study2 (13 loads)"
+   },
+   "reject": {
+    "selectors": [
+     ".osano-cm-denyAll",
+     ".osano-cm-deny"
+    ],
+    "text_regex": "^\\s*(reject( all)?( cookies| optional cookies)?|decline( all)?( optional( cookies)?)?|deny( all)?( non[- ]essential)?|refuse( all)?|disagree|i decline|no,? thanks|(strictly )?necessary( cookies)? only|use (only )?(strictly )?necessary( cookies)?( only)?|only (necessary|essential|required)( cookies)?|required only|continue without (accepting|agreeing))\\s*$",
+    "observed_texts_study2": {
+     "Deny Non-Essential": 5,
+     "DENY NON-ESSENTIAL": 1
+    },
+    "evidence": "unverified selectors; study2 texts"
+   },
+   "declared_config": {
+    "available": "partial",
+    "how": "Per-customer config is compiled into osano.js (config.gpcSupport, doNotSellCategories ...); script/iframe classifications not parsed yet. Categories: ESSENTIAL, ANALYTICS, MARKETING, PERSONALIZATION, OPT_OUT."
+   },
+   "cpapi": {
+    "calls_setTrackingConsent": true,
+    "evidence": "code: osano.js maps analytics/marketing/personalization/opt-out to setTrackingConsent",
+    "docs": [
+     "https://docs.osano.com/hc/en-us/articles/22469674240660-Installing-Osano-on-Shopify"
+    ]
+   },
+   "script_blocker": {
+    "present": true,
+    "mechanism": "Osano intercepts scripts/iframes on the main thread (MutationObserver in osano.js)",
+    "reaches_web_workers": false,
+    "evidence": "code (partial)"
+   },
+   "code_scan": [
+    {
+     "url": "https://cmp.osano.com/16A4AHTHturum1urg/1a7c3e51-0f22-486d-bcda-6820a1c1d35e/osano.js",
+     "bytes": 184712,
+     "setTrackingConsent": 1,
+     "customerPrivacy": 4,
+     "visitorConsentCollected": 0,
+     "globalPrivacyControl": 2,
+     "MutationObserver": 1,
+     "type_text_plain": 0,
+     "createElement_override": 0,
+     "blocklist_keys": 0
+    }
+   ],
+   "study2_default_loads": 13,
+   "study2_default_loads_with_window_Shopify": 5
+  },
+  "usercentrics": {
+   "name": "Usercentrics (CMP v2/v3)",
+   "integration_mode": "B",
+   "mode_evidence": "code (no CPAPI in loader) + docs (sync needs an event-listener snippet); = C when merchant installs the sync",
+   "detect": {
+    "script_url_regex": [
+     "web\\.cmp\\.usercentrics\\.eu/ui/(loader|v/[\\d.]+/)",
+     "app\\.usercentrics\\.eu/browser-ui/",
+     "privacy-proxy\\.usercentrics\\.eu/latest/uc-block\\.bundle\\.js",
+     "(v1\\.api\\.service\\.cmp|api|consent-api\\.service\\.consent)\\.usercentrics\\.eu/"
+    ],
+    "globals": [
+     "UC_UI",
+     "__ucCmp",
+     "usercentrics"
+    ],
+    "dom_selectors": [
+     "#usercentrics-root",
+     "#usercentrics-cmp-ui",
+     "aside#usercentrics-cmp-ui"
+    ],
+    "cookies": [
+     "uc_settings (localStorage)",
+     "uc_user_interaction (localStorage)"
+    ],
+    "shadow_dom": "v2 #usercentrics-root uses a shadow root",
+    "evidence": "code + study2 (21 loads, 11 with window.Shopify)"
+   },
+   "reject": {
+    "selectors": [
+     "[data-testid=\"uc-deny-all-button\"]",
+     "#deny",
+     "button[data-action-type=\"deny\"]"
+    ],
+    "text_regex": "^\\s*(reject( all)?( cookies| optional cookies)?|decline( all)?( optional( cookies)?)?|deny( all)?( non[- ]essential)?|refuse( all)?|disagree|i decline|no,? thanks|(strictly )?necessary( cookies)? only|use (only )?(strictly )?necessary( cookies)?( only)?|only (necessary|essential|required)( cookies)?|required only|continue without (accepting|agreeing))\\s*$",
+    "observed_texts_study2": {},
+    "evidence": "unverified"
+   },
+   "declared_config": {
+    "available": true,
+    "how": "Settings/ruleset JSON fetched from v1.api.service.cmp.usercentrics.eu/latest/... lists data-processing services and categories; uc-block.bundle.js blocks listed services."
+   },
+   "cpapi": {
+    "calls_setTrackingConsent": "only with merchant-added sync snippet",
+    "evidence": "code: loader.js 0 occurrences",
+    "docs": [
+     "https://support.usercentrics.com/hc/en-us/articles/21694498850716 (sync via predefined services + event listener; console log \"UC consent synced with Shopify Customer Privacy API\")"
+    ]
+   },
+   "script_blocker": {
+    "present": "if uc-block.bundle.js loaded (Smart Data Protector)",
+    "reaches_web_workers": false,
+    "evidence": "code (uc-block.bundle.js createElement patch)"
+   },
+   "code_scan": [
+    {
+     "url": "https://web.cmp.usercentrics.eu/ui/loader.js",
+     "bytes": 70614,
+     "setTrackingConsent": 0,
+     "customerPrivacy": 0,
+     "visitorConsentCollected": 0,
+     "globalPrivacyControl": 1,
+     "MutationObserver": 0,
+     "type_text_plain": 0,
+     "createElement_override": 0,
+     "blocklist_keys": 0
+    },
+    {
+     "url": "https://privacy-proxy.usercentrics.eu/latest/uc-block.bundle.js",
+     "bytes": 107801,
+     "setTrackingConsent": 0,
+     "customerPrivacy": 0,
+     "visitorConsentCollected": 0,
+     "globalPrivacyControl": 0,
+     "MutationObserver": 1,
+     "type_text_plain": 0,
+     "createElement_override": 1,
+     "blocklist_keys": 0
+    }
+   ],
+   "study2_default_loads": 21,
+   "study2_default_loads_with_window_Shopify": 11
+  },
+  "trustarc": {
+   "name": "TrustArc Cookie Consent Manager",
+   "integration_mode": "C",
+   "mode_evidence": "docs (Shopify app reads/writes CPAPI) + autoblock asset seen; code not downloaded (empty response)",
+   "detect": {
+    "script_url_regex": [
+     "consent\\.trustarc\\.com/(notice|asset/notice\\.js|autoblockasset/core\\.min\\.js|autoblockoptout)",
+     "form-renderer\\.trustarc\\.com/"
+    ],
+    "globals": [
+     "truste"
+    ],
+    "dom_selectors": [
+     "#truste-consent-track",
+     "#truste-consent-content",
+     ".truste_box_overlay",
+     "#consent_blackbar"
+    ],
+    "cookies": [
+     "notice_preferences",
+     "notice_gdpr_prefs",
+     "cmapi_cookie_privacy",
+     "TAconsentID"
+    ],
+    "evidence": "study2 (15 loads; #consent_blackbar also used by Securiti -> use script URL to disambiguate)"
+   },
+   "reject": {
+    "selectors": [
+     "#truste-consent-required"
+    ],
+    "text_regex": "^\\s*(reject( all)?( cookies| optional cookies)?|decline( all)?( optional( cookies)?)?|deny( all)?( non[- ]essential)?|refuse( all)?|disagree|i decline|no,? thanks|(strictly )?necessary( cookies)? only|use (only )?(strictly )?necessary( cookies)?( only)?|only (necessary|essential|required)( cookies)?|required only|continue without (accepting|agreeing))\\s*$",
+    "observed_texts_study2": {},
+    "evidence": "unverified"
+   },
+   "declared_config": {
+    "available": "unknown",
+    "how": "autoblock configuration served by consent.trustarc.com; not parsed."
+   },
+   "cpapi": {
+    "calls_setTrackingConsent": "via Shopify app",
+    "docs": [
+     "https://trustarchelp.zendesk.com/hc/en-us/articles/42823230618259"
+    ]
+   },
+   "script_blocker": {
+    "present": "if autoblockasset/core.min.js loaded",
+    "reaches_web_workers": false,
+    "evidence": "study2 URL only"
+   },
+   "code_scan": [
+    {
+     "url": "https://consent.trustarc.com/autoblockasset/core.min.js",
+     "bytes": 0,
+     "setTrackingConsent": 0,
+     "customerPrivacy": 0,
+     "visitorConsentCollected": 0,
+     "globalPrivacyControl": 0,
+     "MutationObserver": 0,
+     "type_text_plain": 0,
+     "createElement_override": 0,
+     "blocklist_keys": 0
+    }
+   ],
+   "study2_default_loads": 15,
+   "study2_default_loads_with_window_Shopify": 0
+  },
+  "didomi": {
+   "name": "Didomi",
+   "integration_mode": "A",
+   "mode_evidence": "docs (Shopify beta integration maps purposes to CPAPI); loader code has no CPAPI call; no auto-blocker found",
+   "detect": {
+    "script_url_regex": [
+     "sdk\\.privacy-center\\.org/"
+    ],
+    "globals": [
+     "Didomi",
+     "didomiOnReady"
+    ],
+    "dom_selectors": [
+     "#didomi-notice",
+     "#didomi-popup",
+     "#didomi-host"
+    ],
+    "cookies": [
+     "didomi_token",
+     "euconsent-v2"
+    ],
+    "evidence": "study2 (4 loads, 0 with window.Shopify)"
+   },
+   "reject": {
+    "selectors": [
+     "#didomi-notice-disagree-button",
+     ".didomi-continue-without-agreeing"
+    ],
+    "text_regex": "^\\s*(reject( all)?( cookies| optional cookies)?|decline( all)?( optional( cookies)?)?|deny( all)?( non[- ]essential)?|refuse( all)?|disagree|i decline|no,? thanks|(strictly )?necessary( cookies)? only|use (only )?(strictly )?necessary( cookies)?( only)?|only (necessary|essential|required)( cookies)?|required only|continue without (accepting|agreeing))\\s*$",
+    "observed_texts_study2": {},
+    "evidence": "unverified"
+   },
+   "declared_config": {
+    "available": "partial",
+    "how": "Didomi.getRequiredVendors()/getRequiredPurposes() in page; vendor list, not URL blocklist."
+   },
+   "cpapi": {
+    "calls_setTrackingConsent": "via Shopify integration (beta)",
+    "docs": [
+     "https://docs.didomi.io/integrations/content-management-system-cms/shopify-beta"
+    ]
+   },
+   "script_blocker": {
+    "present": false,
+    "evidence": "code: loader.js 0 MutationObserver/type-rewrite"
+   },
+   "code_scan": [
+    {
+     "url": "https://sdk.privacy-center.org/6548bad1-0168-47ce-ac9b-870e1cd36b26/loader.js",
+     "bytes": 109361,
+     "setTrackingConsent": 0,
+     "customerPrivacy": 0,
+     "visitorConsentCollected": 0,
+     "globalPrivacyControl": 0,
+     "MutationObserver": 0,
+     "type_text_plain": 0,
+     "createElement_override": 0,
+     "blocklist_keys": 0
+    }
+   ],
+   "study2_default_loads": 4,
+   "study2_default_loads_with_window_Shopify": 0
+  },
+  "termly": {
+   "name": "Termly",
+   "integration_mode": "X",
+   "mode_evidence": "no CPAPI documentation found; has a resource auto-blocker -> probably B",
+   "detect": {
+    "script_url_regex": [
+     "app\\.termly\\.io/(resource-blocker|embed(\\.min)?\\.js|api/)"
+    ],
+    "globals": [
+     "Termly"
+    ],
+    "dom_selectors": [
+     "[class*=\"termly-styles-root\"]",
+     "#termly-code-snippet-support div[role=\"dialog\"]"
+    ],
+    "cookies": [],
+    "evidence": "study2 selector list (0 loads observed)"
+   },
+   "reject": {
+    "selectors": [
+     "[data-tid=\"banner-decline\"]"
+    ],
+    "text_regex": "^\\s*(reject( all)?( cookies| optional cookies)?|decline( all)?( optional( cookies)?)?|deny( all)?( non[- ]essential)?|refuse( all)?|disagree|i decline|no,? thanks|(strictly )?necessary( cookies)? only|use (only )?(strictly )?necessary( cookies)?( only)?|only (necessary|essential|required)( cookies)?|required only|continue without (accepting|agreeing))\\s*$",
+    "observed_texts_study2": {},
+    "evidence": "unverified"
+   },
+   "declared_config": {
+    "available": "unknown",
+    "how": "resource-blocker script URL carries ?autoBlock=on|off; category lists served by app.termly.io"
+   },
+   "cpapi": {
+    "calls_setTrackingConsent": "unknown"
+   },
+   "script_blocker": {
+    "present": "probable (resource-blocker)",
+    "reaches_web_workers": false,
+    "evidence": "unverified"
+   },
+   "code_scan": [],
+   "study2_default_loads": 0,
+   "study2_default_loads_with_window_Shopify": 0
+  },
+  "cookieyes": {
+   "name": "CookieYes",
+   "integration_mode": "X",
+   "mode_evidence": "no CPAPI documentation found; auto-blocking product -> probably B",
+   "detect": {
+    "script_url_regex": [
+     "cdn-cookieyes\\.com/client_data/[0-9a-f]+/script\\.js",
+     "(app|log)\\.cookieyes\\.com/"
+    ],
+    "globals": [
+     "getCkyConsent",
+     "revisitCkyConsent"
+    ],
+    "dom_selectors": [
+     ".cky-consent-container",
+     ".cky-consent-bar"
+    ],
+    "cookies": [
+     "cookieyes-consent"
+    ],
+    "evidence": "study2 selector list (0 loads)"
+   },
+   "reject": {
+    "selectors": [
+     ".cky-btn-reject"
+    ],
+    "text_regex": "^\\s*(reject( all)?( cookies| optional cookies)?|decline( all)?( optional( cookies)?)?|deny( all)?( non[- ]essential)?|refuse( all)?|disagree|i decline|no,? thanks|(strictly )?necessary( cookies)? only|use (only )?(strictly )?necessary( cookies)?( only)?|only (necessary|essential|required)( cookies)?|required only|continue without (accepting|agreeing))\\s*$",
+    "observed_texts_study2": {},
+    "evidence": "unverified"
+   },
+   "declared_config": {
+    "available": "unknown",
+    "how": "client_data script embeds categories and blocked script patterns (not parsed)"
+   },
+   "cpapi": {
+    "calls_setTrackingConsent": "unknown"
+   },
+   "script_blocker": {
+    "present": "probable",
+    "reaches_web_workers": false,
+    "evidence": "unverified"
+   },
+   "notes": "\"cookie_law_info\" (CookieYes WordPress plugin) seen once in Study 2 on a Shopify landing that loaded it from a WordPress blog; treat as B.",
+   "code_scan": [],
+   "study2_default_loads": 0,
+   "study2_default_loads_with_window_Shopify": 0
+  },
+  "enzuzo": {
+   "name": "Enzuzo",
+   "integration_mode": "A",
+   "mode_evidence": "vendor claim only (enzuzo.com blog: integrates natively with the Customer Privacy API); no code checked",
+   "detect": {
+    "script_url_regex": [
+     "app\\.enzuzo\\.com/"
+    ],
+    "globals": [],
+    "dom_selectors": [
+     "#ez-cookie-notification",
+     ".enzuzo-cookiebanner-container"
+    ],
+    "cookies": [],
+    "evidence": "unverified (0 loads observed)"
+   },
+   "reject": {
+    "selectors": [],
+    "text_regex": "^\\s*(reject( all)?( cookies| optional cookies)?|decline( all)?( optional( cookies)?)?|deny( all)?( non[- ]essential)?|refuse( all)?|disagree|i decline|no,? thanks|(strictly )?necessary( cookies)? only|use (only )?(strictly )?necessary( cookies)?( only)?|only (necessary|essential|required)( cookies)?|required only|continue without (accepting|agreeing))\\s*$",
+    "observed_texts_study2": {},
+    "evidence": "text only"
+   },
+   "declared_config": {
+    "available": "unknown"
+   },
+   "cpapi": {
+    "calls_setTrackingConsent": "claimed",
+    "docs": [
+     "https://www.enzuzo.com/blog/cookie-consent-platforms-for-shopify"
+    ]
+   },
+   "script_blocker": {
+    "present": "unknown"
+   },
+   "code_scan": [],
+   "study2_default_loads": 0,
+   "study2_default_loads_with_window_Shopify": 0
+  },
+  "iubenda": {
+   "name": "iubenda Privacy Controls and Cookie Solution",
+   "integration_mode": "A",
+   "mode_evidence": "docs (Shopify integration uses CPAPI and recommends turning iubenda autoblocking off); C if autoblocking on",
+   "detect": {
+    "script_url_regex": [
+     "cdn\\.iubenda\\.com/(cs/|autoblocking/)",
+     "embeds\\.iubenda\\.com/widgets/"
+    ],
+    "globals": [
+     "_iub"
+    ],
+    "dom_selectors": [
+     "#iubenda-cs-banner"
+    ],
+    "cookies": [
+     "_iub_cs-*"
+    ],
+    "evidence": "study2 selector list (0 loads)"
+   },
+   "reject": {
+    "selectors": [
+     ".iubenda-cs-reject-btn"
+    ],
+    "text_regex": "^\\s*(reject( all)?( cookies| optional cookies)?|decline( all)?( optional( cookies)?)?|deny( all)?( non[- ]essential)?|refuse( all)?|disagree|i decline|no,? thanks|(strictly )?necessary( cookies)? only|use (only )?(strictly )?necessary( cookies)?( only)?|only (necessary|essential|required)( cookies)?|required only|continue without (accepting|agreeing))\\s*$",
+    "observed_texts_study2": {},
+    "evidence": "unverified"
+   },
+   "declared_config": {
+    "available": "partial",
+    "how": "autoblocking script cdn.iubenda.com/autoblocking/<siteId>.js lists blocked vendors when enabled"
+   },
+   "cpapi": {
+    "calls_setTrackingConsent": "per docs",
+    "docs": [
+     "https://www.iubenda.com/en/help/10811-cookie-solution-shopify-3/"
+    ]
+   },
+   "script_blocker": {
+    "present": "optional (autoblocking)",
+    "reaches_web_workers": false
+   },
+   "code_scan": [],
+   "study2_default_loads": 0,
+   "study2_default_loads_with_window_Shopify": 0
+  },
+  "axeptio": {
+   "name": "Axeptio",
+   "integration_mode": "X",
+   "mode_evidence": "docs describe Shopify integration and forwarding consent to custom pixels; CPAPI write not confirmed",
+   "detect": {
+    "script_url_regex": [
+     "static\\.axept\\.io/(sdk|sdk-slim)\\.js",
+     "client\\.axept\\.io/"
+    ],
+    "globals": [
+     "axeptioSDK",
+     "_axcb",
+     "axeptioSettings"
+    ],
+    "dom_selectors": [
+     "#axeptio_overlay",
+     ".axeptio_mount"
+    ],
+    "cookies": [
+     "axeptio_cookies",
+     "axeptio_authorized_vendors"
+    ],
+    "evidence": "unverified (0 loads)"
+   },
+   "reject": {
+    "selectors": [
+     "#axeptio_btn_dismiss"
+    ],
+    "text_regex": "^\\s*(reject( all)?( cookies| optional cookies)?|decline( all)?( optional( cookies)?)?|deny( all)?( non[- ]essential)?|refuse( all)?|disagree|i decline|no,? thanks|(strictly )?necessary( cookies)? only|use (only )?(strictly )?necessary( cookies)?( only)?|only (necessary|essential|required)( cookies)?|required only|continue without (accepting|agreeing))\\s*$",
+    "observed_texts_study2": {},
+    "evidence": "unverified"
+   },
+   "declared_config": {
+    "available": "partial",
+    "how": "axeptio_authorized_vendors cookie / project config JSON"
+   },
+   "cpapi": {
+    "calls_setTrackingConsent": "unknown",
+    "docs": [
+     "https://support.axeptio.eu/en/articles/274019-shopify-integration",
+     "https://support.axeptio.eu/en/articles/274037-handle-axeptio-consent-with-shopify-custom-pixels"
+    ]
+   },
+   "script_blocker": {
+    "present": "unknown"
+   },
+   "code_scan": [],
+   "study2_default_loads": 0,
+   "study2_default_loads_with_window_Shopify": 0
+  },
+  "pentos": {
+   "name": "Pentos",
+   "integration_mode": "X",
+   "mode_evidence": "not found: no Shopify app, documentation or script for a CMP named \"Pentos\" was located (searches 2026-09-26). Keep for completeness; drop if the crawl never detects it.",
+   "detect": {
+    "script_url_regex": [],
+    "globals": [],
+    "dom_selectors": [],
+    "cookies": []
+   },
+   "reject": {
+    "selectors": [],
+    "text_regex": "^\\s*(reject( all)?( cookies| optional cookies)?|decline( all)?( optional( cookies)?)?|deny( all)?( non[- ]essential)?|refuse( all)?|disagree|i decline|no,? thanks|(strictly )?necessary( cookies)? only|use (only )?(strictly )?necessary( cookies)?( only)?|only (necessary|essential|required)( cookies)?|required only|continue without (accepting|agreeing))\\s*$"
+   },
+   "declared_config": {
+    "available": "unknown"
+   },
+   "cpapi": {
+    "calls_setTrackingConsent": "unknown"
+   },
+   "script_blocker": {
+    "present": "unknown"
+   },
+   "code_scan": [],
+   "study2_default_loads": 0,
+   "study2_default_loads_with_window_Shopify": 0
+  },
+  "transcend": {
+   "name": "Transcend Consent (airgap.js)",
+   "integration_mode": "B",
+   "mode_evidence": "code (airgap.js has no CPAPI call; network-level regulation incl. Worker/importScripts hooks) + docs (Shopify sync set up separately)",
+   "detect": {
+    "script_url_regex": [
+     "transcend-cdn\\.com/cm/[0-9a-f-]+/(airgap|ui)\\.js"
+    ],
+    "globals": [
+     "airgap",
+     "transcend"
+    ],
+    "dom_selectors": [
+     "#transcend-consent-manager"
+    ],
+    "cookies": [],
+    "evidence": "code + study2 (8 loads)"
+   },
+   "reject": {
+    "selectors": [],
+    "text_regex": "^\\s*(reject( all)?( cookies| optional cookies)?|decline( all)?( optional( cookies)?)?|deny( all)?( non[- ]essential)?|refuse( all)?|disagree|i decline|no,? thanks|(strictly )?necessary( cookies)? only|use (only )?(strictly )?necessary( cookies)?( only)?|only (necessary|essential|required)( cookies)?|required only|continue without (accepting|agreeing))\\s*$",
+    "observed_texts_study2": {},
+    "evidence": "text only"
+   },
+   "declared_config": {
+    "available": true,
+    "how": "airgap.js bundle embeds the regulated purposes/services config (not parsed)"
+   },
+   "cpapi": {
+    "calls_setTrackingConsent": "only if Shopify sync configured",
+    "evidence": "code: 0 occurrences",
+    "docs": [
+     "https://docs.transcend.io/docs/articles/consent-management/configuration/shopify-integration"
+    ]
+   },
+   "script_blocker": {
+    "present": true,
+    "mechanism": "network-level quarantine of fetch/XHR/beacon/script plus hooks on Worker, SharedWorker, ServiceWorker and importScripts",
+    "reaches_web_workers": "possibly (code hooks Worker constructors); to test",
+    "evidence": "code"
+   },
+   "code_scan": [
+    {
+     "url": "https://transcend-cdn.com/cm/1c1f8e90-47d0-4bba-a1a2-472d59b002a2/airgap.js",
+     "bytes": 139365,
+     "setTrackingConsent": 0,
+     "customerPrivacy": 0,
+     "visitorConsentCollected": 0,
+     "globalPrivacyControl": 1,
+     "MutationObserver": 1,
+     "type_text_plain": 1,
+     "createElement_override": 0,
+     "blocklist_keys": 0
+    }
+   ],
+   "study2_default_loads": 8,
+   "study2_default_loads_with_window_Shopify": 0
+  },
+  "ketch": {
+   "name": "Ketch",
+   "integration_mode": "C",
+   "mode_evidence": "code indicators only (setTrackingConsent + customerPrivacy in ketch-sdk.js; tag gating)",
+   "detect": {
+    "script_url_regex": [
+     "global\\.ketchcdn\\.com/web/v\\d/config/",
+     "cdn\\.ketchjs\\.com/ketchtag/"
+    ],
+    "globals": [
+     "ketch",
+     "semaphore",
+     "ketchConsent"
+    ],
+    "dom_selectors": [
+     "#lanyard_root"
+    ],
+    "cookies": [
+     "_swb_consent_"
+    ],
+    "evidence": "code + study2 (1 load)"
+   },
+   "reject": {
+    "selectors": [],
+    "text_regex": "^\\s*(reject( all)?( cookies| optional cookies)?|decline( all)?( optional( cookies)?)?|deny( all)?( non[- ]essential)?|refuse( all)?|disagree|i decline|no,? thanks|(strictly )?necessary( cookies)? only|use (only )?(strictly )?necessary( cookies)?( only)?|only (necessary|essential|required)( cookies)?|required only|continue without (accepting|agreeing))\\s*$",
+    "observed_texts_study2": {
+     "Reject All Cookies": 1
+    },
+    "evidence": "study2"
+   },
+   "declared_config": {
+    "available": true,
+    "how": "config.json at global.ketchcdn.com/web/v3/config/<org>/<property>/production/<jurisdiction>/<lang>/config.json (purposes)"
+   },
+   "cpapi": {
+    "calls_setTrackingConsent": true,
+    "evidence": "code: 1 occurrence"
+   },
+   "script_blocker": {
+    "present": "probable",
+    "reaches_web_workers": false,
+    "evidence": "code (text/plain rewriting hits)"
+   },
+   "code_scan": [
+    {
+     "url": "https://cdn.ketchjs.com/ketchtag/stable/v2.12/ketch-sdk.js",
+     "bytes": 1939513,
+     "setTrackingConsent": 1,
+     "customerPrivacy": 5,
+     "visitorConsentCollected": 0,
+     "globalPrivacyControl": 3,
+     "MutationObserver": 3,
+     "type_text_plain": 3,
+     "createElement_override": 0,
+     "blocklist_keys": 0
+    }
+   ],
+   "study2_default_loads": 1,
+   "study2_default_loads_with_window_Shopify": 1
+  },
+  "clarip": {
+   "name": "Clarip",
+   "integration_mode": "C",
+   "mode_evidence": "code (setTrackingConsent + blocklist/MutationObserver in clarip-cookie-manager.min.js)",
+   "detect": {
+    "script_url_regex": [
+     "cdn\\.clarip\\.com/[a-z0-9]+/(cookieconsent|donotsell)/"
+    ],
+    "globals": [],
+    "dom_selectors": [
+     ".cc-window"
+    ],
+    "cookies": [
+     "clarip_cookie_consent_gpc"
+    ],
+    "evidence": "code + study2 (4 loads)"
+   },
+   "reject": {
+    "selectors": [
+     ".cc-deny"
+    ],
+    "text_regex": "^\\s*(reject( all)?( cookies| optional cookies)?|decline( all)?( optional( cookies)?)?|deny( all)?( non[- ]essential)?|refuse( all)?|disagree|i decline|no,? thanks|(strictly )?necessary( cookies)? only|use (only )?(strictly )?necessary( cookies)?( only)?|only (necessary|essential|required)( cookies)?|required only|continue without (accepting|agreeing))\\s*$",
+    "observed_texts_study2": {
+     "Reject": 1
+    },
+    "evidence": "code (cc-deny) + study2"
+   },
+   "declared_config": {
+    "available": true,
+    "how": "configuration JSON cdn.clarip.com/<client>/cookieconsent/configuration/<id>.json (+ -cookie-file.json)"
+   },
+   "cpapi": {
+    "calls_setTrackingConsent": true,
+    "evidence": "code"
+   },
+   "script_blocker": {
+    "present": true,
+    "reaches_web_workers": false,
+    "evidence": "code (blocklist keys 19, MutationObserver 5)"
+   },
+   "code_scan": [
+    {
+     "url": "https://cdn.clarip.com/kendo/cookieconsent/assets/js/clarip-cookie-manager.min.js",
+     "bytes": 56613,
+     "setTrackingConsent": 1,
+     "customerPrivacy": 2,
+     "visitorConsentCollected": 0,
+     "globalPrivacyControl": 2,
+     "MutationObserver": 5,
+     "type_text_plain": 0,
+     "createElement_override": 2,
+     "blocklist_keys": 19
+    }
+   ],
+   "study2_default_loads": 4,
+   "study2_default_loads_with_window_Shopify": 4
+  },
+  "consentmanager": {
+   "name": "consentmanager.net",
+   "integration_mode": "B",
+   "mode_evidence": "code (semiautomatic blocker, no CPAPI call)",
+   "detect": {
+    "script_url_regex": [
+     "cdn\\.consentmanager\\.net/delivery/",
+     "delivery\\.consentmanager\\.net/delivery/cmp\\.php"
+    ],
+    "globals": [
+     "__cmp",
+     "__tcfapi"
+    ],
+    "dom_selectors": [
+     "#cmpwrapper",
+     "#cmpbox"
+    ],
+    "cookies": [
+     "__cmpconsent*",
+     "__cmpcccu*"
+    ],
+    "evidence": "code + study2 (6 loads)"
+   },
+   "reject": {
+    "selectors": [
+     "#cmpwelcomebtnno",
+     ".cmpboxbtnno"
+    ],
+    "text_regex": "^\\s*(reject( all)?( cookies| optional cookies)?|decline( all)?( optional( cookies)?)?|deny( all)?( non[- ]essential)?|refuse( all)?|disagree|i decline|no,? thanks|(strictly )?necessary( cookies)? only|use (only )?(strictly )?necessary( cookies)?( only)?|only (necessary|essential|required)( cookies)?|required only|continue without (accepting|agreeing))\\s*$",
+    "observed_texts_study2": {},
+    "evidence": "unverified"
+   },
+   "declared_config": {
+    "available": "partial",
+    "how": "customdata/<id>.js served by cdn.consentmanager.net"
+   },
+   "cpapi": {
+    "calls_setTrackingConsent": false,
+    "evidence": "code: 0 occurrences in semiautomatic.min.js (cmp_final.min.js not scanned)"
+   },
+   "script_blocker": {
+    "present": true,
+    "reaches_web_workers": false,
+    "evidence": "product name/URL"
+   },
+   "code_scan": [
+    {
+     "url": "https://cdn.consentmanager.net/delivery/js/semiautomatic.min.js",
+     "bytes": 17932,
+     "setTrackingConsent": 0,
+     "customerPrivacy": 0,
+     "visitorConsentCollected": 0,
+     "globalPrivacyControl": 2,
+     "MutationObserver": 0,
+     "type_text_plain": 0,
+     "createElement_override": 0,
+     "blocklist_keys": 0
+    }
+   ],
+   "study2_default_loads": 6,
+   "study2_default_loads_with_window_Shopify": 1
+  },
+  "cookiefirst": {
+   "name": "CookieFirst",
+   "integration_mode": "A",
+   "mode_evidence": "code: sh-customer-privacy.js writes CPAPI; banner variant \"no-autoblock\" seen (would be C with the autoblock build)",
+   "detect": {
+    "script_url_regex": [
+     "consent\\.cookiefirst\\.com/(sites/|banner/|consentBanner(\\.no-autoblock)?\\.js|sh-customer-privacy\\.js)"
+    ],
+    "globals": [
+     "CookieFirst"
+    ],
+    "dom_selectors": [
+     ".cookiefirst-root"
+    ],
+    "cookies": [
+     "cookiefirst-consent"
+    ],
+    "evidence": "code + study2 (2 loads)"
+   },
+   "reject": {
+    "selectors": [
+     "[data-cookiefirst-action=\"reject\"]"
+    ],
+    "text_regex": "^\\s*(reject( all)?( cookies| optional cookies)?|decline( all)?( optional( cookies)?)?|deny( all)?( non[- ]essential)?|refuse( all)?|disagree|i decline|no,? thanks|(strictly )?necessary( cookies)? only|use (only )?(strictly )?necessary( cookies)?( only)?|only (necessary|essential|required)( cookies)?|required only|continue without (accepting|agreeing))\\s*$",
+    "observed_texts_study2": {
+     "Decline": 2
+    },
+    "evidence": "study2 text; selector unverified"
+   },
+   "declared_config": {
+    "available": true,
+    "how": "consent.cookiefirst.com/sites/<site>/consent.js (site config)"
+   },
+   "cpapi": {
+    "calls_setTrackingConsent": true,
+    "evidence": "code: on cf_consent events maps performance->analytics, advertising->marketing and sale_of_data, functional->preferences"
+   },
+   "script_blocker": {
+    "present": "only with the autoblock banner build",
+    "evidence": "code (file name consentBanner.no-autoblock.js)"
+   },
+   "code_scan": [
+    {
+     "url": "https://consent.cookiefirst.com/sh-customer-privacy.js",
+     "bytes": 485,
+     "setTrackingConsent": 1,
+     "customerPrivacy": 1,
+     "visitorConsentCollected": 0,
+     "globalPrivacyControl": 0,
+     "MutationObserver": 0,
+     "type_text_plain": 0,
+     "createElement_override": 0,
+     "blocklist_keys": 0
+    },
+    {
+     "url": "https://consent.cookiefirst.com/consentBanner.no-autoblock.js",
+     "bytes": 50236,
+     "setTrackingConsent": 0,
+     "customerPrivacy": 0,
+     "visitorConsentCollected": 0,
+     "globalPrivacyControl": 0,
+     "MutationObserver": 0,
+     "type_text_plain": 1,
+     "createElement_override": 0,
+     "blocklist_keys": 6
+    }
+   ],
+   "study2_default_loads": 2,
+   "study2_default_loads_with_window_Shopify": 2
+  },
+  "cookiehub": {
+   "name": "CookieHub",
+   "integration_mode": "C",
+   "mode_evidence": "code + docs (CPAPI integration on by default; auto-blocking)",
+   "detect": {
+    "script_url_regex": [
+     "cdn\\.cookiehub\\.eu/c2/[0-9a-f]+\\.js"
+    ],
+    "globals": [
+     "cookiehub",
+     "__cookiehub"
+    ],
+    "dom_selectors": [
+     ".ch2-container",
+     ".ch2-dialog"
+    ],
+    "cookies": [
+     "cookiehub"
+    ],
+    "evidence": "code + study2 (1 load)"
+   },
+   "reject": {
+    "selectors": [
+     ".ch2-deny-all-btn"
+    ],
+    "text_regex": "^\\s*(reject( all)?( cookies| optional cookies)?|decline( all)?( optional( cookies)?)?|deny( all)?( non[- ]essential)?|refuse( all)?|disagree|i decline|no,? thanks|(strictly )?necessary( cookies)? only|use (only )?(strictly )?necessary( cookies)?( only)?|only (necessary|essential|required)( cookies)?|required only|continue without (accepting|agreeing))\\s*$",
+    "observed_texts_study2": {},
+    "evidence": "code"
+   },
+   "declared_config": {
+    "available": "partial",
+    "how": "category/vendor config embedded in c2/<id>.js"
+   },
+   "cpapi": {
+    "calls_setTrackingConsent": true,
+    "evidence": "code: 2 occurrences",
+    "docs": [
+     "https://www.cookiehub.com/shopify-customer-privacy-api"
+    ]
+   },
+   "script_blocker": {
+    "present": true,
+    "reaches_web_workers": false,
+    "evidence": "code (type text/plain, MutationObserver)"
+   },
+   "code_scan": [
+    {
+     "url": "https://cdn.cookiehub.eu/c2/22f94c69.js",
+     "bytes": 178713,
+     "setTrackingConsent": 2,
+     "customerPrivacy": 4,
+     "visitorConsentCollected": 0,
+     "globalPrivacyControl": 8,
+     "MutationObserver": 2,
+     "type_text_plain": 3,
+     "createElement_override": 0,
+     "blocklist_keys": 0
+    }
+   ],
+   "study2_default_loads": 1,
+   "study2_default_loads_with_window_Shopify": 0
+  },
+  "cookiescript": {
+   "name": "Cookie-Script",
+   "integration_mode": "X",
+   "mode_evidence": "script could not be downloaded (TLS error); unknown",
+   "detect": {
+    "script_url_regex": [
+     "(cdn|geo)\\.cookie-script\\.com/s/[0-9a-f]+\\.js"
+    ],
+    "globals": [
+     "CookieScript"
+    ],
+    "dom_selectors": [
+     "#cookiescript_injected"
+    ],
+    "cookies": [
+     "CookieScriptConsent"
+    ],
+    "evidence": "study2 (1 load)"
+   },
+   "reject": {
+    "selectors": [
+     "#cookiescript_reject"
+    ],
+    "text_regex": "^\\s*(reject( all)?( cookies| optional cookies)?|decline( all)?( optional( cookies)?)?|deny( all)?( non[- ]essential)?|refuse( all)?|disagree|i decline|no,? thanks|(strictly )?necessary( cookies)? only|use (only )?(strictly )?necessary( cookies)?( only)?|only (necessary|essential|required)( cookies)?|required only|continue without (accepting|agreeing))\\s*$",
+    "observed_texts_study2": {},
+    "evidence": "unverified"
+   },
+   "declared_config": {
+    "available": "unknown"
+   },
+   "cpapi": {
+    "calls_setTrackingConsent": "unknown"
+   },
+   "script_blocker": {
+    "present": "probable"
+   },
+   "code_scan": [],
+   "study2_default_loads": 1,
+   "study2_default_loads_with_window_Shopify": 0
+  },
+  "fides_ethyca": {
+   "name": "Ethyca Fides",
+   "integration_mode": "A",
+   "mode_evidence": "code (setTrackingConsent in fides.js; no main-thread blocker found)",
+   "detect": {
+    "script_url_regex": [
+     "fides-cdn\\.ethyca\\.com/fides\\.js",
+     "/fides\\.js(\\?|$)"
+    ],
+    "globals": [
+     "Fides"
+    ],
+    "dom_selectors": [
+     "#fides-overlay",
+     "#fides-banner",
+     "#fides-modal"
+    ],
+    "cookies": [
+     "fides_consent"
+    ],
+    "evidence": "code + study2 (2 loads)"
+   },
+   "reject": {
+    "selectors": [
+     ".fides-reject-all-button"
+    ],
+    "text_regex": "^\\s*(reject( all)?( cookies| optional cookies)?|decline( all)?( optional( cookies)?)?|deny( all)?( non[- ]essential)?|refuse( all)?|disagree|i decline|no,? thanks|(strictly )?necessary( cookies)? only|use (only )?(strictly )?necessary( cookies)?( only)?|only (necessary|essential|required)( cookies)?|required only|continue without (accepting|agreeing))\\s*$",
+    "observed_texts_study2": {},
+    "evidence": "code"
+   },
+   "declared_config": {
+    "available": true,
+    "how": "privacy-experience API response (/api/v1/privacy-experience) lists notices and their consent mechanisms"
+   },
+   "cpapi": {
+    "calls_setTrackingConsent": true,
+    "evidence": "code: 1 occurrence"
+   },
+   "script_blocker": {
+    "present": false,
+    "evidence": "code"
+   },
+   "code_scan": [
+    {
+     "url": "https://bitly.fides-cdn.ethyca.com/fides.js",
+     "bytes": 187223,
+     "setTrackingConsent": 1,
+     "customerPrivacy": 4,
+     "visitorConsentCollected": 0,
+     "globalPrivacyControl": 14,
+     "MutationObserver": 0,
+     "type_text_plain": 0,
+     "createElement_override": 0,
+     "blocklist_keys": 0
+    }
+   ],
+   "study2_default_loads": 2,
+   "study2_default_loads_with_window_Shopify": 0
+  },
+  "consentik": {
+   "name": "Consentik GDPR Cookie Banner (Shopify app)",
+   "integration_mode": "X",
+   "mode_evidence": "Shopify app listing only; not inspected",
+   "detect": {
+    "script_url_regex": [
+     "cdn\\.shopify\\.com/extensions/[0-9a-f-]+/[a-z-]*consentik[a-z0-9-]*/"
+    ],
+    "globals": [],
+    "dom_selectors": [],
+    "cookies": [],
+    "evidence": "unverified"
+   },
+   "reject": {
+    "selectors": [],
+    "text_regex": "^\\s*(reject( all)?( cookies| optional cookies)?|decline( all)?( optional( cookies)?)?|deny( all)?( non[- ]essential)?|refuse( all)?|disagree|i decline|no,? thanks|(strictly )?necessary( cookies)? only|use (only )?(strictly )?necessary( cookies)?( only)?|only (necessary|essential|required)( cookies)?|required only|continue without (accepting|agreeing))\\s*$"
+   },
+   "declared_config": {
+    "available": "unknown"
+   },
+   "cpapi": {
+    "calls_setTrackingConsent": "unknown",
+    "docs": [
+     "https://apps.shopify.com/eu-cookies-notification"
+    ]
+   },
+   "script_blocker": {
+    "present": "unknown"
+   },
+   "code_scan": [],
+   "study2_default_loads": 0,
+   "study2_default_loads_with_window_Shopify": 0
+  },
+  "securiti": {
+   "name": "Securiti",
+   "integration_mode": "X",
+   "mode_evidence": "not inspected; Study 2 selector overlaps TrustArc (#consent_blackbar) so its 13 detections co-occurred with TrustArc",
+   "detect": {
+    "script_url_regex": [
+     "cdn-prod\\.securiti\\.ai/",
+     "\\.securiti\\.ai/consent/"
+    ],
+    "globals": [],
+    "dom_selectors": [
+     ".cmp-banner",
+     "[class*=\"securiti\"]"
+    ],
+    "cookies": [],
+    "evidence": "study2 (weak)"
+   },
+   "reject": {
+    "selectors": [],
+    "text_regex": "^\\s*(reject( all)?( cookies| optional cookies)?|decline( all)?( optional( cookies)?)?|deny( all)?( non[- ]essential)?|refuse( all)?|disagree|i decline|no,? thanks|(strictly )?necessary( cookies)? only|use (only )?(strictly )?necessary( cookies)?( only)?|only (necessary|essential|required)( cookies)?|required only|continue without (accepting|agreeing))\\s*$"
+   },
+   "declared_config": {
+    "available": "unknown"
+   },
+   "cpapi": {
+    "calls_setTrackingConsent": "unknown"
+   },
+   "script_blocker": {
+    "present": "unknown"
+   },
+   "code_scan": [],
+   "study2_default_loads": 13,
+   "study2_default_loads_with_window_Shopify": 0
+  }
+ }
+}

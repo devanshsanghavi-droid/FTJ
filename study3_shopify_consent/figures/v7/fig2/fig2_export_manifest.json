@@ -1,0 +1,61 @@
+{
+ "figure": "Figure 2 (v7: figures/v7/DESIGN_V7.md; the sciplot clean theme and schematic rules; skill checks from v5)",
+ "destination": {
+  "journal": "Computers & Security (Elsevier)",
+  "article_type": "research article",
+  "phase": "initial submission",
+  "width": "full (190 mm)",
+  "publisher_rules": "PENDING VERIFICATION against the live C&S Guide for Authors; screened only against the skill's dated Elsevier snapshot"
+ },
+ "outputs": [
+  {
+   "file": "fig2.pdf",
+   "format": "PDF (vector, Type 42 / CID TrueType Arial, opaque white, RGB)",
+   "width_mm": 190.0,
+   "height_mm": 104.82,
+   "bytes": 72838,
+   "sha256": "4bca41091eb104dc4d134b7707f5594829c5eba2ac4254b917c9e95b0ccfb51b"
+  },
+  {
+   "file": "_v7_review-p01.png",
+   "format": "PNG review render, 200 ppi",
+   "px": [
+    1496,
+    825
+   ]
+  }
+ ],
+ "sources": {
+  "stats.json": {
+   "path": "analysis/outputs/stats.json",
+   "sha256": "e32f77df32f8d3fef00721e7ecc03255ef2504649def4d6c5a050cf9484dd824"
+  },
+  "figures/v7/derived_numbers.json": {
+   "path": "figures/v7/derived_numbers.json",
+   "sha256": "c6ca9314d1a47c0ca770c7946f50285d90af1bed8418bcd52a05ef8ceda18027"
+  },
+  "fig2/derived_numbers.json": {
+   "path": "figures/v7/fig2/derived_numbers.json",
+   "sha256": "e455893026debdcbb09b8b36c37fd72ee87e19f17951cbe3ee2691cea0fb4824"
+  }
+ },
+ "transformations": [
+  "figures/v7/scripts/derive_*.py -> figures/v7/derived_numbers.json (fig2a_funnel, fig2b_worked_request)",
+  "fig2/scripts/derive_fig2.py -> fig2/derived_numbers.json (fig2a_not_drawn; fig2c_timeline: the median moments drawn in c, from crawl/loads.csv and the raw Decline records)",
+  "fig2/scripts/make_fig2_panels.py -> build/fig2_layout.tex (cells and coordinates, checked against measured Arial widths) and build/fig2_numbers.tex (every printed number and string, registered in panels/fig2_numbers.csv; the worked request redacted by fig2/scripts/redact.py)",
+  "fig2/tex/*.tex (TikZ, drawing only: a and b schematics, c timelines under one time axis) -> panels/*.pdf -> fig2.tex composite",
+  "fig2/scripts/trace_fig2.py checks every printed number against the current sources"
+ ],
+ "uncertainty": "none shown: a methods figure with counts and one worked example (the agreement estimates with Wilson CIs moved with v4 panel d to Fig 6d).",
+ "missing_data": "a: domains removed between stages are drawn as grey side branches with their counts (including the flagged domains never drawn for checking); the creator-linked stores are a separate stratum outside the Tranco frame, not drawn and not counted in the analysed sample (caption).",
+ "software": {
+  "python": "3.13.9",
+  "matplotlib": "3.10.6",
+  "numpy": "2.3.5",
+  "pypdf": "6.16.2",
+  "pandas": "2.3.3",
+  "tectonic": "Tectonic 0.17.0"
+ },
+ "alt_text": "alt_text_fig2.txt",
+ "note": "No automated report here certifies accessibility or journal compliance (skill guardrail)."
+}

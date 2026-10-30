@@ -1,0 +1,10 @@
+panels/fig6_numbers.csv: 63 rows (63 drawn-only marks), 0 stale
+caption_fig6_numbers.csv: 86 rows (0 drawn-only marks), 0 stale
+panel fig6a_path.pdf: 0 numeric tokens (allowed ticks: none)
+panel fig6a_loads.pdf: 6 numeric tokens (allowed ticks: 0, 1, 2, 3, 4, 5)
+panel fig6b_creators.pdf: 5 numeric tokens (allowed ticks: 0, 25, 50, 75, 100)
+panel fig6c_url.pdf: 5 numeric tokens (allowed ticks: 0, 25, 50, 75, 100)
+panel fig6d_validation.pdf: 4 numeric tokens (allowed ticks: 85, 90, 95, 100)
+fig6.pdf: 20 numeric runs, the same as its panels
+coverage: 70 numeric tokens in caption_fig6.tex, 11 in alt_text_fig6.txt
+RESULT: PASS

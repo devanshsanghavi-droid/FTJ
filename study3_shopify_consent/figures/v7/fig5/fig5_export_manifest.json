@@ -1,0 +1,62 @@
+{
+ "figure": "Figure 5 (v7: DESIGN_V7.md, the sciplot clean theme with the nature-figure grafts; worked example fig1; K-Dense skill v1.4 screen)",
+ "destination": {
+  "journal": "Computers & Security (Elsevier)",
+  "article_type": "research article",
+  "phase": "initial submission",
+  "width": "full (190 mm)",
+  "publisher_rules": "PENDING VERIFICATION against the live C&S Guide for Authors; screened only against the skill's dated Elsevier snapshot"
+ },
+ "outputs": [
+  {
+   "file": "fig5.pdf",
+   "format": "PDF (vector, Type 42 / CID TrueType Arial, opaque white, RGB)",
+   "width_mm": 190.0,
+   "height_mm": 114.0,
+   "bytes": 81273,
+   "sha256": "0cb7409e669817bacd7a350ade49fa46eeb7966e56d822f832b1807863484a40"
+  },
+  {
+   "file": "_v7_review-p01.png",
+   "format": "PNG review render, 200 ppi",
+   "px": [
+    1496,
+    898
+   ]
+  }
+ ],
+ "sources": {
+  "stats.json": {
+   "path": "analysis/outputs/stats.json",
+   "sha256": "e32f77df32f8d3fef00721e7ecc03255ef2504649def4d6c5a050cf9484dd824"
+  },
+  "derived_numbers.json": {
+   "path": "figures/v7/derived_numbers.json",
+   "sha256": "c6ca9314d1a47c0ca770c7946f50285d90af1bed8418bcd52a05ef8ceda18027"
+  },
+  "fig5/derived_numbers.json": {
+   "path": "figures/v7/fig5/derived_numbers.json",
+   "sha256": "b46106dd6e0aa2ab23b14ba2c494e1da1c9d31a668c0a8ef6afa5fe8cc0b26a9"
+  }
+ },
+ "transformations": [
+  "analysis/analyze.py -> analysis/outputs/stats.json (Wilson CIs, Newcombe paired differences, exact McNemar test; gate audit; exclusive store classes; the race per load)",
+  "figures/v7/scripts/derive_numbers.py -> figures/v7/derived_numbers.json (exclusive classes of the stores still sending; per-sandbox race lags, medians and out-of-axis counts)",
+  "fig5/scripts/derive_fig5_numbers.py -> fig5/derived_numbers.json (per-load race lags for the raster, asserted against stats.json)",
+  "fig5/scripts/make_fig5_panels.py (drawing only; the panels print no number besides axis ticks; every drawn value registered as a mark in panels/fig5_numbers.csv, the ticks in panels/fig5_ticks.csv; checked by scripts/trace_fig5.py)",
+  "fig5/scripts/make_caption_fig5.py (the caption and alt text carry every count; registry panels/caption_fig5_numbers.csv)",
+  "fig5.tex (composite, tectonic)"
+ ],
+ "uncertainty": "a: Wilson 95% CIs of a share (stores are the unit; the three arms are the same 231 stores), drawn as vertical lines in the colour of their mark; paired differences in the caption: Newcombe hybrid-score 95% CIs and an exact McNemar test. b: the Wilson 95% CI of each bar total (stores still sending), drawn by figstyle.bar_ci as a horizontal line; the class segments are complete counts. c: complete counts (no interval). No bootstrap (no seed needed).",
+ "missing_data": "b: 1 GPC store matched no class and is not drawn (stated in the caption; it is inside the CI's total); what the gate held is stated in the caption, not drawn. c: none (every sandbox lies inside the symmetric-log axis, asserted).",
+ "software": {
+  "python": "3.13.9",
+  "matplotlib": "3.10.6",
+  "numpy": "2.3.5",
+  "pypdf": "6.16.2",
+  "pandas": "2.3.3",
+  "tectonic": "Tectonic 0.17.0"
+ },
+ "alt_text": "alt_text_fig5.txt",
+ "note": "No automated report here certifies accessibility or journal compliance (skill guardrail)."
+}

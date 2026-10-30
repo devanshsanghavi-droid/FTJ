@@ -1,0 +1,868 @@
+{
+ "_meta": {
+  "description": "ADDITIONS to crawl/vendor_endpoints.json for the beyond-Shopify pilot (Part B2). The original file is not modified.",
+  "built": "2026-09-27",
+  "built_by": "round4/beyond (screening agent); regexes are Python syntax like the original",
+  "merge_rule": "Append `vendors` AFTER the original list (original entries keep first-match precedence; build_extra.py checked that none of the new host regexes is shadowed by, or shadows, an original entry on sample hosts). `first_party_rules` are evaluated only for requests the host map does not match, in the order listed.",
+  "scopes": {
+   "same_site": "request host has the same registrable domain (eTLD+1) as the top-level page",
+   "same_site_or_known_gateway_host": "same_site, or a host matched by a vendor with vendor_class tag_gateway_host (stape, taggrs, addingwell, jentis)",
+   "same_site_subdomain": "same_site and host != page host",
+   "same_site_or_proxy": "any host whose path/query matches the proxy pattern",
+   "frame_host": "the frame (not the request) host matches",
+   "any": "any host"
+  },
+  "evidence_levels": {
+   "strong": "wire format or path unique to the vendor",
+   "moderate": "convention or partial signature; report separately",
+   "weak": "not used for headline counts"
+  },
+  "caveat": "Server-to-server forwarding (sGTM, Zaraz server-side tools, Wix/BigCommerce conversion APIs) cannot be observed from a browser. These rules identify data leaving the browser to a first-party or gateway endpoint (a proxy observable), never receipt by a named vendor, unless the wire format itself names the vendor (e.g. tid=G-..., AW- labels, Meta id=)."
+ },
+ "vendors": [
+  {
+   "vendor": "xandr",
+   "display_name": "Microsoft Xandr (AppNexus)",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(adnxs\\.com|adnxs-simple\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": []
+  },
+  {
+   "vendor": "pubmatic",
+   "display_name": "PubMatic",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(pubmatic\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": []
+  },
+  {
+   "vendor": "magnite",
+   "display_name": "Magnite (Rubicon Project)",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(rubiconproject\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": []
+  },
+  {
+   "vendor": "openx",
+   "display_name": "OpenX",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(openx\\.net)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": []
+  },
+  {
+   "vendor": "index_exchange",
+   "display_name": "Index Exchange",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(casalemedia\\.com|indexww\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": []
+  },
+  {
+   "vendor": "sovrn",
+   "display_name": "Sovrn",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(lijit\\.com|sovrn\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": []
+  },
+  {
+   "vendor": "teads",
+   "display_name": "Teads",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(teads\\.tv|teads\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": []
+  },
+  {
+   "vendor": "equativ",
+   "display_name": "Equativ (Smart AdServer)",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(smartadserver\\.com|equativ\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": []
+  },
+  {
+   "vendor": "adform",
+   "display_name": "Adform",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(adform\\.net|adformdsp\\.net|seadform\\.net)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": []
+  },
+  {
+   "vendor": "triplelift",
+   "display_name": "TripleLift",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(3lift\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": []
+  },
+  {
+   "vendor": "sharethrough",
+   "display_name": "Sharethrough",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(sharethrough\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": []
+  },
+  {
+   "vendor": "media_net",
+   "display_name": "Media.net",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(media\\.net)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": []
+  },
+  {
+   "vendor": "bidswitch",
+   "display_name": "BidSwitch",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(bidswitch\\.net)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": []
+  },
+  {
+   "vendor": "gumgum",
+   "display_name": "GumGum",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(gumgum\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": []
+  },
+  {
+   "vendor": "id5",
+   "display_name": "ID5",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(id5-sync\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "note": "identity resolution for advertising"
+  },
+  {
+   "vendor": "lotame",
+   "display_name": "Lotame",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(crwdcntrl\\.net)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "note": "data management platform"
+  },
+  {
+   "vendor": "permutive",
+   "display_name": "Permutive",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(permutive\\.com|permutive\\.app)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "note": "publisher audience platform"
+  },
+  {
+   "vendor": "33across",
+   "display_name": "33Across",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(33across\\.com|tynt\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": []
+  },
+  {
+   "vendor": "vk_ads",
+   "display_name": "VK Ads / Top@Mail.ru",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(top-fwz1\\.mail\\.ru|ad\\.mail\\.ru)$|^vk\\.com$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "note": "vk.com is matched for the retargeting pixel paths only if the crawler adds a path filter; host-only match is conservative"
+  },
+  {
+   "vendor": "demandbase",
+   "display_name": "Demandbase",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(company-target\\.com|demandbase\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": []
+  },
+  {
+   "vendor": "sixsense",
+   "display_name": "6sense",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(6sc\\.co|6sense\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": []
+  },
+  {
+   "vendor": "zoominfo",
+   "display_name": "ZoomInfo WebSights",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(ws\\.zoominfo\\.com|zoominfo\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": []
+  },
+  {
+   "vendor": "hubspot_ads",
+   "display_name": "HubSpot ads pixel",
+   "vendor_class": "advertising",
+   "is_advertising": true,
+   "study2_major_platform": false,
+   "figure_color_group": "Reddit/other",
+   "host_regex": "(^|\\.)(hsadspixel\\.net)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": []
+  },
+  {
+   "vendor": "hubspot",
+   "display_name": "HubSpot analytics and forms",
+   "vendor_class": "marketing_analytics",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": null,
+   "host_regex": "(^|\\.)(hs-analytics\\.net|hs-scripts\\.com|hscollectedforms\\.net|hs-banner\\.com|hsforms\\.com|hsforms\\.net|track\\.hubspot\\.com|hubspot\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": []
+  },
+  {
+   "vendor": "marketo",
+   "display_name": "Adobe Marketo Munchkin",
+   "vendor_class": "marketing_analytics",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": null,
+   "host_regex": "(^|\\.)(marketo\\.net|mktoresp\\.com|mktoutil\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": []
+  },
+  {
+   "vendor": "pardot",
+   "display_name": "Salesforce Pardot / Account Engagement",
+   "vendor_class": "marketing_analytics",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": null,
+   "host_regex": "(^|\\.)(pardot\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": []
+  },
+  {
+   "vendor": "leadfeeder",
+   "display_name": "Dealfront / Leadfeeder",
+   "vendor_class": "marketing_analytics",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": null,
+   "host_regex": "(^|\\.)(lfeeder\\.com|leadfeeder\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": []
+  },
+  {
+   "vendor": "comscore",
+   "display_name": "Comscore",
+   "vendor_class": "analytics",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": null,
+   "host_regex": "(^|\\.)(scorecardresearch\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": []
+  },
+  {
+   "vendor": "chartbeat",
+   "display_name": "Chartbeat",
+   "vendor_class": "analytics",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": null,
+   "host_regex": "(^|\\.)(chartbeat\\.com|chartbeat\\.net)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": []
+  },
+  {
+   "vendor": "parsely",
+   "display_name": "Parse.ly",
+   "vendor_class": "analytics",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": null,
+   "host_regex": "(^|\\.)(parsely\\.com|parse\\.ly)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": []
+  },
+  {
+   "vendor": "piwik_pro",
+   "display_name": "Piwik PRO",
+   "vendor_class": "analytics",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": null,
+   "host_regex": "(^|\\.)(piwik\\.pro)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": []
+  },
+  {
+   "vendor": "matomo_cloud",
+   "display_name": "Matomo Cloud",
+   "vendor_class": "analytics",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": null,
+   "host_regex": "(^|\\.)(matomo\\.cloud)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": []
+  },
+  {
+   "vendor": "cloudflare_web_analytics",
+   "display_name": "Cloudflare Web Analytics",
+   "vendor_class": "analytics",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": null,
+   "host_regex": "(^|\\.)(cloudflareinsights\\.com)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "note": "cookieless beacon; common on Cloudflare (and so Zaraz) sites; not a Zaraz tool"
+  },
+  {
+   "vendor": "stape",
+   "display_name": "Stape (hosted server-side GTM)",
+   "vendor_class": "tag_gateway_host",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": null,
+   "host_regex": "(^|\\.)(stape\\.io|stape\\.net|stape\\.eu|stape\\.dev)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "note": "requests reach a server container that may forward to any vendor server-side (invisible to the browser)"
+  },
+  {
+   "vendor": "taggrs",
+   "display_name": "TAGGRS (hosted server-side GTM)",
+   "vendor_class": "tag_gateway_host",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": null,
+   "host_regex": "(^|\\.)(taggrs\\.io)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": []
+  },
+  {
+   "vendor": "addingwell",
+   "display_name": "Addingwell (hosted server-side GTM)",
+   "vendor_class": "tag_gateway_host",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": null,
+   "host_regex": "(^|\\.)(addingwell\\.com|addingwell\\.io)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": []
+  },
+  {
+   "vendor": "jentis",
+   "display_name": "JENTIS (server-side tag manager)",
+   "vendor_class": "tag_gateway_host",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": null,
+   "host_regex": "(^|\\.)(jentis\\.com|jentis\\.io)$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": []
+  },
+  {
+   "vendor": "wix_platform_bi",
+   "display_name": "Wix platform BI / analytics",
+   "vendor_class": "platform_first_party",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": null,
+   "host_regex": "^frog\\.wix\\.com$",
+   "path_regex": null,
+   "beacon_path_regex": [],
+   "library_path_regex": [],
+   "note": "Wix built-in logging and site analytics; not an ad vendor"
+  },
+  {
+   "vendor": "partytown_lib",
+   "display_name": "Partytown library from a public CDN",
+   "vendor_class": "library_infra",
+   "is_advertising": false,
+   "study2_major_platform": false,
+   "figure_color_group": null,
+   "host_regex": "(^|\\.)(cdn\\.jsdelivr\\.net|unpkg\\.com)$",
+   "path_regex": "partytown",
+   "beacon_path_regex": [],
+   "library_path_regex": [
+    "partytown"
+   ]
+  }
+ ],
+ "first_party_rules": [
+  {
+   "id": "G1",
+   "architecture": "gateway",
+   "scope": "same_site_or_known_gateway_host",
+   "method": "GET",
+   "path_regex": "/gtm\\.js$",
+   "query_regex": "(^|&)id=GTM-[A-Z0-9]+",
+   "attributes_to": "google_tagmanager",
+   "kind": "library",
+   "evidence": "strong",
+   "note": "Google Tag Manager container served from the site (sGTM web-container client or Google tag gateway)"
+  },
+  {
+   "id": "G2",
+   "architecture": "gateway",
+   "scope": "same_site_or_known_gateway_host",
+   "method": "GET",
+   "path_regex": "/gtag/js$",
+   "query_regex": "(^|&)id=(G|AW|DC|GT)-[A-Z0-9]+",
+   "attributes_to": "google_tagmanager",
+   "kind": "library",
+   "evidence": "strong",
+   "note": "Google tag (gtag.js) served first-party"
+  },
+  {
+   "id": "G3",
+   "architecture": "gateway",
+   "scope": "same_site_or_known_gateway_host",
+   "method": "GET",
+   "path_regex": "\\.js$",
+   "query_regex": "(aWQ9R1RNL|aWQ9Ry0|aWQ9QVct)",
+   "attributes_to": "google_tagmanager",
+   "kind": "library",
+   "evidence": "moderate",
+   "note": "custom loader: base64 of \"id=GTM-\", \"id=G-\" or \"id=AW-\" in the query (e.g. Stape custom loader)"
+  },
+  {
+   "id": "G4",
+   "architecture": "gateway",
+   "scope": "same_site_or_known_gateway_host",
+   "method": "GET|POST",
+   "path_regex": "(^|/)g/collect$",
+   "query_regex": "(^|&)v=2(&|$).*(^|&)tid=G-|(^|&)tid=G-.*(^|&)v=2(&|$)",
+   "attributes_to": "google_analytics",
+   "kind": "beacon",
+   "evidence": "strong",
+   "note": "GA4 hit to a first-party collection path; may be forwarded server-side to GA4 and other vendors"
+  },
+  {
+   "id": "G5",
+   "architecture": "gateway",
+   "scope": "same_site_or_known_gateway_host",
+   "method": "GET|POST",
+   "path_regex": null,
+   "query_or_body_regex": "(^|&)v=2&.*tid=G-[A-Z0-9]+.*(^|&)en=",
+   "attributes_to": "google_analytics",
+   "kind": "beacon",
+   "evidence": "strong",
+   "note": "GA4 wire format on any first-party path (sGTM GA4 client with a custom path)"
+  },
+  {
+   "id": "G6",
+   "architecture": "gateway",
+   "scope": "same_site_or_known_gateway_host",
+   "method": "GET|POST",
+   "path_regex": "(^|/)(ccm/collect|pagead/(1p-)?conversion|pagead/viewthroughconversion|pagead/1p-user-list|pagead/landing|rmkt/collect)(/|$)",
+   "attributes_to": "google_ads",
+   "kind": "beacon",
+   "evidence": "strong",
+   "note": "Google Ads conversion / remarketing / ccm hit on a first-party path"
+  },
+  {
+   "id": "G7",
+   "architecture": "gateway",
+   "scope": "same_site_or_known_gateway_host",
+   "method": "GET|POST",
+   "path_regex": "(^|/)(j/)?collect$",
+   "query_regex": "(^|&)v=1&.*tid=UA-",
+   "attributes_to": "google_analytics",
+   "kind": "beacon",
+   "evidence": "strong",
+   "note": "legacy Universal Analytics wire format"
+  },
+  {
+   "id": "G8",
+   "architecture": "gateway",
+   "scope": "same_site_or_known_gateway_host",
+   "method": "GET|POST",
+   "path_regex": null,
+   "query_regex": "(^|&)gtm=4[0-9a-z]+.*(^|&)(gcs|gcd)=|(^|&)(gcs|gcd)=.*(^|&)gtm=4[0-9a-z]+",
+   "attributes_to": "google_tag_unknown",
+   "kind": "beacon",
+   "evidence": "moderate",
+   "note": "Google tag hit parameters (gtm= container hash plus consent parameters) on an unrecognised path"
+  },
+  {
+   "id": "G9",
+   "architecture": "gateway",
+   "scope": "same_site_or_known_gateway_host",
+   "method": "POST",
+   "path_regex": "(^|/)data/?$",
+   "body_regex": "\"?event_name\"?\\s*[:=]",
+   "attributes_to": "sgtm_data_client",
+   "kind": "beacon",
+   "evidence": "moderate",
+   "note": "server-side GTM \"Data client\" (e.g. Stape Data Tag) event stream; vendor fan-out is server-side"
+  },
+  {
+   "id": "G10",
+   "architecture": "gateway",
+   "scope": "same_site_subdomain",
+   "host_regex": "^capig\\.",
+   "method": "GET|POST",
+   "path_regex": null,
+   "attributes_to": "meta",
+   "kind": "beacon",
+   "evidence": "moderate",
+   "note": "Meta Conversions API Gateway on a first-party subdomain (conventional \"capig.\" label)"
+  },
+  {
+   "id": "G11",
+   "architecture": "gateway",
+   "scope": "same_site_or_known_gateway_host",
+   "method": "GET|POST",
+   "path_regex": "(^|/)tr/?$",
+   "query_regex": "(^|&)id=\\d{6,}.*(^|&)ev=|(^|&)ev=.*(^|&)id=\\d{6,}",
+   "attributes_to": "meta",
+   "kind": "beacon",
+   "evidence": "strong",
+   "note": "Meta pixel wire format proxied through the site"
+  },
+  {
+   "id": "G12",
+   "architecture": "gateway",
+   "scope": "same_site_or_known_gateway_host",
+   "method": "POST",
+   "path_regex": "(^|/)api/v2/pixel(/|$)",
+   "attributes_to": "tiktok",
+   "kind": "beacon",
+   "evidence": "strong",
+   "note": "TikTok pixel wire format proxied through the site"
+  },
+  {
+   "id": "G13",
+   "architecture": "gateway",
+   "scope": "same_site_or_known_gateway_host",
+   "method": "any",
+   "response_set_cookie_names": "^(FPID|FPLC|FPAU|FPGCLAW|FPGCLDC|FPGCLGB|FPGSID|_ga|_ga_[A-Z0-9]+|_gcl_au|_fbp|_fbc|_ttp|stape|_dc_gtm_.*)$",
+   "attributes_to": "server_set_identifier",
+   "kind": "cookie",
+   "evidence": "strong",
+   "note": "identifier cookie set by a Set-Cookie header on a first-party tag or collect response (sGTM sets FPID/FPLC server-side, HttpOnly); record names only"
+  },
+  {
+   "id": "Z1",
+   "architecture": "zaraz",
+   "scope": "same_site",
+   "method": "GET",
+   "path_regex": "^/cdn-cgi/zaraz/(i|s)\\.js$",
+   "attributes_to": "zaraz",
+   "kind": "library",
+   "evidence": "strong",
+   "note": "Zaraz loader (default path; the path is configurable in Zaraz settings)"
+  },
+  {
+   "id": "Z2",
+   "architecture": "zaraz",
+   "scope": "same_site",
+   "method": "POST",
+   "path_regex": "^/cdn-cgi/zaraz/t$",
+   "attributes_to": "zaraz",
+   "kind": "beacon",
+   "evidence": "strong",
+   "note": "Zaraz track call: the event reaches Cloudflare, which runs server-side tools for purposes with consent (or tools with no purpose). Forwarding itself is invisible."
+  },
+  {
+   "id": "Z3",
+   "architecture": "zaraz",
+   "scope": "same_site",
+   "method": "GET|POST",
+   "path_regex": null,
+   "body_regex": "zarazData|\"zaraz",
+   "attributes_to": "zaraz",
+   "kind": "beacon",
+   "evidence": "moderate",
+   "note": "Zaraz on a custom endpoint path (settings: custom URLs for Zaraz scripts)"
+  },
+  {
+   "id": "P1",
+   "architecture": "partytown",
+   "scope": "any",
+   "method": "GET",
+   "path_regex": "(~partytown|/partytown)/(debug/)?partytown(-atomics|-sw|-ww-atomics|-ww-sw|-media)?\\.js$",
+   "attributes_to": "partytown_lib",
+   "kind": "library",
+   "evidence": "strong",
+   "note": "Partytown runtime (main-thread snippet, worker, service worker)"
+  },
+  {
+   "id": "P2",
+   "architecture": "partytown",
+   "scope": "same_site_or_proxy",
+   "method": "GET|POST",
+   "path_regex": "(proxytown|~partytown/proxy|partytown-proxy|/proxy)(/|$|\\?)",
+   "query_regex": "(^|&)(url|u|target)=https?%3A%2F%2F",
+   "attributes_to": "decode_inner_url",
+   "kind": "inherit",
+   "evidence": "strong",
+   "note": "resolveUrl() reverse proxy: URL-decode the inner URL and classify it with the vendor map; attribute the request to that vendor"
+  },
+  {
+   "id": "W1",
+   "architecture": "wix",
+   "scope": "frame_host",
+   "frame_host_regex": "(^|\\.)filesusr\\.com$",
+   "attributes_to": "wix_html_embed_frame",
+   "kind": "context",
+   "evidence": "strong",
+   "note": "requests issued inside Wix \"Embed HTML\" iframes (user code on the filesusr.com sandbox origin); the banner does not govern them"
+  },
+  {
+   "id": "W2",
+   "architecture": "wix",
+   "scope": "frame_host",
+   "frame_host_regex": "(^|\\.)(wixapps\\.net|wix\\.com)$",
+   "attributes_to": "wix_app_frame",
+   "kind": "context",
+   "evidence": "moderate",
+   "note": "third-party app iframes; apps must read the consent policy themselves (Wix app docs)"
+  },
+  {
+   "id": "B1",
+   "architecture": "bigcommerce",
+   "scope": "same_site",
+   "method": "POST",
+   "path_regex": "^/api/storefront/consent$",
+   "attributes_to": "bigcommerce_consent",
+   "kind": "consent_signal",
+   "evidence": "strong",
+   "note": "body {\"allow\":[...],\"deny\":[...]}: 2 functional, 3 analytics, 4 targeting (as used by data-bc-cookie-consent); documented storefront consent endpoint"
+  }
+ ],
+ "consent_signal_decoders": {
+  "google_gcs": {
+   "param": "gcs",
+   "regex": "^G1([01-])([01-])$",
+   "fields": [
+    "ad_storage",
+    "analytics_storage"
+   ],
+   "values": {
+    "1": "granted",
+    "0": "denied",
+    "-": "not_set"
+   },
+   "source": "Google consent mode documentation (gcs values G100/G110/G101/G111)"
+  },
+  "google_gcd": {
+   "param": "gcd",
+   "positions": {
+    "ad_storage": 2,
+    "analytics_storage": 4,
+    "ad_user_data": 6,
+    "ad_personalization": 8
+   },
+   "letters": {
+    "l": "not_set",
+    "p": "denied_default",
+    "q": "denied_default_and_update",
+    "t": "granted_default",
+    "r": "granted_by_update_after_denied_default",
+    "m": "denied_by_update",
+    "n": "granted_by_update",
+    "u": "denied_by_update_after_granted_default",
+    "v": "granted_default_and_update"
+   },
+   "effective_granted": [
+    "t",
+    "r",
+    "n",
+    "v"
+   ],
+   "effective_denied": [
+    "p",
+    "q",
+    "m",
+    "u"
+   ],
+   "source": "practitioner decoding of the undocumented gcd parameter; verify on calibration pages before relying on it"
+  },
+  "google_other": {
+   "params": [
+    "npa",
+    "dma",
+    "dma_cps",
+    "pscdl",
+    "gcu",
+    "gcut"
+   ],
+   "note": "npa=1 non-personalised ads; dma = EEA DMA flag; record raw values"
+  },
+  "zaraz_consent": {
+   "cookie": "cf_consent",
+   "note": "name configurable; value maps purpose IDs to true/false (missing = no choice yet). Read zaraz.consent.getAll() in the page as the primary signal."
+  },
+  "wix_consent_policy": {
+   "api": "window.consentPolicyManager.getCurrentConsentPolicy() -> {defaultPolicy, policy:{essential,functional,analytics,advertising,dataToThirdParty}}",
+   "cookie": "consent-policy",
+   "cookie_note": "URL-encoded JSON; short keys expected (ess/func/anl/adv/dt3); calibrate on first pilot loads",
+   "static": "viewer model \"siteConsentPolicy\" = site default for this visitor region (screening)"
+  },
+  "bigcommerce_consent": {
+   "api": "window.consentManagerStoreConfig()",
+   "dom": "script[type=\"text/plain\"][data-bc-cookie-consent] = scripts held back per category",
+   "categories": {
+    "1": "essential",
+    "2": "functional",
+    "3": "analytics",
+    "4": "targeting"
+   },
+   "cookie": "record all first-party cookie names matching /consent/i at each checkpoint; name to be confirmed on calibration loads"
+  },
+  "tcf_gpp": {
+   "api": [
+    "__tcfapi(\"getTCData\")",
+    "__gpp(\"ping\")"
+   ],
+   "note": "as in Part A probes"
+  }
+ },
+ "architecture_runtime_markers": {
+  "partytown": {
+   "dom_pending": "script[type=\"text/partytown\"]",
+   "dom_executed": "script[type=\"text/partytown-x\"]",
+   "worker_url_regex": "partytown-ww-(atomics|sw)|blob:",
+   "service_worker_regex": "partytown-sw\\.js",
+   "config": "window.partytown (forward list, lib path, resolveUrl present?)",
+   "attribution": "requests from the Partytown web-worker target (CDP auto-attach session type \"worker\") are \"worker-context\"; the existing Part A worker attribution applies"
+  },
+  "zaraz": {
+   "globals": [
+    "zaraz",
+    "zarazData"
+   ],
+   "api": "zaraz.consent.APIReady, zaraz.consent.getAll(), zaraz.consent.purposes",
+   "events": [
+    "zarazConsentAPIReady",
+    "zarazConsentChoicesUpdated"
+   ],
+   "note": "tools with no purpose skip consent by default; events blocked by consent are queued (zaraz.consent.sendQueuedEvents)"
+  },
+  "wix": {
+   "globals": [
+    "consentPolicyManager",
+    "wixTagManager"
+   ],
+   "note": "wixTagManager.getConfig().gdprEnforcedGeo; Wix site code (Velo) and some apps run in a platform worker or iframes"
+  },
+  "bigcommerce": {
+   "globals": [
+    "consentManagerStoreConfig",
+    "BCData"
+   ],
+   "note": "count text/plain data-bc-cookie-consent scripts before and after Decline"
+  }
+ }
+}

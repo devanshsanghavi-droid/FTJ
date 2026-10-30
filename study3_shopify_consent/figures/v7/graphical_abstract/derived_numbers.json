@@ -1,0 +1,26 @@
+{
+ "ga_blocked_share": {
+  "value": 0.631578947368421,
+  "definition": "Tile B meter length: blocklist entries (an ad vendor that the store's CMP listed as blocked and that had a configured sandboxed Shopify pixel, on the stores whose CMP wrote no 'marketing: yes') whose vendor sent an ad request from Shopify's sandbox before any choice, as a share of all such entries (k / n; Fig 4A top row). Drawn only; the printed numbers are k and n.",
+  "script": "figures/v2/graphical_abstract/scripts/make_ga_numbers.py",
+  "inputs": [
+   "figures/v2/derived_numbers.json:fig4a_routes.primary_no_yes.sandbox",
+   "figures/v2/derived_numbers.json:fig4a_routes.primary_no_yes.n"
+  ],
+  "k": 12,
+  "n": 19,
+  "check": "k, n == fig4/derived_numbers.json fig4a_entries.counts (sandbox, n) and fig4a_kg.sandbox (k, n)"
+ },
+ "ga_race_share": {
+  "value": 0.9813084112149533,
+  "definition": "Tile C meter length: marketing pixel sandboxes that had started before the CMP's automatic 'marketing: no' write, as a share of all such sandboxes (k / n). Drawn only; the printed numbers are k and n.",
+  "script": "figures/v2/graphical_abstract/scripts/make_ga_numbers.py",
+  "inputs": [
+   "analysis/outputs/stats.json:fig5.d.deny.pixels_before",
+   "analysis/outputs/stats.json:fig5.d.deny.pixels"
+  ],
+  "k": 525,
+  "n": 535,
+  "check": "k == stats fig5.d.deny.pixels_before and n == stats fig5.d.deny.pixels"
+ }
+}

@@ -1,0 +1,37 @@
+# v2 palette validation (2026-09-27T06:49Z); validator: dataviz/scripts/validate_palette.js
+
+## Vendors (fixed order, 7 slots + spare), adjacent pairs, print surface #ffffff
+
+Palette (light, surface #ffffff, categorical): 8 slots
+  [PASS] Lightness band         all 8 inside L 0.43–0.77
+  [PASS] Chroma floor           all 8 >= 0.1
+  [PASS] CVD separation         worst adjacent #eda100↔#1baf7a ΔE 9.1 (protan) · tritan 5.8
+  [PASS] Normal-vision floor    worst adjacent #e87ba4↔#eda100 ΔE 19.6 (normal)
+  [WARN] Contrast vs surface    below 3:1 — relief required (visible labels or table view): [["#1baf7a",2.82],["#eda100",2.17],["#e87ba4",2.69]]
+
+  → ALL CHECKS PASS  (CVD in the 6–8 floor band is legal ONLY with secondary encoding: direct labels, gaps, or texture)
+  scope: categorical palettes only. For a lone status/text color check WCAG text contrast; for a sequential ramp, lightness monotonicity.
+
+
+## Red (consent failed) next to TikTok orange: must never share a panel (expected FAIL)
+
+Palette (light, surface #ffffff, categorical): 2 slots
+  [PASS] Lightness band         all 2 inside L 0.43–0.77
+  [PASS] Chroma floor           all 2 >= 0.1
+  [PASS] CVD separation         worst adjacent #eb6834↔#d03b3b ΔE 10.1 (deutan) · tritan 9.2
+  [FAIL] Normal-vision floor    worst adjacent #eb6834↔#d03b3b ΔE 10.8 (normal) — below 15, hard to tell apart even with full color vision
+  [PASS] Contrast vs surface    all 2 >= 3:1
+
+  → FAILED — fix the marked checks  (CVD in the 6–8 floor band is legal ONLY with secondary encoding: direct labels, gaps, or texture)
+  scope: categorical palettes only. For a lone status/text color check WCAG text contrast; for a sequential ramp, lightness monotonicity.
+
+
+## Ordinal blue ramp (heatmaps)
+
+Palette (light, surface #ffffff, ordinal ramp): 4 slots
+  [PASS] Lightness monotone     steps read light→dark
+  [PASS] Adjacent ΔL            all gaps >= 0.06
+  [PASS] Light-end contrast     #86b6ef at 2.11:1 vs surface
+  [PASS] Single hue             hue spread 4°
+
+  → ALL CHECKS PASS  (ordinal: one hue, monotone L, visible step gaps, light end clears surface)

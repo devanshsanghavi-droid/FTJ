@@ -1,0 +1,8 @@
+{
+ "n_flagged": 20,
+ "n_excluded": {
+  "all": 0,
+  "excl_flagged": 20
+ },
+ "max_abs_change_pp_flagged": 0.4
+}

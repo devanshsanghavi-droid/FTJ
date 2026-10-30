@@ -1,0 +1,19 @@
+% figS2.tex -- Supplementary Figure S2 composite, v7 (../DESIGN_V7.md; reference figure ../fig1): 190 x 155 mm.
+% a 190 x 80 (hero: six dot plots, 14 consent tools x 6 outcomes, shared tool rows grouped by integration mode under
+% muted group headers; one coloured row -- Shopify's banner, slate squares -- every other tool grey; the three headline
+% rates of Fig S5 on a pale brick band), b 138 x 76 (vendor x tool heatmap in the grey ramp, columns in a's row order,
+% tiles about 1.8 : 1 split by white gaps, blank + muted dash = no estimate, thin colour bar close to the matrix; b's
+% matrix starts at a's plot-area left edge; b's cell ends at its colour bar, so it is narrower than a); the style's
+% 6 mm gutter. Panels: scripts/s2.py, drawn at final size in fs.v7_context() (it asserts these cells); \Panel checks
+% each size and draws the 8 pt bold lowercase letters (no panel titles).
+\documentclass[tikz,border=0pt]{standalone}
+\def\StyleDir{../style/}
+\input{\StyleDir tikzstyle_v2.tex}
+\begin{document}
+\begin{tikzpicture}
+  \FigureCanvas{155}
+  %      letter x   y    w     h    file
+  \Panel {a}    {0} {0}  {190} {80} {panels/figS2a_tools.pdf}
+  \Panel {b}    {0} {86} {137} {69} {panels/figS2b_heatmap.pdf}
+\end{tikzpicture}
+\end{document}

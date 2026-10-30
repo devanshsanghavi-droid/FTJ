@@ -31,7 +31,7 @@ import numpy as np
 import pandas as pd
 from scipy.stats import binomtest
 
-from common import (CRAWL, OUT, SAMPLE, SEED, VENDOR_GROUPS, cluster_bootstrap_bca, dump, kappa, kappa_boot, wilson)
+from common import (CONTENT_EXCLUDED, CRAWL, OUT, SAMPLE, SEED, VENDOR_GROUPS, cluster_bootstrap_bca, dump, kappa, kappa_boot, wilson)
 from gate_audit import decode_state
 
 B = 2000
@@ -220,8 +220,13 @@ def main():
     CD = pd.read_csv(os.path.join(CRAWL, 'cmp_declared.csv'))
     LS = pd.read_csv(os.path.join(OUT, 'load_scripts.csv'))
     FA = pd.read_csv(os.path.join(os.path.dirname(OUT), 'forced_click_audit.csv'))
-    summ = json.load(open(os.path.join(CRAWL, 'crawl_summary.json')))
+    summ = json.load(open(os.path.join(CRAWL, 'crawl_summary.json')))                  # whole crawl (design counts)
+    summ_a = json.load(open(os.path.join(CRAWL, 'crawl_summary_analysed.json')))       # analysed stores (cross-check)
     funnel = json.load(open(os.path.join(SAMPLE, 'raw', 'funnel.json')))
+    # content-sensitivity exclusions (2026-09-29; common.CONTENT_EXCLUDED): store-level tables drop the excluded stores;
+    # L keeps them only for the crawl-level design counts below (planned loads, loads by arm)
+    CE, CD, PX = (x[~x.store_id.isin(CONTENT_EXCLUDED)] for x in (CE, CD, PX))
+    LS = LS[~LS.load_id.isin(L[L.store_id.isin(CONTENT_EXCLUDED)].load_id)]
     Lx = L.set_index('load_id')
     tref = Lx.t_load.where(Lx.t_load.notna(), Lx.t_dcl)
     ad['t_ref'] = ad.load_id.map(tref)
@@ -261,8 +266,11 @@ def main():
         other_errors=int(funnel['drawn_for_verification'] - funnel['verified_live_online_store'] - ex['headless_or_assets_only'] - ex['blocked_http_403']),
         live_to_sample=int(funnel['verified_live_online_store'] - funnel['sample_after_dedupe']),
         no_product=ex['no_product_url'], child=ex['child_directed'], duplicate=ex['duplicate_of'], adult=ex['adult_content'],
-        sample_to_captured=int(funnel['sample_after_dedupe'] - len(m)))
-
+        content_excluded=int(sum(s_ in set(funnel_sample_ids()) for s_ in CONTENT_EXCLUDED)),
+        sample_to_captured=int(funnel['sample_after_dedupe'] - sum(s_ in set(funnel_sample_ids()) for s_ in CONTENT_EXCLUDED) - len(m)))
+    S['design']['n_main_after_content_exclusion'] = int(funnel['sample_after_dedupe'] - S['design']['funnel_excl']['content_excluded'])
+    S['design']['content_excluded_stores'] = list(CONTENT_EXCLUDED)
+    L = L[~L.store_id.isin(CONTENT_EXCLUDED)].copy()   # store-level uses of L from here on
     # ------------------------------------------------------------------ Figure 1b: situating data
     f1 = {}
     f1['banner'] = WC(m.banner_A0, m.cluster)
@@ -1113,7 +1121,7 @@ def main():
         region_optout_share=W(int((m.region_optout == True).sum()), int(m.region_optout.notna().sum())),
         gpc_header_sale_declined=W(int((m.A2_header_sale_declined == True).sum()), len(m)),
         gpc_cp_sale_denied=W(int((m.cp_sale_end_A2 == False).sum()), int(m.cp_sale_end_A2.notna().sum())),
-        v1_cp_sale_denied=summ['v1_shopify_saleOfData_denied'],
+        v1_cp_sale_denied=summ_a['v1_shopify_saleOfData_denied'],
         strict_workers_A2=gl['A2']['strict_workers'], strict_workers_A2_injected=gl['A2']['strict_workers_inject_state_ok'],
         strict_workers_A2_gpc_undefined=gl['A2']['strict_workers_gpc_undefined'], strict_workers_V1=gl['V1']['strict_workers'],
         strict_workers_V1_gpc_undefined=gl['V1']['strict_workers_gpc_undefined'], lax_frames_A2_true=gl['A2']['lax_sandbox_frames_gpc_True'],
@@ -1137,12 +1145,12 @@ def main():
     # ------------------------------------------------------------------ Ethics sensitivity (review COORD-01, AUD-04)
     S['ethics_sensitivity'] = ethics_sensitivity(m, cr, st, clk, clk_all, set(newp.store_id), SC, L, PX, grants, blk_st, decl_vendor_sbx, tok)
     S['crosscheck'] = dict(
-        banner=(f1['banner']['k'], summ['main']['A0_banner_visible']['k']),
-        banner_sbx=(int((m.banner_A0 & m.A0_sbx).sum()), summ['main']['A0_banner_stores_sandboxed_ad_request_prechoice']['k']),
-        clicked=(len(clk_all), summ['main']['A1_clicked']),
-        next_sbx=(int(clk_all.A1next_sbx.sum()), summ['main']['A1_clicked_sandboxed_ad_next_page']['k']),
-        gpc_resid=(int((m.A0_sbx & m.A2_sbx).sum()), summ['main']['A2_given_A0_sandboxed_ad_still_sandboxed_ad']['k']),
-        gpc_base=(int(m.A0_sbx.sum()), summ['main']['A2_given_A0_sandboxed_ad_still_sandboxed_ad']['n']))
+        banner=(f1['banner']['k'], summ_a['main']['A0_banner_visible']['k']),
+        banner_sbx=(int((m.banner_A0 & m.A0_sbx).sum()), summ_a['main']['A0_banner_stores_sandboxed_ad_request_prechoice']['k']),
+        clicked=(len(clk_all), summ_a['main']['A1_clicked']),
+        next_sbx=(int(clk_all.A1next_sbx.sum()), summ_a['main']['A1_clicked_sandboxed_ad_next_page']['k']),
+        gpc_resid=(int((m.A0_sbx & m.A2_sbx).sum()), summ_a['main']['A2_given_A0_sandboxed_ad_still_sandboxed_ad']['k']),
+        gpc_base=(int(m.A0_sbx.sum()), summ_a['main']['A2_given_A0_sandboxed_ad_still_sandboxed_ad']['n']))
     S['crosscheck_ok'] = all(a == b for a, b in S['crosscheck'].values())
     dump(S, 'stats.json')
     json.dump(dict(captured_all_arms=int(len(m)), captured_creator=int(len(cr)), repeat_planned=S['design']['repeat_planned'],
@@ -1384,28 +1392,37 @@ def automation(L, st, m, cr, CE, grants, adm):
     return out
 
 
+def funnel_sample_ids():
+    return list(pd.read_csv(os.path.join(SAMPLE, 'sample.csv')).store_id)
+
+
 def ethics_flag_sets(st):
     """Stores flagged in the ethics review after the crawl (final audit, 2026-09-26):
       robots_landing  robots.txt disallowed the exact landing URL (crawl/recheck/robots/robots_eval.csv, landing == False)
       robots_home     robots.txt disallowed the homepage used in sampling (home == False)
       adult           sells adult products: the broader title screen (review/human_relabel_kit/E_broader_child_screen_BLANK.csv)
-      child_flagged   a child-directed candidate noticed on a re-check screenshot (analysis/ethics_flags.csv)
-      child_pending   a further candidate awaiting a human decision (analysis/ethics_flags.csv, ledger AUD-06)"""
+      child_flagged   the child-directed candidates noticed after the crawl (analysis/ethics_flags.csv: the toy retailer and S0145)
+      child_pending   kept empty since 2026-09-29 (the author excluded S0145), for readers of older stats.json files
+      content_excluded  adult + child-directed stores, excluded from every analysis for content sensitivity (author
+                      decision 2026-09-29; common.CONTENT_EXCLUDED). 'flagged' (the sensitivity variant) is now the
+                      robots.txt flags only, because the content-flagged stores are no longer in the analysis."""
     rb = pd.read_csv(os.path.join(CRAWL, 'recheck', 'robots', 'robots_eval.csv'))
     E = pd.read_csv(os.path.join(os.path.dirname(OUT), '..', 'review', 'human_relabel_kit', 'E_broader_child_screen_BLANK.csv'))
     fl = pd.read_csv(os.path.join(os.path.dirname(OUT), 'ethics_flags.csv'))
     sets = dict(robots_landing=sorted(rb[rb.landing == False].store_id), robots_home=sorted(rb[rb.home == False].store_id),
                 adult=sorted(E[E.title.str.contains(r'\bsex dolls?\b|adult sex|adult dolls', case=False, regex=True)].store_id),
-                child_flagged=sorted(fl[fl.status.str.startswith('excluded')].store_id),
-                child_pending=sorted(fl[fl.status.str.startswith('human decision pending')].store_id))
-    flagged = sorted(set(sets['robots_landing']) | set(sets['robots_home']) | set(sets['adult']) | set(sets['child_flagged']))
+                child_flagged=sorted(fl[fl.flag == 'child_directed_candidate'].store_id),
+                child_pending=sorted(fl[fl.status.str.startswith('human decision pending')].store_id),
+                content_excluded=list(CONTENT_EXCLUDED))
+    flagged = sorted((set(sets['robots_landing']) | set(sets['robots_home'])) - set(CONTENT_EXCLUDED))
     return sets, flagged
 
 
 def ethics_sensitivity(m, cr, st, clk, clk_all, fresh_set, SC, L, PX, grants, blk_st, decl_vendor_sbx, tok):
-    """Headline rates recomputed without the stores flagged in the ethics review. Variants: all stores (reproduces the
-    main analysis), without the 2 adult-product stores, without every flagged store, and additionally without the
-    pending child-directed candidate (human decision)."""
+    """Headline rates recomputed without the stores flagged in the ethics review. Since 2026-09-29 the adult-product and
+    child-directed stores are excluded from the whole analysis (common.CONTENT_EXCLUDED), so the variants are: all
+    analysed stores (reproduces the main analysis) and without the stores whose robots.txt disallowed the landing or
+    home page."""
     sets, flagged = ethics_flag_sets(st)
     analysed = set(m.index) | set(cr.index)
     out = dict(sets=sets, flagged=flagged, n_flagged=len(flagged),
@@ -1416,7 +1433,7 @@ def ethics_sensitivity(m, cr, st, clk, clk_all, fresh_set, SC, L, PX, grants, bl
     out['flagged_main_profile'] = dict(n=len(fm), banner=int(fm.banner_A0.sum()), prechoice_sbx=int(fm.A0_sbx.sum()),
                                        gpc_sbx=int((fm.A0_sbx & fm.A2_sbx).sum()), clicked_ok=int(fm.index.isin(clk.index).sum()),
                                        blocklist=int(fm.index.isin(blk_st).sum()))
-    variants = dict(all=[], excl_adult=sets['adult'], excl_flagged=flagged, excl_flagged_and_pending=sorted(set(flagged) | set(sets['child_pending'])))
+    variants = dict(all=[], excl_flagged=flagged)
     tok0 = tok[tok.arm == 'A0']
     res = {}
     for name, excl in variants.items():
@@ -1444,7 +1461,6 @@ def ethics_sensitivity(m, cr, st, clk, clk_all, fresh_set, SC, L, PX, grants, bl
     out['variants'] = res
     keys = ['prechoice', 'banner_fires', 'nobanner_fires', 'optout_fires', 'optin_fires', 'blocklist', 'decline_fresh', 'gpc']
     out['max_abs_change_pp_flagged'] = float(max(abs(res['excl_flagged'][k]['p'] - res['all'][k]['p']) for k in keys) * 100)
-    out['max_abs_change_pp_flagged_and_pending'] = float(max(abs(res['excl_flagged_and_pending'][k]['p'] - res['all'][k]['p']) for k in keys) * 100)
     pd.DataFrame([dict(variant=v, measure=k, **{kk: vv for kk, vv in r[k].items()}) for v, r in res.items() for k in r if isinstance(r[k], dict)]
                  ).to_csv(os.path.join(OUT, 'ethics_sensitivity.csv'), index=False)
     return out

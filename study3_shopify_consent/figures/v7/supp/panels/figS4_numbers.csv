@@ -1,0 +1,11 @@
+text,shown,source,key,fmt,value
+53,53,csv,figS4.csv:banner/banner detected/banner visible,int,53
+1,1,csv,figS4.csv:banner/banner detected/no banner visible,int,1
+35,35,csv,figS4.csv:reject/reject found/reject visible,int,35
+0,0,csv,figS4.csv:reject/reject found/no reject visible,int,0
+1,1,csv,figS4.csv:reject/no reject found/reject visible,int,1
+17,17,csv,figS4.csv:reject/no reject found/no reject visible,int,17
+33,33,csv,figS4.csv:click/banner dismissed/banner gone,int,33
+0,0,csv,figS4.csv:click/banner dismissed/banner still shown,int,0
+0,0,csv,figS4.csv:click/banner still shown/banner gone,int,0
+2,2,csv,figS4.csv:click/banner still shown/banner still shown,int,2

@@ -1,0 +1,19 @@
+{
+ "stats_key": "round4",
+ "written_by": "round4/analysis/run_r4.sh (r4_write_results.py)",
+ "checked_by": "round4/analysis/r4_trace_check.py",
+ "trace_check_r4_result": "PASS",
+ "files": {
+  "round4/analysis/stats_r4.json": "2b6b769141f15dd412fe2e2c6166c4bcaf2e2c2f848d0687c4f26e906c07d570",
+  "round4/analysis/RESULTS_R4.md": "15e2a3c2304dd2f7db3da7cfebf124ee8675d4c87bda726b56eca0cbe3a9e122",
+  "round4/analysis/outputs/number_registry_r4.csv": "01886034a2fcd068a6b0b14c10ff41c72e3f8993cfb4c70807f9b8de795f61fc",
+  "round4/analysis/outputs/blocklist_r4.json": "05bc40805a7ff618073b0d719159480fd609ab89333dbc800e17f97469115c6a",
+  "round4/expansion/funnel.json": "16a8aea3998aca8dc87c5e34a59273d131a70872940ed2b0639d13807634d626",
+  "round4/analysis/r4_beyond.py": "e296bda5b0b91db7a6c0653b5c90645a23cb1499a93089692ae8a70ccc44617d",
+  "round4/analysis/r4_blocklist.py": "01c78d3ddb0ce37e7078c5a8a2752ca508215a4c839392d258404e921f431451",
+  "round4/analysis/r4_tables.py": "bbf476b552a19cf98792017dca5401972c3369bb5f249cd5ca969d0dff6af6a7",
+  "round4/analysis/r4_trace_check.py": "b618c6bf475ce139d399d6b60ce84e1940170f800ed0c6c4662a860603dcfdc3",
+  "round4/analysis/r4_write_results.py": "4ea85ae7d1c06f78702930091fb5b25d6e0b2cfe0e1b38f9746258ed48dabf59",
+  "round4/analysis/run_r4.sh": "a80fc0bb207a3327ea8829c36e31a0cfcfe9afe5ce88187f7996682e353a6293"
+ }
+}

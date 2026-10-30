@@ -10,9 +10,9 @@ import csv, gzip, json, os, re, sys, time, urllib.request
 UA = 'Mozilla/5.0 (compatible; shopify-consent-study/1.0; non-commercial academic measurement crawler)'
 STORES = sys.argv[1:] or ['s0347.store.example', 'www.brooklinen.com', 'c005.store.example/?skipCache=true', 'c011.store.example',
     'www.tower28beauty.com', 's0203.store.example', 's0120.store.example', 'c003.store.example', 's0542.store.example', 'www.hauslabs.com',
-    'www.dominique.com', 'www.evo.com', 's0359.store.example', 'www.lillylashes.com', 's0983.store.example', 'www.yfood.com',
+    'www.dominique.com', 'www.evo.com', 's0359.store.example', 'www.lillylashes.com', 's0983.store.example', 'c029.store.example',
     'augustinusbader.com', 's0979.store.example', 'www.chomps.com', 'kyliecosmetics.com', 'skims.com', 's0589.store.example',
-    's0146.store.example', 's0499.store.example', 'www.westman-atelier.com', 'www.thorum.com', 'www.cometeer.com', 'dftba.com']
+    's0146.store.example', 's0499.store.example', 'www.westman-atelier.com', 'www.thorum.com', 'www.cometeer.com', 'c026.store.example']
 VENDOR_KEYS = [  # configuration-key heuristics -> vendor (checked in order)
     ('tiktok', r'"pixelCode"|pixel_code'), ('meta', r'facebook_pixel|"pixel_id"'), ('google', r'google_tag_ids|"tagId":"(AW|G|GT)-'),
     ('reddit', r'redditPixelId'), ('pinterest', r'pinterest|"tagId":"26'), ('snap', r'snap|"pixelId":"[0-9a-f]{8}-'),

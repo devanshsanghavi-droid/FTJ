@@ -1,0 +1,24 @@
+== fig3.pdf: 1 page, 190.0 x 61.0 mm, 51 KB, raster images: 0
+   font Arial-BoldMT: Type0 (CID TrueType, Type 42), embedded  [ok]
+   font ArialMT: Type0 (CID TrueType, Type 42), embedded  [ok]
+   text sizes (pt: runs): {6.0: 16, 7.0: 17, 8.0: 2}  -> smallest 6.0 pt [ok]
+   non-numeric text sizes (pt: runs): {7.0: 17, 8.0: 2}  [ok: words >= 7 pt; tick labels 6 pt; 6 pt words only as muted secondary text (DESIGN_V7 section 2)]
+   Elsevier width class: 190 mm [ok]; vector PDF [ok]; colour space RGB (DeviceRGB operators)
+   colours drawn (WCAG contrast vs #ffffff; CIE L*):
+     #000000  21.00:1  L*=  0.0  the panel letters (composite)  [ok]
+     #1f2328  15.80:1  L*= 13.5  sciplot text colour: every word label and axis title; the two difference diamonds (filled; open = white with an SP_FG edge), their CIs and their direct labels 'Within product' and 'Crude' (a right)  [ok]
+     #3d434b   9.99:1  L*= 28.2  sciplot chrome: the open bottom axes, ticks and tick labels; b's left spine  [ok]
+     #5d769d   4.62:1  L*= 49.2  HONOUR slate, 'denied until consent': squares and their CIs (a left, b)  [ok]
+     #6b7280   4.83:1  L*= 47.9  sciplot muted text: the product rows' group name 'Consent product', the name of a row whose groups are all small and the 6 pt note 'Grey: fewer than 10 stores' (a left); the categories' group name 'Declared purpose' (b)  [ok]
+     #a0a0a0   2.61:1  L*= 65.9  NEUTRAL grey: a group of fewer than design.min_stores_row stores, its mark and CI (a left); the zero rule (a right) and the bracket grouping the product rows (a), context lines  [below 3.0:1, accepted: sciplot: grey for context, colour for signal; grey marks a small group (fewer than design.min_stores_row stores), whose estimate is imprecise; its shape (circle / square) still names its default, a note in the plot and the caption say what grey means, and the caption lists the grey groups. As the zero rule and the product bracket it is a context line (DESIGN_V7 section 3.2: NEUTRAL = context lines; = Fig 4b right's zero rule before 2026-10-19 22:16), the zero also being the labelled 0 tick]
+     #c65358   4.39:1  L*= 50.6  LEAK brick, 'allowed until choice': circles and their CIs (a left, b)  [ok]
+     #fbeeed   1.13:1  L*= 95.1  ground: the key area, the excess under 'allowed until choice' -- the band between a row's two marks (a left, b); marks drawn on it  [n/a (decorative/surface)]
+     #ffffff   1.00:1  L*=100.0  surface; the open diamond (a right)  [n/a (decorative/surface)]
+== category separation without hue (skill grayscale screen, delta L* >= 10; heuristic):
+     'allowed until choice' (brick circle) vs 'denied until consent' (slate square), a left and b: #c65358 vs #5d769d  delta L* =  1.4  does NOT separate in grayscale
+     an 'allowed' group vs a small group (grey), a left: #c65358 vs #a0a0a0  delta L* = 15.3  separates in grayscale
+     a 'denied' group vs a small group (grey), a left: #5d769d vs #a0a0a0  delta L* = 16.7  separates in grayscale
+   Brick and slate have nearly equal lightness, so the two region defaults are double-coded by shape (circle vs square; DESIGN_V7 section 5) and by position (in a left 'allowed' sits above the row line and 'denied' below it; in b 'allowed' is left of 'denied'), and named by direct labels in a; a grey (small) group keeps its shape. The crude vs pooled difference (a right) is open vs filled, each on its own row with its own direct label. The one tint (pale brick, pre-mixed, never alpha) has one meaning, the excess under 'allowed'. No vendor hues are drawn (per-vendor detail is in Fig. S6).
+   v7 type check: words 7 pt; tick labels 6 pt; letters 8 pt (DESIGN_V7 section 2). Elsevier asks for about 7 pt lettering: 6 pt is the sciplot Nature tick size the v7 spec adopts; confirm against the C&S Guide for Authors before submission.
+== preview _v7_review-p01.png: 1496 x 480 px, RGBA, opaque=True, 200 ppi at 190 mm (a review render; the submission file is the vector PDF)
+RESULT: PASS (automatic screen; not a compliance certificate)

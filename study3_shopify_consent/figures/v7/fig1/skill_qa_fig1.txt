@@ -1,0 +1,29 @@
+== fig1.pdf: 1 page, 190.0 x 132.0 mm, 81 KB, raster images: 0
+   font Arial-BoldMT: Type0 (CID TrueType, Type 42), embedded  [ok]
+   font ArialMT: Type0 (CID TrueType, Type 42), embedded  [ok]
+   text sizes (pt: runs): {6.0: 32, 7.0: 23, 8.0: 3}  -> smallest 6.0 pt [ok]
+   non-numeric text sizes (pt: runs): {7.0: 23, 8.0: 3}  [ok: words >= 7 pt; tick labels and loss numerals 6 pt; 6 pt words only as muted secondary text (SP_MUTED runs: {6.0: 10})]
+   Elsevier width class: 190 mm [ok]; vector PDF [ok]; colour space RGB (DeviceRGB operators)
+   colours drawn (WCAG contrast vs #ffffff; CIE L*):
+     #000000  21.00:1  L*=  0.0  the panel letters (composite)  [ok]
+     #1f2328  15.80:1  L*= 13.5  sciplot text colour: every label; the script-blocker wall (a) and its miniature, the "blocked" bar (b)  [ok]
+     #3b4656   9.56:1  L*= 29.4  SAND: the pixel-sandbox region outline (a)  [ok]
+     #3d434b   9.99:1  L*= 28.2  sciplot chrome: the axes and ticks (b, c); schematic outlines and connectors (a)  [ok]
+     #6b7280   4.83:1  L*= 47.9  sciplot muted text: the three region names, the API name, runtime tags and vendor-group list (a), the tick-height key (b)  [ok]
+     #a0a0a0   2.61:1  L*= 65.9  NEUTRAL grey: context -- the browser frame and the page-region outline, the stopped tag wire and the dotted cut path (a), the label leader (c)  [below 3.0:1, accepted: RESTRAINT rule 6 neutral, context only; the point of a and c is carried by the brick marks (4.4:1), and the stopped wire also ends at the black wall]
+     #b9bec5   1.87:1  L*= 76.8  sciplot context grey: every request tick of the raster (c)  [below 3.0:1, accepted: sciplot: grey for context, colour for signal; the ticks are context behind the brick line (4.4:1), which carries c's point; each tick's position, not its colour, is read]
+     #c65358   4.39:1  L*= 50.6  LEAK brick: the requests that lost consent -- the leak arrows and the outlines of the five loss numerals (a; the digits are SP_FG), the sandboxed request ticks, key ticks and the late-beacon arrowhead (b), the first-request line, its arrowheads and the crossing circle (c)  [ok]
+     #e8a33a   2.16:1  L*= 72.0  EVENT amber: the banner becoming visible (b, c), a rule that is also named ("banner visible" in b; the zero of the x axis in c); the outline of the cookie-banner box (a)  [below 3.0:1, accepted: RESTRAINT rule 6 fixes amber for the consent event; the rule is named in text (b) and sits on the labelled 0 tick (c), and the banner box is named in text (a), so it is never read by colour alone]
+     #e9ebed   1.20:1  L*= 93.0  ground: the pixel-sandbox region (a) and the sandbox lane (b); text on it >= 4.1:1 (muted region name), 13.8:1 (labels)  [n/a (decorative/surface)]
+     #f4f5f6   1.09:1  L*= 96.5  ground: the page region (a) and the page lane (b), one step lighter than the sandbox ground  [n/a (decorative/surface)]
+     #fbeddb   1.15:1  L*= 94.4  fill: amber tint behind the cookie-banner label (a; text on it 13.7:1)  [n/a (decorative/surface)]
+     #fbeeed   1.13:1  L*= 95.1  ground: c's 'before the banner' area between the first-request line and the amber rule (grey ticks drawn on it)  [n/a (decorative/surface)]
+     #ffffff   1.00:1  L*=100.0  surface  [n/a (decorative/surface)]
+== category separation without hue (skill grayscale screen, delta L* >= 10; heuristic):
+     the requests that lost consent vs context (a: leak arrows vs the stopped tag wire): #c65358 vs #a0a0a0  delta L* = 15.3  separates in grayscale
+     c: first-request line vs request ticks: #c65358 vs #b9bec5  delta L* = 26.2  separates in grayscale
+     requests (brick) vs the banner rule (amber), b and c; also told apart by mark type (ticks / a line vs one vertical rule): #c65358 vs #e8a33a  delta L* = 21.4  separates in grayscale
+   No vendor hues are drawn (v6: identity is not this figure's point; per-vendor detail is in Fig. S6). Brick, amber, SAND and grey each have one meaning, named in the caption; the four fills are pre-mixed tints (sciplot), never alpha, each repeating its token's meaning: amber (the banner box), SAND at two steps (the page and sandbox regions of a = the two lanes of b) and brick (c's before-the-banner ground); b's two request kinds differ by tick height (short / tall, keyed above the axis), not by colour.
+== preview _v7_review-p01.png: 1496 x 1039 px, RGBA, opaque=True, 200 ppi at 190 mm (a review render; the submission file is the vector PDF)
+   v7 type check: words 7 pt; tick labels, loss numerals and muted secondary text 6 pt; letters 8 pt (DESIGN_V7 section 2). Elsevier asks for about 7 pt lettering: 6 pt is the sciplot Nature tick size the v7 spec adopts; confirm against the C&S Guide for Authors before submission.
+RESULT: PASS (automatic screen; not a compliance certificate)

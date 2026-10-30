@@ -1,0 +1,8 @@
+
+Palette (light, surface #fcfcfb, ordinal ramp): 4 slots
+  [PASS] Lightness monotone     steps read light→dark
+  [PASS] Adjacent ΔL            all gaps >= 0.06
+  [FAIL] Light-end contrast     #c8c8c8 at 1.63:1 vs surface — below 2:1 floor
+  [PASS] Single hue             hue spread 0°
+
+  → FAILED — fix the marked checks  (ordinal: one hue, monotone L, visible step gaps, light end clears surface)

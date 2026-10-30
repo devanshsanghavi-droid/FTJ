@@ -1,16 +1,16 @@
 {
  "date": "2026-09-26",
- "loads": 129,
- "stores": 129,
- "loads_ok": 128,
+ "loads": 128,
+ "stores": 128,
+ "loads_ok": 127,
  "first_load": "2026-09-26T15:33:00.788Z",
  "last_load": "2026-09-26T15:40:43.994Z",
  "recall": {
   "flagged": {
-   "n_stores": 80,
-   "with_screenshots": 79,
-   "banner_visible": 11,
-   "banner_visible_detected_recheck": 2,
+   "n_stores": 79,
+   "with_screenshots": 78,
+   "banner_visible": 10,
+   "banner_visible_detected_recheck": 1,
    "detector_false_positive": 0,
    "main_crawl_banner_A0": 0,
    "consentmo": {
@@ -18,7 +18,7 @@
     "banner_visible": 0
    },
    "by_cmp_visible": {
-    "none": 8,
+    "none": 7,
     "onetrust": 1,
     "shopify_native": 1,
     "didomi": 1
@@ -54,24 +54,24 @@
   "missed_on_recheck_dg_consent_banner": 4,
   "detector_on_recheck": {
    "precision": {
-    "k": 19,
-    "n": 19,
+    "k": 18,
+    "n": 18,
     "p": 1.0,
-    "lo": 0.8318207737404363,
-    "hi": 0.9999999999999999
+    "lo": 0.8241207740667156,
+    "hi": 1.0
    },
    "recall_on_this_set": {
-    "k": 19,
-    "n": 29,
-    "p": 0.6551724137931034,
-    "lo": 0.47345103949857975,
-    "hi": 0.8005928156337425
+    "k": 18,
+    "n": 28,
+    "p": 0.6428571428571429,
+    "lo": 0.45830306373230584,
+    "hi": 0.792941705856417
    }
   },
   "main_crawl": {
-   "banner_A0": 410,
-   "no_banner_A0": 952,
-   "pool_outside_flagged": 872,
+   "banner_A0": 409,
+   "no_banner_A0": 949,
+   "pool_outside_flagged": 870,
    "random_rate": {
     "k": 1,
     "n": 30,
@@ -79,13 +79,13 @@
     "lo": 0.005908590316197976,
     "hi": 0.16670391146115726
    },
-   "missed_observed": 12,
-   "est_missed": 40.06666666666666,
-   "est_missed_lo": 16.152290755724636,
-   "est_missed_hi": 156.36581079412912,
-   "est_recall": 0.9109761516812325,
-   "est_recall_lo": 0.7239137535952584,
-   "est_recall_hi": 0.9620973743281289,
+   "missed_observed": 11,
+   "est_missed": 39.0,
+   "est_missed_lo": 15.140473575092239,
+   "est_missed_hi": 155.0324029712068,
+   "est_recall": 0.9129464285714286,
+   "est_recall_lo": 0.7251356444159449,
+   "est_recall_hi": 0.9643031624700356,
    "note": "assumes a banner seen on the re-check load was also shown in the A0 load; the random rate is applied to all no-banner stores outside the flagged group"
   },
   "missed_banner_stores": [
@@ -99,31 +99,30 @@
    "S1024",
    "S1112",
    "S1144",
-   "S1248",
-   "S1292"
+   "S1248"
   ],
   "missed_banner_stores_A0_sbx": {
    "k": 3,
-   "n": 12,
-   "p": 0.25,
-   "lo": 0.08894166769488562,
-   "hi": 0.5323053370816633
+   "n": 11,
+   "p": 0.2727272727272727,
+   "lo": 0.09746059213308628,
+   "hi": 0.5656453033189257
   },
   "missed_banner_stores_region_optout": 2,
   "sens_banner_rate_with_missed": {
    "banner": {
     "k": 208,
-    "n": 422,
-    "p": 0.4928909952606635,
-    "lo": 0.4454707608922781,
-    "hi": 0.5404394883921333
+    "n": 420,
+    "p": 0.49523809523809526,
+    "lo": 0.4476823603389103,
+    "hi": 0.5428801485516599
    },
    "no_banner": {
     "k": 595,
-    "n": 940,
-    "p": 0.6329787234042553,
-    "lo": 0.6016831851642621,
-    "hi": 0.6631918080324943
+    "n": 938,
+    "p": 0.6343283582089553,
+    "lo": 0.6030173287801069,
+    "hi": 0.6645436260108636
    }
   }
  },

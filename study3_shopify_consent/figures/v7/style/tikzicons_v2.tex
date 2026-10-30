@@ -1,0 +1,164 @@
+% tikzicons_v2.tex -- hand-built vector icons for the v2 schematics (loaded by tikzstyle_v2.tex).
+% No generative AI anywhere (Elsevier bans AI-generated images in figures): every icon below is a few TikZ paths.
+%
+% Conventions
+%  * Every icon is a pic CENTRED on its position, drawn in mm at a nominal size (given below), stroked 0.6 pt greyD on
+%    white (\figLwBox), neutral: icons never carry vendor colour or red. Sandboxes carry the hatch (sandbox only).
+%  * Scale with \pic[scale=0.8] ...; line widths do not scale, so strokes stay consistent across icon sizes.
+%  * Name a pic to get anchors:  \pic (B) at (20,-10) {ic browser};  then use (B-n), (B-s), (B-e), (B-w), (B-c).
+%  * Containers that hold other drawing take a size: {browser={w}{h}}, {sandbox={w}{h}}, {iframe={w}{h}} (mm).
+%
+% Glyph icons (nominal w x h mm):
+%   ic browser 10x8, ic store 10x9, ic cart 10x8, ic banner 12x7 (cookie banner), ic sandbox 8x8, ic worker 8x8
+%   (web-worker gear), ic iframe 10x8, ic server 8x9 (ad-vendor server), ic shield 7x8.6, ic lock 7x8.6, ic clock 8x8,
+%   ic gate 9.4x5.5 (consent gate: boom barrier), ic plug 9x6 (DevTools probe), ic video 10x7 (video card), ic person 7x8.6 (visitor),
+%   ic tag 9x4.6 (test code in the URL)
+
+\tikzset{
+  icon/.style={draw=greyD, fill=surface, line width=\figLwBox, line join=round, line cap=round},
+  iconline/.style={draw=greyD, line width=\figLwBox, line cap=round, line join=round},
+  icondetail/.style={draw=greyM, line width=\figLwBox, line cap=round},
+  icondot/.style={fill=greyM, draw=none},
+  iconsolid/.style={fill=greyD, draw=none},
+}
+% \iconanchors{half-w}{half-h}: named anchors (-n -s -e -w -c -ne -nw -se -sw) inside a pic
+\newcommand{\iconanchors}[2]{%
+  \coordinate (-c) at (0,0);
+  \coordinate (-n) at (0,#2); \coordinate (-s) at (0,-#2);
+  \coordinate (-e) at (#1,0); \coordinate (-w) at (-#1,0);
+  \coordinate (-ne) at (#1,#2); \coordinate (-nw) at (-#1,#2);
+  \coordinate (-se) at (#1,-#2); \coordinate (-sw) at (-#1,-#2);}
+
+\tikzset{
+  % ---------------------------------------------------------------------------------------------- browser window
+  pics/browser/.style 2 args={code={%
+    \draw[icon, rounded corners=0.8mm] ({-#1/2},{-#2/2}) rectangle ({#1/2},{#2/2});
+    \draw[iconline] ({-#1/2},{#2/2-2.6}) -- ({#1/2},{#2/2-2.6});
+    \foreach \i in {0,1,2} \fill[icondot] ({-#1/2+1.1+0.9*\i},{#2/2-1.3}) circle[radius=0.3];
+    \draw[iconline, rounded corners=0.45mm] ({-#1/2+4.0},{#2/2-1.95}) rectangle ({#1/2-1.0},{#2/2-0.65});
+    \iconanchors{#1/2}{#2/2}
+    \coordinate (-content) at (0,{-1.3});}},
+  pics/ic browser/.style={code={%
+    \pic {browser={10}{8}};
+    \draw[icondetail] (-3.6,0.4) -- (2.2,0.4);
+    \draw[icondetail] (-3.6,-1.1) -- (3.4,-1.1);
+    \draw[icondetail] (-3.6,-2.6) -- (0.8,-2.6);
+    \iconanchors{5}{4}}},
+  % ---------------------------------------------------------------------------------------------- storefront
+  pics/ic store/.style={code={%
+    \draw[iconline] (-4.2,1.6) -- (-4.2,-4.5) -- (4.2,-4.5) -- (4.2,1.6);
+    \draw[icon] (-5,1.9) arc[start angle=180, end angle=360, radius=1.25]
+                          arc[start angle=180, end angle=360, radius=1.25]
+                          arc[start angle=180, end angle=360, radius=1.25]
+                          arc[start angle=180, end angle=360, radius=1.25]
+                 -- (5,1.9) -- (4.2,4.5) -- (-4.2,4.5) -- (-5,1.9) -- cycle;
+    \draw[iconline] (-2.5,1.9) -- (-2.2,4.5) (0,1.9) -- (0,4.5) (2.5,1.9) -- (2.2,4.5);
+    \draw[icon] (-3.2,-2.6) rectangle (-0.6,-0.6);
+    \draw[icon] (0.8,-4.5) rectangle (3.0,-0.6);
+    \iconanchors{5}{4.5}}},
+  % ---------------------------------------------------------------------------------------------- shopping cart
+  pics/ic cart/.style={code={%
+    \draw[iconline] (-5,3.6) -- (-3.6,3.6) -- (-2.0,-1.6) -- (3.6,-1.6);
+    \draw[icon] (-3.1,2.2) -- (4.8,2.2) -- (3.9,-0.4) -- (-2.3,-0.4) -- cycle;
+    \draw[iconline] (-0.5,2.2) -- (-0.1,-0.4) (1.9,2.2) -- (1.8,-0.4);
+    \fill[iconsolid] (-1.2,-3.1) circle[radius=0.8] (3.0,-3.1) circle[radius=0.8];
+    \iconanchors{5}{4}}},
+  % ---------------------------------------------------------------------------------------------- cookie banner
+  pics/ic banner/.style={code={%
+    \draw[icon, rounded corners=0.8mm] (-6,-3.5) rectangle (6,3.5);
+    \draw[icon] (-3.9,0.5) circle[radius=1.6];
+    \fill[iconsolid] (-4.5,1.1) circle[radius=0.27] (-3.3,1.0) circle[radius=0.27] (-4.1,-0.2) circle[radius=0.27]
+                     (-3.2,-0.3) circle[radius=0.2];
+    \draw[icondetail] (-1.4,2.0) -- (4.8,2.0);
+    \draw[icondetail] (-1.4,0.8) -- (3.4,0.8);
+    \draw[icon, fill=greyD, rounded corners=0.4mm] (0.0,-2.6) rectangle (2.5,-1.1);
+    \draw[icon, rounded corners=0.4mm] (2.9,-2.6) rectangle (5.4,-1.1);
+    \iconanchors{6}{3.5}}},
+  % ---------------------------------------------------------------------------------------------- sandbox (hatched)
+  pics/sandbox/.style 2 args={code={%
+    \draw[sandbox, draw=greyD, line width=\figLwBox, rounded corners=0.9mm] ({-#1/2},{-#2/2}) rectangle ({#1/2},{#2/2});
+    \draw[icon, rounded corners=0.5mm] ({-#1/2+1.4},{-#2/2+1.4}) rectangle ({#1/2-1.4},{#2/2-1.4});
+    \iconanchors{#1/2}{#2/2}}},
+  pics/ic sandbox/.style={code={\pic {sandbox={8}{8}}; \iconanchors{4}{4}}},
+  % ---------------------------------------------------------------------------------------------- web worker (gear)
+  pics/ic worker/.style={code={%
+    \draw[icon] (-14:2.9) \foreach \a in {0,45,...,315} {
+        -- (\a-14:2.9) -- (\a-9:3.9) -- (\a+9:3.9) -- (\a+14:2.9) } -- cycle;
+    \draw[icon] (0,0) circle[radius=1.2];
+    \iconanchors{3.9}{3.9}}},
+  % ---------------------------------------------------------------------------------------------- iframe (page in page)
+  pics/iframe/.style 2 args={code={%
+    \draw[icon, rounded corners=0.8mm] ({-#1/2},{-#2/2}) rectangle ({#1/2},{#2/2});
+    \draw[icon, rounded corners=0.5mm] ({-#1/2+1.2},{-#2/2+1.1}) rectangle ({#1/2-1.2},{#2/2-3.0});
+    \draw[iconline] ({-#1/2+1.2},{#2/2-4.3}) -- ({#1/2-1.2},{#2/2-4.3});
+    \draw[icondetail] ({-#1/2+1.2},{#2/2-1.5}) -- ({#1/2-3.0},{#2/2-1.5});
+    \iconanchors{#1/2}{#2/2}
+    \coordinate (-content) at (0,{-1.6});}},
+  pics/ic iframe/.style={code={\pic {iframe={10}{8}}; \iconanchors{5}{4}}},
+  % ---------------------------------------------------------------------------------------------- ad-vendor server
+  pics/ic server/.style={code={%
+    \foreach \y in {3,0,-3} {
+      \draw[icon, rounded corners=0.5mm] (-4,\y-1.2) rectangle (4,\y+1.2);
+      \fill[iconsolid] (-2.7,\y) circle[radius=0.4];
+      \draw[icondetail] (0.2,\y) -- (2.8,\y);
+    }
+    \iconanchors{4}{4.2}}},
+  % ---------------------------------------------------------------------------------------------- shield (protection)
+  pics/ic shield/.style={code={%
+    \draw[icon] (0,4.3) -- (3.5,3.1) -- (3.5,0.4) .. controls (3.5,-2.2) and (1.7,-3.6) .. (0,-4.3)
+               .. controls (-1.7,-3.6) and (-3.5,-2.2) .. (-3.5,0.4) -- (-3.5,3.1) -- cycle;
+    \draw[draw=greyD, line width=\figLwArrow, line cap=round, line join=round] (-1.6,0.1) -- (-0.4,-1.2) -- (1.8,1.5);
+    \iconanchors{3.5}{4.3}}},
+  % ---------------------------------------------------------------------------------------------- padlock
+  pics/ic lock/.style={code={%
+    \draw[draw=greyD, line width=\figLwArrow, line cap=butt] (-2.0,0.4) -- (-2.0,2.2)
+         arc[start angle=180, end angle=0, radius=2.0] -- (2.0,0.4);
+    \draw[icon, rounded corners=0.6mm] (-3.3,-4.3) rectangle (3.3,0.6);
+    \fill[iconsolid] (0,-1.5) circle[radius=0.7];
+    \fill[iconsolid] (-0.35,-1.7) -- (0.35,-1.7) -- (0.25,-3.1) -- (-0.25,-3.1) -- cycle;
+    \iconanchors{3.3}{4.3}}},
+  % ---------------------------------------------------------------------------------------------- clock (timing)
+  pics/ic clock/.style={code={%
+    \draw[icon] (0,0) circle[radius=4];
+    \foreach \a in {0,30,...,330} \draw[icondetail] (\a:3.1) -- (\a:3.5);
+    \draw[draw=greyD, line width=\figLwArrow, line cap=round] (0,0) -- (90:2.7) (0,0) -- (150:1.9);
+    \fill[iconsolid] (0,0) circle[radius=0.4];
+    \iconanchors{4}{4}}},
+  % ---------------------------------------------------------------------------------------------- consent gate
+  pics/ic gate/.style={code={%   a boom barrier (use the `gate` node style for a labelled decision diamond)
+    \draw[icon, rounded corners=0.3mm] (-4.4,-3.6) rectangle (-3.0,1.2);
+    \draw[icon] (-4.6,-3.6) -- (-2.8,-3.6);
+    \draw[icon, rounded corners=0.3mm] (-3.7,0.3) rectangle (4.8,1.9);
+    \foreach \x in {-1.6,1.0,3.6} \fill[iconsolid] (\x,0.3) rectangle (\x+1.2,1.9);
+    \draw[icon, fill=none, rounded corners=0.3mm] (-3.7,0.3) rectangle (4.8,1.9);
+    \draw[icon] (-3.7,1.1) circle[radius=0.55];
+    \draw[iconline] (4.2,0.3) -- (4.2,-3.6);
+    \iconanchors{4.6}{3.6}}},
+  % ---------------------------------------------------------------------------------------------- DevTools probe (plug)
+  pics/ic plug/.style={code={%
+    \draw[iconline] (-1.4,0) .. controls (-3.2,0) and (-2.8,-2.6) .. (-4.5,-2.6);
+    \draw[draw=greyD, line width=\figLwArrow, line cap=butt] (2.2,1.0) -- (4.5,1.0) (2.2,-1.0) -- (4.5,-1.0);
+    \draw[icon, rounded corners=0.6mm] (-1.4,-2.0) rectangle (2.2,2.0);
+    \iconanchors{4.5}{3}
+    \coordinate (-tip) at (4.5,0);}},
+  % ---------------------------------------------------------------------------------------------- video card
+  pics/ic video/.style={code={%
+    \draw[icon, rounded corners=0.8mm] (-5,-3.5) rectangle (5,3.5);
+    \fill[iconsolid] (-1.1,-1.3) -- (-1.1,2.1) -- (1.9,0.4) -- cycle;
+    \draw[icondetail] (-4,-2.4) -- (4,-2.4);
+    \draw[draw=greyD, line width=\figLwArrow, line cap=butt] (-4,-2.4) -- (-1.2,-2.4);
+    \iconanchors{5}{3.5}}},
+  % ---------------------------------------------------------------------------------------------- visitor
+  pics/ic person/.style={code={%
+    \draw[icon] (-3.2,-4.3) -- (-3.2,-2.2) arc[start angle=180, end angle=0, x radius=3.2, y radius=2.3]
+               -- (3.2,-4.3) -- cycle;
+    \draw[icon] (0,2.5) circle[radius=1.8];
+    \iconanchors{3.2}{4.3}}},
+  % ---------------------------------------------------------------------------------------------- test-code tag
+  pics/ic tag/.style={code={%
+    \draw[icon, line join=round] (-4.5,-2.3) -- (2.2,-2.3) -- (4.5,0) -- (2.2,2.3) -- (-4.5,2.3) -- cycle;
+    \draw[icon] (2.3,0) circle[radius=0.55];
+    \draw[icondetail] (-3.4,0.6) -- (0.6,0.6);
+    \draw[icondetail] (-3.4,-0.6) -- (-0.4,-0.6);
+    \iconanchors{4.5}{2.3}}},
+}

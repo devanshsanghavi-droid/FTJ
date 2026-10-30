@@ -1,0 +1,130 @@
+{
+ "fig2d_agreement": {
+  "value": {
+   "A0_vs_A0r": {
+    "k": 271,
+    "n": 273,
+    "p": 0.9926739926739927,
+    "lo": 0.973686632382303,
+    "hi": 0.997988640125713,
+    "store_table_check": {
+     "n": 273,
+     "agree": 271,
+     "matches_stats": true
+    }
+   },
+   "A2_vs_A2r": {
+    "k": 273,
+    "n": 273,
+    "p": 1.0,
+    "lo": 0.986123975444938,
+    "hi": 0.9999999999999998,
+    "store_table_check": {
+     "n": 273,
+     "agree": 273,
+     "matches_stats": true
+    }
+   },
+   "A2_vs_V1": {
+    "k": 98,
+    "n": 98,
+    "p": 1.0,
+    "lo": 0.9622800093057041,
+    "hi": 0.9999999999999999,
+    "store_table_check": {
+     "n": 98,
+     "agree": 98,
+     "matches_stats": true
+    }
+   }
+  },
+  "definition": "Share of stores on which two loads agree on \"a sandboxed ad pixel sent a request\" (Default vs its repeat; GPC vs its repeat; emulated GPC vs Brave native GPC), with the Wilson 95% interval from analysis/common.py.",
+  "script": "figures/v7/fig2/scripts/derive_fig2.py",
+  "inputs": [
+   "analysis/outputs/stats.json:validation.{A0_vs_A0r,A2_vs_A2r,A2_vs_V1}.{agree,n}",
+   "analysis/outputs/store_table.csv (cross-check of the counts)"
+  ],
+  "check": "k, n equal stats.json validation.*.agree / n; store_table.csv flags reproduce them where present"
+ },
+ "tableS_arms": {
+  "value": {
+   "first_scroll_after_load_s": 2
+  },
+  "definition": "Start of the passive mouse-wheel scrolls, in seconds after the load event (design.first_scroll_after_load_ms / 1000), for the Action column of Supplementary Table S-arms.",
+  "script": "figures/v7/fig2/scripts/derive_fig2.py",
+  "inputs": [
+   "analysis/outputs/stats.json:design.first_scroll_after_load_ms"
+  ],
+  "check": "integer division is exact (asserted)"
+ },
+ "fig2a_not_drawn": {
+  "value": {
+   "n": 1116
+  },
+  "definition": "Flagged domains of the 100k-200k Tranco bucket that were never drawn for checking (the bucket was checked in a seeded random order until its quota of eligible stores was met): random_bucket_flagged - random_bucket_drawn.",
+  "script": "figures/v7/fig2/scripts/derive_fig2.py",
+  "inputs": [
+   "analysis/outputs/stats.json:checks.provenance.sample.{random_bucket_flagged,random_bucket_drawn,census_drawn}",
+   "figures/v7/derived_numbers.json:fig2a_funnel.{flagged,verified}"
+  ],
+  "check": "equals flagged - verified; census_drawn + random_bucket_drawn == verified (both asserted)"
+ },
+ "fig2a_not_on_shopify": {
+  "value": {
+   "n": 197366
+  },
+  "definition": "Tranco top-N domains that the DNS rule did not flag as Shopify (neither the apex nor the www host resolved to Shopify's address block or a myshopify.com CNAME): design.tranco_top_n - fig2a_funnel.flagged.",
+  "script": "figures/v7/fig2/scripts/derive_fig2.py",
+  "inputs": [
+   "analysis/outputs/stats.json:design.tranco_top_n",
+   "figures/v7/derived_numbers.json:fig2a_funnel.{tranco,flagged}"
+  ],
+  "check": "fig2a_funnel.tranco equals design.tranco_top_n; the difference is positive (both asserted)"
+ },
+ "fig2c_timeline": {
+  "value": {
+   "default_nav_to_load": {
+    "ms": 2291.0,
+    "n": 1348
+   },
+   "default_banner_before_load": {
+    "ms": 668.5,
+    "n": 406
+   },
+   "gpc_nav_to_load": {
+    "ms": 2225.5,
+    "n": 1346
+   },
+   "decline_nav_to_load": {
+    "ms": 2323.0,
+    "n": 240
+   },
+   "decline_banner_before_load": {
+    "ms": 659.5,
+    "n": 240
+   },
+   "decline_click_from_load": {
+    "ms": 1127.0,
+    "n": 240
+   },
+   "decline_reload_from_load": {
+    "ms": 16268.5,
+    "n": 240
+   },
+   "next_nav_to_load": {
+    "ms": 1026.0,
+    "n": 240
+   },
+   "raw_matches_loads_csv": 233
+  },
+  "definition": "Medians (ms, with the number of loads) over the analysed stores of the moments that vary by store: *_nav_to_load from navigation start to the load event; *_before_load from the banner becoming visible to the load event; *_from_load from the page's load event to the Decline click or to the reload's navigation. Default and GPC loads with a load event; Default loads with a visible banner; Decline loads with a click (banner, click, the reload, and the next page's load event from the raw records). Drawn in Fig 2c and stated in its caption.",
+  "script": "figures/v7/fig2/scripts/derive_fig2.py",
+  "inputs": [
+   "crawl/loads.csv:{t_load,t_banner_visible,t_click,t_next_nav}",
+   "crawl/raw/<store>__A1.json.gz:{next_goto_epoch,next_load_epoch,time_origin}",
+   "analysis/outputs/store_table.csv:{stratum,clicked,banner_A0}",
+   "analysis/common.py:CONTENT_EXCLUDED"
+  ],
+  "check": "analysed stores = design.n_main; clicked loads = fig5.decline.clicked_all; banner loads = banner_A0; the raw next-navigation time equals loads.csv t_next_nav (+-1.5 ms) for >= 95% of the clicked loads (raw_matches_loads_csv); banners before the load event; 0 < click < reload (all asserted)"
+ }
+}

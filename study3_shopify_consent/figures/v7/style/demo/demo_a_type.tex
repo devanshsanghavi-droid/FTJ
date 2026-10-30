@@ -1,0 +1,23 @@
+% Style sheet panel A: the type scale at print size (92 x 62 mm).
+\documentclass[tikz,border=0pt]{standalone}
+\input{demo_common.tex}
+\begin{document}
+\begin{tikzpicture}
+\PanelCanvas{92}{62}
+\def\nx{91}
+\foreach \y/\spec/\txt/\sz in {
+    -12/{\fsLetter}/{A B C}/{\figFsLetter\ pt bold, uppercase},
+    -18.5/{\fsTitle}/{Panel title: one claim, one line}/{\figFsTitle\ pt bold},
+    -24.5/{\fsAxis}/{Axis title (unit)}/{\figFsAxis\ pt},
+    -30/{\fsTick}/{Tick, legend and row label}/{\figFsTick\ pt},
+    -35.5/{\fsLabel}/{Direct label \demoKofN}/{\figFsLabel\ pt},
+    -41/{\fsNote\color{greyD}}/{Annotation, badge, edge count}/{\figFsNote\ pt (never below \figFsMin)}}
+  {\node[anchor=base west, inner sep=0pt, font=\spec] at (1,\y) {\txt};
+   \node[note, anchor=base east] at (\nx,\y) {\sz};}
+\node[anchor=base west, inner sep=0pt, font=\fsHero] at (1,-51.5) {\demoHero};
+\node[anchor=base west, inner sep=0pt, font=\fsHeroSub] at (1,-57) {\demoHeroSub};
+\node[note, anchor=base east] at (\nx,-51.5) {stat tile \figFsHero\ pt bold};
+\node[note, anchor=base east] at (\nx,-57) {plus an \figFsHerosub\ pt k-of-n line};
+\draw[hairline, draw=gridc] (1,-45) -- (\nx,-45);
+\end{tikzpicture}
+\end{document}

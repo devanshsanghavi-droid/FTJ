@@ -79,8 +79,9 @@ def recheck(st):
     import gzip
     fp = collections.Counter()
     rd = os.path.join(CRAWL, 'recheck', 'raw')
+    from common import CONTENT_EXCLUDED   # content-sensitivity exclusions (2026-09-29): as in analyze_recheck.py
     for f in sorted(os.listdir(rd)):
-        if f.endswith('.json.gz'):
+        if f.endswith('.json.gz') and f.split('__')[0] not in CONTENT_EXCLUDED:
             pr = json.load(gzip.open(os.path.join(rd, f))).get('probe') or {}
             if pr:
                 fp['with_probe'] += 1
@@ -120,7 +121,10 @@ def ok_loads():
 
 
 def lost_stores(L):
+    from common import CONTENT_EXCLUDED   # content-sensitivity exclusions (2026-09-29): not part of the analysed sample
     samp = pd.read_csv(os.path.join(SAMPLE, 'sample.csv')).set_index('store_id')
+    samp = samp[~samp.index.isin(CONTENT_EXCLUDED)]
+    L = L[~L.store_id.isin(CONTENT_EXCLUDED)]
     base = L[L.arm.isin(['A0', 'A1', 'A2']) & (L.stratum == 'main')]
     cap = base.groupby('store_id').ok.all()
     lost, captured = sorted(cap[~cap].index), sorted(cap[cap].index)

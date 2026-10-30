@@ -1,0 +1,57 @@
+{
+ "figure": "Figure 4 (v7: v6 content in the sciplot clean theme, mmd-ahd/scientific-figure-skill, with the nature-figure grafts of DESIGN_V7.md; K-Dense skill v1.4 screen)",
+ "destination": {
+  "journal": "Computers & Security (Elsevier)",
+  "article_type": "research article",
+  "phase": "initial submission",
+  "width": "full (190 mm)",
+  "publisher_rules": "PENDING VERIFICATION against the live C&S Guide for Authors; screened only against the skill's dated Elsevier snapshot"
+ },
+ "outputs": [
+  {
+   "file": "fig4.pdf",
+   "format": "PDF (vector, Type 42 / CID TrueType Arial, opaque white, RGB)",
+   "width_mm": 190.0,
+   "height_mm": 72.0,
+   "bytes": 52921,
+   "sha256": "5b24ef28a0e2ad1ab5b1c1fd07baaa721824eda3894415ff78fe53fd36f800d0"
+  },
+  {
+   "file": "_v7_review-p01.png",
+   "format": "PNG review render, 200 ppi",
+   "px": [
+    1496,
+    567
+   ]
+  }
+ ],
+ "sources": {
+  "stats.json": {
+   "path": "analysis/outputs/stats.json",
+   "sha256": "e32f77df32f8d3fef00721e7ecc03255ef2504649def4d6c5a050cf9484dd824"
+  },
+  "fig4/derived_numbers.json": {
+   "path": "figures/v7/fig4/derived_numbers.json",
+   "sha256": "9563dc9807965a8d59e2d343118a89d808ca7607bf8c1a54d046ca2cc7a55611"
+  }
+ },
+ "transformations": [
+  "analysis/analyze.py -> analysis/outputs/stats.json (round4.blocklist: Wilson CIs; Mantel-Haenszel risk difference with Sato variance)",
+  "fig4/scripts/derive_fig4.py -> fig4/derived_numbers.json (Tranco rank ranges of the two samples; also the entry and re-check records read by Fig 1 and the graphical abstract)",
+  "fig4/scripts/make_fig4_panels.py (drawing only; every drawn value -- cell counts k and n, dots, CI ends, diamonds -- registered as a mark in fig4_numbers.csv and checked by scripts/trace_fig4.py; the panels print only axis ticks)",
+  "fig4/scripts/make_caption_fig4.py (the caption carries every value; registry caption_fig4_numbers.csv)",
+  "fig4.tex (composite, tectonic)"
+ ],
+ "uncertainty": "a, b left: Wilson 95% CIs of a share (stores are the unit); b right: Mantel-Haenszel difference pooled over the two region defaults, Sato variance. Every CI is an uncapped line in the colour of its mark. No bootstrap (no seed needed).",
+ "missing_data": "Stores whose CMP wrote 'marketing: yes' are excluded from both panels by design (caption); the reference group is main-sample banner stores without a readable declaration. Nothing lies outside an axis.",
+ "software": {
+  "python": "3.13.9",
+  "matplotlib": "3.10.6",
+  "numpy": "2.3.5",
+  "pypdf": "6.16.2",
+  "pandas": "2.3.3",
+  "tectonic": "Tectonic 0.17.0"
+ },
+ "alt_text": "alt_text_fig4.txt",
+ "note": "No automated report here certifies accessibility or journal compliance (skill guardrail)."
+}

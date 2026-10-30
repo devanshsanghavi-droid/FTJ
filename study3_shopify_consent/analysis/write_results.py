@@ -280,8 +280,10 @@ def results():
       f"({N('design/funnel_excl/headless')} headless or assets-only, {N('design/funnel_excl/http403')} refused access (forbidden), "
       f"{N('design/funnel_excl/other_errors')} other errors); {N('design/funnel_excl/live_to_sample')} storefronts were excluded "
       f"({N('design/funnel_excl/no_product')} without a product page, {N('design/funnel_excl/child')} aimed at children, "
-      f"{N('design/funnel_excl/duplicate')} duplicates, {N('design/funnel_excl/adult')} adult content); {N('design/funnel_excl/sample_to_captured')} "
-      f"sampled stores were not captured in all three arms. Validation loads: repeats on {N('design/repeat_planned')} stores "
+      f"{N('design/funnel_excl/duplicate')} duplicates, {N('design/funnel_excl/adult')} adult content); after the crawl, {N('design/funnel_excl/content_excluded')} "
+      f"sampled stores were excluded from every analysis for content sensitivity (two adult-product stores the sampling screen missed, a toy "
+      f"retailer and a second possibly child-directed store), and {N('design/funnel_excl/sample_to_captured')} "
+      f"of the remaining {N('design/n_main_after_content_exclusion')} sampled stores were not captured in all three arms. Validation loads: repeats on {N('design/repeat_planned')} stores "
       f"({N('context/repeat_main_ok')} usable main-sample stores) and Brave on {N('design/brave_planned')} ({N('context/brave_ok')} usable).")
     w("- **Ad request.** A request to a vendor marked advertising in `crawl/vendor_endpoints.json`, whether a data beacon or a library "
       "(script) load; beacon-only and test-code-beacon versions of the headline rates are in Fig S6. CORS preflights (OPTIONS) are not ad "
@@ -711,18 +713,20 @@ def results():
       f"({N(rb + 'disallow_all')} disallow everything). It disallowed the sampling homepage on {N(rb + 'home_disallowed')} stores and the "
       f"public product list on {N(rb + 'pjson_disallowed')} of the {N(rb + 'pjson_checked')} stores where that list was used.")
     es = 'ethics_sensitivity/'
+    w(f"- **Stores excluded for content sensitivity.** {N('design/funnel_excl/content_excluded')} main-sample stores are excluded from every "
+      "analysis (the author's decision after the crawl): two adult-product stores that the sampling screen missed, a toy retailer noticed on its "
+      "re-check screenshot, and a second possibly child-directed store. They were crawled like the other stores, so crawl-level counts "
+      "(planned and failed loads, traffic) include them; no store-level result does.")
     w(f"- **Sensitivity to the stores flagged in the ethics review.** Flagged: the {N(rb + 'landing_disallowed')} stores whose robots.txt "
-      f"disallowed the landing URL (they include the {N(rb + 'home_disallowed')} with a disallowed homepage), the "
-      f"{N(es + 'variants/excl_adult/n_excluded')} adult-product stores the sampling screen missed, and a toy retailer noticed on its re-check "
-      f"screenshot: {N(es + 'n_flagged')} stores, of which {N(es + 'flagged_main_profile/n')} are analysed main-sample stores, "
+      f"disallowed the landing URL (they include the {N(rb + 'home_disallowed')} with a disallowed homepage): "
+      f"{N(es + 'n_flagged')} stores, of which {N(es + 'flagged_main_profile/n')} are analysed main-sample stores, "
       f"{N(es + 'variants/excl_flagged/n_excluded_creator')} creator stores, and {N(es + 'n_flagged_not_analysed')} was never captured. Of the {N(es + 'flagged_main_profile/n')}, "
       f"{N(es + 'flagged_main_profile/banner')} showed a banner, {N(es + 'flagged_main_profile/prechoice_sbx')} sent a pre-choice sandboxed "
       f"request, {N(es + 'flagged_main_profile/gpc_sbx')} sent one under GPC and {N(es + 'flagged_main_profile/blocklist')} were "
-      f"blocklist stores. Excluding them moves no headline rate by more than {N(es + 'max_abs_change_pp_flagged', 'f1')} percentage points. A further "
-      "child-directed candidate awaits a human decision; the last column also excludes it.")
+      f"blocklist stores. Excluding them moves no headline rate by more than {N(es + 'max_abs_change_pp_flagged', 'f1')} percentage points.")
     w('')
-    w(f"| Measure | All stores | Without the adult-product stores | Without all flagged stores | Also without the pending candidate |")
-    w('|---|---|---|---|---|')
+    w(f"| Measure | All analysed stores | Without the robots.txt-flagged stores |")
+    w('|---|---|---|')
     labs = [('prechoice', 'Sandboxed ad request before any choice'), ('banner_fires', 'Banner stores: pre-choice'),
             ('nobanner_fires', 'No-banner stores: pre-choice'), ('optout_fires', "Banner, default 'allowed': pre-choice"),
             ('optin_fires', "Banner, default 'denied': pre-choice"), ('blocklist', 'Blocklisted vendor fired from its sandbox'),
@@ -732,7 +736,7 @@ def results():
             ('creator_reached_nongoogle', 'Creator code reached a non-Google vendor'), ('creator_reached_sandboxed', 'Creator code sent from a sandbox')]
     for k, lab in labs:
         cells = [f"{KN(es + 'variants/' + v + '/' + k)} ({PC(es + 'variants/' + v + '/' + k)})"
-                 for v in ('all', 'excl_adult', 'excl_flagged', 'excl_flagged_and_pending')]
+                 for v in ('all', 'excl_flagged')]
         w(f"| {lab} | " + ' | '.join(cells) + ' |')
     w('')
     w(f"- **Landing pages.** The first product link was a gift card, gift voucher or gift certificate on {R('checks/landing/gift_card')} "
@@ -857,7 +861,7 @@ def results():
       f"count and so the detector's apparent recall; the recall re-check used the same browser and cannot find banners suppressed for bots. "
       f"Our passive scrolls may also have triggered implied consent on scroll on the {N('automation/scroll_yes/n_after_scroll_stores')} stores "
       f"whose 'yes' came after a scroll. A headful re-run without the automation flag on the affected stores would bound these effects; it "
-      f"needs a new crawl, a decision for the authors [AUTHORS].")
+      f"needs a new crawl.")
     w(f"- **Banner timing** comes from polling every {N('design/banner_poll_ms')} ms, not from an observer; the conservative estimate is primary "
       "and future crawls should timestamp visibility with a MutationObserver or IntersectionObserver.")
     w("- **Decline only on the first layer.** Banners without a first-layer reject were not clicked; one missed reject button in the audit "

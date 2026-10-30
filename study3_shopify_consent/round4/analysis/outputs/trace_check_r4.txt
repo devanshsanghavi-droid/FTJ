@@ -1,0 +1,5 @@
+1. registry: 602 numbers, 0 stale
+2. coverage: 0 untraced numeric tokens
+3. main reproduction: 13 estimands compared, 0 mismatches
+4. provenance: 0 problems
+PASS

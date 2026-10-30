@@ -1,0 +1,7 @@
+Highlights
+
+- Blocklisted vendors still fired from the sandbox on 46 of 89 stores (51.7%)
+- Stores with a blocklist sent sandboxed ads more often than stores without one
+- GPC stopped every sale-of-data pixel; 279 of 803 stores kept other sandboxed ads
+- After a working Decline, new sandboxed pixels still fired on 23% of stores
+- Automatic CMP refusals came after 525 of 535 third-party marketing sandboxes started

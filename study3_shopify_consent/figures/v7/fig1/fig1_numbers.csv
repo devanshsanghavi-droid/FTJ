@@ -1,0 +1,9 @@
+text,shown,source,key,fmt,value
+,,fig1_derived,fig1b_trace/t_banner_ms,mark,1278
+,,fig1_derived,fig1b_trace/t_tag_neutralized_ms,mark,2695
+,,fig1_derived,fig1b_trace/requests,mark,"[{""t_ms"": 2357, ""kind"": ""library"", ""origin"": ""lax_iframe"", ""type"": ""Script""}, {""t_ms"": 2357, ""kind"": ""library"", ""origin"": ""lax_iframe"", ""type"": ""Script""}, {""t_ms"": 2749, ""kind"": ""library"", ""origin"": ""lax_iframe"", ""type"": ""Script""}, {""t_ms"": 2761, ""kind"": ""library"", ""origin"": ""lax_iframe"", ""type"": ""Script""}, {""t_ms"": 3066, ""kind"": ""library"", ""origin"": ""lax_iframe"", ""type"": ""Script""}, {""t_ms"": 3169, ""kind"": ""beacon"", ""origin"": ""lax_iframe"", ""type"": ""Ping""}, {""t_ms"": 3170, ""kind"": ""beacon"", ""origin"": ""lax_iframe"", ""type"": ""Ping""}, {""t_ms"": 13180, ""kind"": ""beacon"", ""origin"": ""lax_iframe"", ""type"": ""Ping""}]"
+,,fig1_derived,fig1b_trace/beyond_axis_ms,mark,[13180]
+,,stats,fig3/b/n,mark,205
+,,stats,fig3/b/before_banner/k,mark,151
+,,fig1_derived,fig1c_raster/x_lo_s,mark,-4.0
+,,fig1_derived,fig1c_raster/x_hi_s,mark,8.0

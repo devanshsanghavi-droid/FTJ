@@ -1,0 +1,23 @@
+== fig4.pdf: 1 page, 190.0 x 72.0 mm, 52 KB, raster images: 0
+   font Arial-BoldMT: Type0 (CID TrueType, Type 42), embedded  [ok]
+   font ArialMT: Type0 (CID TrueType, Type 42), embedded  [ok]
+   text sizes (pt: runs): {6.0: 14, 7.0: 14, 8.0: 2}  -> smallest 6.0 pt [ok]
+   non-numeric text sizes (pt: runs): {7.0: 14, 8.0: 2}  [ok: words >= 7 pt; tick labels 6 pt; 6 pt words only as muted secondary text (SP_MUTED runs: {})]
+   Elsevier width class: 190 mm [ok]; vector PDF [ok]; colour space RGB (DeviceRGB operators)
+   colours drawn (WCAG contrast vs #ffffff; CIE L*):
+     #000000  21.00:1  L*=  0.0  the panel letters (composite)  [ok]
+     #1f2328  15.80:1  L*= 13.5  sciplot text colour: row names, axis titles, the two direct labels (b); the pooled-difference diamonds and their CIs (b right)  [ok]
+     #3d434b   9.99:1  L*= 28.2  sciplot chrome: the bottom spines, ticks and tick labels (a, b)  [ok]
+     #6b7280   4.83:1  L*= 47.9  sciplot muted text: the 7 pt headers 'Region default' and 'Pooled over defaults' over b's row names  [ok]
+     #a0a0a0   2.61:1  L*= 65.9  NEUTRAL grey, context: the zero rule of b right (as Fig. 3a right); the comparison as context: the no-declaration squares and their CIs (b left; not slate, which means 'denied until consent' in Fig. 3)  [below 3.0:1, accepted: sciplot: grey for context, colour for signal (DESIGN_V7 section 3.2: NEUTRAL = context series); the comparison is the baseline against which the brick blocklist rows are read, double-coded by shape (square) and row (below the brick circle), named by a direct label, and it separates from brick in grayscale (delta L* 15); Fig. 3 draws its grey groups in the same token; the zero rule of b right is a reference line, not data, drawn as Fig. 3a right's (solid NEUTRAL 0.6 pt) and labelled by its 0 tick]
+     #c65358   4.39:1  L*= 50.6  LEAK brick, consent lost: the store cells whose declared-blocked vendor fired (a), the open and filled circles and their CIs (a), the blocklist circles and their CIs (b left)  [ok]
+     #d9d9d9   1.41:1  L*= 86.7  LIGHT grey, context: the store cells whose declared-blocked vendor did not fire (a)  [below 3.0:1, accepted: sciplot: grey for context, colour for signal; the light cells are the stores on which the vendor did not fire, read as the remainder of a bar whose brick part (4.4:1) carries a's point; each cell is bounded by white gaps and the bar's extent is the labelled 0-100 axis]
+     #fbeeed   1.13:1  L*= 95.1  ground: b-left's key area, the gap between a pair's two shares (marks and CIs drawn on it)  [n/a (decorative/surface)]
+     #ffffff   1.00:1  L*=100.0  surface; the open-circle and open-diamond fill; the white gaps between store cells  [n/a (decorative/surface)]
+== category separation without hue (skill grayscale screen, delta L* >= 10; heuristic):
+     blocklist (brick circle) vs no declaration (grey square), b left: #c65358 vs #a0a0a0  delta L* = 15.3  separates in grayscale
+     a: store cells, the declared-blocked vendor fired (brick) vs not (light grey): #c65358 vs #d9d9d9  delta L* = 36.1  separates in grayscale
+   Blocklist vs no declaration is brick vs grey (they separate in grayscale) and is also double-coded by shape (circle vs square) and by row (blocklist above, within each region default) and named by two direct labels; one sample alone vs the combined sample is open vs filled (circles in a, diamonds in b right), never colour alone. Slate is not drawn (in Fig. 3 it means 'denied until consent'). No vendor hues are drawn. The one fill is a pre-mixed tint (TINT LEAK, never alpha) repeating brick's meaning: the key area of b left.
+== preview _v7_review-p01.png: 1496 x 567 px, RGBA, opaque=True, 200 ppi at 190 mm (a review render; the submission file is the vector PDF)
+   v7 type check: words 7 pt; tick labels 6 pt; letters 8 pt (DESIGN_V7 section 2). Elsevier asks for about 7 pt lettering: 6 pt is the sciplot Nature tick size the v7 spec adopts; confirm against the C&S Guide for Authors before submission.
+RESULT: PASS (automatic screen; not a compliance certificate)

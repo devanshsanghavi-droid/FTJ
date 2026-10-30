@@ -2,7 +2,8 @@
 
 Definitions (identical to crawl/summarize_crawl.py so headline numbers reproduce):
   ok load      HTTP 2xx/3xx, window.Shopify present, no blocking hint, > 20 requests
-  captured     store has an ok load in all three base arms A0 (Default), A1 (Decline), A2 (GPC)
+  captured     store has an ok load in all three base arms A0 (Default), A1 (Decline), A2 (GPC) and is not one of the
+               stores excluded for content sensitivity (content_excluded(); 2026-09-29)
   ad request   request to a vendor with is_advertising == True (crawl/vendor_endpoints.json)
   sandboxed    request origin strict_worker (WPM STRICT web worker), lax_iframe (WPM LAX iframe) or lax_nested (a frame
                nested inside a LAX iframe; referee revision 2026-09-26, outputs/nested_lax_frames.csv from extract_probe.py)
@@ -28,6 +29,19 @@ SANDBOX = {'strict_worker', 'lax_iframe', 'lax_nested'}
 BASE_ARMS = ['A0', 'A1', 'A2']
 PRECHOICE_PHASES = ['pre_banner', 'banner_prechoice', 'pre_choice']
 SEED = 20260926
+
+
+def content_excluded():
+    """Stores excluded from every analysis for content sensitivity (author decision, 2026-09-29): the two adult-product
+    stores the sampling screen missed and two possibly child-directed stores (a toy retailer and S0145). Listed in
+    analysis/ethics_flags.csv with a status starting 'excluded from all analyses'. They were crawled like every other
+    store, so crawl-level counts (planned and failed loads, traffic) still include them; every store-level analysis,
+    starting with the captured set in load_tables(), does not."""
+    fl = pd.read_csv(os.path.join(HERE, 'ethics_flags.csv'))
+    return sorted(fl[fl.status.str.startswith('excluded from all analyses')].store_id)
+
+
+CONTENT_EXCLUDED = content_excluded()
 
 # Figure vendor groups (FIGURE_PLAN.md fixed order); the crawl's figure_color_group column
 VENDOR_GROUPS = ['Google', 'TikTok', 'Meta', 'Pinterest', 'Snap', 'Microsoft', 'Reddit/other']
@@ -140,7 +154,8 @@ def load_tables():
     L = pd.read_csv(os.path.join(CRAWL, 'loads.csv'), low_memory=False)
     L['ok'] = (L.goto_status.fillna(0).between(200, 399)) & (L.has_shopify == True) & (L.blocked_hint != True) & (L.n_requests.fillna(0) > 20)
     okset = L[L.ok].groupby('store_id').arm.apply(set)
-    captured = sorted(s for s, arms in okset.items() if set(BASE_ARMS) <= arms)
+    captured = sorted(s for s, arms in okset.items() if set(BASE_ARMS) <= arms and s not in CONTENT_EXCLUDED)
+    L['content_excluded'] = L.store_id.isin(CONTENT_EXCLUDED)
     L['captured'] = L.store_id.isin(captured)
     R = pd.read_csv(os.path.join(CRAWL, 'requests.csv.gz'), low_memory=False)
     R = attribute_nested(R)

@@ -1,0 +1,140 @@
+% preamble.tex -- shared by main.tex (review build), main_5p.tex (two-column preview) and supplement.tex.
+% Before \input{preamble}, a document may define
+%   \def\SUBMISSION{1}   -- submission build: any remaining \todo stops the compilation with an error.
+% Cross-document references (main <-> supplement) use xr-hyper: each document calls \externaldocument after
+% \input{preamble}; build.sh compiles the supplement, the main text, then the supplement again. They are written
+% \ref*{S:...} / \ref*{M:...} (no hyperlink), because links into the other PDF cannot resolve once Editorial Manager
+% merges the files; the flat submission bundle (build.sh flat) replaces them with their resolved numbers.
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{amsmath,amssymb}
+\usepackage{graphicx}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{array}
+\usepackage[table]{xcolor}
+\usepackage{tikz}
+\usepackage{xspace}
+\usepackage[font=small,labelfont=bf,labelsep=period,justification=justified,singlelinecheck=false]{caption}
+\usepackage[hyphens]{xurl}
+\usepackage{xr-hyper}
+\usepackage[colorlinks=true,allcolors=blue!45!black,breaklinks=true]{hyperref}
+% Font expansion off: XeTeX (tectonic, used to build and test) cannot expand fonts, while pdfLaTeX (Editorial Manager)
+% would by default, and that would change the line breaks. With protrusion only, both engines break lines the same way.
+\usepackage[expansion=false]{microtype}
+
+\graphicspath{{figs/}}
+
+% ---- colours shared with the figures (FIGURE_PLAN.md) ----
+\definecolor{ink}{HTML}{0B0B0B}
+\definecolor{greyD}{HTML}{52514E}
+\definecolor{greyM}{HTML}{8A8984}
+\definecolor{accent}{HTML}{D03B3B}
+
+% ---- inline arm markers (same encoding as the figures: shape plus neutral grey) ----
+\DeclareRobustCommand{\mkDefault}{\tikz[baseline=-0.55ex]\fill[ink] (0,0) circle (0.85mm);}
+\DeclareRobustCommand{\mkDecline}{\tikz[baseline=-0.55ex]\draw[greyD,line width=0.7pt] (-0.75mm,-0.75mm) rectangle (0.75mm,0.75mm);}
+\DeclareRobustCommand{\mkGPC}{\tikz[baseline=-0.55ex]\fill[greyM] (-0.95mm,-0.8mm) -- (0.95mm,-0.8mm) -- (0,0.95mm) -- cycle;}
+\DeclareRobustCommand{\mkRepeat}{\tikz[baseline=-0.55ex]\draw[greyD,line width=0.7pt] (0,-1mm) -- (1mm,0) -- (0,1mm) -- (-1mm,0) -- cycle;}
+% within-arm contrast glyphs (FIGURE_PLAN.md, referee revision): vertical bar = a pixel declaring 'marketing' (Figs 3d, 4a);
+% open circle = stores without a banner (Fig 3a); cross = the blocklisted vendor's own pixel (Fig 4a)
+\DeclareRobustCommand{\mkBar}{\tikz[baseline=-0.55ex]\draw[ink,line width=0.9pt] (0,-1mm) -- (0,1mm);}
+\DeclareRobustCommand{\mkOpen}{\tikz[baseline=-0.55ex]\draw[ink,line width=0.7pt] (0,0) circle (0.8mm);}
+\DeclareRobustCommand{\mkCross}{\tikz[baseline=-0.55ex]\draw[ink,line width=0.9pt] (-0.75mm,-0.75mm) -- (0.75mm,0.75mm) (-0.75mm,0.75mm) -- (0.75mm,-0.75mm);}
+
+% ---- text helpers ----
+% \code allows a line break after every dot, so long identifiers such as navigator.globalPrivacyControl do not overflow
+\DeclareRobustCommand{\code}[1]{\texttt{\codedots{#1}}}
+\makeatletter
+\def\codedots#1{\@codedots#1.\@nil}
+\def\@codedots#1.#2\@nil{#1\ifx\relax#2\relax\else.\allowbreak\@codedots#2\@nil\fi}
+\makeatother
+\newcommand{\ie}{i.e.,\xspace}
+\newcommand{\eg}{e.g.,\xspace}
+\newcommand{\RQ}[1]{\textbf{RQ#1}}
+% The motivating creator-linked store is pseudonymized as "Store C" until the disclosure of Section 8 is complete
+% (final audit, 2026-09-26). Figure 6b carries the same label (figures/scripts/fig6.py).
+\newcommand{\storeC}{Store~C\xspace}
+% Open items for the authors are printed in red in the review build. In the submission build
+% (\def\SUBMISSION{1} before \input{preamble}) every remaining \todo stops the compilation.
+\ifdefined\SUBMISSION
+  \newcommand{\todo}[1]{\PackageError{manuscript}{Unresolved \string\todo: #1}{Resolve every open item before submission.}}
+\else
+  \newcommand{\todo}[1]{{\color{accent}[#1]}}
+\fi
+
+\setlength{\tabcolsep}{4pt}
+\renewcommand{\arraystretch}{1.1}
+% Expandable input for generated table bodies (LaTeX's \input breaks \bottomrule inside tabular).
+\makeatletter\newcommand{\tabinput}[1]{\@@input #1 }\makeatother
+\setlength{\emergencystretch}{3em}
+\widowpenalty=10000
+\clubpenalty=10000
+% ---- float placement: allow tall full-width figures near their first mention ----
+\renewcommand{\topfraction}{0.95}
+\renewcommand{\dbltopfraction}{0.95}
+\renewcommand{\bottomfraction}{0.6}
+\renewcommand{\textfraction}{0.05}
+\renewcommand{\floatpagefraction}{0.75}
+\renewcommand{\dblfloatpagefraction}{0.75}
+\setcounter{topnumber}{3}
+\setcounter{dbltopnumber}{2}
+\setcounter{totalnumber}{5}
+\makeatletter
+% ---- widefig: a 190 mm figure (Elsevier double-column width) placed at its final printed size and
+%      centred on the text block; the graphic may overhang the text block, the caption never does ----
+% v2 figures (2026-09-27): when the figure and its full caption are taller than the text block (the single-column
+% review build, and the tallest supplementary figures), the float keeps the figure with the caption's bold title and
+% the rest of the caption follows as "Figure N (continued)" in a second float right after it. The test is automatic
+% (image height + caption height, measured at the caption's width and font); the captions themselves are unchanged
+% generated files (captions/*.tex). A caption must start with \textbf{title} to be split; otherwise it is never split.
+\newsavebox{\widefigbox}
+\newsavebox{\wf@imgbox}
+\newsavebox{\wf@capbox}
+\newlength{\outertextwidth}
+\newif\ifwf@split
+\newcommand{\widefigfloat}{figure*}      % float type; the supplement uses figure
+\newcommand{\widefigplace}{!tbp}         % default placement of the figure; the supplement uses !htbp
+\newcommand{\widefiglegendplace}{!tp}    % placement of the continued legend; the supplement uses !htbp
+\newcommand{\wf@ig}[2][]{\sbox{\wf@imgbox}{\wf@includegraphics[#1]{#2}}\usebox{\wf@imgbox}}
+\long\def\wf@parse\textbf#1#2\wf@nil{\long\gdef\wf@title{#1}\long\gdef\wf@legend{#2}}
+\long\def\wf@starts#1#2\wf@nil{\ifx\textbf#1\global\wf@splittrue\fi}
+\long\def\wf@splitcaption#1{%
+  \global\wf@splitfalse
+  \sbox{\wf@capbox}{\parbox{\outertextwidth}{\small\linespread{1}\selectfont\textbf{Figure S99.}\ #1}}%
+  \ifdim\dimexpr\ht\wf@imgbox+\dp\wf@imgbox+\ht\wf@capbox+\dp\wf@capbox+\abovecaptionskip+\belowcaptionskip\relax>\textheight
+    \wf@starts#1\relax\wf@nil
+  \fi
+  \wlog{widefig: image \the\dimexpr\ht\wf@imgbox+\dp\wf@imgbox\relax, caption \the\dimexpr\ht\wf@capbox+\dp\wf@capbox\relax, text height \the\textheight, split \ifwf@split yes\else no\fi}%
+  \ifwf@split
+    \wf@parse#1\wf@nil
+    \begingroup\edef\x{\endgroup\noexpand\wf@caption{\noexpand\textbf{\unexpanded\expandafter{\wf@title}} (The legend continues on the next page.)}}\x
+  \else
+    \wf@caption{#1}%
+  \fi}
+\newenvironment{widefig}[1][\widefigplace]
+  {\edef\wf@begin{\noexpand\begin{\widefigfloat}[#1]}\edef\wf@end{\noexpand\end{\widefigfloat}}\wf@begin\setlength{\outertextwidth}{\textwidth}%
+   \global\wf@splitfalse\sbox{\wf@imgbox}{}%
+   \let\wf@includegraphics\includegraphics\let\includegraphics\wf@ig
+   \let\wf@caption\caption\let\caption\wf@splitcaption
+   \begin{lrbox}{\widefigbox}\begin{minipage}{190mm}\centering\captionsetup{width=\outertextwidth}}
+  {\end{minipage}\end{lrbox}\noindent\makebox[\textwidth][c]{\usebox{\widefigbox}}\wf@end
+   % (\caption and \includegraphics were changed inside the first float's group, so they are the originals again here)
+   \ifwf@split
+     \edef\wf@begin{\noexpand\begin{\widefigfloat}[\widefiglegendplace]}\wf@begin
+       \caption*{\textbf{Figure~\thefigure\ (continued).}\ \wf@legend}%
+     \wf@end
+     \global\wf@splitfalse
+   \fi}
+\makeatother
+% ---- single-spaced captions and tables even in the double-spaced review build ----
+\captionsetup{font={small,stretch=1}}
+\usepackage{etoolbox}
+\AtBeginEnvironment{table}{\linespread{1}\selectfont}
+\AtBeginEnvironment{table*}{\linespread{1}\selectfont}
+\AtBeginEnvironment{figure}{\linespread{1}\selectfont}
+\AtBeginEnvironment{figure*}{\linespread{1}\selectfont}
+% ---- PDF metadata (the supplement overrides pdftitle) ----
+\hypersetup{pdftitle={Consent Enforcement Gaps in Sandboxed Web Pixels: A Large-Scale Measurement of Shopify Storefronts},
+  pdfauthor={Devansh Sanghavi},
+  pdfkeywords={Web tracking, Consent management platform, Cookie banner, Global Privacy Control, Shopify, Web pixel, Sandboxing, Web measurement}}

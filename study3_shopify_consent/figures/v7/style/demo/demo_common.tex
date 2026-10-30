@@ -1,0 +1,7 @@
+% demo_common.tex -- shared preamble for the style-sheet demo panels (style/demo/). Not for figure use.
+\def\StyleDir{../}
+\input{\StyleDir tikzstyle_v2.tex}
+\input{build/demo_numbers.tex}
+% \ptnum{<dimen macro>}: a stroke width from palette_v2.tex printed as a plain number (no math mode, Arial digits)
+\pgfkeys{/pgf/number format/.cd, assume math mode=true, fixed, precision=2}
+\newcommand{\ptnum}[1]{\pgfmathparse{(#1)/(1bp)}\pgfmathprintnumber{\pgfmathresult}}

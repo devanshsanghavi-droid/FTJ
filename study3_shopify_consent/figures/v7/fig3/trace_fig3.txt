@@ -1,0 +1,7 @@
+panels/fig3_numbers.csv: 72 registered numbers (71 drawn-only marks), 0 stale
+caption_fig3_numbers.csv: 110 registered numbers (0 drawn-only marks), 0 stale
+panel fig3a_default.pdf: 11 numeric tokens, 0 untraced
+panel fig3b_purpose.pdf: 5 numeric tokens, 0 untraced
+caption_fig3.tex: 98 numeric tokens, 0 untraced
+alt_text_fig3.txt: 12 numeric tokens, 0 untraced
+RESULT: PASS

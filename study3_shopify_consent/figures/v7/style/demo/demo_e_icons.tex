@@ -1,0 +1,14 @@
+% Style sheet panel E: the hand-built vector icon library (128 x 46 mm). No generative AI.
+\documentclass[tikz,border=0pt]{standalone}
+\input{demo_common.tex}
+\begin{document}
+\begin{tikzpicture}
+\PanelCanvas{128}{46}
+\foreach \i/\ic/\t in {0/browser/browser, 1/store/store, 2/cart/cart, 3/banner/banner,
+                        4/sandbox/sandbox, 5/worker/worker, 6/iframe/iframe, 7/server/server}
+  {\pic at (8+16*\i,-14) {ic \ic}; \node[note, text=ink, anchor=base] at (8+16*\i,-22.3) {\t};}
+\foreach \i/\ic/\t in {0/shield/shield, 1/lock/lock, 2/clock/clock, 3/gate/gate,
+                        4/plug/probe, 5/video/video, 6/person/visitor, 7/tag/test code}
+  {\pic at (8+16*\i,-32.5) {ic \ic}; \node[note, text=ink, anchor=base] at (8+16*\i,-41) {\t};}
+\end{tikzpicture}
+\end{document}

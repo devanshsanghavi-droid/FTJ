@@ -1,0 +1,7 @@
+fig5_numbers.csv: 0 registered numbers + 102 drawn marks, 0 stale
+caption_fig5_numbers.csv: 84 registered numbers + 0 drawn marks, 0 stale
+fig5_ticks.csv: 32 tick labels (22 numeric), 0 numeric outside the axis scales
+fig5.pdf: 22 numeric tokens in 53 text runs (axis ticks only); 0 untraced
+caption_fig5.tex: 69 numeric tokens; 0 untraced
+alt_text_fig5.txt: 16 numeric tokens; 0 untraced
+RESULT: PASS

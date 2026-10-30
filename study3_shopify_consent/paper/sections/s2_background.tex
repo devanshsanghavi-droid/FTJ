@@ -1,0 +1,68 @@
+% ============================================================================
+\section{Background}\label{sec:background}
+% ============================================================================
+
+\subsection{Two consent regimes}\label{sec:bg-law}
+
+In the European Union, prior consent is required before information is stored on or read from a user's device unless it is strictly necessary \citep{eprivacy2002,gdpr2016}, which covers tracking pixels \citep{edpb2023guidelines}; pre-choice tracking there is the standard example of non-compliance \citep{papadogiannakis2021post,bouhoula2024automated}. California follows an opt-out model: under the California Consumer Privacy Act as amended by the California Privacy Rights Act (CCPA), a business may ``sell'' or ``share'' personal information, including for cross-context behavioural advertising, unless the consumer opts out \citep{ccpa2018}. An opt-out preference signal such as GPC must be treated as a valid opt-out \citep{ccparegs7025,caag2022sephora}, and browsers must offer one from 1 January 2027 \citep{ab566}. A pixel that fires before any choice is therefore not by itself prohibited by the CCPA's opt-out rules, but opt-outs must work. Notice at collection, the opt-in rule for consumers under 16 and wiretap law are outside our scope (Section~\ref{sec:disc-law}); we draw no legal conclusions about any store, consent tool or platform.
+
+\subsection{Consent-management platforms and script blocking}\label{sec:bg-cmp}
+
+A CMP displays the banner, records the visitor's choice and, in most products, enforces it with a \emph{script blocker}: code that runs early in the main document and neutralizes tags (new \code{<script>}, \code{<iframe>} and \code{<img>} elements) that match a blocklist of URL patterns grouped into categories such as ``marketing''. A vendor is \emph{declared blocked} on a store when the CMP's machine-readable blocklist lists that vendor's URLs in a category that is blocked before any choice. The blocker cannot see requests made from a web worker, whose network calls never touch the DOM, or the contents of a sandboxed iframe, a separate document with its own origin \citep{whatwg_html}. On Shopify, many CMPs can also report the choice through the Customer Privacy API (\code{setTrackingConsent}); Table~\ref{tab:cmp-modes} lists the integration modes of 24 consent products.
+
+\begin{table}[!tbp]
+\centering
+\caption{How consent tools can enforce a choice on Shopify. Modes were assigned from each product's downloaded code or its documentation. A mode is a capability, not what a given store has enabled, so the crawler also tested per store whether a Decline click reached Shopify. \emph{Main-thread blocker}: rewrites or holds back tags in the top document. \emph{Writes to Shopify}: calls the Customer Privacy API.}
+\label{tab:cmp-modes}
+\small
+\begin{tabularx}{\linewidth}{@{}l>{\raggedright\arraybackslash}X@{}}
+\toprule
+Mode & Consent tools (products) \\
+\midrule
+N: Shopify's own banner & Shopify's native privacy banner (writes to Shopify; no blocker) \\
+A: writes to Shopify only & Consentmo, CookieFirst, Fides (Ethyca), Didomi (beta integration), iubenda (with autoblocking off), Enzuzo (vendor claim) \\
+B: main-thread blocker only & Usercentrics (without its sync snippet), Transcend (without sync), consentmanager.net; OneTrust and Cookiebot when installed without their Shopify apps \\
+C: both & Pandectes, OneTrust (Shopify app), Cookiebot (Shopify app), Osano, CookieHub, Ketch, Clarip, TrustArc (Shopify app) \\
+X: unknown & Termly, CookieYes, Cookie-Script, Axeptio, Consentik, Securiti \\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\subsection{Shopify's Web Pixels Manager and Customer Privacy API}\label{sec:bg-shopify}
+
+On a Shopify storefront, tracking arrives as \emph{app pixels} from Shopify's app store or as \emph{custom pixels} that merchants paste into the admin. An inline loader passes Shopify's Web Pixels Manager (WPM) one configuration entry per pixel: its type, its \code{runtimeContext}, and the privacy purposes it declares (\code{ANALYTICS}, \code{MARKETING}, \code{PREFERENCES}, \code{SALE\_OF\_DATA}) \citep{shopify_aboutpixels,shopify_pixelprivacy}. The WPM starts each pixel in one of three containers (Supplementary Fig.~\ref*{S:fig:s1}): \textbf{STRICT}, a dedicated web worker in which many globals are undefined \citep{shopify_aboutpixels}; \textbf{LAX}, by Shopify's code a hidden sandboxed iframe with an opaque origin, where custom pixels run; and \textbf{OPEN}, a main-thread script that injects the vendor's script, which a CMP blocker can see. In our sample (Table~\ref{tab:pixels}), third-party app pixels appeared on 1,329 stores and were sandboxed in 82\% of cases; TikTok, Pinterest and Snap always ran in STRICT workers and declared sale of data, whereas the Google \& YouTube app ran in OPEN mode and declared no purpose to Shopify.
+
+\begin{table}[!tbp]
+\centering
+\caption{Web pixels declared by the 1,358 captured main-sample stores (inline WPM configuration of the first usable load; 1,349 stores had one). Stores: stores with the app. Container: the WPM runtime for that app's pixels. The last three columns give the percentage of pixels declaring \code{MARKETING} (Mkt.), declaring \code{SALE\_OF\_DATA} (Sale), or declaring no purpose (None). Pixels declaring no purpose start regardless of the visitor's choice, and only pixels declaring sale of data are stopped by GPC. Shopify's own app and custom pixel entries, present on all 1,349 stores and declaring analytics and marketing, are excluded from the last two rows, which give the number of pixels in parentheses.}
+\label{tab:pixels}
+\small
+\begin{tabularx}{\linewidth}{@{}>{\raggedright\arraybackslash}Xrlrrr@{}}
+\toprule
+ & & & \multicolumn{3}{c}{\% of pixels declaring} \\
+\cmidrule(l){4-6}
+App or pixel group & Stores & Container & Mkt. & Sale & None \\
+\midrule
+\tabinput{tables/pixel_config_table.tex}
+\bottomrule
+\end{tabularx}
+\end{table}
+
+\emph{The gate.} Before creating a pixel's container, the WPM waits until Shopify's consent state allows every purpose the pixel declares; a pixel that declares no purpose starts at once, and if no state can be read every purpose counts as allowed. Pixel callbacks run until the user opts out \citep{shopify_aboutpixels}, and we found no code path that terminates the worker or iframe of a pixel that has already started (Supplementary Fig.~\ref*{S:fig:s1}). Every event the pixels receive carries the page's full URL, including its query string \citep{shopify_aboutpixels}.
+
+\emph{The consent state.} Shopify computes a consent string for each page response from the merchant's region settings and the visitor's location and delivers it in a \code{Server-Timing: \_cmp} header (for example \code{3.AMPS\_USCA\ldots}, where upper-case letters mean that analytics, marketing, preferences and sale of data are allowed for a California visitor); a CMP can overwrite it through \code{setTrackingConsent}. For regions without a consent requirement the default allows all purposes \citep{shopify_customerprivacy}, Shopify's own banner is on by default only for the United Kingdom and the European Economic Area \citep{shopify_privacysettings}, and third-party banners must report consent through the API \citep{shopify_apppixels_help}.
+
+\subsection{Global Privacy Control}\label{sec:bg-gpc}
+
+GPC is a browser signal that asks sites not to sell or share the user's data, sent as a \code{Sec-GPC:~1} request header and exposed as \code{navigator.globalPrivacyControl} in windows and workers \citep{w3c_gpc}; Brave sends it by default, Firefox offers it as a setting, and Chrome and Safari do not send it natively \citep{gpc_site}. Shopify documents that it honours GPC in regions configured for sale-of-data opt-out \citep{shopify_customerprivacy}; in our data it did so regardless of the consent string's region field (Supplementary \ref*{S:sec:s-decline}). It applies GPC on the server when the navigation carries the header and in a main-thread script when the flag is true; either way, GPC gates only pixels that declare \code{SALE\_OF\_DATA}.
+
+\subsection{Threat model: consent as an access-control policy}\label{sec:bg-threat}
+
+We frame the problem as a policy-enforcement failure rather than an attack. The \emph{asset} is the visitor's browsing context: the page URL, which may carry codes that identify a creator or a video, and the identifiers that vendors read. The \emph{policy} combines the merchant's CMP configuration and the visitor's choice, and there are two \emph{enforcement points}: the CMP's main-thread script blocker and Shopify's WPM gate. We infer no intent for the measured stores, which may simply be misconfigured. The design, however, trusts the party it restrains: the gate enforces the purposes that the app developer declares, and a developer who sets them all to false makes the pixel run ``without requiring consent'' \citep{shopify_buildwebpixels}; for a custom pixel, the merchant decides whether permission is required \citep{shopify_custompixels}. A pixel that declares no purpose thus passes both enforcement points without breaking any platform rule. A consent setup can fail in four ways:
+\begin{description}
+  \item[F1, permissive default.] Before any choice, Shopify's state allows tracking, so the gate opens whatever the banner shows.
+  \item[F2, blocked on paper.] A vendor is declared blocked in the CMP's blocklist, but its pixel runs in a sandbox that the blocker cannot reach and still sends requests. We also report the broader case in which the setup says ``no'' through a message to Shopify or the region default.
+  \item[F3, lost, late or incomplete choice.] The visitor refuses, but the refusal never reaches Shopify, arrives after the pixels have started, does not stop pixels already running, or is incomplete: it refuses marketing but leaves allowed the sale of data that a pixel declares.
+  \item[F4, under-declaration.] A pixel declares no purpose, or fewer than its data flow serves, so a correctly recorded refusal does not gate it; a strategic developer could exploit this. Under GPC, whether pixels that declare marketing but not sale of data under-declare depends on whether their flows are a ``sale'' or ``sharing''.
+\end{description}
+Figure~\ref{fig:situating}a draws these paths.

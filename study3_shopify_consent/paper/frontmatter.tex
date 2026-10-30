@@ -1,0 +1,27 @@
+% frontmatter.tex -- title, authors, abstract, keywords (shared by main.tex and main_5p.tex).
+% The abstract is plain text (no mathematics or macros) so that it can be pasted into Editorial Manager unchanged.
+\begin{frontmatter}
+
+\title{Consent Enforcement Gaps in Sandboxed Web Pixels: A Large-Scale Measurement of Shopify Storefronts}
+% Short (running) title for Editorial Manager: Consent Gaps in Sandboxed Web Pixels
+
+% Single-anonymized review: the name stays in the manuscript. Sole author, who is also the corresponding author.
+% The postal address goes in the Editorial Manager form only, never in the manuscript.
+\author{Devansh Sanghavi\corref{cor1}}
+\ead{devansh.sanghavi@gmail.com}
+\cortext[cor1]{Corresponding author. ORCID: 0009-0002-7511-542X.}
+
+\affiliation{organization={Los Altos High School},
+            city={Los Altos},
+            state={CA},
+            country={USA}}
+
+\begin{abstract}
+Consent-management platforms (CMPs) act as access control, blocking ad tags until visitors agree. Many Shopify ad pixels run in web workers or sandboxed iframes invisible to CMP blockers, gated only by Shopify's consent state. We loaded 1,358 popular Shopify storefronts from California with no click, a Decline click and Global Privacy Control (GPC), attributing every ad request to its execution context, plus 116 lower-ranked stores chosen for their CMP blocklists. On 89 stores whose blocklist named an ad vendor as blocked and whose CMP had not itself consented, that vendor's pixel still fired from the sandbox before any choice on 46 (51.7\%), and blocklist stores fired more often than comparable stores without one, not less. Shopify's gate held back almost every pixel declaring a refused purpose; consent was lost around it. Before any choice, sandboxed ad pixels fired on 70\% of banner stores where Shopify's default allowed tracking, nearly triple the rate under a denying default. Automatic banner refusals came after 525 of 535 third-party marketing sandboxes had started. A working Decline halved new-sandbox firing, but new sandboxes still sent ad requests on 23\% of stores; GPC stopped every pixel declaring sale of data, yet 35\% of stores with sandboxed requests kept sending them. A pilot on selected Wix, BigCommerce and first-party tag gateways found ad requests after a working Decline on 42\% to 88\% of sites. Consent must be enforced by the component that starts the code; we give a merchant self-test and fixes needing no new law.
+\end{abstract}
+
+\begin{keyword}
+Web tracking \sep Consent management platform \sep Cookie banner \sep Global Privacy Control \sep Shopify \sep Web pixel \sep Sandboxing \sep Web measurement
+\end{keyword}
+
+\end{frontmatter}

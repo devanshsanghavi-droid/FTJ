@@ -1,0 +1,6 @@
+{
+ "crawl_dir": "<workspace>/study3_shopify_consent/round4/expansion/crawl",
+ "out_dir": "<workspace>/study3_shopify_consent/round4/analysis/outputs/expansion",
+ "candidates": "<workspace>/study3_shopify_consent/round4/expansion/candidates.csv",
+ "n_sample_rows": 120
+}

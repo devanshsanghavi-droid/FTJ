@@ -2,7 +2,7 @@
 # Re-validate every palette the figures use (binding: FIGURE_PLAN.md style guide) and write palette_validation.txt.
 # Validator: the dataviz skill's scripts/validate_palette.js (path below; override with VALIDATOR=...).
 HERE="${0:A:h}"
-V=${VALIDATOR:-/private/tmp/claude-502/bundled-skills/2.1.281/a9e15d2c5dcb745ab76737f9aa4ed918/dataviz/scripts/validate_palette.js}
+V=${VALIDATOR:-}
 OUT="$HERE/palette_validation.txt"
 VEND="#2a78d6,#eb6834,#1baf7a,#eda100,#e87ba4,#008300,#4a3aa7,#e34948"
 {

@@ -1,0 +1,28 @@
+% fig5.tex -- Figure 5, v7 (../DESIGN_V7.md; worked example ../fig1): a refusal stops new pixels that declare the
+% refused purpose; pixels that started earlier, declare other purposes or declare none keep sending.
+% Layout: 190 x 114 mm, two rows with the style's 6 mm gutters and no outer margin:
+%   a 132 x 50 dot plot with Wilson CIs in the arm neutrals (as Fig. S8a), on the 0-100 % share scale: firing per
+%                vendor group under Default / Decline / GPC (the population comparison; quiet)
+%   b  52 x 50 thin horizontal stacked bars, classes named at the Decline bar, each total with its Wilson CI on a line
+%                just under its bar (Fig. 4a's grammar): the stores still sending, by class (the class names, colours
+%                and order of Fig. S8c); what Shopify's gate held is stated in the caption
+%   c 190 x 58   (hero) per-load raster of the race between the CMP's automatic consent write (amber rule) and
+%                sandbox start, on a symmetric-log time axis, with the pale brick key area before the 'no', Fig. S8d's
+%                tick key and a row axis broken (cut marks) between the 'no' and 'yes' blocks
+% a's and b's plots share their top and baseline; c's plot shares its left edge with a's and its right edge with b's.
+% Row 1 ends just under a's category labels. The cells are mirrored and asserted in scripts/make_fig5_panels.py;
+% \Panel checks each panel's size and draws the 8 pt bold lowercase letters (no panel titles).
+% Build: PATH=/opt/anaconda3/bin:$PATH zsh build_fig5.sh
+\documentclass[tikz,border=0pt]{standalone}
+\def\StyleDir{../style/}
+\input{\StyleDir tikzstyle_v2.tex}
+\providecommand{\PanelDir}{panels}
+\begin{document}
+\begin{tikzpicture}
+  \FigureCanvas{114}
+  %      letter  x     y      w     h      file
+  \Panel {a}     {0}   {0}    {132} {50} {\PanelDir/fig5a_dots.pdf}
+  \Panel {b}     {138} {0}    {52}  {50} {\PanelDir/fig5b_gate.pdf}
+  \Panel {c}     {0}   {56} {190} {58}   {\PanelDir/fig5c_race.pdf}
+\end{tikzpicture}
+\end{document}

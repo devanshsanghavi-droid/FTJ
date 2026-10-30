@@ -1,0 +1,27 @@
+% fig3.tex -- Figure 3, v7 (../DESIGN_V7.md; worked example ../fig1): before any choice, whether sandboxed pixels fire
+% tracks Shopify's region default, even within the same consent tool. a (hero): one forest plot on shared rows --
+% left, the two shares per row (the 4 consent products with >= 5 stores under each default, under a muted group name,
+% then the summary row 'All banner stores'; brick circles 'allowed until choice', slate squares 'denied until
+% consent', groups of < 10 stores grey with a one-line muted note saying so, a pale brick band = the excess under
+% 'allowed'); right, on the same rows and the same mm per percentage point, the pooled within-product difference
+% (filled diamond, level with the middle of the product rows, which a thin grey bracket groups) and the crude
+% difference (open diamond, on the summary row), each a dot + CI with its own direct label, against a grey zero rule
+% on an axis from -20 (cited as 'Fig. 3a, right', never 'Fig. 3c'). b: the same measure by declared purpose, a's
+% markers and bands, one-line category names, no direct labels.
+% Layout: 190 x 61 mm (Elsevier full width), one row: a 120.5 x 61 | b 63.5 x 61; the style's 6 mm cell gutter. The
+% three plots share their top and x-axis line and one scale (0.48 mm per percentage point). Panels are vector PDFs
+% drawn at final size by scripts/make_fig3_panels.py (cells mirrored there as A_W, B_W, FIG_H and asserted by
+% check_composite); \Panel checks each size and draws the 8 pt bold lowercase letters (no panel titles).
+% Build: PATH=/opt/anaconda3/bin:$PATH zsh build_fig3.sh
+\documentclass[tikz,border=0pt]{standalone}
+\def\StyleDir{../style/}
+\input{\StyleDir tikzstyle_v2.tex}
+\providecommand{\PanelDir}{panels}
+\begin{document}
+\begin{tikzpicture}
+  \FigureCanvas{61}
+  %      letter  x       y    w       h    file
+  \Panel {a}     {0}     {0}  {120.5} {61} {\PanelDir/fig3a_default.pdf}
+  \Panel {b}     {126.5} {0}  {63.5}  {61} {\PanelDir/fig3b_purpose.pdf}
+\end{tikzpicture}
+\end{document}

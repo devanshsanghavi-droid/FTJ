@@ -1,0 +1,57 @@
+{
+ "figure": "Figure 3 (v7: DESIGN_V7.md, the sciplot clean theme with the nature-figure key area; K-Dense skill v1.4 screen)",
+ "destination": {
+  "journal": "Computers & Security (Elsevier)",
+  "article_type": "research article",
+  "phase": "initial submission",
+  "width": "full (190 mm)",
+  "publisher_rules": "PENDING VERIFICATION against the live C&S Guide for Authors; screened only against the skill's dated Elsevier snapshot"
+ },
+ "outputs": [
+  {
+   "file": "fig3.pdf",
+   "format": "PDF (vector, Type 42 / CID TrueType Arial, opaque white, RGB)",
+   "width_mm": 190.0,
+   "height_mm": 61.0,
+   "bytes": 52290,
+   "sha256": "4fdb941230ca2b765204da738aaac421c16b121693eb5e8e09911cd183509851"
+  },
+  {
+   "file": "_v7_review-p01.png",
+   "format": "PNG review render, 200 ppi",
+   "px": [
+    1496,
+    480
+   ]
+  }
+ ],
+ "sources": {
+  "stats.json": {
+   "path": "analysis/outputs/stats.json",
+   "sha256": "e32f77df32f8d3fef00721e7ecc03255ef2504649def4d6c5a050cf9484dd824"
+  },
+  "fig3/derived_numbers.json": {
+   "path": "figures/v7/fig3/derived_numbers.json",
+   "sha256": "78fd6c56c382b5e80cabcf98c52bc2b35e794258a603e4add516424cdba62699"
+  }
+ },
+ "transformations": [
+  "analysis/analyze.py -> analysis/outputs/stats.json (Wilson CIs; Mantel-Haenszel risk difference with Sato variance; the crude Newcombe difference)",
+  "fig3/scripts/derive_fig3.py -> fig3/derived_numbers.json (per-product strata with each share's Wilson CI, MH weights and Newcombe differences; it also keeps the timing blocks of the removed panel c for provenance)",
+  "fig3/scripts/make_fig3_panels.py (drawing only, fs.v7_context(), each panel linted by sp_lint.lint_fig; the panels print the axis ticks and the registered threshold of a's grey note; every drawn value -- marks, CI ends, band ends, the grey threshold -- registered as a mark in panels/fig3_numbers.csv and checked by scripts/trace_fig3.py)",
+  "fig3/scripts/make_caption_fig3.py (the caption carries every count, the undrawn products' too; registry caption_fig3_numbers.csv)",
+  "fig3.tex (composite, tectonic)"
+ ],
+ "uncertainty": "a left, b: Wilson 95% CIs of a share (stores are the unit), drawn in the colour of their mark; a right: Newcombe 95% CI of the crude difference and the Mantel-Haenszel difference pooled over the consent products with Sato variance (strata = consent products). No bootstrap (no seed needed).",
+ "missing_data": "7 banner stores without a readable region default are excluded (caption). Consent products with fewer than 5 stores under either default are not drawn in a left; they enter the pooled difference (a right) and their counts are listed in the caption. Groups of fewer than design.min_stores_row stores are drawn grey and listed in the caption. Nothing lies outside an axis.",
+ "software": {
+  "python": "3.13.9",
+  "matplotlib": "3.10.6",
+  "numpy": "2.3.5",
+  "pypdf": "6.16.2",
+  "pandas": "2.3.3",
+  "tectonic": "Tectonic 0.17.0"
+ },
+ "alt_text": "alt_text_fig3.txt",
+ "note": "No automated report here certifies accessibility or journal compliance (skill guardrail)."
+}

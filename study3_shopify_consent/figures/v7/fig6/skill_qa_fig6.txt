@@ -1,0 +1,27 @@
+== fig6.pdf: 1 page, 190.0 x 102.0 mm, 111 KB, raster images: 0
+   font Arial-BoldMT: Type0 (CID TrueType, Type 42), embedded  [ok]
+   font ArialMT: Type0 (CID TrueType, Type 42), embedded  [ok]
+   text sizes (pt: runs): {6.0: 23, 7.0: 48, 8.0: 4}  -> smallest 6.0 pt [ok]
+   non-numeric text sizes (pt: runs): {7.0: 48, 8.0: 4}  [ok: words >= 7 pt; tick labels 6 pt; 6 pt words only as muted secondary text (SP_MUTED runs: {6.0: 3})]
+   Elsevier width class: 190 mm [ok]; vector PDF [ok]; colour space RGB (DeviceRGB operators)
+   colours drawn (WCAG contrast vs #ffffff; CIE L*):
+     #000000  21.00:1  L*=  0.0  the panel letters (composite)  [ok]
+     #1f2328  15.80:1  L*= 13.5  sciplot text colour: every word label and axis title, the drawing's vendor names (a)  [ok]
+     #3b4656   9.56:1  L*= 29.4  SAND: the pixel-sandbox region outline (a)  [ok]
+     #3d434b   9.99:1  L*= 28.2  sciplot chrome: the bottom axes, ticks and tick labels (a's plot, b, c, d) and d's break mark; the drawing's box outlines and connectors (a)  [ok]
+     #6b7280   4.83:1  L*= 47.9  sciplot muted text: the drawing's region names, the 'Ad vendors' column name, runtime tags and query-string placeholder (a); the key and the group names (a's plot, d)  [ok]
+     #6e6e6e   5.10:1  L*= 46.4  mid grey: the vendor-group and all-vendor circles and their CIs (c), the agreement circles and their CIs (d), as Fig. S2a's groups  [ok]
+     #a0a0a0   2.61:1  L*= 65.9  NEUTRAL grey: context -- the browser frame, the page-region outline and the other-routes arrow (a); the "Any route" squares and key mark (a), the squares and their CIs (b)  [below 3.0:1, accepted: DESIGN_V7 section 3.2 neutral, context only: the "Any route" series is double-coded by shape (square vs the brick circle) and named in the key (a) and on its rows (b); the other-routes arrow is named in text ("other routes"); the frame and region outlines are containers, named at their top-left; the panels' point is carried by the brick marks (4.4:1)]
+     #c65358   4.39:1  L*= 50.6  LEAK brick: the code leaving from a Shopify sandbox (consent lost) -- the two leak arrows (a), the "From a sandbox" circles and key mark (a), the circle and its CI (b)  [ok]
+     #d9d9d9   1.41:1  L*= 86.7  decorative: the light line joining a load's two counts (a)  [n/a (decorative/surface)]
+     #e9ebed   1.20:1  L*= 93.0  ground: the pixel-sandbox region (a), as Fig. 1a's sandbox region and Fig. 1b's sandbox lane; text on it >= 4.1:1 (muted region name), 14:1 (labels)  [n/a (decorative/surface)]
+     #f4f5f6   1.09:1  L*= 96.5  ground: the page region (a), as Fig. 1a's page region and Fig. 1b's page lane; text on it >= 4.5:1  [n/a (decorative/surface)]
+     #fbeeed   1.13:1  L*= 95.1  ground: the all-vendor share's 95% CI carried up through c's rows (the key-area band of Figs S2, S3 and S5; no text on it)  [n/a (decorative/surface)]
+     #ffffff   1.00:1  L*=100.0  surface; the white boxes of the drawing (a)  [n/a (decorative/surface)]
+== category separation without hue (skill grayscale screen, delta L* >= 10; heuristic):
+     from a sandbox (brick) vs any route (grey), a and b; also told apart by shape (circle vs square) and, in the drawing, by weight (1.0 vs 0.8 pt): #c65358 vs #a0a0a0  delta L* = 15.3  separates in grayscale
+     the drawing's two grounds (page vs pixel sandboxes); also told apart by their outlines (NEUTRAL vs SAND) and their names: #f4f5f6 vs #e9ebed  delta L* =  3.5  does NOT separate in grayscale
+   No vendor hue and no EVENT amber in Fig 6 (the vendor is named on its row in c; the creator link is not a consent moment). Brick and grey each have one meaning in a and b, named in the caption; c and d are mid-grey dots (Fig. S2a's), c's all-vendor CI a pale brick band (the key-area band of Figs S2, S3, S5); the grounds are pre-mixed tints (sciplot), never alpha, each repeating its meaning elsewhere in the set (a's two as Fig. 1's regions).
+== preview _v7_review-p01.png: 1496 x 803 px, RGBA, opaque=True, 200 ppi at 190 mm (a review render; the submission file is the vector PDF)
+   v7 type check: words 7 pt; tick labels and muted secondary text 6 pt; letters 8 pt (DESIGN_V7 section 2). Elsevier asks for about 7 pt lettering: 6 pt is the sciplot Nature tick size the v7 spec adopts; confirm against the C&S Guide for Authors before submission.
+RESULT: PASS (automatic screen; not a compliance certificate)

@@ -1,0 +1,57 @@
+{
+ "figure": "Figure 1 (v7 reference figure: v6 content in the sciplot clean theme, mmd-ahd/scientific-figure-skill, with the FigGenie and nature-figure grafts of DESIGN_V7.md; K-Dense skill v1.4 screen)",
+ "destination": {
+  "journal": "Computers & Security (Elsevier)",
+  "article_type": "research article",
+  "phase": "initial submission",
+  "width": "full (190 mm)",
+  "publisher_rules": "PENDING VERIFICATION against the live C&S Guide for Authors; screened only against the skill's dated Elsevier snapshot"
+ },
+ "outputs": [
+  {
+   "file": "fig1.pdf",
+   "format": "PDF (vector, Type 42 / CID TrueType Arial, opaque white, RGB)",
+   "width_mm": 190.0,
+   "height_mm": 132.0,
+   "bytes": 82603,
+   "sha256": "d3efeaf3f2f404e94dee0ca280df3ed022f98b9f61f9072c115e5e5e072bd2f2"
+  },
+  {
+   "file": "_v7_review-p01.png",
+   "format": "PNG review render, 200 ppi",
+   "px": [
+    1496,
+    1039
+   ]
+  }
+ ],
+ "sources": {
+  "stats.json": {
+   "path": "analysis/outputs/stats.json",
+   "sha256": "e32f77df32f8d3fef00721e7ecc03255ef2504649def4d6c5a050cf9484dd824"
+  },
+  "fig1/derived_numbers.json": {
+   "path": "figures/v7/fig1/derived_numbers.json",
+   "sha256": "d7c8accae6d79348947545ca2e91ddccbe5205272b850c86e8d3418166a17eec"
+  }
+ },
+ "transformations": [
+  "analysis/analyze.py -> analysis/outputs/stats.json (Wilson CIs; Round 4 blocklist combined sample)",
+  "fig1/scripts/derive_fig1.py -> fig1/derived_numbers.json (fig1b_trace: the re-check load of v4 Fig 4d, recomputed from crawl/recheck (read-only) and asserted equal to the Fig 4 record; fig1c_raster: the out-of-axis counts of the raster)",
+  "fig1/scripts/make_panels.py (drawing only; no number is printed in the panels besides tick labels; every drawn value registered in fig1_numbers.csv and checked by scripts/trace_fig1.py)",
+  "fig1/scripts/make_caption.py (the caption carries every count; registry caption_fig1_numbers.csv)",
+  "fig1a_pipeline.tex (TikZ line art), fig1.tex (composite, tectonic)"
+ ],
+ "uncertainty": "Caption: Wilson 95% CIs of a share (stores are the unit) for loss point (2) and the c before-the-banner share; b is one load (no interval); a is a schematic.",
+ "missing_data": "c: the requests outside the -4 to +8 s axis are not drawn and are counted in the caption; the first-request line leaves the axis (an arrowhead inside the frame) for the stores whose first request lies outside it; b: the 1 beacon beyond the axis is an arrowhead inside the right edge of the box, its time in the caption.",
+ "software": {
+  "python": "3.13.9",
+  "matplotlib": "3.10.6",
+  "numpy": "2.3.5",
+  "pypdf": "6.16.2",
+  "pandas": "2.3.3",
+  "tectonic": "Tectonic 0.17.0"
+ },
+ "alt_text": "alt_text_fig1.txt",
+ "note": "No automated report here certifies accessibility or journal compliance (skill guardrail)."
+}

@@ -1,0 +1,121 @@
+% Figure 1a (v7; binding spec ../DESIGN_V7.md, sections 6-7; this file is the worked example of a v7 schematic):
+% where consent is lost. The sciplot schematic rules re-implemented in TikZ (never executed), plus the bake-off grafts.
+% Message: the CMP's script blocker walls off the page only; Shopify's consent gate starts the pixels in sandboxes
+% whose requests leave the browser for the ad vendors underneath the wall.
+%
+% Nested regions (FigGenie; three levels at most: region > region > box), each labelled at its top-left in the muted
+% 7 pt container style:
+%   level 1  'Shopify store in the browser': an outline-only frame (0.6 pt NEUTRAL) around everything that runs in the
+%            visitor's browser -- the consent signals, the page, Shopify's consent gate and the pixel sandboxes. The ad
+%            vendors stand outside it, so the brick requests visibly LEAVE the browser;
+%   level 2  'Page (main thread)' (TINT PAGE ground, NEUTRAL outline) and 'Pixel sandboxes' (TINT SAND ground, SAND
+%            outline): one step apart in lightness, the same two grounds as panel b's two lanes;
+%   level 3  the element boxes: white, 0.6 pt SPAXIS, sized to their text with 2.4 x 1.6 mm padding (sciplot S.box),
+%            corners 0.5 mm; the cookie banner is the one tinted box (TINT EVENT: its appearance is the amber rule of b
+%            and c).
+% Columns: x = 62 the cookie banner above Shopify's consent gate (the CMP's choice runs straight down into it);
+% x = 108 the vendor tags (page) above the pixel sandboxes (the same vendors' code, isolated) -- b's two lanes;
+% x = 141 the script blocker, a solid wall over the page region only; x = 169.5-187.5 the ad vendors, outside the browser.
+% Connectors 0.6 pt stopping 0.6 mm short; the one accent is the two leak paths (LEAK, 1.0 pt = the data weight) and the
+% dotted grey hairline is the path the wall cuts (the only broken line in the figure: one meaning).
+% The ad-vendor box holds the vendor groups used in every figure (figstyle.VENDOR_ORDER; asserted in
+% scripts/make_panels.py) in 6 pt muted grey: grey, never vendor hues (brick is in this panel).
+% Loss numerals (DESIGN_V7 section 7.4): \lossno{x,y}{n} draws a small outlined ring (2.7 mm, 0.5 pt LEAK, white inside)
+% with a 6 pt SPFG digit at the five points where consent is lost, in the caption's order: 1 the region default (on its
+% arrow), 2 the script blocker (beside the wall), 3 the CMP's choice (on its arrow), 4 the consent gate (its top-right
+% corner), 5 the path to the vendors (between the leak paths, just outside the browser). They are the only digits in
+% the panel (make_panels.check_composite and trace_fig1.py enforce it); the counts live in the caption.
+% Colours: ../style/palette_v2.tex (SP* = sciplot clean theme, TINT* = pre-mixed token tints). Cell: 190 x 44 mm
+% (= fig1.tex, asserted in scripts/make_panels.py).
+\documentclass[tikz,border=0pt]{standalone}
+\def\StyleDir{../style/}
+\input{\StyleDir tikzstyle_v2.tex}
+\tikzset{
+  every node/.append style={text=SPFG},
+  el/.style={draw=SPAXIS, fill=surface, line width=0.6bp, rounded corners=0.5mm, inner xsep=2.4mm, inner ysep=1.6mm,
+             minimum height=6mm, font=\fsLabel, align=center, anchor=center},
+  el banner/.style={el, draw=EVENT, fill=TINTEVENT},
+  el sbx/.style={el, minimum width=33mm},
+  region browser/.style={draw=NEUTRAL, fill=none, line width=0.6bp, rounded corners=0.5mm},
+  region page/.style={draw=NEUTRAL, fill=TINTPAGE, line width=0.6bp, rounded corners=0.5mm},
+  region sbx/.style={draw=SAND, fill=TINTSAND, line width=0.6bp, rounded corners=0.5mm},
+  regionlbl/.style={font=\fsLabel, text=SPMUTED, inner sep=0pt, anchor=base west},
+  t/.style={font=\fsLabel, inner sep=0pt},
+  sub/.style={font=\fsNote, text=SPMUTED, inner sep=0pt},
+  con/.style={-{Stealth[length=3.4bp, width=2.8bp, inset=0.9bp]}, draw=SPAXIS, line width=0.6bp, rounded corners=0.8mm},
+  conplain/.style={draw=SPAXIS, line width=0.6bp, rounded corners=0.8mm},
+  leakarr/.style={-{Stealth[length=4.25bp, width=3.4bp, inset=1.2bp]}, draw=LEAK, line width=1bp},
+  wire/.style={draw=NEUTRAL, line width=0.8bp, line cap=butt},
+  wall/.style={fill=SPFG, draw=none, rounded corners=0.25mm},
+  lossring/.style={circle, draw=LEAK, line width=0.5bp, fill=surface, minimum size=2.7mm, inner sep=0pt,
+                   font=\fsNumeral, text=SPFG},
+}
+% \lossno{x,y}{n}: loss numeral n centred at (x,y) mm -- an outlined ring, never a filled disc
+\newcommand{\lossno}[2]{\node[lossring] at (#1) {#2};}
+\begin{document}
+\begin{tikzpicture}
+\PanelCanvas{190}{44}
+\def\yT{-11.2}     % top tier centre line (the page)
+\def\yB{-33.3}   % bottom tier centre line (Shopify's gate, between the two sandboxes)
+\def\xG{62}      % column: cookie banner / consent gate
+\def\xS{108}     % column: vendor tags / pixel sandboxes
+
+% ---------------------------------------------------------------- level 1: the Shopify store in the browser
+\draw[region browser] (6,-0.6) rectangle (152,-43.6);
+\node[regionlbl] at (8.4,-4.3) {Shopify store in the browser};
+
+% ---------------------------------------------------------------- level 2: the page (main thread)
+\draw[region page] (43,-2.6) rectangle (148,-17.2);
+\node[regionlbl] at (45.4,-6.1) {Page (main thread)};
+\node[el banner, minimum width=32mm] (cmp) at (\xG,\yT) {Cookie banner (CMP)};
+\node[el, minimum width=33mm] (tags) at (\xS,\yT) {Vendor tags};
+% the script blocker: a wall over the page region only; the tag wire stops at it
+\draw[wire] (tags.east) -- (140.1,\yT);
+\fill[wall] (140.5,-4.4) rectangle (141.7,-15.4);
+\node[t, anchor=base east] at (139.3,-6.8) {Script blocker};
+
+% ---------------------------------------------------------------- Shopify: consent signals -> gate -> sandboxes
+\node[el, minimum width=32mm, inner ysep=1.2mm] (gate) at (\xG,\yB)
+  {Shopify’s consent gate\\[-0.4mm]{\fsNote\color{SPMUTED}Customer Privacy API}};
+% the CMP's choice runs straight down from the banner; the region default and GPC enter from the left
+\draw[con] (cmp.south) -- ($(gate.north)+(0,0.6)$);
+\node[t, anchor=mid west] at (\xG+2.3,-23.4) {CMP’s choice};
+\draw[con] (34.4,\yB+2.2) -- ($(gate.west |- 0,\yB+2.2)+(-0.6,0)$);
+\node[t, anchor=mid east] at (33,\yB+2.2) {Region default};
+\draw[con] (34.4,\yB-2.2) -- ($(gate.west |- 0,\yB-2.2)+(-0.6,0)$);
+\node[t, anchor=mid east] at (33,\yB-2.2) {Global Privacy Control};
+
+% ---------------------------------------------------------------- level 2: the pixel sandboxes
+\draw[region sbx] (88.5,-20.2) rectangle (127.5,-42.2);
+\node[regionlbl] at (90.9,-23.7) {Pixel sandboxes};
+\node[el sbx] (worker) at (\xS,\yB+4.5) {};
+\node[el sbx] (iframe) at (\xS,\yB-4.5) {};
+% each box: its name left, its Shopify runtime (muted 6 pt) right -- one row, like a type tag
+\node[t, anchor=mid west] at ($(worker.west)+(2.4,0)$) {Web worker};
+\node[sub, anchor=mid east] at ($(worker.east)+(-2.4,0)$) {strict};
+\node[t, anchor=mid west] at ($(iframe.west)+(2.4,0)$) {Sandboxed iframe};
+\node[sub, anchor=mid east] at ($(iframe.east)+(-2.4,0)$) {lax};
+\draw[conplain] (gate.east) -- (83.6,\yB);
+\draw[con] (83.6,\yB) |- ($(worker.west)+(-0.6,0)$);
+\draw[con] (83.6,\yB) |- ($(iframe.west)+(-0.6,0)$);
+
+% ---------------------------------------------------------------- outside the browser: the ad vendors
+\node[el, anchor=north west, minimum width=18mm, minimum height=33.8mm, inner sep=0pt] (ads) at (169.5,-7.4) {};
+\node[t, anchor=base west] at (171.9,-11.6) {Ad vendors};
+\node[sub, anchor=north west, align=left, font=\fsNote, text depth=0pt] at (171.9,-14.2)
+  {Google\\[0.95mm]TikTok\\[0.95mm]Meta\\[0.95mm]Pinterest\\[0.95mm]Snap\\[0.95mm]Microsoft\\[0.95mm]Reddit/other};
+% the tags' path past the wall, cut: a dotted grey hairline to the vendors (no head: nothing arrives)
+\draw[draw=NEUTRAL, line width=0.6bp, dash pattern=on 0.6bp off 1.6bp, line cap=round] (142.9,\yT) --
+  ($(ads.west |- 0,\yT)+(-0.8,0)$);
+% the leak: the pixels' requests leave the browser underneath the wall
+\draw[leakarr] (worker.east) -- ($(worker.east -| ads.west)+(-0.6,0)$);
+\draw[leakarr] (iframe.east) -- ($(iframe.east -| ads.west)+(-0.6,0)$);
+
+% ---------------------------------------------------------------- the five points where consent is lost (caption 1-5)
+\lossno{39.8,\yB+2.2}{1}
+\lossno{144.3,-6.6}{2}
+\lossno{\xG,-23.4}{3}
+\lossno{gate.north east}{4}
+\lossno{156.6,\yB}{5}
+\end{tikzpicture}
+\end{document}

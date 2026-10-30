@@ -1,0 +1,47 @@
+QA fig5.pdf: 1 page(s), 190.00 x 114.00 mm
+fonts: Arial-BoldMT (Type0), ArialMT (Type0)
+text collision audit (ink boxes, 53 runs): none
+text size histogram (pt: characters): 6: 52, 7: 323, 8: 3  [total 378]
+non-numeric text: about 288 characters (RESTRAINT: axis titles, ticks, one small legend, at most two direct labels per panel)
+panel letters: a 8.0pt x=0.00 baseline=2.02mm; b 8.0pt x=138.00 baseline=2.02mm; c 8.0pt x=0.00 baseline=58.02mm
+  shared baselines: 2.0 mm: ab; 58.0 mm: c
+  shared x: 0.0 mm: ac; 138.0 mm: b
+colours [/Fm0]: LIGHT grey, NEUTRAL grey, black / ink, dark grey (secondary text), sciplot SP_AXIS, sciplot SP_FG, sciplot SP_MUTED, white
+colours [/Fm1]: LEAK brick (consent lost), NEUTRAL grey, black / ink, dark grey (secondary text), sciplot SP_AXIS, sciplot SP_FG, white
+colours [/Fm2]: EVENT amber (consent event), HONOUR slate (consent honoured), LEAK brick (consent lost), NEUTRAL grey, black / ink, sciplot SP_AXIS, sciplot SP_FG, sciplot SP_MUTED, sciplot TINT_LEAK, white
+colours [page]: black / ink, white
+RESULT: PASS (automatic checks)
+
+PNG (200 dpi): <workspace>/study3_shopify_consent/figures/v7/fig5/_v7_review-p01.png
+-> Read it with the Read tool, answer the checklist below, then delete it.
+
+VISUAL QA CHECKLIST (v7, ../DESIGN_V7.md section 11; answer every item in writing in QA.md after READING the PNG)
+The test: beside the author's Nature Computational Science exemplars (references/ncs_papers/figpages: AlignIF
+01029-2-p02, DIPPER 01015-8-p02, MIRACLE 01030-9-p02, NEP89 01009-6-p04), would it look at home? Refined and crafted,
+not busy: if it looks like a poster, dashboard, magazine graphic or AI illustration, simplify.
+Figure contract (section 1)
+  [ ] One claim (the caption title); one hero panel; every panel a distinct inferential role
+  [ ] No headlines, hero numbers, callout bubbles, in-figure prose or panel titles; letters 8 pt bold lowercase
+  [ ] Text inside a data panel: axis titles, tick labels, one small key, at most two short direct labels
+  [ ] Numbers are in the caption and shown by position
+Axes and marks (sections 4-5, 8)
+  [ ] Open L axes, 0.6 pt SP_AXIS #3d434b, outward 2.5 pt ticks, no gridlines; data 1.0 pt, markers 3.5 pt
+  [ ] Dots + summary for small n; uncapped 95% intervals; honest, shared scales where panels are compared
+Colour (section 3)
+  [ ] Grey for context, colour for signal; <= 5 colours per panel
+  [ ] LEAK brick = consent lost; HONOUR slate = comparison; EVENT amber = banner / click / GPC moment; vendor hexes
+      only where vendors are the categories, never with brick
+  [ ] Fills are pre-mixed tints (TINT), never alpha; every tint repeats its token's meaning; grounds are very faint
+Schematics (sections 6-7)
+  [ ] Regions nested at most three levels, each labelled; boxes sized to text (2.4 x 1.6 mm pad), 0.6 pt outlines
+  [ ] Connectors stop short; one accent path (LEAK); no empty boxes; muted 6 pt grey secondary text
+  [ ] Loss numerals: small outlined brick rings with 6 pt digits, matching the caption; never filled discs
+  [ ] No 3D / isometric, shadows, gradients, ribbons, Sankey, icons, emoji, rounded pastel cards
+Layout and type (sections 2, 9)
+  [ ] Arial; 6 pt ticks and notes, 7 pt words, 8 pt letters; sentence case; nothing below 6 pt
+  [ ] Plot areas aligned across panels (shared left / right edges, shared zeros); no text collisions or clipping
+  [ ] The five-second test: every panel's point is clear without reading text inside it
+Kept
+  [ ] Every number traces to stats.json / derived_numbers.json (registry; trace checks pass)
+  [ ] Panel letters and contents; Store C anonymity; no placeholder text, debug borders or raster images
+

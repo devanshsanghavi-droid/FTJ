@@ -1,37 +1,37 @@
 {
  "A0": {
-  "creations": 15278,
-  "loads": 1371,
+  "creations": 15246,
+  "loads": 1367,
   "state_unknown": 0,
   "with_denied_declared_purpose": 35
  },
  "A0r": {
-  "creations": 3011,
-  "loads": 280,
+  "creations": 3010,
+  "loads": 279,
   "state_unknown": 0,
   "with_denied_declared_purpose": 17
  },
  "A1": {
-  "creations": 16315,
-  "loads": 1372,
+  "creations": 16281,
+  "loads": 1368,
   "state_unknown": 0,
   "with_denied_declared_purpose": 144
  },
  "A2": {
-  "creations": 8730,
-  "loads": 1369,
+  "creations": 8715,
+  "loads": 1365,
   "state_unknown": 0,
   "with_denied_declared_purpose": 31
  },
  "A2r": {
-  "creations": 1746,
-  "loads": 278,
+  "creations": 1745,
+  "loads": 277,
   "state_unknown": 0,
   "with_denied_declared_purpose": 10
  },
  "V1": {
-  "creations": 668,
-  "loads": 98,
+  "creations": 667,
+  "loads": 97,
   "state_unknown": 0,
   "with_denied_declared_purpose": 0
  },
@@ -2881,8 +2881,8 @@
    "denied_declared": "a|m"
   }
  ],
- "n_creations_total": 45748,
+ "n_creations_total": 45664,
  "n_violations_total": 237,
  "n_violations_main": 237,
- "n_creations_main": 44482
+ "n_creations_main": 44398
 }

@@ -1,0 +1,126 @@
+# style_v2.mplstyle -- the v6 figure style (binding: ../RESTRAINT.md, which wins over ../DESIGN_V6.md). The target is
+# the restrained look of the author's Nature Computational Science papers (NEP89, PathSegmentor, MIRACLE): a plain,
+# well-made plot in a thin full box, white background, no grid, almost no text inside the plot.
+# Load it through figstyle.style_context() (scoped, restored on exit); never mpl.style.use() it globally in a new
+# script. figstyle.selftest() checks that the values below equal figstyle.FS / LW / ARM (no drift).
+# All sizes are at FINAL PRINT SIZE: panels are drawn at their exact mm size and never rescaled.
+# Target: Computers & Security (Elsevier), full width 190 mm.
+
+# ---- type: Arial, one family; axis titles and labels 7 pt, ticks 6 pt (v7 scale, ../DESIGN_V7.md); sentence case
+font.family: sans-serif
+font.sans-serif: Arial, Helvetica, TeX Gyre Heros, Liberation Sans, DejaVu Sans
+font.size: 7
+axes.labelsize: 7
+axes.titlesize: 7
+axes.labelweight: normal
+# no panel titles (rule 2): a title, if one is ever set, is not bold
+axes.titleweight: normal
+axes.titlelocation: left
+axes.titlepad: 3
+xtick.labelsize: 6
+ytick.labelsize: 6
+legend.fontsize: 7
+legend.title_fontsize: 7
+figure.titlesize: 7
+axes.unicode_minus: True
+mathtext.default: regular
+mathtext.fontset: custom
+mathtext.rm: Arial
+mathtext.it: Arial:italic
+mathtext.bf: Arial:bold
+mathtext.sf: Arial
+
+# ---- ink: black text; near-black (#222222 = figstyle.AXIS) chrome
+text.color: "#000000"
+axes.labelcolor: "#000000"
+xtick.labelcolor: "#000000"
+ytick.labelcolor: "#000000"
+
+# ---- chrome (rule 5): white, a thin FULL box 0.5 pt near-black, outward ticks bottom / left only, NO grid
+figure.facecolor: white
+axes.facecolor: white
+savefig.facecolor: white
+savefig.edgecolor: white
+savefig.transparent: False
+axes.edgecolor: "#222222"
+axes.linewidth: 0.5
+axes.spines.top: True
+axes.spines.right: True
+axes.spines.left: True
+axes.spines.bottom: True
+axes.grid: False
+axes.axisbelow: True
+# (no gridlines anywhere: figstyle.row_grid() / value_grid() are no-ops)
+grid.color: "#d9d9d9"
+grid.linewidth: 0.4
+grid.linestyle: -
+xtick.color: "#222222"
+ytick.color: "#222222"
+xtick.direction: out
+ytick.direction: out
+xtick.top: False
+xtick.bottom: True
+ytick.left: True
+ytick.right: False
+xtick.major.size: 2.5
+ytick.major.size: 2.5
+xtick.major.width: 0.5
+ytick.major.width: 0.5
+xtick.minor.size: 1.5
+ytick.minor.size: 1.5
+xtick.minor.width: 0.4
+ytick.minor.width: 0.4
+xtick.minor.visible: False
+ytick.minor.visible: False
+xtick.major.pad: 2
+ytick.major.pad: 2
+axes.labelpad: 3
+
+# ---- marks (rule 7): simple filled markers about 4.5 pt, data lines 1.3 pt, error bars 0.75 pt WITHOUT caps
+lines.linewidth: 1.3
+lines.markersize: 4.5
+lines.markeredgewidth: 0.7
+lines.solid_capstyle: butt
+lines.dash_capstyle: butt
+patch.linewidth: 0.5
+patch.force_edgecolor: False
+errorbar.capsize: 0
+hatch.linewidth: 0.5
+scatter.edgecolors: face
+# no silent hue cycling: colour is explicit (LEAK / HONOUR / THIRD / EVENT token, vendor hue) or it is ink
+axes.prop_cycle: cycler('color', ['000000'])
+boxplot.whiskerprops.linewidth: 0.75
+boxplot.capprops.linewidth: 0
+boxplot.boxprops.linewidth: 0.5
+boxplot.medianprops.linewidth: 1.0
+
+# ---- legend: one small legend at most, no frame
+legend.frameon: False
+legend.loc: upper right
+legend.borderpad: 0.2
+legend.borderaxespad: 0.3
+legend.handlelength: 1.4
+legend.handleheight: 0.8
+legend.handletextpad: 0.5
+legend.columnspacing: 1.2
+legend.labelspacing: 0.35
+legend.markerscale: 1.0
+legend.numpoints: 1
+legend.scatterpoints: 1
+
+# ---- heatmaps (rule 4: with a thin colour bar): pass an explicit ramp (figstyle.GREY_RAMP); draw cells as patches,
+#      not imshow (an image is a raster and qa_check FAILs it)
+image.cmap: viridis
+
+# ---- output: vector PDF, TrueType (Type 42) embedded, opaque white, exact canvas (never bbox_inches='tight')
+pdf.fonttype: 42
+ps.fonttype: 42
+svg.fonttype: none
+pdf.compression: 6
+savefig.format: pdf
+savefig.bbox: standard
+savefig.pad_inches: 0.05
+savefig.dpi: 600
+figure.dpi: 150
+figure.autolayout: False
+figure.constrained_layout.use: False

@@ -120,7 +120,6 @@ S1251,False,True,R108,no,,flagged,consentmo,False,False,False,True,False
 S1259,False,True,R001,no,,flagged,consentmo,False,False,True,True,False
 S1274,False,True,R051,no,,flagged,shopify_native,False,False,False,True,False
 S1275,False,True,R104,no,,flagged,consentmo,False,False,False,True,False
-S1292,True,True,R091,yes,Cookie Notice bar: Accept / Reject,flagged,none,False,True,False,True,True
 S1293,False,False,R080,no,,random_nb,none,False,False,True,True,False
 S1317,False,True,R013,no,newsletter pop-up (not a consent banner),flagged,consentmo,False,False,False,True,False
 S1323,False,False,R012,no_screenshot,,flagged,consentmo,False,False,True,False,False

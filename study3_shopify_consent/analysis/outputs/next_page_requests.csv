@@ -2670,10 +2670,6 @@ S1291__A1,S1291,main,A1,19607,microsoft_uet,Microsoft,main_thread,,,,library,mai
 S1291__A1,S1291,main,A1,19608,meta,Meta,main_thread,,,,library,main_thread_or_other
 S1291__A1,S1291,main,A1,19614,microsoft_uet,Microsoft,main_thread,,,,beacon,main_thread_or_other
 S1291__A1,S1291,main,A1,19634,microsoft_uet,Microsoft,main_thread,,,,beacon,main_thread_or_other
-S1292__A1,S1292,main,A1,20035,liveintent,Reddit/other,main_thread,,,,other,main_thread_or_other
-S1292__A1,S1292,main,A1,20036,retention_com,Reddit/other,wpm_main_proxy,,,,other,main_thread_or_other
-S1292__A1,S1292,main,A1,20163,liveintent,Reddit/other,wpm_main_proxy,,,,other,main_thread_or_other
-S1292__A1,S1292,main,A1,21035,meta,Meta,main_thread,,,,library,main_thread_or_other
 S1297__A1,S1297,main,A1,19049,google_merchant_center,Google,wpm_main_proxy,,,,beacon,main_thread_or_other
 S1297__A1,S1297,main,A1,19803,google_ads,Google,wpm_main_proxy,,,,beacon,main_thread_or_other
 S1306__A1,S1306,main,A1,18091,microsoft_uet,Microsoft,main_thread,,,,beacon,main_thread_or_other

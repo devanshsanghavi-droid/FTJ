@@ -1,0 +1,406 @@
+{
+ "shared/fig2a_funnel": {
+  "source": "figures/v2/derived_numbers.json",
+  "sha256": "210710b9f63762fe11ec185f630976fc6d8117042a392d8eb35df541de9a66fc",
+  "script": "figures/v2/scripts/derive_numbers.py",
+  "script_exists": true,
+  "inputs": [
+   "analysis/outputs/stats.json:checks.provenance.sample",
+   "stats.json:design.funnel_excl",
+   "stats.json:design"
+  ],
+  "definition": "Funnel steps: Tranco top-N; DNS-flagged (census buckets drawn in full + flagged in the random bucket); verified (drawn); live storefronts; sample; captured in all three base arms and analysed (sample minus the stores excluded after the crawl for content sensitivity minus the stores not captured). Creator stratum added separately.",
+  "check": "sample == design.sample_n and captured == design.n_main",
+  "stats_key": "derived_v2/shared/fig2a_funnel/value"
+ },
+ "shared/fig1c_lead_ms": {
+  "source": "figures/v2/derived_numbers.json",
+  "sha256": "210710b9f63762fe11ec185f630976fc6d8117042a392d8eb35df541de9a66fc",
+  "script": "figures/v2/scripts/derive_numbers.py",
+  "script_exists": true,
+  "inputs": [
+   "stats.json:fig1c",
+   "analysis/outputs/fig1c_timeline.csv"
+  ],
+  "definition": "Store S1152 Default load: banner-visible time minus first sandboxed request (and first sandboxed data beacon); requests after the 6 s axis crop (drawn as an edge count).",
+  "check": "sandboxed-before-banner count == fig1c.n_sandboxed_before_banner",
+  "stats_key": "derived_v2/shared/fig1c_lead_ms/value"
+ },
+ "shared/fig2b_worked_request": {
+  "source": "figures/v2/derived_numbers.json",
+  "sha256": "210710b9f63762fe11ec185f630976fc6d8117042a392d8eb35df541de9a66fc",
+  "script": "figures/v2/scripts/derive_numbers.py",
+  "script_exists": true,
+  "inputs": [
+   "analysis/outputs/ad_requests.csv.gz",
+   "stats.json:fig1c"
+  ],
+  "definition": "First sandboxed data beacon carrying our test code in the Fig 1C load. Redaction rule for the figure: show host, path (account number masked), the carrier parameter and the decoded landing path + utm_* test code; drop all other parameter values (client IDs, hashes).",
+  "check": null,
+  "stats_key": "derived_v2/shared/fig2b_worked_request/value"
+ },
+ "shared/banner_default_partition": {
+  "source": "figures/v2/derived_numbers.json",
+  "sha256": "210710b9f63762fe11ec185f630976fc6d8117042a392d8eb35df541de9a66fc",
+  "script": "figures/v2/scripts/derive_numbers.py",
+  "script_exists": true,
+  "inputs": [
+   "analysis/outputs/store_table.csv"
+  ],
+  "definition": "Default-load banner stores split by Shopify's region default (allowed until choice / denied until consent / not readable), with the number whose sandboxed pixel sent an ad request before any choice.",
+  "check": "allowed/denied equal fig3.d; totals equal fig1b.banner_fires",
+  "stats_key": "derived_v2/shared/banner_default_partition/value"
+ },
+ "shared/fig3c_timing_split": {
+  "source": "figures/v2/derived_numbers.json",
+  "sha256": "210710b9f63762fe11ec185f630976fc6d8117042a392d8eb35df541de9a66fc",
+  "script": "figures/v2/scripts/derive_numbers.py",
+  "script_exists": true,
+  "inputs": [
+   "analysis/outputs/fig3b.csv",
+   "stats.json:design.banner_poll_ms"
+  ],
+  "definition": "Banner stores with a pre-choice sandboxed request (n = 205): gap = banner visible minus first sandboxed request; > one poll (250 ms) / 0 < gap <= 250 ms / gap <= 0.",
+  "check": "first part == fig3.b.before_banner_by_poll; first two == fig3.b.before_banner",
+  "stats_key": "derived_v2/shared/fig3c_timing_split/value"
+ },
+ "shared/fig4a_routes": {
+  "source": "figures/v2/derived_numbers.json",
+  "sha256": "210710b9f63762fe11ec185f630976fc6d8117042a392d8eb35df541de9a66fc",
+  "script": "figures/v2/scripts/derive_numbers.py",
+  "script_exists": true,
+  "inputs": [
+   "analysis/outputs/fig4c_declared_blocked_pairs.csv",
+   "analysis/outputs/ad_requests.csv.gz",
+   "stats.json:fig4.a.blocklist.primary.stores_excluded"
+  ],
+  "definition": "Blocklist entries (vendor declared blocked before any choice) whose vendor has a configured sandboxed Shopify pixel on that store; fired in the Default load from a Shopify sandbox and, independently, from an ordinary page script (not hierarchical, unlike fig4c.csv outcome). primary_no_yes drops the 7 stores whose CMP wrote marketing: yes.",
+  "check": "sandbox/n == fig4.c.cfg.sandbox; outcome reproduces analyze.py",
+  "stats_key": "derived_v2/shared/fig4a_routes/value"
+ },
+ "shared/fig5b_exclusive_classes": {
+  "source": "figures/v2/derived_numbers.json",
+  "sha256": "210710b9f63762fe11ec185f630976fc6d8117042a392d8eb35df541de9a66fc",
+  "script": "figures/v2/scripts/derive_numbers.py",
+  "script_exists": true,
+  "inputs": [
+   "analysis/outputs/residual_composition.csv",
+   "stats.json:fig5.c.composition"
+  ],
+  "definition": "Stores with a residual sandboxed ad request, one class per store by hierarchy: (1) a pixel that declares the refused purpose kept sending (same page or unload; Decline only), else (2) a pixel declaring only purposes the choice left allowed, else (3) a pixel declaring no purpose, else other/unmatched. Decline: stores with a recorded refusal (any window after the click); GPC: stores where Shopify set sale of data: no.",
+  "check": "F3 and union equal composition.decline.classes; GPC left_allowed and any equal composition.gpc",
+  "stats_key": "derived_v2/shared/fig5b_exclusive_classes/value"
+ },
+ "shared/fig5c_race_per_sandbox": {
+  "source": "figures/v2/derived_numbers.json",
+  "sha256": "210710b9f63762fe11ec185f630976fc6d8117042a392d8eb35df541de9a66fc",
+  "script": "figures/v2/scripts/derive_numbers.py",
+  "script_exists": true,
+  "inputs": [
+   "analysis/outputs/sandbox_creations.csv",
+   "analysis/outputs/fig5d.csv"
+  ],
+  "definition": "Third-party sandboxes declaring 'marketing' in loads where a CMP wrote marketing no (deny) or yes (grant) without a click; lag = sandbox start minus the consent event; axis clipped at -3 s / +1 s (edge counts).",
+  "check": "totals equal fig5.d.{deny,grant}.pixels / pixels_before",
+  "stats_key": "derived_v2/shared/fig5c_race_per_sandbox/value"
+ },
+ "fig1/fig1c_lead_s": {
+  "source": "figures/v2/fig1/derived_numbers.json",
+  "sha256": "00be2701cbf46fbd330dd6f0b4f29af43381017dc1512bbd264c41af215813d8",
+  "script": "figures/v2/fig1/scripts/derive_fig1.py",
+  "script_exists": true,
+  "inputs": [
+   "analysis/outputs/stats.json:fig1c",
+   "analysis/outputs/fig1c_timeline.csv"
+  ],
+  "definition": "Store S1152 Default load: banner-visible time minus the first sandboxed ad request, in seconds (Fig 1C bracket label; that request is a library load), plus the two event times in seconds (bracket ends), the row and kind of the first sandboxed request, and the banner-visible time minus the first sandboxed DATA BEACON in ms (caption).",
+  "check": "first_sandboxed_lead_s * 1000 == figures/v2/derived_numbers.json:fig1c_lead_ms.first_sandboxed_lead_ms; first sandboxed row of fig1c_timeline.csv == stats.json:fig1c.t_first_sandboxed and its kind agrees with fig1c.first_sandboxed_is_library; first sandboxed non-library row == fig1c.t_first_sandboxed_beacon; first_sandboxed_beacon_lead_ms == figures/v2/derived_numbers.json:fig1c_lead_ms.first_sandboxed_beacon_lead_ms",
+  "stats_key": "derived_v2/fig1/fig1c_lead_s/value"
+ },
+ "fig1/fig1c_beyond_axis": {
+  "source": "figures/v2/fig1/derived_numbers.json",
+  "sha256": "00be2701cbf46fbd330dd6f0b4f29af43381017dc1512bbd264c41af215813d8",
+  "script": "figures/v2/fig1/scripts/derive_fig1.py",
+  "script_exists": true,
+  "inputs": [
+   "analysis/outputs/fig1c_timeline.csv",
+   "analysis/outputs/stats.json:design"
+  ],
+  "definition": "Ad requests of the Fig 1C load sent after the 6 s axis crop (design.timeline_axis_s), by row (vendor group for sandboxed requests, \"outside\" otherwise); drawn as an edge count.",
+  "check": "n_beyond == figures/v2/derived_numbers.json:fig1c_lead_ms.n_beyond_axis",
+  "stats_key": "derived_v2/fig1/fig1c_beyond_axis/value"
+ },
+ "fig1/fig1c_ticks": {
+  "source": "figures/v2/fig1/derived_numbers.json",
+  "sha256": "00be2701cbf46fbd330dd6f0b4f29af43381017dc1512bbd264c41af215813d8",
+  "script": "figures/v2/fig1/scripts/derive_fig1.py",
+  "script_exists": true,
+  "inputs": [
+   "analysis/outputs/fig1c_timeline.csv",
+   "analysis/outputs/stats.json:design,fig1c"
+  ],
+  "definition": "Fig 1C ticks as drawn: the ad requests within the 6 s axis, grouped per row (vendor group if sandboxed, else \"outside\") so that a request joins the current group when it left less than merge_ms after the group's first request, whatever its kind (a short library tick under a tall beacon tick is hidden). Distinct groups in a row are at least merge_ms apart, so \"requests less than merge_ms apart share a tick\" holds exactly. n_ticks = visible ticks; largest = the group with the most requests (caption). Window as Fig 4C (tick_merge_ms).",
+  "check": "sum of group sizes == n_within_axis == stats.json:fig1c.n_ad_requests - fig1c_beyond_axis.n_beyond; gaps between groups in a row >= merge_ms; merge_ms == figures/v2/fig4/derived_numbers.json:fig4c_recheck.tick_merge_ms",
+  "stats_key": "derived_v2/fig1/fig1c_ticks/value"
+ },
+ "fig2/fig2d_agreement": {
+  "source": "figures/v2/fig2/derived_numbers.json",
+  "sha256": "c6c0cbf4f0f9d715534ed0307f05b02e89e083a3adc6a58f3f85f2a80e5f38be",
+  "script": "figures/v2/fig2/scripts/derive_fig2.py",
+  "script_exists": true,
+  "inputs": [
+   "analysis/outputs/stats.json:validation.{A0_vs_A0r,A2_vs_A2r,A2_vs_V1}.{agree,n}",
+   "analysis/outputs/store_table.csv (cross-check of the counts)"
+  ],
+  "definition": "Share of stores on which two loads agree on \"a sandboxed ad pixel sent a request\" (Default vs its repeat; GPC vs its repeat; emulated GPC vs Brave native GPC), with the Wilson 95% interval from analysis/common.py.",
+  "check": "k, n equal stats.json validation.*.agree / n; store_table.csv flags reproduce them where present",
+  "stats_key": "derived_v2/fig2/fig2d_agreement/value"
+ },
+ "fig2/tableS_arms": {
+  "source": "figures/v2/fig2/derived_numbers.json",
+  "sha256": "c6c0cbf4f0f9d715534ed0307f05b02e89e083a3adc6a58f3f85f2a80e5f38be",
+  "script": "figures/v2/fig2/scripts/derive_fig2.py",
+  "script_exists": true,
+  "inputs": [
+   "analysis/outputs/stats.json:design.first_scroll_after_load_ms"
+  ],
+  "definition": "Start of the passive mouse-wheel scrolls, in seconds after the load event (design.first_scroll_after_load_ms / 1000), for the Action column of Supplementary Table S-arms.",
+  "check": "integer division is exact (asserted)",
+  "stats_key": "derived_v2/fig2/tableS_arms/value"
+ },
+ "fig3/fig3c_shares": {
+  "source": "figures/v2/fig3/derived_numbers.json",
+  "sha256": "44a01ca2f6a0548ce5fc4c6f13c08e09c189dda84d3b2d114e5c32bdd821c02d",
+  "script": "figures/v2/fig3/scripts/derive_fig3.py",
+  "script_exists": true,
+  "inputs": [
+   "analysis/outputs/fig3b.csv",
+   "stats.json:design.banner_poll_ms"
+  ],
+  "definition": "Banner stores with a pre-choice sandboxed request (n = 205), split by gap = banner visible minus first sandboxed ad request: gap > one poll (250 ms); lo_ms < gap <= hi_ms (0 < gap <= 250 ms); gap <= 0 (banner first or same poll). k and share k / n.",
+  "check": "k equal figures/v2/derived_numbers.json:fig3c_timing_split; first k equals stats fig3.b.before_banner_by_poll; first two k sum to fig3.b.before_banner.k",
+  "stats_key": "derived_v2/fig3/fig3c_shares/value"
+ },
+ "fig4/fig4a_entries": {
+  "source": "figures/v2/fig4/derived_numbers.json",
+  "sha256": "344a9ee984ee9e6d6c5a350b2e5a46098225475d49d82288738abc9b8bb3a0f1",
+  "script": "figures/v2/fig4/scripts/derive_fig4.py",
+  "script_exists": true,
+  "inputs": [
+   "analysis/outputs/fig4c_declared_blocked_pairs.csv",
+   "analysis/outputs/ad_requests.csv.gz",
+   "stats.json:fig4.a.blocklist.primary.stores_excluded"
+  ],
+  "definition": "Panel A columns: blocklist entries (ad vendor declared blocked before any choice) whose vendor has a configured sandboxed Shopify pixel, on stores whose CMP wrote no 'marketing: yes' in the Default load. Route flags are independent: 'sandbox' = the vendor sent an ad request from a Shopify sandbox (worker or iframe) in the Default load; 'page' = it sent one from an ordinary page script. Columns are ordered both routes, sandbox only, page only, neither (the same order as Fig. S7B), then by store and vendor.",
+  "check": "counts == figures/v2/derived_numbers.json fig4a_routes.primary_no_yes; hierarchical outcome reproduces analyze.py",
+  "stats_key": "derived_v2/fig4/fig4a_entries/value"
+ },
+ "fig4/fig4a_kg": {
+  "source": "figures/v2/fig4/derived_numbers.json",
+  "sha256": "344a9ee984ee9e6d6c5a350b2e5a46098225475d49d82288738abc9b8bb3a0f1",
+  "script": "figures/v2/fig4/scripts/derive_fig4.py",
+  "script_exists": true,
+  "inputs": [
+   "fig4a_entries (this file)",
+   "analysis/analyze.py:kg_share"
+  ],
+  "definition": "Shares of the panel A entries that fired by each route, with Korn-Graubard 95% intervals clustered by store (analysis/analyze.py kg_share: Clopper-Pearson on the effective sample size from a store bootstrap, B = 2,000, seed 20260926, with the degrees-of-freedom correction for the number of stores).",
+  "check": "kg_share on the all-store set reproduces stats.json fig4.c.cfg.sandbox (k, n, kg_lo, kg_hi)",
+  "stats_key": "derived_v2/fig4/fig4a_kg/value"
+ },
+ "fig4/fig4c_recheck": {
+  "source": "figures/v2/fig4/derived_numbers.json",
+  "sha256": "344a9ee984ee9e6d6c5a350b2e5a46098225475d49d82288738abc9b8bb3a0f1",
+  "script": "figures/v2/fig4/scripts/derive_fig4.py",
+  "script_exists": true,
+  "inputs": [
+   "crawl/recheck/raw/<store>__R0.json.gz (read-only)",
+   "crawl/recheck/blocker_by_entry.csv",
+   "crawl/recheck/blocker_by_store.csv",
+   "stats.json:checks.recheck.blocker",
+   "stats.json:design.timeline_axis_s"
+  ],
+  "definition": "Panel C: one re-check load (arm R0: no interaction) of the store and vendor chosen by the rules above. Times are ms since navigation start (requests: wall time minus the navigation request; page scriptlog and banner detector: performance.now() plus time_origin minus nav_wall). 'Tag neutralised' = the vendor's script element entered the page with, or was changed to, a blocked type; sandboxed requests = the vendor's ad requests from a Shopify worker or sandboxed iframe (kind from the vendor classifier: beacon or library). tick_groups: the requests within the axis, grouped when of the same kind and less than tick_merge_ms apart (drawn as one tick with a count badge).",
+  "check": "store is in checks.recheck.blocker.stores_neutralized_and_sbx_ids and blocker_by_store.neutralized_and_sbx; the vendor has a neutralised tag and sandboxed requests and no page-script requests; no click, no CMP yes write",
+  "stats_key": "derived_v2/fig4/fig4c_recheck/value"
+ },
+ "fig4/fig4_samples": {
+  "source": "figures/v2/fig4/derived_numbers.json",
+  "sha256": "344a9ee984ee9e6d6c5a350b2e5a46098225475d49d82288738abc9b8bb3a0f1",
+  "script": "figures/v2/fig4/scripts/derive_fig4.py",
+  "script_exists": true,
+  "inputs": [
+   "stats.json:design.tranco_top_n",
+   "round4/expansion/funnel.json:ranks,tranco_list_id (read-only)"
+  ],
+  "definition": "Tranco rank ranges of the two samples in Fig. 4. Main sample: the top main_top_n domains (main_top_k in thousands, shown as 'top 200k'). Round 4 expansion: ranks expansion_rank_lo to expansion_rank_hi of the same Tranco list, shown as '200k-1M' (expansion_rank_lo_k in thousands, i.e. the rank just below the range's first rank, and expansion_rank_hi_m in millions).",
+  "check": "expansion_rank_lo == design.tranco_top_n + 1; round4.blocklist.expansion_funnel.blocklist_at_runtime == round4.blocklist.expansion.n_blocklist; round4 main primary and mh_no_yes equal the paper values",
+  "stats_key": "derived_v2/fig4/fig4_samples/value"
+ },
+ "fig5/fig5c_race_bins": {
+  "source": "figures/v2/fig5/derived_numbers.json",
+  "sha256": "2757a5186282e8f1588050922353fdf79d5a0f284aaa2f919dd73a2bba814dbc",
+  "script": "figures/v2/fig5/scripts/derive_fig5_numbers.py",
+  "script_exists": true,
+  "inputs": [
+   "analysis/outputs/sandbox_creations.csv",
+   "analysis/outputs/fig5d.csv",
+   "figures/v2/derived_numbers.json:fig5c_race_per_sandbox"
+  ],
+  "definition": "Fig 5C histograms: third-party sandboxes declaring 'marketing' in loads where a CMP wrote marketing 'no' (deny) or 'yes' (grant) without a click, counted per 100 ms bin of lag = sandbox start minus the consent write, on the axis -3 s to +1 s. 'before' = lag < 0 (drawn red for 'no'), 'after' = lag >= 0. Sandboxes beyond the axis are the edge counts n_below_clip / n_above_clip.",
+  "check": "per change: bins + edge counts == fig5.d.<change>.pixels; lag < 0 == fig5.d.<change>.pixels_before; edge counts and median equal fig5c_race_per_sandbox",
+  "stats_key": "derived_v2/fig5/fig5c_race_bins/value"
+ },
+ "fig6/fig6a_store_c_grid": {
+  "source": "figures/v2/fig6/derived_numbers.json",
+  "sha256": "04f47f3e08e69559bdb00f7fa27a3441b5816a972c753d38d52d7ca156d3f4f8",
+  "script": "figures/v2/fig6/scripts/derive_fig6.py",
+  "script_exists": true,
+  "inputs": [
+   "analysis/outputs/fig6b_store_c.csv",
+   "analysis/outputs/stats.json:fig6.b.store_c, store_c_pre_click, store_c_after_decline"
+  ],
+  "definition": "Store C (creator stratum, C005) landing page reached from the creator video link. Per grid column: tiktok_sbx_code = ad requests to TikTok sent from TikTok's Shopify sandbox that carried the creator's per-video code; vendors_code = distinct ad vendors (analysis vendor ids; Google Ads and Google Merchant Center are separate) that received the code by any route; vendors_code_sbx = of those, vendors that received it from a Shopify sandbox (worker or iframe). Columns: A0 Default, A0r Default repeat, A1pre Decline load before the click, A1after Decline load after the click (the rest of that page and the fresh page after the reload), A2 GPC, A2r GPC repeat.",
+  "check": "A0/A0r/A2/A2r tiktok_sbx_code == n_creator_token_tiktok_sbx and vendors_code == n_vendors_with_token; A1pre tiktok_sbx_code == A1 n_creator_token_tiktok_sbx (all before t_click); A1pre vendors == store_c_pre_click; A1after == store_c_after_decline; A2/A2r n_sandboxed == 0",
+  "stats_key": "derived_v2/fig6/fig6a_store_c_grid/value"
+ },
+ "graphical_abstract/ga_blocked_share": {
+  "source": "figures/v2/graphical_abstract/derived_numbers.json",
+  "sha256": "2d024c4782af4f7f7bddbf4c56439ea812e951f80b621379b2219cb91ad92398",
+  "script": "figures/v2/graphical_abstract/scripts/make_ga_numbers.py",
+  "script_exists": true,
+  "inputs": [
+   "figures/v2/derived_numbers.json:fig4a_routes.primary_no_yes.sandbox",
+   "figures/v2/derived_numbers.json:fig4a_routes.primary_no_yes.n"
+  ],
+  "definition": "Tile B meter length: blocklist entries (an ad vendor that the store's CMP listed as blocked and that had a configured sandboxed Shopify pixel, on the stores whose CMP wrote no 'marketing: yes') whose vendor sent an ad request from Shopify's sandbox before any choice, as a share of all such entries (k / n; Fig 4A top row). Drawn only; the printed numbers are k and n.",
+  "check": "k, n == fig4/derived_numbers.json fig4a_entries.counts (sandbox, n) and fig4a_kg.sandbox (k, n)",
+  "stats_key": "derived_v2/graphical_abstract/ga_blocked_share/value"
+ },
+ "graphical_abstract/ga_race_share": {
+  "source": "figures/v2/graphical_abstract/derived_numbers.json",
+  "sha256": "2d024c4782af4f7f7bddbf4c56439ea812e951f80b621379b2219cb91ad92398",
+  "script": "figures/v2/graphical_abstract/scripts/make_ga_numbers.py",
+  "script_exists": true,
+  "inputs": [
+   "analysis/outputs/stats.json:fig5.d.deny.pixels_before",
+   "analysis/outputs/stats.json:fig5.d.deny.pixels"
+  ],
+  "definition": "Tile C meter length: marketing pixel sandboxes that had started before the CMP's automatic 'marketing: no' write, as a share of all such sandboxes (k / n). Drawn only; the printed numbers are k and n.",
+  "check": "k == stats fig5.d.deny.pixels_before and n == stats fig5.d.deny.pixels",
+  "stats_key": "derived_v2/graphical_abstract/ga_race_share/value"
+ },
+ "supp/s7b_routes": {
+  "source": "figures/v2/supp/derived_numbers.json",
+  "sha256": "e1cbdf311e8098ab9e21cfbd02ad9d4999d18b8cce671ff941be2749eea91ac7",
+  "script": "figures/v2/supp/scripts/derive_supp_numbers.py",
+  "script_exists": true,
+  "inputs": [
+   "analysis/outputs/fig4c_declared_blocked_pairs.csv",
+   "analysis/outputs/ad_requests.csv.gz"
+  ],
+  "definition": "Blocklist entries (an ad vendor that a CMP blocklist declared blocked before any choice), all 21 blocklist stores, Default load. cfg: the vendor has a configured sandboxed Shopify pixel on the store; flags sandbox / page are independent (fired from a Shopify sandbox; fired from an ordinary page script). nocfg: no configured sandboxed pixel of the vendor identified; any = fired by any route (sandbox, OPEN pixel, relay or page).",
+  "check": "cfg equals figures/v2/derived_numbers.json fig4a_routes.all_stores and fig4.c.cfg.sandbox; nocfg.any equals fig4.c.nocfg.any",
+  "stats_key": "derived_v2/supp/s7b_routes/value"
+ },
+ "supp/s7c_recheck_nesting": {
+  "source": "figures/v2/supp/derived_numbers.json",
+  "sha256": "e1cbdf311e8098ab9e21cfbd02ad9d4999d18b8cce671ff941be2749eea91ac7",
+  "script": "figures/v2/supp/scripts/derive_supp_numbers.py",
+  "script_exists": true,
+  "inputs": [
+   "crawl/recheck/blocker_by_store.csv (read only)"
+  ],
+  "definition": "Re-check load, 21 blocklist stores: blocker active; of those, the tag of a declared-blocked vendor was neutralised; of those, the same vendor's sandboxed pixel sent an ad request. Each set is contained in the previous one.",
+  "check": "counts equal checks.recheck.blocker.{stores, active.k, stores_declared_tag_neutralized, stores_neutralized_and_sbx}",
+  "stats_key": "derived_v2/supp/s7c_recheck_nesting/value"
+ },
+ "supp/s8d_race_loads": {
+  "source": "figures/v2/supp/derived_numbers.json",
+  "sha256": "e1cbdf311e8098ab9e21cfbd02ad9d4999d18b8cce671ff941be2749eea91ac7",
+  "script": "figures/v2/supp/scripts/derive_supp_numbers.py",
+  "script_exists": true,
+  "inputs": [
+   "analysis/outputs/fig5d.csv"
+  ],
+  "definition": "Loads in which a CMP wrote 'marketing: no' (deny) or 'yes' (grant) without a click, by arm (A0 Default, A2 GPC): number of loads, and loads whose first third-party marketing sandbox started before / at or after the write.",
+  "check": "deny loads by arm equal fig5.d.deny.by_arm; first-before totals equal fig5.d.*.loads_first_before",
+  "stats_key": "derived_v2/supp/s8d_race_loads/value"
+ },
+ "supp/s9b_gcs_states": {
+  "source": "figures/v2/supp/derived_numbers.json",
+  "sha256": "e1cbdf311e8098ab9e21cfbd02ad9d4999d18b8cce671ff941be2749eea91ac7",
+  "script": "figures/v2/supp/scripts/derive_supp_numbers.py",
+  "script_exists": true,
+  "inputs": [
+   "stats.json:fig5.flags.google_beacons_gcs"
+  ],
+  "definition": "Google ad beacons by the Consent Mode state in their 'gcs' parameter: G100 (ad and analytics storage denied), G101 (ad storage denied, analytics granted), G111 (both granted), other states, no state. other_state = with_gcs - G100 - G101 - G111.",
+  "check": "with_gcs + none == n for every arm",
+  "stats_key": "derived_v2/supp/s9b_gcs_states/value"
+ },
+ "supp/s9c_google_flag_shares": {
+  "source": "figures/v2/supp/derived_numbers.json",
+  "sha256": "e1cbdf311e8098ab9e21cfbd02ad9d4999d18b8cce671ff941be2749eea91ac7",
+  "script": "figures/v2/supp/scripts/derive_supp_numbers.py",
+  "script_exists": true,
+  "inputs": [
+   "stats.json:fig5.flags.google_flag_kinds"
+  ],
+  "definition": "Google ad requests by arm (Default load; next page after Decline; GPC load): share carrying each refusal signal in the URL: Consent Mode 'gcs' with ad storage denied, 'gcd' denied, npa=1, rdp=1, us_privacy opt-out. p = k / n.",
+  "check": "Decline_next n equals fig5.flags.by_group.Google.Decline.n",
+  "stats_key": "derived_v2/supp/s9c_google_flag_shares/value"
+ },
+ "supp/s9c_other_state": {
+  "source": "figures/v2/supp/derived_numbers.json",
+  "sha256": "e1cbdf311e8098ab9e21cfbd02ad9d4999d18b8cce671ff941be2749eea91ac7",
+  "script": "figures/v2/supp/scripts/derive_supp_numbers.py",
+  "script_exists": true,
+  "inputs": [
+   "figures/v2/supp/derived_numbers.json:s9b_gcs_states"
+  ],
+  "definition": "Google ad beacons whose 'gcs' state is none of G100, G101, G111, by arm, and the largest of these shares. In Fig. S9C such a segment is narrower than the white gap between segments, so it is not drawn.",
+  "check": "k equals s9b_gcs_states other_state",
+  "stats_key": "derived_v2/supp/s9c_other_state/value"
+ },
+ "supp/s9d_tick_groups": {
+  "source": "figures/v2/supp/derived_numbers.json",
+  "sha256": "e1cbdf311e8098ab9e21cfbd02ad9d4999d18b8cce671ff941be2749eea91ac7",
+  "script": "figures/v2/supp/scripts/derive_supp_numbers.py",
+  "script_exists": true,
+  "inputs": [
+   "analysis/outputs/fig6b_store_c.csv",
+   "figures/v2/fig4/derived_numbers.json:fig4c_recheck.tick_merge_ms",
+   "stats.json:fig6.b.store_c"
+  ],
+  "definition": "Fig. S9D: the requests of each Store C load, per sub-row (sandbox / other), grouped into drawn ticks by the Fig. 4C rule: requests of one kind (one vendor group and one tick height: tall = data beacons and other requests, short = library loads) whose consecutive members are less than merge_ms apart form one tick, labelled with its count n when n > 1. n_code: members that carried the per-video code. example: the TikTok tick of the Default load (sandbox).",
+  "check": "reproduces fig4c_recheck.tick_groups on Fig. 4C's requests; n sums to the requests per load and sub-row; TikTok's sandboxed code-carrying requests equal fig6.b.store_c.<load>.n_creator_token_tiktok_sbx",
+  "stats_key": "derived_v2/supp/s9d_tick_groups/value"
+ },
+ "supp/s9b_refusal_store_share": {
+  "source": "figures/v2/supp/derived_numbers.json",
+  "sha256": "e1cbdf311e8098ab9e21cfbd02ad9d4999d18b8cce671ff941be2749eea91ac7",
+  "script": "figures/v2/supp/scripts/derive_supp_numbers.py",
+  "script_exists": true,
+  "inputs": [
+   "stats.json:fig5.flags.resid_decline_fresh",
+   "stats.json:fig5.flags.resid_gpc"
+  ],
+  "definition": "Fig. S9B (bottom): among the stores that still sent a sandboxed ad request (Decline: fresh page; GPC: whole load), the share on which every remaining sandboxed request carried a refusal signal: p = k / n.",
+  "check": "k and n equal fig5.flags.<row>.stores_all_flagged and .stores",
+  "stats_key": "derived_v2/supp/s9b_refusal_store_share/value"
+ },
+ "supp/s10_crawl_date": {
+  "source": "figures/v2/supp/derived_numbers.json",
+  "sha256": "e1cbdf311e8098ab9e21cfbd02ad9d4999d18b8cce671ff941be2749eea91ac7",
+  "script": "figures/v2/supp/scripts/derive_supp_numbers.py",
+  "script_exists": true,
+  "inputs": [
+   "stats.json:round4.crawl.beyond.first_load_utc",
+   "stats.json:round4.crawl.beyond.last_load_utc"
+  ],
+  "definition": "Fig. S10 caption: the day of the beyond-Shopify pilot crawl, rendered as day, month abbreviation and year; the first and last load fall on this day in UTC and in California (PDT, UTC-7).",
+  "check": "first and last load on the same date in UTC and in UTC-7",
+  "stats_key": "derived_v2/supp/s10_crawl_date/value"
+ }
+}

@@ -1,0 +1,13 @@
+registry rows re-rendered: 1415; stale: 0
+figS1.pdf: 0 numeric tokens; 0 registered; 0 tick labels; untraced: none
+figS2.pdf: 23 numeric tokens; 0 registered; 23 tick labels; untraced: none
+figS3.pdf: 15 numeric tokens; 0 registered; 15 tick labels; untraced: none
+figS4.pdf: 12 numeric tokens; 9 registered; 3 tick labels; untraced: none
+figS5.pdf: 25 numeric tokens; 10 registered; 15 tick labels; untraced: none
+figS6.pdf: 34 numeric tokens; 0 registered; 34 tick labels; untraced: none
+figS7.pdf: 18 numeric tokens; 8 registered; 10 tick labels; untraced: none
+figS8.pdf: 20 numeric tokens; 0 registered; 20 tick labels; untraced: none
+figS9.pdf: 31 numeric tokens; 0 registered; 31 tick labels; untraced: none
+figS10.pdf: 20 numeric tokens; 0 registered; 20 tick labels; untraced: none
+caption_supp.tex: 458 numeric tokens; untraced: none
+RESULT: PASS

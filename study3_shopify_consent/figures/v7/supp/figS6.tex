@@ -1,0 +1,19 @@
+% figS6.tex -- Supplementary Figure S6 composite, v7 (../../DESIGN_V7.md; worked example ../../fig1): before any choice.
+% Layout 190 x 118 mm: row 1 a | b (74, 110 x 56; b the hero); row 2 c | d | e (66, 59, 53 x 56; one key band above
+% the plots); 6 mm gutters; the plots of a row share their top and x-axis line (asserted in scripts/s6.py). Panels:
+% scripts/s6.py, drawn at final size (never rescaled; the cells are asserted there); \Panel checks each size and draws
+% the 8 pt bold lowercase letters.
+\documentclass[tikz,border=0pt]{standalone}
+\def\StyleDir{../style/}
+\input{\StyleDir tikzstyle_v2.tex}
+\begin{document}
+\begin{tikzpicture}
+  \FigureCanvas{118}
+  %      letter  x      y     w     h     file
+  \Panel {a}     {0}    {0}   {74}  {56}  {panels/figS6a_vendor.pdf}
+  \Panel {b}     {80}   {0}   {110} {56}  {panels/figS6b_ccdf.pdf}
+  \Panel {c}     {0}    {62}  {66}  {56}  {panels/figS6c_origin.pdf}
+  \Panel {d}     {72}   {62}  {59}  {56}  {panels/figS6d_products.pdf}
+  \Panel {e}     {137}  {62}  {53}  {56}  {panels/figS6e_requests.pdf}
+\end{tikzpicture}
+\end{document}

@@ -1,0 +1,7 @@
+fig1_numbers.csv: 8 registered rows re-rendered from current sources
+caption_fig1_numbers.csv: 38 registered rows re-rendered from current sources
+alt_text_fig1_numbers.csv: 10 registered rows re-rendered from current sources
+fig1.pdf: 0 data numbers traced to the registry; 22 structural tokens (axis tick labels and the 5 loss numerals of a)
+caption_fig1.tex: 38 numbers traced to the caption registry
+alt_text_fig1.txt: 10 numbers traced to the alt-text registry
+RESULT: PASS

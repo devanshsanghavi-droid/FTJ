@@ -1,79 +1,32 @@
-# Consent Enforcement Gaps in Sandboxed Web Pixels: A Large-Scale Measurement of Shopify Storefronts: data and code
+# Consent Enforcement Gaps in Sandboxed Web Pixels: data and code
 
-Data and code for the article **"Consent Enforcement Gaps in Sandboxed Web Pixels: A Large-Scale Measurement of Shopify Storefronts"** by Devansh Sanghavi (Los Altos High School; ORCID 0009-0002-7511-542X), submitted to *Computers & Security*.
+Code, pseudonymized data, figures and paper sources for the article **"Consent Enforcement Gaps in Sandboxed Web Pixels: A Large-Scale Measurement of Shopify Storefronts"** by Devansh Sanghavi (ORCID [0009-0002-7511-542X](https://orcid.org/0009-0002-7511-542X)), submitted to *Computers & Security*.
 
-> **Release status:** first public release (29 October 2026) of the 26 September 2026 measurement package. An updated release with the Round 4 expansion and beyond-Shopify crawls, the final figures, the paper sources and the ConsentCheck tool follows in this repository.
+Repository: <https://github.com/devanshsanghavi-droid/FTJ> · Contact: devansh.sanghavi@gmail.com
 
 ## What the study is
 
-Consent-management platforms (CMPs) on online stores block advertising tags until a visitor agrees. On Shopify, many app advertising pixels run inside Shopify's Web Pixels Manager instead: in web workers (STRICT) or sandboxed iframes (LAX) that a CMP's script blocker cannot see. The study asks whether those sandboxed pixels send requests before any consent choice, after a visitor clicks **Decline**, and under **Global Privacy Control (GPC)**, and whether CMPs that declare an ad vendor "blocked" actually stop it.
+Consent-management platforms (CMPs) on online stores block advertising tags until a visitor agrees. On Shopify, many app advertising pixels run inside Shopify's Web Pixels Manager instead: in web workers (STRICT) or sandboxed iframes (LAX) that a CMP's script blocker cannot see, gated only by Shopify's own consent state. The study asks whether those sandboxed pixels send requests before any consent choice, after a visitor clicks **Decline**, and under **Global Privacy Control (GPC)**, and whether CMPs that declare an ad vendor "blocked" actually stop it.
 
-Design, in brief (details in `study3_shopify_consent/crawl/CRAWL_NOTES.md` and the paper's Method section):
+- **Main crawl (26 September 2026).** Shopify storefronts from the Tranco top 200k (list L5PZ4), stratified by rank bucket, plus a purposive stratum of stores linked from YouTube creators' videos; one residential connection in California, a fresh headless Chromium profile for every load. Arms: **Default** (no interaction), **Decline** (click only the banner's first-layer reject control, then reload), **GPC** (`Sec-GPC: 1` plus `navigator.globalPrivacyControl` in every frame and worker), with repeat and Brave validation arms.
+- **Round 4 (27 September 2026).** *B1 expansion:* Shopify stores from Tranco ranks 200,001 to 1,000,000 chosen for a readable CMP blocklist. *B2 beyond Shopify:* a pilot on Wix, BigCommerce, Partytown, Cloudflare Zaraz and first-party tag-gateway sites. Same crawler, same arms (Default, Decline, GPC), `robots.txt` checked before every site.
+- **Attribution.** Every request is recorded in the DevTools session of the target that issued it (page, iframe or worker), so requests from Shopify's sandboxes can be told apart from ordinary page tags. A researcher canary in the landing URL (`utm_campaign=cmpstudy-<store_id>`) traces what reaches the vendors.
+- **ConsentCheck.** The measurement packaged as a command-line self-test that a merchant runs against their own store.
 
-- **Sample.** Shopify storefronts from the Tranco top-200k (list L5PZ4), stratified by rank bucket (a census of the top three buckets and a random draw from the fourth; `sample/SAMPLE_NOTES.md`), plus a purposive stratum of stores linked from YouTube creators' videos. 1,362 of 1,400 main-sample stores and 34 of 34 creator-stratum stores had a usable load in all three base arms.
-- **Crawl.** One live crawl on 2026-09-26 from a residential connection in California, USA, with a fresh headless Chromium profile for every load. 4,976 page loads were attempted. Arms: **Default** (no interaction), **Decline** (click only the banner's first-layer reject control, then reload), **GPC** (`Sec-GPC: 1` plus `navigator.globalPrivacyControl` injected into every frame and worker). Validation arms: repeats on 287 stores (274 usable main-sample stores) and native GPC in Brave on 100 (99 usable).
-- **Attribution.** Every request is recorded in the DevTools session of the target that issued it (page, iframe or worker), so requests from Shopify's STRICT workers and LAX iframes can be told apart from ordinary page tags. A researcher canary in the landing URL (`utm_campaign=cmpstudy-<store_id>`) traces what reaches the vendors.
-- **Gate audit.** Each configured pixel's declared purposes are joined with Shopify's consent state and with the moment its sandbox started.
+Every number in the paper traces to `study3_shopify_consent/analysis/outputs/stats.json` (rendered in `analysis/RESULTS.md`) or to `study3_shopify_consent/round4/analysis/stats_r4.json` (rendered in `round4/analysis/RESULTS_R4.md`); the few others (crawl log, pilot notes, literature) are traced by `paper/check_numbers.py`.
 
-All results, with their intervals and definitions, are in `study3_shopify_consent/analysis/RESULTS.md`, the single source for every number in the paper.
-
-## Reproduce every figure and number: one command
-
-```bash
-python3 -m pip install -r requirements.txt     # pinned versions; a virtual environment is recommended
-./reproduce.sh                                 # or: PY=/path/to/python3 ./reproduce.sh
-```
-
-`reproduce.sh` takes under a minute on a laptop and does five things:
-
-1. checks that every file matches `MANIFEST.tsv` (size and SHA-256);
-2. regenerates every data figure (`figures/panels/`: Figs. 1b, 1c, 3, 4, 5 and 6, and the supplementary panels `figS2` to `figS6`; the paper prints `figS6_sensitivity` as Supplementary Fig. S5 and gives the per-vendor panel `figS5` as a table) and the supplementary LaTeX tables (`figures/tables/`) from the CSV and JSON files in `analysis/outputs/`;
-3. re-renders `analysis/RESULTS.md` and `figures/takeaways.md` from `analysis/outputs/stats.json`, and runs `analysis/trace_check.py`, which fails unless every numeric token in both files is a registered rendering of a `stats.json` value;
-4. rebuilds the TikZ schematics (Figs. 1a, 2, S1) and the Figure 1 composite if Tectonic, zsh and macOS are available (the PNG previews use a small CoreGraphics tool); otherwise it keeps the shipped PDFs;
-5. compares everything it regenerated with the shipped files (`release_tools/check.py compare`). Text files (RESULTS.md, takeaways.md, tables, number registries, trace check) must be byte-identical. Matplotlib PDFs are compared with their creation date removed. TeX-built PDFs (schematics, Figure 1 composite) always differ in bytes, because TeX writes a timestamp and a random document ID into compressed objects, so they are compared through the PNGs rendered from them. Images are identical only with the same matplotlib and FreeType versions and the Arial font installed; an image difference is reported, not treated as an error.
-
-On the build machine (macOS, versions below), `reproduce.sh` ran on a fresh copy of this tree in about 12 s. The trace check passed, and every regenerated data panel (PNG, and PDF apart from its creation date), table, RESULTS.md, takeaways.md, number registry and trace-check report was identical to the shipped file. With Tectonic 0.17.0 the run took about 18 s: the rebuilt schematic and composite PNGs and `numbers.tex` were also identical, and the 8 TeX-built PDFs differed in bytes only, as step 5 explains.
-
-What this does **not** redo from the public data: the step from raw browser captures to tables and to `stats.json`. That step needs the raw captures and the unreduced tables, which are available on request (next section). The public tables are enough to recompute store-level rates yourself: for example, `analysis/outputs/store_table.csv` has one row per store with the per-arm flags behind the headline rates.
-
-## Full re-run from the raw captures (on request)
-
-The complete pipeline is `study3_shopify_consent/analysis/run_all.sh` (zsh). In order, it: extracts per-load probes and initiator stacks from `crawl/raw/`; builds the store table; runs the gate audit, the statistics (`analyze.py`) and the models (`models.py`); summarizes the re-check crawl; runs the post-crawl checks (`checks.py`); regenerates all figures; and writes RESULTS.md and runs the trace check. It reads the raw captures, the unreduced tables with real store domains, the re-check raw files and several evidence files from the project's review notes. None of these are in this repository, so it runs only in the on-request bundle, which is the original project tree with the original (unpseudonymized) code and file names. In that tree, run `PY=/path/to/python3 zsh study3_shopify_consent/analysis/run_all.sh`. The released copy of `run_all.sh` differs from the original only in letting `PY` and `TECTONIC` be overridden.
-
-The crawl tables themselves are rebuilt from the raw captures with `python3 crawl/build_tables.py && python3 crawl/summarize_crawl.py`. An internal methods review rebuilt all nine tables from the 4,976 raw records and found them byte-identical to the saved ones.
-
-## Re-running the crawler
-
-`crawl/crawl.js` is the crawler that produced the data (usage in its header: `node crawl.js --conc 6 --arms A0,A1,A2 [--only S0001,C005] [--limit-stores N] [--plan-only]`). It reads its store list from `sample/sample.csv` (`store_id`, `domain`, `product_url`, `bucket`, `weight`) and `sample/creator_stratum.csv` (`store_id`, `domain`, `landing_url`, `token_level`, `token`). The released copies of these two files have no domains or URLs, so to re-run the crawler you need either the original store list (on request) or your own list in the same format. The Brave arm expects Brave at its macOS default path (`BRAVE` in `crawl.js`). Keep the politeness rules the crawler enforces: one store at a time per browser, at least 10 s between page loads on a site, at least 1 s between page loads overall, and never Accept, log in, add to cart or submit forms. Note that stores see the canary campaign `cmpstudy-<store_id>` in their analytics.
-
-## Environment and versions
-
-| Component | Version used | Needed for |
-|---|---|---|
-| Python | 3.13.9 (Anaconda), macOS | analysis, figures, `reproduce.sh` |
-| pandas / numpy / scipy / matplotlib | 2.3.3 / 2.3.5 / 1.16.3 / 3.10.6 | analysis, figures (`requirements.txt`) |
-| pypdf, Pillow, requests, tldextract | 6.16.2, 12.0.0, 2.32.5, 5.1.2 | font check, contact sheets, sampling scripts |
-| Arial (ArialMT, Arial-BoldMT, Arial-ItalicMT) | system font | pixel-identical figure PNGs (`figures/font_check.txt`) |
-| Tectonic | 0.17.0 | TikZ schematics, Figure 1 composite |
-| Node.js | 18 or newer (build machine: v22.23.2) | crawler |
-| Playwright | 1.61.0 (`pilot/pixel_payloads/package.json`, lock file included) | crawler |
-| Chromium | `chromium-headless-shell` 149.0.7827.55 (Playwright build), default headless user agent | crawl arms Default, Decline, GPC and repeats |
-| Brave | 150.1.92.139 (Chromium 150.0.7871.114), headless, Shields off via a fresh profile's preferences | native-GPC validation arm |
-
-The crawler loads Playwright from `pilot/pixel_payloads/node_modules`. Install it with `cd pilot/pixel_payloads && npm ci && npx playwright install chromium`. `figures/validate_palettes.sh` needs an external palette validator (set `VALIDATOR=`); its last output is `figures/palette_validation.txt`.
-
-## Directory map
+## Repository layout
 
 ```
-README.md  LICENSE  LICENSE-DATA  CITATION.cff  requirements.txt
-reproduce.sh                  the one command (above)
-MANIFEST.tsv                  every file: bytes, SHA-256, PDF hash without creation date, source, transformation
+README.md  LICENSE (MIT, code)  LICENSE-DATA (CC BY 4.0, data/figures/documents)  CITATION.cff  requirements.txt
+reproduce.sh                  one command: regenerate figures, tables and RESULTS.md from the released outputs (below)
+MANIFEST.tsv                  every file: bytes, SHA-256, PDF hash without creation date, source path, transformation
 SHA256SUMS                    the same hashes in `shasum -a 256 -c` format
-TABLES.tsv                    every CSV table: rows, columns
-release_tools/check.py        verify / compare (standard library only)
+TABLES.tsv                    every CSV table: rows and columns
+release_tools/check.py        verify (files vs MANIFEST.tsv) / compare (regenerated vs shipped files); standard library
 pilot/pixel_payloads/         package.json + package-lock.json for Playwright (the crawler requires this path)
 study3_shopify_consent/
-  sample/                     sampling code (frame from Tranco + DNS, verification, stratified draw, creator stratum),
+  sample/                     sampling code (Tranco + DNS frame, verification, stratified draw, creator stratum),
                               SAMPLE_NOTES.md, sample.csv (store_id, rank bucket, design weight, Shopify markers),
                               creator_stratum.csv (store_id, token level), funnel_fig2a.csv, raw/ aggregate summaries
   crawl/
@@ -82,112 +35,177 @@ study3_shopify_consent/
     cmp_signatures.json       CMP detection signatures, integration modes, reject-control selectors
     vendor_endpoints.json     vendor endpoint map, advertising flags, Web Pixels URL patterns
     build_tables.py, summarize_crawl.py, failure_breakdown.py, breakdown_checks.py, build_*.py
-    loads.csv                 one row per store x arm (4,976 loads)
-    requests.csv.gz           one row per vendor request (and Shopify WPM sandbox/manager URLs)
-    consent_states.csv        Shopify Customer Privacy API readings (about once a second, plus at the click)
-    consent_events.csv        visitorConsentCollected events
-    cmp.csv, cmp_declared.csv detected CMPs; vendors a readable CMP configuration declares blocked or allowed
-    pixels.csv                Web Pixels Manager configuration (type, runtime context, declared purposes) per store
-    gpc_checks.csv            GPC injection readout per frame and worker
-    canary_other.csv          third-party requests with the canary to hosts outside the vendor map
-    crawl_summary.json, failure_breakdown.json, breakdown_checks.txt, logs/ (traffic counts, coordinator note)
-    validation/               GPC injection self-test, live GPC summary, Brave Shields and farbling controls
-    recheck/                  re-check crawl code and derived results (banner recall, blocker activity, robots.txt)
-    endpoint_evidence/, static_mechanism/   code of the endpoint and mechanism surveys (their data: on request)
+    loads.csv, requests.csv.gz, consent_states.csv, consent_events.csv, cmp.csv, cmp_declared.csv, pixels.csv,
+    gpc_checks.csv, canary_other.csv          the crawl tables (reduced; see "Pseudonymization")
+    validation/, recheck/, endpoint_evidence/, static_mechanism/   validation arms, banner re-check, survey code
   analysis/
-    run_all.sh                full pipeline (needs the on-request data)
+    run_all.sh                full main-crawl pipeline (needs the on-request raw captures)
     common.py, extract_*.py, build_store_table.py, gate_audit.py, analyze.py, models.py, checks.py,
-    write_results.py, numreg.py, trace_check.py, audit_sample.py
-    RESULTS.md                all results, definitions, checks and limitations (generated)
-    audit_labels.csv, forced_click_audit.csv   screenshot-audit labels (made by the AI assistant; see Ethics)
-    outputs/                  stats.json, one CSV per figure panel, store_table.csv, store_vendor.csv,
-                              ad_requests.csv.gz, sandbox_creations.csv, gate_audit.json, models, number registries,
-                              trace_check.txt
+    write_results.py, numreg.py, trace_check.py, merge_*_numbers.py, audit_sample.py
+    RESULTS.md                all main-crawl results, definitions, checks and limitations (generated)
+    outputs/                  stats.json, one CSV per figure panel, store_table.csv, store_vendor.csv, ad_requests.csv.gz,
+                              sandbox_creations.csv, gate_audit.json, models, number registries, trace_check.txt
   figures/
-    scripts/                  one script per figure (fig1bc, fig3, fig4, fig5, fig6, figS), shared figutil.py
-    colors.py, style.mplstyle the single colour and style definition
-    panels/                   final data panels (PDF + 600 dpi PNG)
-    schematics/               TikZ sources, numbers.tex (generated from data), PDFs, PNG previews, build.sh
-    tables/                   supplementary LaTeX tables written by figS.py
-    fig1_composite.*          Figure 1 assembled at final size; takeaways.md (generated)
+    v7/                       THE PAPER'S FIGURES (Figs. 1-6, S1-S10, graphical abstract)
+      DESIGN_V7.md            the binding figure specification (RESTRAINT.md: rules it keeps in force)
+      style/                  figstyle.py, palette and TikZ styles, QA and palette gates, style sheet
+      scripts/                derive_numbers.py (shared derived numbers), plan checks
+      fig1/ ... fig6/, supp/, graphical_abstract/
+                              per figure: build script, TikZ sources (*.tex), scripts/ (derive, panels, caption,
+                              trace), panels/*.pdf, the composite PDF, caption_*.tex, alt text, derived_numbers.json,
+                              number registries (*_numbers.csv) and the check reports (trace, QA, palette)
+      All_figures_v7.pdf      every v7 figure in one file
+    scripts/, panels/, schematics/, tables/, fig1_composite.*, colors.py, style.mplstyle, takeaways.md
+                              the first (v1) figure set, regenerated by reproduce.sh; tables/ is still read by the
+                              paper's supplementary tables
   review/human_relabel_kit/   blind re-labelling kit, text part: blank label sheets, keys, scoring script
+  round4/
+    expansion/                B1: screening code (dns_scan_ext.py, screen.py, static_detect.py, calibrate.py, robots.py,
+                              build_candidates.py), SCREEN_NOTES.md, calibration.json, funnel.json;
+                              crawl/: crawl_r4.js (the wrapper that runs crawl/crawl.js unchanged for both Round 4
+                              sets), run_r4_crawl.sh, cmp_signatures.json, the crawl tables (reduced)
+    beyond/                   B2: PROTOCOL.md, vendor_endpoints_extra.json, screen/ (screening code, plan.json, summaries),
+                              crawl/README.md, inputs/cloudflare_ips_v4.txt
+    analysis/                 run_r4.sh, r4_tables.py, r4_blocklist.py, r4_beyond.py, r4_write_results.py,
+                              r4_trace_check.py, RESULTS_R4.md, stats_r4.json;
+                              outputs/: main/, expansion/, beyond/ tables, blocklist_r4.json, number registry, trace
+    consentcheck/             ConsentCheck: consentcheck.js, lib/, tools/, README.md, DESIGN.md, LICENSE,
+                              test/ (anonymized sample report, live-test comparison, offline replay against the crawl)
+  paper/
+    main.tex, main_5p.tex, frontmatter.tex, body.tex, backmatter.tex, preamble.tex, supplement.tex, highlights.*
+    sections/, captions/ (generated from figures/v7), tables/ (generated tables and their scripts), figs/ (figure PDFs)
+    refs.bib, refs_prior.bib, elsarticle.cls, elsarticle-harv.bst
+    build.sh, integrate_figures_v2.py, check_numbers.py, check_semantic.py, wordcount.py, make_submission.py,
+    tools/pdfpages2png.swift
+    main.pdf, supplement.pdf  the built manuscript and supplement
 ```
 
-Column-level definitions are in `CRAWL_NOTES.md` section 2 (crawl tables) and `RESULTS.md` section 2 (analysis definitions). `TABLES.tsv` lists every table's columns. In the crawl tables, `load_id` is `<store_id>__<arm>`. Arms are `A0` Default, `A1` Decline, `A2` GPC, `A0r`/`A2r` repeats and `V1` Brave. Store ids are `S0001` to `S1400` (main sample) and `C001` to `C034` (creator stratum).
+Column definitions are in `crawl/CRAWL_NOTES.md` section 2 (crawl tables) and `analysis/RESULTS.md` section 2 (analysis definitions); `TABLES.tsv` lists every table's columns. In the crawl tables `load_id` is `<store_id>__<arm>`. Arms are `A0` Default, `A1` Decline, `A2` GPC, `A0r`/`A2r` repeats and `V1` Brave. Store ids are `S0001` to `S1400` (main sample), `C001` to `C034` (creator stratum), `E0001` to `E0120` (Round 4 expansion) and `b2-PT`, `b2-ZZ`, `b2-WX`, `b2-BC`, `b2-GW` plus a number (Round 4 pilot: Partytown, Zaraz, Wix, BigCommerce, tag gateway).
+
+## Reproduce
+
+Requirements: Python 3.10+ with the packages in `requirements.txt` (`python3 -m pip install -r requirements.txt`, ideally in a virtual environment). For the TikZ figures and the paper also zsh and [Tectonic](https://tectonic-typesetting.github.io/) 0.17 (on `PATH`, or set `TECTONIC=/path/to/tectonic`) and the Arial font. Every script that used a local interpreter or TeX path in the working project reads `PY` and `TECTONIC` from the environment here.
+
+**1. One command for the analysis outputs.**
+
+```bash
+./reproduce.sh                                 # or: PY=/path/to/python3 ./reproduce.sh
+```
+
+It (1) checks every file against `MANIFEST.tsv`; (2) regenerates the v1 data panels (`figures/panels/`) and the supplementary LaTeX tables (`figures/tables/`) from `analysis/outputs/`; (3) re-renders `analysis/RESULTS.md` and `figures/takeaways.md` from `stats.json` and runs `analysis/trace_check.py`, which fails unless every number in them is a registered rendering of a `stats.json` value; (4) rebuilds the v1 TikZ schematics if Tectonic and zsh are available on macOS with a working `swiftc` (for the PNG previews), and otherwise keeps the shipped ones; (5) compares everything it regenerated with the shipped files (`release_tools/check.py compare`). Text files must be byte-identical; matplotlib PDFs are compared without their creation date; images are identical only with the same matplotlib/FreeType versions and Arial, so an image difference is reported but is not an error.
+
+**2. The paper's figures (`figures/v7/`).** Each figure has a build script that runs its steps in order and stops at the first failing check:
+
+```bash
+cd study3_shopify_consent/figures/v7
+zsh fig1/build.sh;  zsh fig2/build_fig2.sh;  zsh fig3/build_fig3.sh
+zsh fig4/build_fig4.sh;  zsh fig5/build_fig5.sh;  zsh fig6/build_fig6.sh
+zsh supp/build_supp.sh;  zsh graphical_abstract/build.sh;  zsh style/build_style_sheet.sh
+```
+
+Steps: derive numbers (`scripts/derive_*.py` -> `derived_numbers.json`) -> panels (matplotlib, `scripts/make_*panels.py`) -> TikZ panels and composite (Tectonic) -> caption and alt text (`caption_*.tex`, `alt_text_*.txt`) -> trace check (every printed number traced to `stats.json` / `derived_numbers.json`) -> QA and palette gates. Three derive steps read raw captures, which are on request (`derive_fig1.py` and `derive_fig4.py` one re-check capture, `derive_fig2.py` the raw Decline records); without them the build scripts skip that step and use the shipped `derived_numbers.json`. From this repository, the captions, alt texts, number registries, traces and derived numbers of every figure regenerate byte-identically; the PDFs differ only in TeX's embedded timestamps, and the export manifests and QA reports, which record those, differ accordingly. The graphical abstract's final typography gate (`graphical_abstract/scripts/check_ga.py`) currently fails on the shipped graphical abstract itself (a number below its 18 pt rule); this is not a reproduction error. Preview PNGs need `paper/tools/pdfpages2png` (below).
+
+**3. The paper.**
+
+```bash
+cd study3_shopify_consent/paper && zsh build.sh
+```
+
+`build.sh` copies the v7 figure PDFs and captions into `figs/` and `captions/` (`integrate_figures_v2.py`), regenerates the generated tables (`tables/*.py`) from the analysis outputs, compiles `supplement.tex`, `main.tex`, `supplement.tex` again (cross-references in both directions), `main_5p.tex` and `highlights.tex`, counts words (`wordcount.py`) and checks that every number in the text traces to a data source (`check_numbers.py`). Page previews need `tools/pdfpages2png` (macOS: `swiftc -O -o tools/pdfpages2png tools/pdfpages2png.swift`); without it they are skipped. `zsh build.sh flat` writes the single-folder submission version (`make_submission.py`).
+
+**What the public data do not redo:** the step from raw browser captures to the crawl tables and `stats.json` / `stats_r4.json`. It needs the raw captures and the unreduced tables (on request, below). The released tables are enough to recompute the store-level results yourself: `analysis/outputs/store_table.csv` and `round4/analysis/outputs/expansion/store_table.csv` have one row per store with the per-arm flags behind the headline rates, and `round4/analysis/outputs/beyond/beyond_sites.csv` one row per pilot site.
+
+### Full re-run from the raw captures (on request)
+
+`study3_shopify_consent/analysis/run_all.sh` (zsh) runs the main-crawl pipeline: extract per-load probes and initiator stacks from `crawl/raw/`, build the store table, run the gate audit, the statistics (`analyze.py`) and the models (`models.py`), summarize the re-check, run the post-crawl checks (`checks.py`), regenerate the figures, write RESULTS.md and run the trace check. `study3_shopify_consent/round4/analysis/run_r4.sh` does the same for Round 4 (tables with the main pipeline's own code, blocklist estimands, beyond-Shopify analysis, RESULTS_R4.md, trace check). Both read the raw captures, the store lists with real domains and evidence files that are not in this repository, so they run in the on-request bundle, which is the original project tree. The crawl tables are rebuilt from raw captures with `python3 crawl/build_tables.py && python3 crawl/summarize_crawl.py`.
+
+## Re-running the crawler
+
+`crawl/crawl.js` is the crawler that produced the main data (usage in its header: `node crawl.js --conc 6 --arms A0,A1,A2 [--only S0001,C005] [--limit-stores N] [--plan-only]`); `round4/expansion/crawl/crawl_r4.js --set expansion|beyond` runs it unchanged for Round 4 (its header lists the asserted substitutions). The crawler reads its store list from `sample/sample.csv` and `sample/creator_stratum.csv` (Round 4: `candidates.csv` and the `plan_r4.json` that `--prepare` writes). The released copies of these files have no domains or URLs, so to re-run it you need the original store lists (on request) or your own list in the same format (`store_id`, `domain`, `product_url`, `bucket`, `weight`; creator stratum also `landing_url`, `token_level`, `token`). Playwright is loaded from `pilot/pixel_payloads/node_modules`: `cd pilot/pixel_payloads && npm ci && npx playwright install chromium`. Keep the politeness rules the crawler enforces: one store at a time per browser, at least 10 s between page loads on a site and 1 s between page loads overall, and never Accept, log in, add to cart or submit forms. Stores see the canary campaign `cmpstudy-<store_id>` in their analytics.
+
+## ConsentCheck
+
+`study3_shopify_consent/round4/consentcheck/` is a merchant self-test built from the crawler: `node consentcheck.js https://your-store.example/products/some-product` makes three visits with fresh profiles (Default, Decline, GPC) and writes a plain-language HTML and JSON report of which vendors received data before a choice, from the page or from Shopify's sandbox, and whether Decline and GPC stopped them, with fixes. It is meant for a store's owner, on their own store. See its `README.md` (requirements: Node.js 22+, Playwright's Chromium) and `test/` (an anonymized sample report, a live-test comparison with the crawl, and an offline replay against the crawl's captures).
+
+## Environment and versions
+
+| Component | Version used | Needed for |
+|---|---|---|
+| Python | 3.13.9 (Anaconda), macOS | analysis, figures, paper scripts, `reproduce.sh` |
+| pandas / numpy / scipy / matplotlib | 2.3.3 / 2.3.5 / 1.16.3 / 3.10.6 | analysis, figures (`requirements.txt`) |
+| pypdf, Pillow, requests, tldextract | 6.16.2, 12.0.0, 2.32.5, 5.1.2 | figure QA, contact sheets, sampling scripts |
+| Arial (ArialMT, Arial-BoldMT, Arial-ItalicMT) | system font | pixel-identical figures |
+| Tectonic | 0.17.0 | TikZ figures, Figure 1 composite, the paper |
+| Node.js | 18 or newer for the crawler, 22 or newer for ConsentCheck (build machine: v22.23.2) | crawler, ConsentCheck |
+| Playwright | 1.61.0 (`pilot/pixel_payloads/package.json`, lock file included) | crawler, ConsentCheck |
+| Chromium | `chromium-headless-shell` 149.0.7827.55 (Playwright build), default headless user agent | crawl arms |
+| Brave | 150.1.92.139 (Chromium 150.0.7871.114), headless, Shields off via a fresh profile | native-GPC validation arm |
 
 ## Pseudonymization
 
-Stores appear only as pseudonymous ids. `build_public.py`, which is kept with the authors, produced this tree from the project files, as follows:
+Stores and pilot sites appear only under the pseudonymous ids above. The release builder (kept with the author) produced this tree from the project files:
 
-- **Removed columns:** store domains, Tranco ranks (the rank bucket and design weight are kept), page titles, homepage, product and landing URLs, creator channel names, campaign tokens and video ids.
-- **URLs cut to their host:** frame URLs, worker URLs, initiator URLs and first-stack URLs keep only the host. Request URLs are removed, because the `host` column already holds the vendor host.
-- **Replaced strings:** every store host left in the text is replaced by `<store_id>.store.example`, and store brand words by `[<store_id>]`. Creator names, tokens and video ids become `[<id>-creator]` or `[<id>-video]`. Shopify shop ids, store file paths and product or collection slugs become placeholders. The creator case study (C005) is called **Store C**, as in the paper, including in file names (`fig6b_store_c.csv`) and `stats.json` keys (`store_c`).
-- **Scan:** a scanner checked every text file and every PDF's text against all sampled domains, hosts, brand words, creator names, tokens and video ids. It found no match.
+- **Removed columns:** store domains, Tranco ranks (the rank bucket and design weight are kept), page titles, homepage, product, landing and request URLs, creator channel names, campaign tokens and video ids, and free-text names that often carry a brand: custom pixel names, custom event names and the names of cookies sent or set.
+- **URLs cut to their host:** session, frame, initiator, first-stack, GPC-check and autoblock URLs keep only the host.
+- **Rare hosts generalized:** in every host column, a host seen for fewer than three stores (typically a vendor's per-customer subdomain or a store's own second domain) is replaced by its registrable domain if that is seen for three or more stores (`brand.vendor.tv` -> `vendor.tv`), and otherwise by `<rare-host>`.
+- **Replaced strings:** every store or site host left in the text, including hosts a store redirected to, becomes `<store_id>.store.example`, and store brand words become `[<store_id>]`. Creator names, tokens and video ids become `[<id>-creator]` / `[<id>-video]`. Shopify shop ids, store file paths, product and collection slugs, analytics, tag-manager and advertiser account ids, and the store name in BigCommerce consent configurations become placeholders; digit runs in the CMP blocklist descriptions (`detail`, `evidence`) become `<n>`. The creator case study (C005) is called **Store C**, as in the paper, including in file names (`fig6b_store_c.csv`) and `stats.json` keys (`store_c`).
+- **Scan:** every text file, every PDF's text and every file name was checked against all sampled and screened domains, hosts, brand words, creator names, tokens and video ids, and for personal data and credentials. It found no match.
 
-**Residual risk.** Pseudonymous is not anonymous. Someone who crawls Shopify stores could still match a store by its combination of consent tool, vendors, pixel ids, consent-string suffixes and timing. Using the data to re-identify stores is contrary to the purpose of the release. The mapping from store ids to domains is available to researchers on request. Merchants can ask for their store's records to be removed: devansh.sanghavi@gmail.com.
+**Residual risk.** Pseudonymous is not anonymous. Someone who crawls Shopify stores could still match a store by its combination of consent tool, vendors, Web Pixels ids, consent-string suffixes, banner button texts and timing. Using the data to re-identify stores is contrary to the purpose of this release. Merchants can ask for their store's records to be removed: devansh.sanghavi@gmail.com.
 
 ## What is not in this repository (available on request)
 
-These items are withheld because they show store identity, contain third-party page content or code, or are raw captures that may hold third-party cookies or payload bodies set during crawling:
+Withheld because they show store identity, contain third-party page content or code, or are raw captures that may hold third-party cookies or payload bodies set during crawling:
 
-- the store-id-to-domain mapping and the full store lists (domains, Tranco ranks, URLs, creator channels and tokens), including the crawl plan;
-- the unreduced crawl tables (full request, frame and initiator URLs; page titles);
-- the raw browser captures (per-load JSON with request and response metadata, payload bodies up to 4,000 characters, frame trees and consent readings), for the main crawl, retried and superseded loads, the re-check crawl (including its script-element logs) and the pilots, plus the per-load caches derived from them;
-- all screenshots and contact sheets of store pages (main crawl and re-check), which the blind re-labelling kit needs, and the kit's title-screen sheets;
-- saved third-party code and pages (Shopify's Web Pixels Manager and sandbox runtime, consent-tool scripts, store HTML);
-- crawl logs with URLs, raw sampling records (DNS scan, verification log, homepages, frame-recall checks, creator candidates) and the local copy of the Tranco list (get it from tranco-list.eu, list ID L5PZ4);
-- the vantage kit, for collaborators who re-run the crawl from another region; it locks the exact crawler code and store list with checksums.
+- the store-id-to-domain mapping and the full store and site lists (domains, Tranco ranks, URLs, titles, creator channels and tokens), including the crawl plans and the Round 4 candidate lists and screening queues;
+- the unreduced crawl and analysis tables (full request, frame and initiator URLs and hosts, page titles, custom pixel and event names, cookie names);
+- the raw browser captures (per-load JSON with request and response metadata, payload bodies up to 4,000 characters, frame trees and consent readings) of the main crawl, retried and superseded loads, the re-check (including its script-element logs), the pilots and Round 4, and the per-load caches derived from them;
+- all screenshots and contact sheets of store pages, which the blind re-labelling kit needs, and the kit's title-screen sheets;
+- saved third-party code and pages (Shopify's Web Pixels Manager and sandbox runtime, consent-tool scripts, store HTML), crawl logs with URLs, and the raw sampling and screening records (DNS scans, verification logs, homepages, the local copy of the Tranco list: get it from tranco-list.eu, list ID L5PZ4);
+- ConsentCheck's live test on a real store (raw capture and the report before anonymization);
+- the vantage kit for collaborators who re-run the crawl from another region (exact crawler code and store list, checksum-locked).
 
-Requests: devansh.sanghavi@gmail.com. Requests are answered for research use, with the data shared under conditions the authors set.
+Requests from researchers: devansh.sanghavi@gmail.com. Data are shared for research use under conditions the author sets.
 
 ## Ethics
 
-- **What was measured.** Public storefront pages only. There were no human participants and no personal data of real users.
-- **How the crawler behaved.** Each load used a fresh temporary browser profile. The crawler never created accounts, logged in, added to cart, submitted forms or bought anything, and it clicked only the most privacy-protective banner option (Decline), never Accept. It used the unmodified headless user agent, so it was identifiable as automated, and it did not get around bot detection or access controls.
-- **Load on stores.** At most one page load per store every 10 s. Counting re-runs, the Decline reload and the re-check, each store received at most 11 page loads, and 43 stores received more than seven. The crawler did not consult `robots.txt`. A retrospective fetch found that 20 of the 1,427 stores that served one disallowed the exact landing URL, mostly because of the canary's query parameters. Excluding every store flagged in the ethics review moves no headline rate by more than 0.4 percentage points (`RESULTS.md`, section 5).
-- **Deviation.** The planned limit of about six concurrent browsers was exceeded: 578 loads ran at 6 and 4,398 at 10, after another process restarted the crawler. Per-site pacing did not change. The run segment is a sensitivity row in the sensitivity figure (`figS6_sensitivity`).
-- **Records created by our visits.** Our visits may appear in merchants' analytics as a campaign named `cmpstudy`. CMPs and Shopify also wrote consent records during our loads (`RESULTS.md`).
-- **Stores that should have been excluded.** Stores aimed at children or offering adult content were to be excluded. The sampling screen missed two adult-product stores, and flagged further titles await a human decision. The creator case study (Store C) is a documented, justified exception (paper, Method section).
-- **Validation labels.** Every screenshot and content label so far was made by the AI assistant named in the paper (Claude, Anthropic, run in Claude Code). An independent human re-labelling is still required. The same assistant wrote the code, ran the crawls and the analysis, produced the figures and assembled this release.
-- **Disclosure.** Disclosure to Shopify, the consent-tool vendors, TikTok and Store C's operator is planned before publication.
+- **What was measured.** Public storefront pages and the third-party code on them. No human subjects and no personal data of real users.
+- **How the crawler behaved.** A fresh temporary browser profile for every load; no accounts, logins, carts, forms or purchases; banners were only ever declined, never accepted; the unmodified headless user agent, so the browser was visibly automated; no circumvention of bot detection or access controls.
+- **`robots.txt`.** The Round 4 screening and crawls and ConsentCheck fetch `robots.txt` before any other request and load a page only if it is allowed. The main crawl did not; a retrospective fetch found 20 of 1,427 stores that disallowed the exact landing URL, mostly because of the canary parameters (paper, Ethics; `RESULTS.md`).
+- **Load on stores.** At least 10 s between page loads on a store, and between 3 and 11 page loads per store including re-runs and the re-check.
+- **Exclusions.** Stores aimed at children or offering adult content were to be excluded; four stores found after the crawl are excluded from all analyses. The creator case study (Store C) is a documented exception (paper, Method).
+- **Validation labels.** The screenshot audits, content screens and recall audit were made with AI assistance (Claude, Anthropic), not by an independent human rater; the blind re-labelling kit in `review/human_relabel_kit/` is released so that they can be checked.
+- **Records created by our visits.** Visits may appear in merchants' analytics as a campaign named `cmpstudy`; CMPs and Shopify also wrote consent records during the loads.
+- **Disclosure.** The findings were disclosed on 2 October 2026 to Shopify, Pandectes, OneTrust, Usercentrics/Cookiebot and TikTok (paper, Ethics).
 
-## Licences (suggested, to be confirmed by the authors)
+## Licences
 
-- **Code** (`.py`, `.js`, `.sh`, `.swift`, `.tex` sources): MIT. See `LICENSE`.
-- **Data and figures:** CC BY 4.0. See `LICENSE-DATA`.
-- **Not covered:** third-party material (the Tranco list, Shopify's and the consent tools' code, store pages), none of which is included.
-
-Code: MIT (`LICENSE`). Data: CC BY 4.0 (`LICENSE-DATA`).
+- **Code** (`.py`, `.js`, `.sh`, `.swift`, and the LaTeX/TikZ sources): MIT, see `LICENSE`. ConsentCheck carries the same licence in `round4/consentcheck/LICENSE`.
+- **Data, figures and documents** (tables, JSON, figure PDFs and PNGs, the built paper, Markdown): CC BY 4.0, see `LICENSE-DATA`.
+- **Third-party files:** `paper/elsarticle.cls` and `paper/elsarticle-harv.bst` are Elsevier's, under the LaTeX Project Public License. Third-party material the data describe (the Tranco list, Shopify's and the consent tools' code, store pages) is not included.
 
 ## Citation
 
-If you use the data or code, please cite the article and the dataset (`CITATION.cff` has the same information):
+Please cite the article and this repository (`CITATION.cff` has the same information):
 
 ```bibtex
-@article{blockedonpaper2026,
+@article{sanghavi2026consent,
   author  = {Sanghavi, Devansh},
-  title   = {Blocked on paper: How consent is lost between cookie banners and {Shopify}'s sandboxed web pixels},
+  title   = {Consent Enforcement Gaps in Sandboxed Web Pixels: A Large-Scale Measurement of {Shopify} Storefronts},
   journal = {Computers \& Security},
-  year    = {},
-  volume  = {},
-  pages   = {},
-  doi     = {},
+  year    = {2026},
   note    = {Submitted}
 }
 
-@misc{blockedonpaper2026data,
+@misc{sanghavi2026consentdata,
   author       = {Sanghavi, Devansh},
-  title        = {Data and code for: Blocked on paper: How consent is lost between cookie banners and {Shopify}'s sandboxed web pixels},
-  year         = {},
-  publisher    = {},
+  title        = {Data and code for: Consent Enforcement Gaps in Sandboxed Web Pixels: A Large-Scale Measurement of {Shopify} Storefronts},
+  year         = {2026},
   version      = {1.0.0},
-  doi          = {},
-  howpublished = {}
+  howpublished = {\url{https://github.com/devanshsanghavi-droid/FTJ}}
 }
 ```
 
-In the article, cite the dataset as an Elsevier `[dataset]` reference.
-
 ## Contact
 
-Devansh Sanghavi, devansh.sanghavi@gmail.com.
+Devansh Sanghavi, Los Altos High School, Los Altos, CA, USA: devansh.sanghavi@gmail.com (questions, data requests, removal requests).

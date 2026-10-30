@@ -1,0 +1,28 @@
+# GA palette validation (2026-09-27T03:27Z); dataviz validate_palette.js, surface #ffffff
+# Greys fail the lightness band / chroma floor by design (they are neutrals, not categorical slots; FIGURE_PLAN_v2 section 1).
+
+## Meter: red (consent failed) next to its light-grey track (track outlined in dark grey; plan section 0 correction 3)
+
+Palette (light, surface #ffffff, categorical): 2 slots
+  [FAIL] Lightness band         outside band: [["#deddd9",0.897]]
+  [FAIL] Chroma floor           below floor (reads gray): [["#deddd9",0.006]]
+  [PASS] CVD separation         worst adjacent #deddd9↔#d03b3b ΔE 32.0 (deutan) · tritan 39.0
+  [PASS] Normal-vision floor    worst adjacent #deddd9↔#d03b3b ΔE 37.1 (normal)
+  [WARN] Contrast vs surface    below 3:1 — relief required (visible labels or table view): [["#deddd9",1.36]]
+
+  → FAILED — fix the marked checks  (CVD in the 6–8 floor band is legal ONLY with secondary encoding: direct labels, gaps, or texture)
+  scope: categorical palettes only. For a lone status/text color check WCAG text contrast; for a sequential ramp, lightness monotonicity.
+
+
+## Blind spot: red stop bar at the end of the mid-grey reach line (labelled 'Blind spot')
+
+Palette (light, surface #ffffff, categorical): 2 slots
+  [PASS] Lightness band         all 2 inside L 0.43–0.77
+  [FAIL] Chroma floor           below floor (reads gray): [["#8a8984",0.007]]
+  [PASS] CVD separation         worst adjacent #8a8984↔#d03b3b ΔE 9.5 (deutan) · tritan 23.5
+  [PASS] Normal-vision floor    worst adjacent #8a8984↔#d03b3b ΔE 19.2 (normal)
+  [PASS] Contrast vs surface    all 2 >= 3:1
+
+  → FAILED — fix the marked checks  (CVD in the 6–8 floor band is legal ONLY with secondary encoding: direct labels, gaps, or texture)
+  scope: categorical palettes only. For a lone status/text color check WCAG text contrast; for a sequential ramp, lightness monotonicity.
+

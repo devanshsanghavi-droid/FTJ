@@ -1,0 +1,56 @@
+{
+ "figure": "Figure 6 (v7: DESIGN_V7.md, the sciplot clean theme with the FigGenie and nature-figure grafts; K-Dense skill v1.4 screen)",
+ "destination": {
+  "journal": "Computers & Security (Elsevier)",
+  "article_type": "research article",
+  "phase": "initial submission",
+  "width": "full (190 mm)",
+  "publisher_rules": "PENDING VERIFICATION against the live C&S Guide for Authors; screened only against the skill's dated Elsevier snapshot"
+ },
+ "outputs": [
+  {
+   "file": "fig6.pdf",
+   "format": "PDF (vector, Type 42 / CID TrueType Arial, opaque white, RGB)",
+   "width_mm": 190.0,
+   "height_mm": 102.0,
+   "bytes": 113823,
+   "sha256": "6bbc2ed8ca8f8268ea2d6f9f520e1a17a0bbd1e9b8c45037cf2b1c06be342efd"
+  },
+  {
+   "file": "_v7_review-p01.png",
+   "format": "PNG review render, 200 ppi",
+   "px": [
+    1496,
+    803
+   ]
+  }
+ ],
+ "sources": {
+  "stats.json": {
+   "path": "analysis/outputs/stats.json",
+   "sha256": "e32f77df32f8d3fef00721e7ecc03255ef2504649def4d6c5a050cf9484dd824"
+  },
+  "fig6/derived_numbers.json": {
+   "path": "figures/v7/fig6/derived_numbers.json",
+   "sha256": "601e9e4c9c6761b20fcf1149ae2de7b5d851f04e2756b51d7917db228f1b5959"
+  }
+ },
+ "transformations": [
+  "analysis/analyze.py -> analysis/outputs/stats.json (Wilson CIs; Korn-Graubard CIs clustered by store; store-bootstrap CIs; Cohen kappa with its CI; screenshot-audit agreement)",
+  "fig6/scripts/derive_fig6.py -> fig6/derived_numbers.json (Store C per-load grid and vendor matrix from analysis/outputs/fig6b_store_c.csv; Wilson CIs of the between-load agreement)",
+  "fig6/scripts/make_fig6_panels.py (drawing only; no number is printed in the panels besides tick labels; every drawn value registered in panels/fig6_numbers.csv and checked by scripts/trace_fig6.py); fig6a_path.tex (TikZ line drawing of a, no numbers); fig6.tex (composite, tectonic)",
+  "fig6/scripts/make_caption_fig6.py (the caption carries every count and share; registry caption_fig6_numbers.csv)"
+ ],
+ "uncertainty": "b: Wilson 95% CIs (stores are the unit); c: Korn-Graubard 95% CIs clustered by store per vendor group, all vendors (the summary row): 95% CI from resampling stores (percentile bootstrap), in the caption; d: Wilson 95% CIs of the agreement share; Cohen kappa 95% CI in the caption. a: one store, exact counts (no interval).",
+ "missing_data": "c: vendor groups with fewer than design.min_stores_row stores are omitted (none at present). d: the axis is truncated at 85% (ticks 85-100; stated in the caption); the screenshot-audit labels have not yet been checked by an independent human rater (stated in the caption).",
+ "software": {
+  "python": "3.13.9",
+  "matplotlib": "3.10.6",
+  "numpy": "2.3.5",
+  "pypdf": "6.16.2",
+  "pandas": "2.3.3",
+  "tectonic": "Tectonic 0.17.0"
+ },
+ "alt_text": "alt_text_fig6.txt",
+ "note": "No automated report here certifies accessibility or journal compliance (skill guardrail)."
+}
